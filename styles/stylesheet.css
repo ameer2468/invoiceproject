@@ -1,0 +1,560 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-Regular.ttf");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-Bold.ttf");
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+}
+.absoluteCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.3rem;
+  font-family: Poppins, sans-serif;
+}
+
+@media all and (max-width: 768px) {
+  html {
+    font-size: 54.5%;
+  }
+}
+/*Titles*/
+/*Content*/
+.loginButton {
+  filter: drop-shadow(4px 7px 0px #000000);
+  background: white;
+  font-family: "Poppins", sans-serif;
+  padding: 0 5rem;
+  font-weight: 400;
+  height: 5rem;
+  border-radius: 1rem;
+  transition: all 0.3s;
+  border: 1px solid black;
+}
+.loginButton:hover {
+  cursor: pointer;
+  filter: drop-shadow(0px 0px 0px #000000);
+  transition: all 0.3s;
+  transform: translateY(5px);
+}
+.loginButton:focus {
+  outline: none;
+  filter: drop-shadow(0px 0px 0px #000000);
+  transition: all 0.3s;
+  transform: translateY(5px);
+}
+
+.dbButton {
+  background: black;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  padding: 0 5rem;
+  height: 5rem;
+  border-radius: 1rem;
+  transition: all 0.3s;
+  border: 2px solid black;
+}
+.dbButton:hover {
+  cursor: pointer;
+  border: 2px solid black;
+  background: #FF7193;
+  color: white;
+}
+.dbButton:focus {
+  outline: none;
+  filter: drop-shadow(0px 0px 0px #000000);
+  transition: all 0.3s;
+  transform: translateY(5px);
+}
+
+.features {
+  width: 100%;
+  max-width: 140rem;
+  margin: 20rem auto 20rem auto;
+  display: flex;
+  padding: 0 2rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+.features h1 {
+  font-size: 5rem;
+  width: 100%;
+  max-width: 20%;
+}
+.features .cards {
+  flex: 0 0 60%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 50px;
+  align-items: center;
+}
+.features .cards .card:nth-child(2) {
+  grid-row: 1/span 2;
+}
+.features .cards .card {
+  border: 1px solid black;
+  text-align: center;
+  padding: 2rem 2.7rem;
+  border-radius: 1rem;
+}
+.features .cards .card p {
+  font-size: 1.8rem;
+  margin-top: 1rem;
+  line-height: 3.5rem;
+}
+.features .cards .card h3 {
+  color: #71AAFF;
+  font-size: 3rem;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2rem;
+  margin: 6% auto 0 auto;
+  width: 100%;
+  height: 70rem;
+  background-image: url("../pages/components/page-specific/home/herobg.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom;
+}
+.hero button {
+  background: black;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  padding: 0 5rem;
+  height: 5rem;
+  border-radius: 1rem;
+  transition: all 0.3s;
+  border: 2px solid black;
+  width: auto;
+  margin: 3rem auto 0 auto;
+}
+.hero button:hover {
+  cursor: pointer;
+  border: 2px solid black;
+  background: #FF7193;
+  color: white;
+}
+.hero button:focus {
+  outline: none;
+  filter: drop-shadow(0px 0px 0px #000000);
+  transition: all 0.3s;
+  transform: translateY(5px);
+}
+.hero h1 {
+  font-size: 5rem;
+  width: 100%;
+  text-align: center;
+  line-height: 7.3rem;
+  max-width: 70rem;
+  margin: 0 auto;
+}
+.hero .pink {
+  color: #FF7193;
+}
+
+@media all and (max-width: 768px) {
+  .features {
+    flex-direction: column-reverse;
+  }
+  .features h1 {
+    max-width: 100%;
+    margin-bottom: 3rem;
+  }
+  .features .cards {
+    grid-template-columns: 1fr;
+    flex: 0 0 100%;
+    grid-gap: 30px;
+  }
+}
+.sidebar {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  max-width: 25rem;
+  height: 100vh;
+  background-color: black;
+}
+.sidebar .container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 100%;
+  align-items: center;
+  position: relative;
+}
+.sidebar .container .logout {
+  background: #71AAFF;
+  width: 5rem;
+  height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5rem;
+  position: absolute;
+  bottom: 10rem;
+  transition: all 0.3s;
+}
+.sidebar .container .logout:hover {
+  background: #3e8bff;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.sidebar .container .logout .icon {
+  color: white;
+  font-size: 1.5rem;
+}
+.sidebar .container .profile {
+  margin-top: 5rem;
+  text-align: center;
+}
+.sidebar .container .profile .navlinks {
+  margin-top: 6rem;
+}
+.sidebar .container .profile .navlinks .active p {
+  color: #71AAFF;
+}
+.sidebar .container .profile .navlinks .active::before {
+  content: "";
+  z-index: -1;
+  left: 0;
+  position: absolute;
+  width: 0.5rem;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  height: 5rem;
+  background: #71AAFF;
+}
+.sidebar .container .profile .navlinks .link {
+  display: flex;
+  margin-bottom: 1.9rem;
+  justify-content: flex-start;
+  align-items: center;
+  transition: all 0.3s;
+}
+.sidebar .container .profile .navlinks .link:hover {
+  transition: all 0.3s;
+  cursor: pointer;
+  opacity: 0.5;
+}
+.sidebar .container .profile .info {
+  margin-top: 2rem;
+}
+.sidebar .container .profile p {
+  color: white;
+  font-size: 1.8rem;
+}
+.sidebar .container .profile h4 {
+  color: white;
+  line-height: 2.8rem;
+  font-size: 2.5rem;
+}
+.sidebar .container h3 {
+  color: white;
+  font-size: 3rem;
+  font-weight: bold;
+  margin-top: 5rem;
+}
+
+.dashboardHeader .container {
+  position: absolute;
+  top: 3vh;
+  left: 15vw;
+  width: 100%;
+  max-width: 70vw;
+  margin: 0 auto;
+}
+.dashboardHeader .container input {
+  width: 100%;
+  max-width: 30rem;
+  border: 2px solid black;
+  padding: 1rem;
+  border-radius: 0.8rem;
+  transition: all 0.3s;
+  font-weight: bold;
+  color: black;
+  font-family: Poppins, "sans-serif";
+}
+.dashboardHeader .container input::placeholder {
+  color: black;
+  font-weight: bold;
+}
+.dashboardHeader .container input:focus {
+  outline: 0;
+  border: 2px solid #FF7193;
+  transition: all 0.3s;
+}
+
+.overview .container {
+  position: relative;
+  width: 100%;
+  top: 15vh;
+  max-width: 70vw;
+  margin: 0 auto;
+  height: 100%;
+}
+.overview h1 {
+  color: black;
+  font-size: 5rem;
+}
+
+.registerPage {
+  width: 100%;
+  height: 100%;
+}
+.registerPage .container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 0 2rem;
+  height: 100vh;
+}
+.registerPage .container h2 {
+  font-size: 2.5rem;
+  margin-bottom: 5rem;
+}
+.registerPage .container h2:hover {
+  cursor: pointer;
+}
+.registerPage .container form {
+  width: 100%;
+  max-width: 60rem;
+  border: 2px solid black;
+  border-radius: 1.5rem;
+  height: auto;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+}
+.registerPage .container form a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 2rem;
+}
+.registerPage .container form input {
+  border: 2px solid black;
+  padding: 1.5rem 2rem;
+  border-radius: 1rem;
+  font-weight: bold;
+  width: 80%;
+  margin: 1rem auto 0 auto;
+  transition: all 0.3s;
+  font-family: Poppins, sans-serif;
+}
+.registerPage .container form input:focus {
+  border: 2px solid #FF7193;
+  outline: 0;
+  transition: all 0.3s;
+}
+.registerPage .container form input::placeholder {
+  color: black;
+  font-weight: bold;
+}
+.registerPage .container form button {
+  background: black;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  padding: 0 7rem;
+  height: 5rem;
+  border-radius: 1rem;
+  transition: all 0.3s;
+  border: 2px solid black;
+  margin: 3rem auto 0 auto;
+}
+.registerPage .container form button:hover {
+  cursor: pointer;
+  transition: all 0.3s;
+  background-color: #FF7193;
+}
+.registerPage .container form h3 {
+  color: #FF7193;
+  text-align: center;
+  font-size: 4rem;
+}
+
+.loginPage {
+  width: 100%;
+  height: 100%;
+}
+.loginPage .container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0 2rem;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+.loginPage .container h2 {
+  font-size: 2.5rem;
+  margin-bottom: 5rem;
+}
+.loginPage .container h2:hover {
+  cursor: pointer;
+}
+.loginPage .container form {
+  width: 100%;
+  max-width: 60rem;
+  border: 2px solid black;
+  border-radius: 1.5rem;
+  height: auto;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+}
+.loginPage .container form a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 2rem;
+}
+.loginPage .container form input {
+  border: 2px solid black;
+  padding: 1.5rem 2rem;
+  border-radius: 1rem;
+  font-weight: bold;
+  width: 80%;
+  margin: 1rem auto 0 auto;
+  transition: all 0.3s;
+  font-family: Poppins, sans-serif;
+}
+.loginPage .container form input:focus {
+  border: 2px solid #FF7193;
+  outline: 0;
+  transition: all 0.3s;
+}
+.loginPage .container form input::placeholder {
+  color: black;
+  font-weight: bold;
+}
+.loginPage .container form button {
+  background: black;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  padding: 0 7rem;
+  height: 5rem;
+  border-radius: 1rem;
+  transition: all 0.3s;
+  border: 2px solid black;
+  margin: 3rem auto 0 auto;
+}
+.loginPage .container form button:hover {
+  cursor: pointer;
+  transition: all 0.3s;
+  background-color: #FF7193;
+}
+.loginPage .container form h3 {
+  color: #FF7193;
+  text-align: center;
+  font-size: 4rem;
+}
+
+.header {
+  width: 100%;
+  max-width: 140rem;
+  margin: 5rem auto 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+}
+.header h1 {
+  font-weight: bold;
+}
+
+.form-error {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 1.5rem;
+}
+
+footer {
+  background: black;
+}
+footer .container {
+  padding: 10rem 2rem;
+  width: 100%;
+  max-width: 140rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+footer .col:nth-child(1) p {
+  margin-top: 0.5rem;
+}
+footer .col .list {
+  display: inline-block;
+  margin: 0 5rem;
+}
+footer .col .list ul {
+  margin-top: 2rem;
+}
+footer h3 {
+  font-size: 3rem;
+}
+footer p, footer li {
+  font-size: 1.5rem;
+}
+footer p, footer h3, footer li {
+  color: white;
+}
+footer li {
+  list-style: none;
+  line-height: 3rem;
+}
+
+@media all and (max-width: 768px) {
+  footer .container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  footer .container .col:nth-child(2) {
+    margin-top: 5rem;
+    width: 100%;
+    text-align: center;
+  }
+  footer .container .col:nth-child(2) .list:nth-child(2) {
+    margin-top: 3rem;
+  }
+}
+
+/*# sourceMappingURL=stylesheet.css.map */

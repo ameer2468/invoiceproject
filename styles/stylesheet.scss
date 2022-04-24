@@ -1,0 +1,52 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-Regular.ttf");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-Bold.ttf");
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+}
+
+.absoluteCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.3rem;
+  font-family: Poppins, sans-serif;
+}
+
+@media all and (max-width: 768px) {
+  html {
+    font-size: 54.5%;
+  }
+}
+
+@import "variables";
+@import "home";
+@import "dashboard";
+@import "register";
+@import "login";
+@import "global";
+
+

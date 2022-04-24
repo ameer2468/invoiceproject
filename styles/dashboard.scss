@@ -1,0 +1,136 @@
+.sidebar {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  max-width: 25rem;
+  height: 100vh;
+  background-color: black;
+  .container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 100%;
+    align-items: center;
+    position: relative;
+    & .logout {
+      background: $blue;
+      width: 5rem;
+      height: 5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 5rem;
+      position: absolute;
+      bottom: 10rem;
+      transition: all 0.3s;
+      &:hover {
+        background: darken($blue, 10%);
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      .icon {
+        color: white;
+        font-size: 1.5rem;
+      }
+    }
+    & .profile {
+      margin-top: 5rem;
+      text-align: center;
+      .navlinks {
+        margin-top: 6rem;
+        .active {
+          p {
+            color: $blue;
+          }
+          &::before {
+            content: '';
+            z-index: -1;
+            left: 0;
+            position: absolute;
+            width: 0.5rem;
+            border-top-right-radius: 1rem;
+            border-bottom-right-radius: 1rem;
+            height: 5rem;
+            background: $blue;
+          }
+        }
+        .link {
+          display: flex;
+          margin-bottom: 1.9rem;
+          justify-content: flex-start;
+          align-items: center;
+          transition: all 0.3s;
+          &:hover {
+            transition: all 0.3s;
+            cursor: pointer;
+            opacity: 0.5;
+          }
+        }
+      }
+      .info {
+        margin-top: 2rem;
+      }
+      p {
+        color: white;
+        font-size: 1.8rem;
+      }
+      h4 {
+        color: white;
+        line-height: 2.8rem;
+        font-size: 2.5rem;
+      }
+    }
+    h3 {
+      color: white;
+      font-size: 3rem;
+      font-weight: bold;
+      margin-top: 5rem;
+    }
+  }
+}
+
+.dashboardHeader {
+  .container {
+    position: absolute;
+    top: 3vh;
+    left: 15vw;
+    width: 100%;
+    max-width: 70vw;
+    margin: 0 auto;
+    input {
+      width: 100%;
+      max-width: 30rem;
+      border: 2px solid black;
+      padding: 1rem;
+      border-radius: 0.8rem;
+      transition: all 0.3s;
+      font-weight: bold;
+      color: black;
+      font-family: Poppins, 'sans-serif';
+      &::placeholder {
+        color: black;
+        font-weight: bold;
+      }
+      &:focus {
+        outline: 0;
+        border: 2px solid $pink;
+        transition: all 0.3s;
+      }
+    }
+  }
+}
+
+.overview {
+  .container {
+    position: relative;
+    width: 100%;
+    top: 15vh;
+    max-width: 70vw;
+    margin: 0 auto;
+    height: 100%;
+  }
+  h1 {
+    color: black;
+    font-size: 5rem;
+  }
+}

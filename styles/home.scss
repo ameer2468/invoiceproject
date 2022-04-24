@@ -1,0 +1,99 @@
+.loginButton {
+ @include whiteButtonShadow();
+}
+
+.dbButton {
+ @include blackButtonShadow();
+}
+
+
+//Features
+
+.features {
+ width: 100%;
+ max-width: 140rem;
+ margin: 20rem auto 20rem auto;
+ display: flex;
+ padding: 0 2rem;
+ flex-wrap: wrap;
+ align-items: center;
+ justify-content: space-between;
+ h1 {
+  font-size: $bigHeading;
+  width: 100%;
+  max-width: 20%;
+ }
+ .cards {
+  flex: 0 0 60%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 50px;
+  align-items: center;
+  .card:nth-child(2) {
+   grid-row: 1 / span 2;
+  }
+  .card {
+   border: 1px solid black;
+   text-align: center;
+   padding: 2rem 2.7rem;
+   border-radius: 1rem;
+   p {
+    font-size: $body;
+    margin-top: 1rem;
+    line-height: 3.5rem;
+   }
+   h3 {
+    color: $blue;
+    font-size: $contentHeading;
+   }
+  }
+ }
+}
+
+.hero {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ padding: 0 2rem;
+ margin: 6% auto 0 auto;
+ width: 100%;
+ height: 70rem;
+ background-image: url("../pages/components/page-specific/home/herobg.png");
+ background-size: contain;
+ background-repeat: no-repeat;
+ background-position: bottom;
+ button {
+   @include blackButtonShadow();
+  width: auto;
+  margin: 3rem auto 0 auto;
+ }
+ h1 {
+  font-size: $bigHeading;
+  width: 100%;
+  text-align: center;
+  line-height: 7.3rem;
+  max-width: 70rem;
+  margin: 0 auto;
+ }
+ .pink {
+  color: $pink;
+ }
+}
+
+
+@media all and (max-width: 768px) {
+ .features {
+  flex-direction: column-reverse;
+  h1 {
+   max-width: 100%;
+   margin-bottom: 3rem;
+  }
+  .cards {
+   grid-template-columns: 1fr;
+   flex: 0 0 100%;
+   grid-gap: 30px;
+  }
+ }
+}

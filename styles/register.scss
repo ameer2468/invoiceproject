@@ -1,0 +1,49 @@
+.registerPage {
+  width: 100%;
+  height: 100%;
+  .container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 2rem;
+    height: 100vh;
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 5rem;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    form {
+      width: 100%;
+      max-width: 60rem;
+      border: 2px solid black;
+      border-radius: 1.5rem;
+      height: auto;
+      padding: 4rem 2rem;
+      display: flex;
+      flex-direction: column;
+      a {
+        text-decoration: none;
+        color: black;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 2rem;
+      }
+      input {
+        @include formInput();
+      }
+      button {
+        @include button();
+        margin: 3rem auto 0 auto;
+      }
+      h3 {
+        color: $pink;
+        text-align: center;
+        font-size: 4rem;
+      }
+    }
+  }
+}

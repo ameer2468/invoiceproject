@@ -1,0 +1,100 @@
+$pink: #FF7193;
+$blue: #71AAFF;
+$black: black;
+$white: white;
+
+/*Titles*/
+
+$bigHeading: 5rem;
+$contentHeading: 3rem;
+
+/*Content*/
+
+$body: 1.8rem;
+
+@mixin button {
+  background: black;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  padding: 0 7rem;
+  height: 5rem;
+  border-radius: 1rem;
+  transition: all 0.3s;
+  border: 2px solid $black;
+  &:hover {
+    cursor: pointer;
+    transition: all 0.3s;
+    background-color: $pink;
+  }
+}
+
+@mixin blackButtonShadow {
+  //filter: drop-shadow(4px 7px 0px $pink);
+  background: black;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  padding: 0 5rem;
+  height: 5rem;
+  border-radius: 1rem;
+  transition: all 0.3s;
+  border: 2px solid $black;
+  &:hover {
+    cursor: pointer;
+    border: 2px solid $black;
+    background: $pink;
+    color: white;
+  }
+  &:focus {
+    outline: none;
+    filter: drop-shadow(0px 0px 0px #000000);
+    transition: all 0.3s;
+    transform: translateY(5px);
+  }
+}
+
+@mixin formInput {
+  border: 2px solid black;
+  padding: 1.5rem 2rem;
+  border-radius: 1rem;
+  font-weight: bold;
+  width: 80%;
+  margin: 1rem auto 0 auto;
+  transition: all 0.3s;
+  font-family: Poppins, sans-serif;
+  &:focus {
+    border: 2px solid $pink;
+    outline: 0;
+    transition: all 0.3s;
+  }
+  &::placeholder {
+    color: black;
+    font-weight: bold;
+  }
+}
+
+@mixin whiteButtonShadow {
+  filter: drop-shadow(4px 7px 0px #000000);
+  background: white;
+  font-family: "Poppins", sans-serif;
+  padding: 0 5rem;
+  font-weight: 400;
+  height: 5rem;
+  border-radius: 1rem;
+  transition: all 0.3s;
+  border: 1px solid $black;
+  &:hover {
+    cursor: pointer;
+    filter: drop-shadow(0px 0px 0px #000000);
+    transition: all 0.3s;
+    transform: translateY(5px);
+  }
+  &:focus {
+    outline: none;
+    filter: drop-shadow(0px 0px 0px #000000);
+    transition: all 0.3s;
+    transform: translateY(5px);
+  }
+}
+
