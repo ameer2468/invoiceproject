@@ -4,7 +4,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faSignOut, faUser} from "@fortawesome/free-solid-svg-icons";
 import {Auth} from "aws-amplify";
 import {useRouter} from "next/router";
-import {useUser} from "../../../src/UserContext";
+import {useUser} from "../../src/UserContext";
 
 const Header = () => {
 

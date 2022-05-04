@@ -1,6 +1,6 @@
 import React from 'react';
 import {NextPage} from "next";
-import LoginForm from "./components/page-specific/login/form";
+import LoginForm from "../components/page-specific/login/form";
 import Link from 'next/link';
 
 const Login: NextPage = () => {

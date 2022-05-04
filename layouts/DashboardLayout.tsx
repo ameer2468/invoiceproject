@@ -1,5 +1,5 @@
-import Sidebar from "../pages/components/page-specific/dashboard/sidebar";
-import Header from "../pages/components/page-specific/dashboard/header";
+import Sidebar from "../components/page-specific/dashboard/sidebar";
+import Header from "../components/page-specific/dashboard/header";
 
 interface props {
     children: JSX.Element;

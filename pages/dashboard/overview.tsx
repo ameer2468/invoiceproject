@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import DashboardLayout from "../../layouts/DashboardLayout";
-import OverviewTabs from "../components/page-specific/dashboard/Overview/OverviewTabs";
-import InvoicesPaid from "../components/page-specific/dashboard/Overview/InvoicesPaid";
-import MoneyMade from "../components/page-specific/dashboard/Overview/moneyMade";
-import Dropdown from "../components/global/dropdown";
+import OverviewTabs from "../../components/page-specific/dashboard/Overview/OverviewTabs";
+import InvoicesPaid from "../../components/page-specific/dashboard/Overview/InvoicesPaid";
+import MoneyMade from "../../components/page-specific/dashboard/Overview/moneyMade";
+import Dropdown from "../../components/global/dropdown";
 import {useUser} from "../../src/UserContext";
 
 const Overview = () => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import ClientCard from '../../dashboard/MoneyMade/ClientCard';
+import ClientCard from '../MoneyMade/ClientCard';
 import {Scrollbars} from "react-custom-scrollbars-2";
 
 const MoneyMade = () => {

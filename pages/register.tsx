@@ -1,5 +1,5 @@
 import React from 'react';
-import RegisterForm from "./components/page-specific/regster/form";
+import RegisterForm from "../components/page-specific/regster/form";
 import Link from "next/link";
 
 const Register = () => {

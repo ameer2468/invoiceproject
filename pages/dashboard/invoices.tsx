@@ -1,6 +1,6 @@
 import React from 'react';
 import DashboardLayout from "../../layouts/DashboardLayout";
-import Invoice from "../components/page-specific/dashboard/Invoices/invoice";
+import Invoice from "../../components/page-specific/dashboard/Invoices/invoice";
 
 const Invoices = () => {
     return (

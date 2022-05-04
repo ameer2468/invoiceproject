@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from "next/link";
-import {useRegister} from "../../../hooks/useRegister";
+import {useRegister} from "../../../pages/hooks/useRegister";
 import Loading from "../../global/loading";
 
 const RegisterForm = () => {
