@@ -10,7 +10,7 @@ const Login: NextPage = () => {
         <>
                 <div className="loginPage">
                 <div className="container">
-                <Link href="/"><h2>Payee.</h2></Link>
+                <Link passHref={true} href="/"><h2>Payee.</h2></Link>
                 <LoginForm/>
                 </div>
                 </div>

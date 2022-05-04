@@ -446,11 +446,13 @@ body {
   content: "";
   z-index: -1;
   position: absolute;
-  transition: all 0.5s;
   left: 0;
   top: 0;
   height: 100%;
-  width: 0%;
+  width: 100%;
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform 0.6s ease-in-out;
   background: black;
 }
 .InvoicesPaid .invoicesContainer .record p {
@@ -460,14 +462,15 @@ body {
   text-align: center;
 }
 .InvoicesPaid .invoicesContainer .record:hover {
-  transition: all 0.5s;
+  transition: all 0.6s;
   cursor: pointer;
   transform: scale(0.99);
 }
 .InvoicesPaid .invoicesContainer .record:hover::before {
   width: 100%;
   height: 100%;
-  transition: all 0.5s;
+  transform-origin: left;
+  transform: scaleX(1);
 }
 .InvoicesPaid .invoicesContainer .record:hover p {
   color: white;
@@ -528,11 +531,13 @@ body {
   content: "";
   z-index: -1;
   position: absolute;
-  transition: all 0.5s;
+  transition: 0.5s ease-in-out;
   left: 0;
   top: 0;
-  height: 0%;
+  height: 100%;
   width: 100%;
+  transform-origin: bottom;
+  transform: scaleY(0);
   background: black;
 }
 .tabs-wrap .tab-item p {
@@ -547,7 +552,6 @@ body {
 }
 .tabs-wrap .tab-item:hover {
   cursor: pointer;
-  transition: all 0.3s;
   transform: scale(0.99);
 }
 .tabs-wrap .tab-item:hover p {
@@ -555,7 +559,8 @@ body {
   transition: all 0.3s;
 }
 .tabs-wrap .tab-item:hover::before {
-  height: 100%;
+  transform-origin: bottom;
+  transform: scaleY(1);
 }
 
 .dashboardHeader .container {

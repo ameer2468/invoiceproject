@@ -1,5 +1,5 @@
 import {Auth} from "aws-amplify";
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import {useRouter} from "next/router";
 
 interface props {
@@ -8,35 +8,38 @@ interface props {
 
 export const useCheckUser = ({pageProps}: props) => {
 
-    const [user, setUser] = useState<any>({type: 'unauthenticated'});
+    const [user, setUser] = useState<any>({type: null});
     const router = useRouter();
     const [isLoading, setIsLoading] = useState<boolean>(true);
+    const pageProtected = pageProps.protected;
 
-    const checkUser = async () => {
-        await Auth.currentAuthenticatedUser()
-            .then(user => {
-                setUser({...user, type: 'authenticated'});
+    const checkUser = useCallback(async () => {
+        try {
+            const userInfo = await Auth.currentAuthenticatedUser();
+            setUser({...userInfo, type: 'authenticated'});
+            if (router.pathname === '/login' || router.pathname === '/register') {
+                router.push('/dashboard/overview').then(() => {
+                    setIsLoading(false);
+                });
+            } else {
                 setIsLoading(false);
-                if (!isLoading) {
-                    if (pageProps.protected && user.type === 'unauthenticated') {
-                        router.push('/login');
-                    }
-                }
-            })
-            .catch(() => {
-                setUser({type: 'unauthenticated'});
+            }
+        } catch (e) {
+            setUser({type: 'unauthenticated'});
+            if (pageProtected) {
+                router.push('/login').then(() => {
+                    setIsLoading(false);
+                });
+            } else {
                 setIsLoading(false);
-                if (!isLoading) {
-                    if (pageProps.protected && user.type === 'unauthenticated') {
-                        router.push('/login');
-                    }
-                }
-            });
-    }
+            }
+        }
+    }, []);
 
     useEffect(() => {
         checkUser();
-    }, [user.type, isLoading]);
+    }, [user.type, isLoading, checkUser]);
+
 
     return {user, isLoading, setUser};
 }

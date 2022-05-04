@@ -7,7 +7,7 @@ const Register = () => {
     return (
         <div className="registerPage">
             <div className="container">
-                <Link href="/"><h2>Payee.</h2></Link>
+                <Link passHref={true} href="/"><h2>Payee.</h2></Link>
                 <RegisterForm/>
             </div>
         </div>

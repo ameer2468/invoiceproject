@@ -7,9 +7,18 @@ const LoginForm = () => {
 
     const {loginForm, inputHandler, loginHandler, formError, loginLoading} = useLogin();
     const formLength = {
-        email: loginForm.email.length,
-        password: loginForm.password.length
+        ...loginForm
     };
+    const formCheck = () => {
+        if (
+            formLength.email.length === 0 ||
+            formLength.password.length === 0
+        ) {
+            return "disabledButton"
+        } else {
+            return ""
+        }
+    }
 
     return (
         <form onSubmit={loginHandler}>
@@ -32,12 +41,12 @@ const LoginForm = () => {
                 type="password"/>
             {formError.length > 0 ? <p className="form-error">{formError}</p> : null}
             <button
-                disabled={loginLoading || formLength.email === 0 || formLength.password === 0}
-                className={loginLoading || formLength.email < 5 || formLength.password < 5 ? "disabledButton" : ""}
+                disabled={loginLoading || formCheck() === "disabledButton"}
+                className={formCheck()}
             >
                 {loginLoading ? <Loading/> : 'Login'}
             </button>
-            <Link href="/register">
+            <Link passHref={true} href="/register">
                 No account? Register now
             </Link>
         </form>

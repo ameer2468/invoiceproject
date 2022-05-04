@@ -6,6 +6,23 @@ import Loading from "../../global/loading";
 const RegisterForm = () => {
 
     const { registerHandler, registerLoading, registerForm, inputHandler, confirmHandler, step, formError } = useRegister();
+    const form = {
+        ...registerForm
+    }
+    const formCheck = () => {
+        if (
+            form.email.length === 0 ||
+            form.password.length === 0 ||
+            form.confirmPassword.length === 0 ||
+            form.name.length === 0
+        ) {
+            return "disabledButton";
+        } else {
+            return "";
+        }
+    }
+
+    console.log(formCheck().length)
 
     return (
         <>
@@ -17,8 +34,17 @@ const RegisterForm = () => {
                 <input required={true} onChange={inputHandler} value={registerForm.password} name="password" autoComplete="off" placeholder="Password" type="password"/>
                 <input required={true} onChange={inputHandler} value={registerForm.confirmPassword} name="confirmPassword" autoComplete="off" placeholder="Confirm Password" type="password"/>
                 {formError.length > 0 ? <p className="form-error">{formError}</p> : null}
-                <button disabled={registerLoading} type="submit">{registerLoading ? <Loading/> : 'Register'}</button>
-                <Link href="/login">
+                <button
+                    disabled={
+                        registerLoading ||
+                        formCheck() === "disabledButton"
+                    }
+                    className={formCheck()}
+                    type="submit">
+                    {registerLoading ?
+                        <Loading/> : 'Register'}
+                </button>
+                <Link passHref={true} href="/login">
                     Have an account? Login now
                 </Link>
             </form> :
@@ -28,14 +54,14 @@ const RegisterForm = () => {
                     <input required={true} onChange={inputHandler} value={registerForm.code} name="code" autoComplete="off" placeholder="Enter code" type="text"/>
                     {formError.length > 0 ? <p className="form-error">{formError}</p> : null}
                     <button disabled={registerLoading} type="submit">{registerLoading ? <Loading/> : 'Confirm'}</button>
-                    <Link href="/login">
+                    <Link passHref={true} href="/login">
                         Have an account? Login now
                     </Link>
                 </form>
                 :
                 <form>
                     <h3>Registration complete.</h3>
-                    <Link href="/login">
+                    <Link passHref={true} href="/login">
                         <button>Go to login</button>
                     </Link>
                 </form>

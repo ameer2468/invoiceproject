@@ -41,9 +41,8 @@ export const useLogin = () => {
         await Auth.signIn(loginForm.email, loginForm.password)
             .then((res) => {
                 setLoginLoading(false);
-                router.push('/dashboard/overview').then(() => {
-                    setUser({...res, type: "authenticated"})
-                });
+                setUser({...res, type: "authenticated"})
+                router.push('/dashboard/overview');
             })
             .catch((err) => {
                 setLoginLoading(false);

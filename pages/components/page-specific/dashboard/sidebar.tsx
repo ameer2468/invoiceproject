@@ -36,13 +36,14 @@ const Sidebar = ({children}: props) => {
     return (
         <div className="sidebar">
             <div className="container">
-                <Link href={'/'}>
+                <Link passHref={true} href={'/'}>
                     <h3>Payee.</h3>
                 </Link>
                 <div className="profile">
                     <Image
                         priority={true}
                         height={140}
+                        alt="user"
                         width={140}
                         layout="fixed"
                         src={profile}
@@ -63,7 +64,7 @@ const Sidebar = ({children}: props) => {
                                 icon={link.icon}
 
                             />
-                            <Link href={link.href} key={index.toString()}>
+                            <Link passHref={true}  href={link.href} key={index.toString()}>
                                 <p>{link.name}</p>
                             </Link>
                             </div>

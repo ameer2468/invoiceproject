@@ -17,7 +17,7 @@ const Header = () => {
             <h1>Payee.</h1>
             <div className="buttons">
                 {user[0].type === 'unauthenticated' ?
-                    <Link href="/login">
+                    <Link passHref={true} href="/login">
                     <button className="loginButton">
                         <FontAwesomeIcon
                             style={{ marginRight: "0.8rem" }}

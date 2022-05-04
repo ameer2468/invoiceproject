@@ -12,7 +12,7 @@ const Hero = () => {
         <div className="hero">
             <h1>Worry less about invoices and <span className="pink">get paid faster</span>.</h1>
             {user[0].type !== 'unauthenticated' ?
-                <Link href={"/dashboard/overview"}>
+                <Link  passHref={true} href={"/dashboard/overview"}>
                     <button className="dbButton">
                         <FontAwesomeIcon
                             style={{ marginRight: "0.8rem" }}
@@ -22,7 +22,7 @@ const Hero = () => {
                     </button>
                 </Link>
                 :
-                <Link href="/register">
+                <Link passHref={true} href="/register">
                     <button>
                         <FontAwesomeIcon
                             style={{ marginRight: "0.8rem" }}
