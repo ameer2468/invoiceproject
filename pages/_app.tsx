@@ -5,7 +5,7 @@ import Amplify, {Auth} from "aws-amplify";
 import React from "react";
 import {UserContext} from "../src/UserContext";
 import Loading from "../components/global/loading";
-import {useCheckUser} from "./hooks/useCheckUser";
+import {useCheckUser} from "../hooks/useCheckUser";
 
 
 Amplify.configure(awsconfig)

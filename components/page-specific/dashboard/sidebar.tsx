@@ -12,7 +12,7 @@ import {
     faHome}
     from "@fortawesome/free-solid-svg-icons";
 import {useRouter} from "next/router";
-import {useLogin} from "../../../pages/hooks/useLogin";
+import {useLogin} from "../../../hooks/useLogin";
 
 interface props {
     children?: JSX.Element;

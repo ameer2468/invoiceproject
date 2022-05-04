@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from "next/link";
-import {useLogin} from "../../../pages/hooks/useLogin";
+import {useLogin} from "../../../hooks/useLogin";
 import Loading from "../../global/loading";
 
 const LoginForm = () => {

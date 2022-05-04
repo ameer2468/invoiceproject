@@ -1,7 +1,7 @@
 import {ChangeEvent, useContext, useState} from "react";
 import {Auth} from "aws-amplify";
 import {useRouter} from "next/router";
-import {UserContext} from "../../src/UserContext";
+import {UserContext} from "../src/UserContext";
 
 interface loginForm {
     email: string;
