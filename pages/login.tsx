@@ -5,13 +5,17 @@ import Link from 'next/link';
 
 const Login: NextPage = () => {
 
+
     return (
-        <div className="loginPage">
-            <div className="container">
+        <>
+                <div className="loginPage">
+                <div className="container">
                 <Link href="/"><h2>Payee.</h2></Link>
                 <LoginForm/>
-            </div>
-        </div>
+                </div>
+                </div>
+
+        </>
     );
 };
 

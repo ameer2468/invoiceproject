@@ -11,6 +11,109 @@
   }
 }
 
+.flipCaret {
+  transform: rotate(180deg);
+  transition: all 0.3s;
+}
+
+.dropdown {
+  width: 100%;
+  max-width: 13rem;
+  position: relative;
+  z-index: 10;
+  &:hover {
+    cursor: pointer;
+  }
+  .main {
+    background: $black;
+    display: flex;
+    align-items: center;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+  }
+  .menu {
+    padding: 1rem 1.8rem;
+    position: absolute;
+    text-align: left;
+    top: 4rem;
+    background: white;
+    width: 100%;
+    margin-top: 0.5rem;
+    border: 2px solid $black;
+    border-radius: 0.7rem;
+     p {
+       color: black;
+       padding: 0.4rem 0;
+       font-size: 1.4rem;
+       font-weight: bold;
+       transition: all 0.3s;
+       &:hover {
+         cursor: pointer;
+         color: $blue;
+         transition: all 0.3s;
+       }
+     }
+  }
+  .icon {
+    color: white;
+  }
+  p {
+    color: white;
+  }
+}
+
+.searchBox {
+  position: relative;
+  width: 100%;
+  max-width: 30rem;
+  display: flex;
+  align-items: center;
+  border: 2px solid black;
+  border-radius: 0.8rem;
+  padding: 1rem;
+  .icon {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.3rem;
+    font-size: 2rem;
+  }
+  input {
+    width: 100%;
+    max-width: 24rem;
+    outline: 0;
+    border: 0;
+    transition: all 0.3s;
+    font-weight: bold;
+    color: black;
+    font-family: Poppins, 'sans-serif';
+    &::placeholder {
+      color: black;
+      font-weight: bold;
+    }
+    &:focus {
+      outline: 0;
+      transition: all 0.3s;
+    }
+  }
+}
+
+.disabledButton {
+  background-color: #767676 !important;
+  &:hover {
+    cursor: not-allowed!important;
+  }
+}
+
+.pink {
+  color: $pink;
+}
+
+.green {
+  color: #01c101;
+}
+
 .form-error {
   color: red;
   font-weight: bold;

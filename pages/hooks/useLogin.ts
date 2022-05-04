@@ -1,6 +1,7 @@
-import {ChangeEvent, useState} from "react";
+import {ChangeEvent, useContext, useState} from "react";
 import {Auth} from "aws-amplify";
 import {useRouter} from "next/router";
+import {UserContext} from "../../src/UserContext";
 
 interface loginForm {
     email: string;
@@ -11,6 +12,7 @@ export const useLogin = () => {
 
     const [loginLoading, setLoginLoading] = useState<boolean>(false);
     const [formError, setFormError] = useState('');
+    const [user, setUser] = useContext(UserContext);
     const router = useRouter();
     const [loginForm, setLoginForm] = useState<loginForm>({
         email: "",
@@ -24,13 +26,24 @@ export const useLogin = () => {
         });
     };
 
+    const signoutHandler = async () => {
+           await Auth.signOut().then(() => {
+               router.push('/').then(() => {
+                   setUser({type: "unauthenticated"})
+               });
+           })
+    }
+
+
     const loginHandler = async (e: ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoginLoading(true);
         await Auth.signIn(loginForm.email, loginForm.password)
-            .then(() => {
+            .then((res) => {
                 setLoginLoading(false);
-                router.replace('/dashboard/overview');
+                router.push('/dashboard/overview').then(() => {
+                    setUser({...res, type: "authenticated"})
+                });
             })
             .catch((err) => {
                 setLoginLoading(false);
@@ -44,6 +57,7 @@ export const useLogin = () => {
         loginForm,
         formError,
         loginLoading,
+        signoutHandler,
         inputHandler,
         loginHandler
     };

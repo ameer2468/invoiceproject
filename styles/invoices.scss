@@ -1,0 +1,91 @@
+.invoices {
+  .invoicesContainer {
+      @include DashboardContainer;
+  h1 {
+    @include PageTitle;
+    width: 100%;
+  }
+  .cards {
+    width: 100%;
+    margin-top: 4rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4rem;
+  }
+  .invoiceCard {
+    flex: 0 0 23%;
+    border: 2px solid $black;
+    border-radius: 1rem;
+    padding: 2rem;
+    transition: all 0.3s;
+    text-align: center;
+    position: relative;
+    .statusBox {
+      position: absolute;
+      background: black;
+      color: #a1ffa1;
+      width: 100%;
+      max-width: 10rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 3rem;
+      border-radius: 0.5rem;
+      margin: 0 auto;
+      left: 0;
+      top: -1.65rem;
+      right: 0;
+      .icon {
+        margin-right: 0.5rem;
+      }
+    }
+    .status, .amount, .date, .customer {
+      font-weight: bold;
+    }
+    .details {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+      gap: 1rem;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      p {
+        flex: 1 0 45%;
+        border: 2px solid $black;
+        border-radius: 0.5rem;
+        padding: 0.4rem 1.2rem;
+        .icon {
+          margin-right: 0.5rem;
+        }
+      }
+    }
+    .unpaid {
+      color: red;
+    }
+    .paid {
+      color: #039503;
+    }
+    .amount {
+      font-size: 1.3rem;
+    }
+    .date {
+      font-size: 1.3rem;
+    }
+    h2 {
+      color: $blue;
+      margin-top: 1rem;
+    }
+    p.desc {
+      line-height: 2.5rem;
+      font-size: 1.4rem;
+      margin: 1.5rem 0 2.5rem 0;
+    }
+    &:hover {
+      cursor: pointer;
+      transition: all 0.3s;
+      transform: scale(1.01);
+    }
+  }
+  }
+}

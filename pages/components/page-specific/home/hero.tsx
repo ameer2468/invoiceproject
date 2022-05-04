@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import React from 'react';
-import {useUser} from "../../../hooks/useUser";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faGauge, faAngleDoubleRight} from "@fortawesome/free-solid-svg-icons";
+import {useUser} from "../../../../src/UserContext";
 
 const Hero = () => {
 
@@ -11,7 +11,7 @@ const Hero = () => {
     return (
         <div className="hero">
             <h1>Worry less about invoices and <span className="pink">get paid faster</span>.</h1>
-            {user ?
+            {user[0].type !== 'unauthenticated' ?
                 <Link href={"/dashboard/overview"}>
                     <button className="dbButton">
                         <FontAwesomeIcon

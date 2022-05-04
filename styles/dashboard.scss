@@ -3,6 +3,7 @@
   left: 0;
   width: 100%;
   max-width: 25rem;
+  top: 0;
   height: 100vh;
   background-color: black;
   .container {
@@ -85,52 +86,235 @@
       font-size: 3rem;
       font-weight: bold;
       margin-top: 5rem;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.MoneyMade {
+  height: 60rem;
+  flex: 0 0 70%;
+  .moneyMadeContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    & .clientCard {
+      border: 2px solid $black;
+      padding: 2rem;
+      flex: 0 0 30%;
+      text-align: center;
+      border-radius: 1rem;
+      .details {
+        display: flex;
+        gap: 1rem;
+        margin-top: 2rem;
+        flex-direction: column;
+        p {
+          flex: 1 0 45%;
+          font-weight: bold;
+          border: 2px solid $black;
+          border-radius: 0.5rem;
+          padding: 0.4rem 1.2rem;
+          .icon {
+            margin-right: 0.5rem;
+          }
+        }
+      }
+      h2 {
+        color: $blue;
+      }
+    }
+  }
+}
+
+.InvoicesPaid {
+  flex: 0 0 70%;
+  height: 60rem;
+  border: 2px solid $black;
+  border-radius: 1rem;
+  .invoicesContainer {
+    padding: 2rem;
+    .record {
+      border: 2px solid black;
+      display: flex;
+      justify-content: space-evenly;
+      border-radius: 1rem;
+      max-width: 100%;
+      transition: all 0.3s;
+      position: relative;
+      padding: 2rem 0;
+      margin: 2rem auto 2rem auto;
+      &::before {
+        content: '';
+        z-index: -1;
+        position: absolute;
+        transition: all 0.5s;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 0%;
+        background: black;
+      }
+      p {
+        flex: 0 0 25%;
+        font-size: 1.5rem;
+        transition: all 0.5s;
+        text-align: center;
+      }
+      &:hover {
+        transition: all 0.5s;
+        cursor: pointer;
+        transform: scale(0.99);
+        &::before {
+          width: 100%;
+          height: 100%;
+          transition: all 0.5s;
+        }
+        p {
+          color: white;
+          cursor: pointer;
+        }
+      }
+    }
+    .col-headings {
+      display: flex;
+      justify-content: center;
+      margin: 4rem auto 0 auto;
+      h3 {
+        flex: 0 0 25%;
+        text-align: center;
+        justify-items: center;
+      }
+    }
+  }
+}
+
+.tabs-wrap {
+  flex: 0 0 25%;
+  height: 60rem;
+  display: flex;
+  flex-wrap: wrap;
+  .active-tab {
+    width: 100%;
+    background: black;
+    border-radius: 1rem;
+    border: 2px solid $black;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s;
+    margin-bottom: 2rem;
+    justify-content: center;
+    align-items: center;
+    & p {
+      color: white;
+      font-size: 2rem;
+    }
+    & .tab-item-title {
+      color: $blue;
+      font-weight: bold;
+    }
+  }
+  .tab-item {
+    width: 100%;
+    background: transparent;
+    border: 2px solid black;
+    height: auto;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+    position: relative;
+    justify-content: center;
+    transition: all 0.3s;
+    align-items: center;
+    &::before {
+      content: '';
+      z-index: -1;
+      position: absolute;
+      transition: all 0.5s;
+      left: 0;
+      top: 0;
+      height: 0%;
+      width: 100%;
+      background: black;
+    }
+    & p {
+      color: black;
+      transition: all 0.3s;
+      font-size: 2rem;
+    }
+    & .tab-item-title {
+      color: $blue;
+      text-align: center;
+      font-weight: normal;
+    }
+    &:hover {
+      cursor: pointer;
+      transition: all 0.3s;
+      transform: scale(0.99);
+      & p {
+        color: white;
+        transition: all 0.3s;
+      }
+      &::before {
+        height: 100%;
+      }
     }
   }
 }
 
 .dashboardHeader {
   .container {
+    @include DashboardContainer;
+    height: auto;
     position: absolute;
     top: 3vh;
-    left: 15vw;
-    width: 100%;
-    max-width: 70vw;
-    margin: 0 auto;
-    input {
-      width: 100%;
-      max-width: 30rem;
+    justify-content: space-between;
+    display: flex;
+    .notification {
+      width: 5rem;
+      height: 5rem;
+      background: black;
+      display: flex;
       border: 2px solid black;
-      padding: 1rem;
-      border-radius: 0.8rem;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
       transition: all 0.3s;
-      font-weight: bold;
-      color: black;
-      font-family: Poppins, 'sans-serif';
-      &::placeholder {
-        color: black;
-        font-weight: bold;
+      .icon {
+        color: white;
+        font-size: 1.8rem;
       }
-      &:focus {
-        outline: 0;
-        border: 2px solid $pink;
+      &:hover {
+        background: $pink;
         transition: all 0.3s;
+        cursor: pointer;
       }
     }
   }
 }
 
 .overview {
-  .container {
-    position: relative;
-    width: 100%;
-    top: 15vh;
-    max-width: 70vw;
-    margin: 0 auto;
-    height: 100%;
+  .main-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0;
+  }
+  & .container {
+    @include DashboardContainer;
+    .overviewContent {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 4rem;
+    }
   }
   h1 {
-    color: black;
-    font-size: 5rem;
+    @include PageTitle;
   }
 }
+

@@ -15,6 +15,7 @@
     "aws-amplify": "^4.3.19",
     "next": "12.1.4",
     "react": "18.0.0",
+    "react-custom-scrollbars-2": "^4.4.0",
     "react-dom": "18.0.0",
     "react-spinners": "^0.11.0",
     "socket.io-client": "^4.4.1"

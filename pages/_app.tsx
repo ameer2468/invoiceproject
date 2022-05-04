@@ -2,9 +2,11 @@ import '../styles/stylesheet.css'
 import type { AppProps } from 'next/app'
 import awsconfig from '../src/aws-exports';
 import Amplify, {Auth} from "aws-amplify";
-import {useUser} from "./hooks/useUser";
-import {useRouter} from "next/router";
-import React, {useEffect} from "react";
+import React from "react";
+import {UserContext} from "../src/UserContext";
+import Loading from "./components/global/loading";
+import {useCheckUser} from "./hooks/useCheckUser";
+
 
 Amplify.configure(awsconfig)
 Auth.configure(awsconfig);
@@ -15,21 +17,20 @@ type props = AppProps & {
 
 function MyApp({ Component, pageProps }: props) {
 
+  const {user, isLoading, setUser} = useCheckUser({pageProps});
   const DashboardLayout = Component.Layout ? Component.Layout : React.Fragment;
-  const {user, userLoading} = useUser();
-  const authRoutes = ['/dashboard/overview'];
-  const router = useRouter();
-  useEffect(() => {
-    if (!userLoading) {
-     if (user === null && authRoutes.includes(router.pathname)) {
-       router.push('/login')
-     }
-    }
-  }, [user])
+
   return (
-      <DashboardLayout>
-        <Component {...pageProps} />
-      </DashboardLayout>
+      <UserContext.Provider value={[user, setUser]}>
+          {isLoading ? <div className={"absoluteCenter"}>
+              <Loading color={"black"}/>
+          </div>
+              :
+              <DashboardLayout>
+                  <Component {...pageProps} />
+              </DashboardLayout>
+              }
+      </UserContext.Provider>
   )
 }
 

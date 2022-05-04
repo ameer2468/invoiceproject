@@ -6,6 +6,10 @@ import Loading from "../../global/loading";
 const LoginForm = () => {
 
     const {loginForm, inputHandler, loginHandler, formError, loginLoading} = useLogin();
+    const formLength = {
+        email: loginForm.email.length,
+        password: loginForm.password.length
+    };
 
     return (
         <form onSubmit={loginHandler}>
@@ -27,7 +31,12 @@ const LoginForm = () => {
                 placeholder="Password"
                 type="password"/>
             {formError.length > 0 ? <p className="form-error">{formError}</p> : null}
-            <button disabled={loginLoading}>{loginLoading ? <Loading/> : 'Login'}</button>
+            <button
+                disabled={loginLoading || formLength.email === 0 || formLength.password === 0}
+                className={loginLoading || formLength.email < 5 || formLength.password < 5 ? "disabledButton" : ""}
+            >
+                {loginLoading ? <Loading/> : 'Login'}
+            </button>
             <Link href="/register">
                 No account? Register now
             </Link>

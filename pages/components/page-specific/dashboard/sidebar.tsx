@@ -12,7 +12,7 @@ import {
     faHome}
     from "@fortawesome/free-solid-svg-icons";
 import {useRouter} from "next/router";
-import {Auth} from "aws-amplify";
+import {useLogin} from "../../../hooks/useLogin";
 
 interface props {
     children?: JSX.Element;
@@ -21,6 +21,7 @@ interface props {
 const Sidebar = ({children}: props) => {
 
     const router = useRouter();
+    const {signoutHandler} = useLogin();
     const pathCheck = (path: string) => {
         return router.pathname === path ? 'active' : '';
     };
@@ -31,18 +32,16 @@ const Sidebar = ({children}: props) => {
         {name: 'Accounts', href: '/dashboard/accounts', icon: faUser},
         {name: 'Settings', href: '/dashboard/settings', icon: faCog},
     ]
-    const signoutHandler = () => {
-        Auth.signOut().then(() => {
-            router.push('/');
-        })
-    }
 
     return (
         <div className="sidebar">
             <div className="container">
-                <h3>Payee.</h3>
+                <Link href={'/'}>
+                    <h3>Payee.</h3>
+                </Link>
                 <div className="profile">
                     <Image
+                        priority={true}
                         height={140}
                         width={140}
                         layout="fixed"
