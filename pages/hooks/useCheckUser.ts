@@ -34,7 +34,7 @@ export const useCheckUser = ({pageProps}: props) => {
                 setIsLoading(false);
             }
         }
-    }, []);
+    }, [pageProtected, router]);
 
     useEffect(() => {
         checkUser();
