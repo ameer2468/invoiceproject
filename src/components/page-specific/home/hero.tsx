@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faGauge, faAngleDoubleRight} from "@fortawesome/free-solid-svg-icons";
-import {useUser} from "../../../src/UserContext";
+import {useUser} from "../../../UserContext";
 
 const Hero = () => {
 

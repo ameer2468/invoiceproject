@@ -22,8 +22,6 @@ const RegisterForm = () => {
         }
     }
 
-    console.log(formCheck().length)
-
     return (
         <>
         {step === 1 ?
