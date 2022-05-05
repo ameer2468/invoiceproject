@@ -1,6 +1,6 @@
 import {ChangeEvent, useState} from "react";
 import {Auth} from "aws-amplify";
-import {createUser} from "../services/user";
+import {createUser} from "../services/user/user";
 
 
 export const useRegister = () => {
@@ -47,7 +47,11 @@ export const useRegister = () => {
                'custom:name': registerForm.name
            }
        }).then(async (res) => {
-           await createUser(res.userSub, registerForm.email, registerForm.name);
+           await createUser({
+               sub_id: res.userSub,
+               email: registerForm.email,
+               name: registerForm.name
+           });
            setRegisterLoading(false);
            setStep(prevState => prevState + 1);
        }).catch(err => {

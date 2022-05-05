@@ -2,14 +2,33 @@ import axios from "axios";
 import {Auth} from "aws-amplify";
 
 
-const url = process.env.REACT_APP_API_URL;
-const apiKey = process.env.REACT_APP_API_KEY;
+const url = process.env.NEXT_PUBLIC_API_URL;
+const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
 
 export const loadToken = async () => {
   const user = await Auth.currentAuthenticatedUser();
   return user.signInUserSession.idToken.jwtToken;
 };
+
+export const putRequest = async (path: string, data: {}) => {
+  const token = await loadToken();
+  const headers = {
+    'x-api-key': apiKey,
+    Authorization: token,
+  }
+    return await axios.put(`${url}/${path}`, {
+      ...data
+    }, {
+      headers: {
+        ...headers
+      }
+    }).then((response) => {
+      return response.data;
+    }).catch((err) => {
+      return err.response.data;
+    })
+}
 
 export const getRequest = async (path: string, authed?: boolean) => {
   const token = await loadToken();
@@ -28,7 +47,7 @@ export const getRequest = async (path: string, authed?: boolean) => {
 }
 
 export const postRequest = async (path: string, data: {}, authed?: boolean) => {
-  const token = await loadToken();
+  const token = authed && await loadToken();
   const headers = {
     'x-api-key': apiKey,
     Authorization: authed ? token : ''
