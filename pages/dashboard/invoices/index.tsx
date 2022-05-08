@@ -1,0 +1,29 @@
+import React from 'react';
+import DashboardLayout from "../../../layouts/DashboardLayout";
+import Invoice from "../../../src/components/page-specific/dashboard/Invoices/invoice";
+import Link from "next/link";
+
+const Index = () => {
+    return (
+        <div className="invoices">
+            <div className="invoicesContainer">
+                <div className="main-header">
+                    <h1>Invoices</h1>
+                    <Link href="/dashboard/invoices/new">
+                        <button className="button">
+                            + New Invoice
+                        </button>
+                    </Link>
+                </div>
+                <div className="cards">
+                    {Array.from(Array(6).keys()).map((item, index) => (
+                        <Invoice key={index}/>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default Index;
+Index.Layout = DashboardLayout;

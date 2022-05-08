@@ -197,6 +197,209 @@ body {
     grid-gap: 30px;
   }
 }
+.newInvoice .newInvoiceContainer {
+  position: relative;
+  width: 100%;
+  top: 15vh;
+  max-width: 150rem;
+  left: 16vw;
+  height: 100%;
+}
+.newInvoice .newInvoiceContainer h1 {
+  color: black;
+  font-size: 4rem;
+  width: 100%;
+}
+.newInvoice .newInvoiceContainer .downloadPdf {
+  margin-top: 5rem;
+  position: relative;
+  z-index: 10;
+  background: black;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  padding: 0 7rem;
+  height: 5rem;
+  border-radius: 1rem;
+  transition: all 0.3s;
+  border: 2px solid black;
+  background: #71AAFF;
+  padding: 0 3rem;
+}
+.newInvoice .newInvoiceContainer .downloadPdf:hover {
+  cursor: pointer;
+  transition: all 0.3s;
+  background-color: #FF7193;
+}
+.newInvoice .newInvoiceContainer .downloadPdf:hover {
+  background: #589bff;
+}
+.newInvoice .newInvoiceContainer .delete {
+  background: #ff5656;
+  padding: 1.2rem 0;
+  color: white;
+  border-radius: 1rem;
+  width: 100%;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 4rem;
+  transition: all 0.3s;
+  height: 60%;
+}
+.newInvoice .newInvoiceContainer .delete:hover {
+  cursor: pointer;
+  background: #ff2323;
+  transition: all 0.3s;
+}
+.newInvoice .newInvoiceContainer input {
+  border: 2px solid black;
+  padding: 1.5rem 2rem;
+  border-radius: 1rem;
+  font-weight: bold;
+  width: 80%;
+  margin: 1rem auto 0 auto;
+  transition: all 0.3s;
+  font-family: Poppins, sans-serif;
+  width: 100%;
+  margin: 0;
+}
+.newInvoice .newInvoiceContainer input:focus {
+  border: 2px solid #FF7193;
+  outline: 0;
+  transition: all 0.3s;
+}
+.newInvoice .newInvoiceContainer input::placeholder {
+  color: black;
+  font-weight: bold;
+}
+.newInvoice .newInvoiceContainer input::placeholder {
+  font-weight: normal;
+}
+.newInvoice .newInvoiceContainer .newInvoiceContent {
+  margin-top: 4rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: start;
+  width: 100%;
+  flex-wrap: wrap;
+}
+.newInvoice .newInvoiceContainer .newInvoiceContent .miscInfo {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2rem;
+}
+.newInvoice .newInvoiceContainer .newInvoiceContent .miscInfo .col:nth-child(2) {
+  flex: 0 0 45%;
+}
+.newInvoice .newInvoiceContainer .newInvoiceContent .miscInfo .col {
+  flex: 0 0 45%;
+}
+.newInvoice .newInvoiceContainer .newInvoiceContent .miscInfo .col h2 {
+  margin-bottom: 2rem;
+}
+.newInvoice .newInvoiceContainer .newInvoiceContent .miscInfo .col .tax {
+  margin-bottom: 2rem;
+}
+.newInvoice .newInvoiceContainer .newInvoiceContent .miscInfo .col .amount {
+  font-size: 1.6rem;
+}
+.newInvoice .newInvoiceContainer .newInvoiceContent .addItem {
+  background: black;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  padding: 0 7rem;
+  height: 5rem;
+  border-radius: 1rem;
+  transition: all 0.3s;
+  border: 2px solid black;
+  padding: 0 4rem;
+  margin-top: 3rem;
+}
+.newInvoice .newInvoiceContainer .newInvoiceContent .addItem:hover {
+  cursor: pointer;
+  transition: all 0.3s;
+  background-color: #FF7193;
+}
+.newInvoice .newInvoiceContainer .newInvoiceContent .itemInfo {
+  width: 100%;
+}
+.newInvoice .newInvoiceContainer .newInvoiceContent .itemInfo .inputs-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2rem;
+  justify-content: space-between;
+}
+.newInvoice .newInvoiceContainer .newInvoiceContent .itemInfo .inputs-wrap .info-item {
+  gap: 1rem;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 100%;
+  display: flex;
+}
+.newInvoice .newInvoiceContainer .newInvoiceContent .itemInfo .inputs-wrap input {
+  flex: 0 0 24.5%;
+}
+.newInvoice .newInvoiceContainer .newInvoiceContent .itemInfo .inputs-wrap input::placeholder {
+  font-weight: normal;
+}
+.newInvoice .newInvoiceContainer .newInvoiceContent .itemInfo .headings {
+  display: flex;
+  justify-content: space-between;
+}
+.newInvoice .newInvoiceContainer .newInvoiceContent .itemInfo .headings p {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.newInvoice .newInvoiceContainer .newInvoiceContent .col:nth-child(3), .newInvoice .newInvoiceContainer .newInvoiceContent .col:nth-child(4) {
+  margin-top: 2rem;
+}
+.newInvoice .newInvoiceContainer .newInvoiceContent .col:nth-child(3) h2, .newInvoice .newInvoiceContainer .newInvoiceContent .col:nth-child(4) h2 {
+  margin-bottom: 2rem;
+}
+.newInvoice .newInvoiceContainer .newInvoiceContent .col {
+  display: flex;
+  flex: 0 0 49%;
+  gap: 1rem;
+  flex-direction: column;
+}
+.newInvoice .newInvoiceContainer .newInvoiceContent .col h2 {
+  width: 100%;
+  margin: 0;
+}
+.newInvoice .newInvoiceContainer textarea {
+  border: 2px solid black;
+  padding: 1.5rem 2rem;
+  border-radius: 1rem;
+  font-weight: bold;
+  width: 80%;
+  margin: 1rem auto 0 auto;
+  transition: all 0.3s;
+  font-family: Poppins, sans-serif;
+  width: 100%;
+  margin: 0;
+  height: 10rem;
+  resize: none;
+}
+.newInvoice .newInvoiceContainer textarea:focus {
+  border: 2px solid #FF7193;
+  outline: 0;
+  transition: all 0.3s;
+}
+.newInvoice .newInvoiceContainer textarea::placeholder {
+  color: black;
+  font-weight: bold;
+}
+.newInvoice .newInvoiceContainer textarea::placeholder {
+  font-weight: normal;
+}
+
 .invoices .invoicesContainer {
   position: relative;
   width: 100%;
@@ -216,6 +419,16 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 4rem;
+}
+.invoices .invoicesContainer .main-header {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+.invoices .invoicesContainer .main-header h1 {
+  max-width: 10rem;
 }
 .invoices .invoicesContainer .invoiceCard {
   flex: 0 0 23%;
@@ -794,6 +1007,28 @@ body {
   font-weight: bold;
 }
 
+.pdfPage {
+  position: relative;
+  width: 100%;
+  top: 15vh;
+  max-width: 150rem;
+  left: 16vw;
+  height: 100%;
+  height: 60rem;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .flipCaret {
   transform: rotate(180deg);
   transition: all 0.3s;
@@ -880,6 +1115,28 @@ body {
 .searchBox input:focus {
   outline: 0;
   transition: all 0.3s;
+}
+
+.button {
+  background: black;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  padding: 0 7rem;
+  height: 5rem;
+  border-radius: 1rem;
+  transition: all 0.3s;
+  border: 2px solid black;
+  background: #71AAFF;
+  padding: 0 3rem;
+}
+.button:hover {
+  cursor: pointer;
+  transition: all 0.3s;
+  background-color: #FF7193;
+}
+.button:hover {
+  background: #589bff;
 }
 
 .disabledButton {

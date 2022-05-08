@@ -1,3 +1,147 @@
+
+
+.newInvoice {
+  .newInvoiceContainer {
+    @include DashboardContainer;
+    h1 {
+      @include PageTitle;
+      width: 100%;
+    }
+    .downloadPdf {
+      margin-top: 5rem;
+      position: relative;
+      z-index: 10;
+      @include button;
+      background: $blue;
+      padding: 0 3rem;
+      &:hover {
+        background: darken($blue, 5%);
+      }
+    }
+    .delete {
+      background: #ff5656;
+      padding: 1.2rem 0;
+      color: white;
+      border-radius: 1rem;
+      width: 100%;
+      font-size: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      max-width: 4rem;
+      transition: all 0.3s;
+      height: 60%;
+      &:hover {
+        cursor: pointer;
+        background: darken(#ff5656, 10%);
+        transition: all 0.3s;
+      }
+    }
+    input {
+      @include formInput;
+      width: 100%;
+      margin: 0;
+      &::placeholder {
+        font-weight: normal;
+      }
+    }
+    .newInvoiceContent {
+      margin-top: 4rem;
+      display: flex;
+      gap: 1rem;
+      justify-content: space-between;
+      align-items: start;
+      width: 100%;
+      flex-wrap: wrap;
+      .miscInfo {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 2rem;
+        .col:nth-child(2) {
+          flex: 0 0 45%;
+        }
+        .col {
+          flex: 0 0 45%;
+          h2 {
+            margin-bottom: 2rem;
+          }
+          .tax {
+            margin-bottom: 2rem;
+          }
+          .amount {
+            font-size: 1.6rem;
+          }
+        }
+      }
+      .addItem {
+        @include button;
+        padding: 0 4rem;
+        margin-top: 3rem;
+      }
+      .itemInfo {
+        width: 100%;
+        .inputs-wrap {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          gap: 2rem;
+          justify-content: space-between;
+          .info-item {
+            gap: 1rem;
+            flex-wrap: wrap;
+            flex-direction: column;
+            width: 100%;
+            display: flex;
+          }
+          input {
+            flex: 0 0 24.5%;
+            &::placeholder {
+              font-weight: normal;
+            }
+          }
+        }
+        .headings {
+          display: flex;
+          justify-content: space-between;
+          p {
+            font-size: 1.5rem;
+            font-weight: bold;
+          }
+        }
+      }
+      .col:nth-child(3), .col:nth-child(4) {
+        margin-top: 2rem;
+        h2 {
+          margin-bottom: 2rem;
+        }
+      }
+      .col {
+        display: flex;
+        flex: 0 0 49%;
+        gap: 1rem;
+        flex-direction: column;
+        h2 {
+          width: 100%;
+          margin: 0;
+        }
+      }
+    }
+    textarea {
+      @include formInput;
+      width: 100%;
+      margin: 0;
+      height: 10rem;
+      resize: none;
+      &::placeholder {
+        font-weight: normal;
+      }
+    }
+  }
+}
+
+
 .invoices {
   .invoicesContainer {
       @include DashboardContainer;
@@ -12,6 +156,16 @@
     flex-wrap: wrap;
     gap: 4rem;
   }
+    .main-header {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+      h1 {
+        max-width: 10rem;
+      }
+    }
   .invoiceCard {
     flex: 0 0 23%;
     border: 2px solid $black;
