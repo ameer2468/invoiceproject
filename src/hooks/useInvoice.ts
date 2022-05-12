@@ -33,7 +33,9 @@ export const useInvoice = () => {
     }
 
     const removeInvoiceItem = (index: number) => {
-        setInvoiceForm({...invoiceForm, item: invoiceForm.item.filter((item, i) => i !== index)})
+        setInvoiceForm({...invoiceForm,
+            item: invoiceForm.item.filter((item, i) => i !== index)
+        })
     }
 
     const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
