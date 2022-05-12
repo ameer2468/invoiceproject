@@ -1,10 +1,11 @@
 import React from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faSackDollar, faClock, faFileLines, faCircleCheck } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faSackDollar, faClock, faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 
 const Invoice = () => {
     return (
-        <div className="invoiceCard">
+        <div
+            className="invoiceCard">
             <h2>Project Linkin</h2>
             <p className="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                 Ab debitis dolorem quidem saepe soluta, vel! Architecto asperiores,

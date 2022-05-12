@@ -2,8 +2,11 @@ import React from 'react';
 import DashboardLayout from "../../../layouts/DashboardLayout";
 import Invoice from "../../../src/components/page-specific/dashboard/Invoices/invoice";
 import Link from "next/link";
+import { motion } from 'framer-motion';
+import {anim} from "../../../src/framer";
 
 const Index = () => {
+
     return (
         <div className="invoices">
             <div className="invoicesContainer">
@@ -15,11 +18,17 @@ const Index = () => {
                         </button>
                     </Link>
                 </div>
-                <div className="cards">
+                <motion.div
+                    initial={anim.initial}
+                    animate={anim.animate}
+                    transition={anim.transition}
+                    className="cards">
                     {Array.from(Array(6).keys()).map((item, index) => (
-                        <Invoice key={index}/>
+                        <motion.div className={"cardWrap"} key={index}>
+                            <Invoice/>
+                        </motion.div>
                     ))}
-                </div>
+                </motion.div>
             </div>
         </div>
     );

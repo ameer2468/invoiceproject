@@ -22,18 +22,6 @@ const InvoiceItem = ({item, onChange, removeItem, index}: props) => {
                        name={"description"}
                        onChange={onChange}
                 />
-                <Input placeholder="Quantity"
-                       type="number"
-                       value={item.quantity}
-                       name={"quantity"}
-                       onChange={onChange}
-                />
-                <Input placeholder="Rate"
-                       type="number"
-                       value={item.rate}
-                       name={"rate"}
-                       onChange={onChange}
-                />
                 <Input placeholder="Amount"
                        type="number"
                        value={item.amount}

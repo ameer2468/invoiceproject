@@ -2,7 +2,8 @@ import React from 'react';
 import Record from "./record";
 import { Scrollbars } from 'react-custom-scrollbars-2';
 import SearchBox from "../../../global/SearchBox";
-
+import { motion } from "framer-motion"
+import {anim} from "../../../../framer";
 
 const InvoicesPaid = () => {
 
@@ -17,7 +18,12 @@ const InvoicesPaid = () => {
     ]
 
     return (
-        <div className="InvoicesPaid">
+        <motion.div
+            initial={anim.initial}
+            animate={anim.animate}
+            transition={anim.transition}
+            className="InvoicesPaid"
+        >
             <div className="invoicesContainer">
                 <SearchBox placeholder="Seach invoice id..."/>
                 <div className="col-headings">
@@ -34,7 +40,7 @@ const InvoicesPaid = () => {
                     })}
                 </Scrollbars>
             </div>
-        </div>
+        </motion.div>
     );
 };
 

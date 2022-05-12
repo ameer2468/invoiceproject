@@ -53,7 +53,6 @@ export async function getStaticProps(context: any) {
     return {
         props: {
             protected: true,
-            userTypes: ["authenticated"],
         },
     }
 }

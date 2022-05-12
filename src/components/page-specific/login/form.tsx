@@ -2,6 +2,8 @@ import React from 'react';
 import Link from "next/link";
 import {useLogin} from "../../../hooks/useLogin";
 import Loading from "../../global/loading";
+import { motion } from 'framer-motion';
+import {anim} from "../../../framer";
 
 const LoginForm = () => {
 
@@ -12,7 +14,8 @@ const LoginForm = () => {
     const formCheck = () => {
         if (
             formLength.email.length === 0 ||
-            formLength.password.length === 0
+            formLength.password.length === 0 ||
+            loginLoading
         ) {
             return "disabledButton"
         } else {
@@ -21,7 +24,11 @@ const LoginForm = () => {
     }
 
     return (
-        <form onSubmit={loginHandler}>
+        <motion.form
+            initial={anim.initial}
+            animate={anim.animate}
+            transition={anim.transition}
+            onSubmit={loginHandler}>
             <h3>Login.</h3>
             <input
                 autoComplete="off"
@@ -49,7 +56,7 @@ const LoginForm = () => {
             <Link passHref={true} href="/register">
                 No account? Register now
             </Link>
-        </form>
+        </motion.form>
     );
 };
 

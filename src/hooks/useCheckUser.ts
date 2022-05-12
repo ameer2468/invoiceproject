@@ -40,6 +40,5 @@ export const useCheckUser = ({pageProps}: props) => {
         checkUser();
     }, [user.type, isLoading, checkUser]);
 
-
     return {user, isLoading, setUser};
 }
