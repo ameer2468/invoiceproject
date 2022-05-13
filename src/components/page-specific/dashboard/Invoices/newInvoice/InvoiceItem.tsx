@@ -3,6 +3,9 @@ import Input from "../../../../global/Input";
 import {item} from "../../../../../../types/invoice";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTrash} from "@fortawesome/free-solid-svg-icons";
+import { motion } from 'framer-motion';
+import {anim} from "../../../../../framer";
+import CurrencyInput from "react-currency-input-field";
 
 
 interface props {
@@ -10,29 +13,38 @@ interface props {
     onChange: (e: ChangeEvent<HTMLInputElement>) => void;
     removeItem: () => void;
     index: number;
+    handleCurrencyChange: (value: string | undefined, name: string | undefined, index: number) => void;
 }
 
-const InvoiceItem = ({item, onChange, removeItem, index}: props) => {
+const InvoiceItem = ({item, onChange, removeItem, index, handleCurrencyChange}: props) => {
 
     return (
-        <div className={"inputs-wrap"}>
+        <motion.div
+            initial={index !== 0 && anim.initial}
+            animate={index !== 0 && anim.animate}
+            className={"inputs-wrap"}>
             <div className="info-item">
                 <Input placeholder="Description of service or product..."
                        value={item.description}
                        name={"description"}
                        onChange={onChange}
                 />
-                <Input placeholder="Amount"
-                       type="number"
-                       value={item.amount}
-                       name={"amount"}
-                       onChange={onChange}
+                <CurrencyInput
+                    id="input-example"
+                    name="amount"
+                    prefix="$"
+                    decimalScale={2}
+                    placeholder="Price"
+                    decimalsLimit={2}
+                    onValueChange={(value, name) => {
+                        handleCurrencyChange(value === undefined ? '0' : value, name, index)
+                    }}
                 />
             </div>
             {index > 0 && <div onClick={removeItem} className="delete">
                 <FontAwesomeIcon icon={faTrash}/>
             </div>}
-        </div>
+        </motion.div>
     );
 };
 

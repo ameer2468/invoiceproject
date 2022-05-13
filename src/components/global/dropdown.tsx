@@ -2,6 +2,8 @@ import React, {useRef, useState} from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCaretDown} from "@fortawesome/free-solid-svg-icons";
 import {useClickOutside} from "../../hooks/useClickOutside";
+import { motion } from 'framer-motion';
+import {anim} from "../../framer";
 
 interface props {
     options: string[];
@@ -11,7 +13,7 @@ interface props {
 const Dropdown = ({options, onSelect}: props) => {
 
     const [isOpen, setIsOpen] = useState(false);
-    const [activeOption, setActiveOption] = useState('');
+    const [activeOption, setActiveOption] = useState(options[0]);
     const dropdownRef = useRef(null);
     const handleClickOutside = () => {
         setIsOpen(false);
@@ -25,11 +27,14 @@ const Dropdown = ({options, onSelect}: props) => {
     return (
         <div onClick={() => setIsOpen(!isOpen)} className="dropdown">
             <div className="main">
-                <p>{activeOption !== '' ? activeOption : "Period"}</p>
+                <p>{activeOption}</p>
                 <FontAwesomeIcon className={`icon ${isOpen ? 'flipCaret' : ''}`} icon={faCaretDown}/>
             </div>
             {isOpen &&
-            <div ref={dropdownRef} className="menu">
+            <motion.div
+                initial={anim.initial}
+                animate={anim.animate}
+                ref={dropdownRef} className="menu">
                 {options.map((option: string, index: number) => {
                     return (
                        <div key={index.toString()}>
@@ -42,7 +47,7 @@ const Dropdown = ({options, onSelect}: props) => {
                        </div>
                     )
                 })}
-            </div>
+            </motion.div>
             }
         </div>
     );

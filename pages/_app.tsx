@@ -6,10 +6,19 @@ import React from "react";
 import {UserContext} from "../src/UserContext";
 import Loading from "../src/components/global/loading";
 import {useCheckUser} from "../src/hooks/useCheckUser";
-
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from 'react-query'
 
 Amplify.configure(awsconfig)
 Auth.configure(awsconfig);
+// Create a client
+const queryClient = new QueryClient()
+
 type props = AppProps & {
   Component: any,
   pageProps: any
@@ -20,10 +29,12 @@ function MyApp({ Component, pageProps }: props) {
   const {user, isLoading, setUser} = useCheckUser({pageProps});
   const DashboardLayout = Component.Layout ? Component.Layout : React.Fragment;
 
+
   return (
+      <QueryClientProvider client={queryClient}>
       <UserContext.Provider value={[user, setUser]}>
           {isLoading ? <div className={"absoluteCenter"}>
-              <Loading color={"black"}/>
+              <Loading style={"PulseLoader"} color={"black"}/>
           </div>
               :
               <DashboardLayout>
@@ -31,6 +42,7 @@ function MyApp({ Component, pageProps }: props) {
               </DashboardLayout>
               }
       </UserContext.Provider>
+      </QueryClientProvider>
   )
 }
 

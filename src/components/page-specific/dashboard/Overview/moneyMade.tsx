@@ -3,8 +3,13 @@ import ClientCard from '../MoneyMade/ClientCard';
 import {Scrollbars} from "react-custom-scrollbars-2";
 import { motion } from 'framer-motion';
 import {anim} from "../../../../framer";
+import {Invoice} from "../../../../../types/invoice";
 
-const MoneyMade = () => {
+interface props {
+    data: Invoice[];
+}
+
+const MoneyMade = ({data}: props) => {
     return (
        <motion.div
            className="MoneyMade"
@@ -15,8 +20,8 @@ const MoneyMade = () => {
            <div className="moneyMadeContainer">
                <Scrollbars className="moneyScroll" style={{ width: "100%", height: 550 }}>
                    <div className="moneyMadeContainer">
-               {Array.from(Array(10).keys()).map((i, index) => (
-                  <ClientCard key={index}/>
+               {data.map((item, index) => (
+                  <ClientCard data={item} key={index.toString()}/>
                ))}
                    </div>
                </Scrollbars>

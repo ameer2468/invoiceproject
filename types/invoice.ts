@@ -1,14 +1,16 @@
 export interface Invoice {
-  invoiceNumber: string;
+  id: string;
+  description: string;
   date: string;
   dueDate: string;
-  billTo: string;
+  to: string
+  status: string;
   from: string;
   item: item[];
   notes: string;
   tos: string;
   tax: string;
-  amountToPay: number;
+  amount: number;
 }
 
 export interface item {
@@ -16,4 +18,10 @@ export interface item {
   quantity: number | string;
   rate: number | string;
   amount: number | string;
+}
+
+export interface testcommit {
+  firstCommit: string;
+  secondCommit: string;
+  thirdCommit: string;
 }

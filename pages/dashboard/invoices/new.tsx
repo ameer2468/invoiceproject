@@ -1,4 +1,4 @@
-import React, {useState, ChangeEvent} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import DashboardLayout from "../../../layouts/DashboardLayout";
 import Input from '../../../src/components/global/Input';
 import {useInvoice} from "../../../src/hooks/useInvoice";
@@ -7,14 +7,23 @@ import InvoiceItem from "../../../src/components/page-specific/dashboard/Invoice
 import {item} from "../../../types/invoice";
 import PdfPage from "../../../src/components/page-specific/dashboard/Invoices/newInvoice/PdfPage";
 
+import "react-datepicker/dist/react-datepicker.css";
+import {numberFormat} from "../../../src/helpers";
 
 const New = () => {
     const [activePdf, setActivePdf] = useState(false);
     const {
         handleInputChange,
-        handleItemChange, invoiceForm,
+        handleItemChange,
+        invoiceForm,
+        handleCurrencyChange,
         removeInvoiceItem,
         addItem } = useInvoice();
+
+    const totalCost = invoiceForm.item.reduce((acc: any, item: any) => {
+        const itemAmount = Number(item.amount);
+        return acc + itemAmount;
+    }, 0);
 
     return (
         <>
@@ -33,36 +42,45 @@ const New = () => {
                         <h1>Invoice Details</h1>
                         <div className="newInvoiceContent">
                             <div className="col">
-                                <TextArea
-                                    placeholder={"Who is this invoice from?"}
+                                <h2>Info</h2>
+                                <Input
+                                    name={'from'}
+                                    onChange={handleInputChange}
                                     value={invoiceForm.from}
-                                    name={"from"}
-                                    onChange={handleInputChange}/>
+                                    placeholder={"Who is this invoice from?"}
+                                />
                                 <Input
                                     name={'billTo'}
                                     onChange={handleInputChange}
-                                    value={invoiceForm.billTo}
+                                    value={invoiceForm.to}
                                     placeholder="Bill to"
                                 />
-                            </div>
-                            <div className="col">
                                 <Input
                                     name={'invoiceNumber'}
                                     onChange={handleInputChange}
-                                    value={invoiceForm.invoiceNumber}
+                                    value={invoiceForm.id}
                                     placeholder="Invoice Number"
                                 />
-                                <Input
-                                    name={'date'}
+                                <TextArea
+                                    name={"invoiceDescription"}
                                     onChange={handleInputChange}
-                                    value={invoiceForm.date}
-                                    placeholder="Date"
+                                    value={invoiceForm.description}
+                                    placeholder="Invoice Description"
                                 />
-                                <Input
-                                    name={'dueDate'}
-                                    onChange={handleInputChange}
-                                    value={invoiceForm.dueDate}
-                                    placeholder="Due Date"
+                            </div>
+                            <div className="col">
+                                <h2>Date</h2>
+                                <input type="date"
+                                       name="date"
+                                       disabled={true}
+                                       style={{opacity: 0.5}}
+                                       value={new Date().toISOString().split('T')[0]}
+                                       onChange={handleInputChange}
+                                       />
+                                <h2>Due date</h2>
+                                <input type="date"
+                                       name="dueDate"
+                                       onChange={handleInputChange}
                                 />
                             </div>
                             <div className="col">
@@ -76,6 +94,11 @@ const New = () => {
                                                     }}
                                                     index={index}
                                                     key={index.toString()}
+                                                    handleCurrencyChange={(value, name, index) => {
+                                                        if (value && name) {
+                                                            handleCurrencyChange(value, name, index)
+                                                        }
+                                                    }}
                                                     removeItem={() => removeInvoiceItem(index)}
                                                     item={invoiceForm.item[index]}
                                                 />
@@ -101,12 +124,8 @@ const New = () => {
                                                 onChange={handleInputChange}/>
                                         </div>
                                         <div className="col">
-                                            <div className="tax">
-                                                <h2>Tax</h2>
-                                                <input type="text" placeholder="0%"/>
-                                            </div>
-                                            <h2 style={{marginBottom: "0"}}>Amount to be paid</h2>
-                                            <p className="amount">$0.00</p>
+                                            <h2 className="totalAmount" style={{marginBottom: "0"}}>Amount to be paid</h2>
+                                            <p className="amount">${numberFormat(totalCost, 2)}</p>
                                         </div>
                                     </div>
                                 </div>
