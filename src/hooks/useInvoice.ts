@@ -51,9 +51,6 @@ export const useInvoice = () => {
           }]})
     }
 
-    console.log(invoiceForm.item);
-
-
     return {
         invoiceForm,
         setInvoiceForm,

@@ -3,6 +3,11 @@ import {styles} from "../../../../../../styles/pdfStyling";
 import React from "react";
 
 const PdfPage = ({invoiceInfo}: any) => {
+
+    const totalCost = invoiceInfo.item.reduce((acc: number, item: any) => {
+        return acc + Number(item.amount);
+    }, 0);
+
     return (
         <PDFViewer className={"pdfPage"}>
             <Document>
@@ -28,19 +33,26 @@ const PdfPage = ({invoiceInfo}: any) => {
                             </View>
                         </View>
                     </View>
-                    <View>
                         <View style={styles.colHeadings}>
                             <Text>Description</Text>
                             <Text>Total</Text>
                         </View>
                         <View style={styles.line}/>
-                        <View style={styles.colInfo}>
-                            <View style={styles.invoiceItem}>
-                                <Text>Website Design</Text>
-                                <Text style={styles.invoiceItem.price}>$500.00</Text>
+                            <View style={styles.invoiceItems}>
+                            {invoiceInfo.item.map(({description, amount}: {description: string, amount: string}, index: number) => {
+                                  return (
+                                    <View key={index.toString()} style={styles.invoiceItem}>
+                                        <Text>{description}</Text>
+                                        <Text style={styles.invoiceItem.price}>{amount}</Text>
+                                  </View>
+                                  )
+                              })}
+                            </View>
+                        <View style={styles.footer}>
+                            <View style={styles.footerContainer}>
+                                <Text style={styles.footerTotal}>Total: {totalCost}</Text>
                             </View>
                         </View>
-                    </View>
                 </Page>
             </Document>
         </PDFViewer>

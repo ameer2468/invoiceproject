@@ -56,7 +56,6 @@ export const useRegister = () => {
            setStep(prevState => prevState + 1);
        }).catch(err => {
            setRegisterLoading(false);
-           console.log(err)
            setFormError(err);
        });
     };

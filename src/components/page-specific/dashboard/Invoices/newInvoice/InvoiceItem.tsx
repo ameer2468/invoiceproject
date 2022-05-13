@@ -3,6 +3,8 @@ import Input from "../../../../global/Input";
 import {item} from "../../../../../../types/invoice";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTrash} from "@fortawesome/free-solid-svg-icons";
+import { motion } from 'framer-motion';
+import {anim} from "../../../../../framer";
 
 
 interface props {
@@ -15,7 +17,10 @@ interface props {
 const InvoiceItem = ({item, onChange, removeItem, index}: props) => {
 
     return (
-        <div className={"inputs-wrap"}>
+        <motion.div
+            initial={anim.initial}
+            animate={anim.animate}
+            className={"inputs-wrap"}>
             <div className="info-item">
                 <Input placeholder="Description of service or product..."
                        value={item.description}
@@ -32,7 +37,7 @@ const InvoiceItem = ({item, onChange, removeItem, index}: props) => {
             {index > 0 && <div onClick={removeItem} className="delete">
                 <FontAwesomeIcon icon={faTrash}/>
             </div>}
-        </div>
+        </motion.div>
     );
 };
 

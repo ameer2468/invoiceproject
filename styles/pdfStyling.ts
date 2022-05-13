@@ -1,4 +1,5 @@
 import {StyleSheet, Font} from "@react-pdf/renderer";
+import { isAbsolute } from "path/posix";
 
 Font.register({family: 'Poppins', src: '../fonts/poppins/Poppins-Bold.ttf'});
 
@@ -6,7 +7,9 @@ export const styles = StyleSheet.create({
     page: {
         flexDirection: 'column',
         backgroundColor: '#ffffff',
+        position: "relative",
         padding: "30px 80px",
+        fontFamily: "Poppins"
     },
     header: {
         flexDirection: "row",
@@ -24,12 +27,39 @@ export const styles = StyleSheet.create({
         color: "#6f6f6f",
         fontFamily: 'Poppins',
     },
+    invoiceItems: {
+        width: "100%",
+        flexDirection: "row",
+        flexWrap: "wrap",
+    },
+    footer: {
+        width: "100vw",
+        height: "270px",
+        backgroundColor: "black",
+        position: "absolute",
+        bottom: 0,
+        left: 0,
+        right: 0,
+        padding: 20,
+    },
+    footerContainer: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-evenly",
+        width: "100%",
+        height: "100%",
+    },
+    footerTotal :{
+        fontSize: 20,
+        color: 'white',
+        textAlign: "center",
+    },
     invoiceItem: {
         fontSize: 13,
         color: "#5a5a5a",
         flexDirection: "row",
-        width: '100%',
-        margin: "10px 0",
+        flex: '0 0 100%',
+        margin: "7px 0",
         justifyContent: "space-between",
         price: {
             color: '#6281ff',
