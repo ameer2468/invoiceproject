@@ -53,9 +53,14 @@ const LoginForm = () => {
             >
                 {loginLoading ? <Loading/> : 'Login'}
             </button>
-            <Link passHref={true} href="/register">
-                No account? Register now
-            </Link>
+           <div style={{display: "flex", justifyContent: "space-evenly", marginTop: 20}}>
+               <Link passHref={true} href="/register">
+                   No account? Register now
+               </Link>
+               <Link passHref={true} href="/forgot">
+                   Forgot password?
+               </Link>
+           </div>
         </motion.form>
     );
 };

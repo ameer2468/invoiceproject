@@ -1,0 +1,76 @@
+@media all and (max-width: 1750px) {
+  html {
+    font-size: 58%;
+  }
+}
+
+@media all and (max-width: 1024px) {
+  .sidebar {
+    display: none;
+  }
+  .dashboardHeader {
+    width: 100%;
+    .container {
+      margin: 0 auto;
+      max-width: 100%;
+      padding: 0 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+  .invoices {
+    .invoicesContainer {
+      max-width: 100%;
+      margin: 0 auto;
+      left: 50%;
+      padding: 0 2rem;
+      transform: translateX(-50%);
+      .cardWrap {
+        flex: 1 0 48%;
+        gap: 2rem;
+      }
+    }
+  }
+  .overview {
+    .container {
+      max-width: 100%;
+      margin: 0 auto;
+      left: 50%;
+      padding: 0 2rem;
+      transform: translateX(-50%);
+      .overviewContent {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        .MoneyMade {
+          width: 100%;
+          flex: 0 0 100%;
+          margin: 5rem auto 0 auto;
+          .moneyMadeContainer {
+            gap: 2rem;
+            .clientCard {
+              flex: 1 0 48%;
+            }
+          }
+        }
+        .InvoicesPaid {
+          width: 100%;
+          flex: 0 0 100%;
+          margin: 5rem auto 0 auto;
+        }
+        .tabs-wrap {
+          width: 100%;
+          justify-content: space-between;
+          margin: 0 auto;
+          gap: 2rem;
+          height: auto;
+          .tab-item, .active-tab {
+            height: 13rem;
+            flex: 1 0 48%;
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+}

@@ -202,6 +202,7 @@ body {
   width: 100%;
   top: 15vh;
   max-width: 150rem;
+  padding: 0 0 5rem 0;
   left: 16vw;
   height: 100%;
 }
@@ -412,6 +413,7 @@ body {
   width: 100%;
   top: 15vh;
   max-width: 150rem;
+  padding: 0 0 5rem 0;
   left: 16vw;
   height: 100%;
 }
@@ -796,6 +798,7 @@ body {
   width: 100%;
   top: 15vh;
   max-width: 150rem;
+  padding: 0 0 5rem 0;
   left: 16vw;
   height: 100%;
   height: auto;
@@ -825,6 +828,9 @@ body {
   cursor: pointer;
 }
 
+.overview {
+  position: relative;
+}
 .overview .main-header {
   display: flex;
   align-items: center;
@@ -836,6 +842,7 @@ body {
   width: 100%;
   top: 15vh;
   max-width: 150rem;
+  padding: 0 0 5rem 0;
   left: 16vw;
   height: 100%;
 }
@@ -930,11 +937,11 @@ body {
   font-size: 4rem;
 }
 
-.loginPage {
+.loginPage, .registerPage {
   width: 100%;
   height: 100%;
 }
-.loginPage .container {
+.loginPage .container, .registerPage .container {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -943,14 +950,14 @@ body {
   flex-direction: column;
   height: 100vh;
 }
-.loginPage .container h2 {
+.loginPage .container h2, .registerPage .container h2 {
   font-size: 2.5rem;
   margin-bottom: 5rem;
 }
-.loginPage .container h2:hover {
+.loginPage .container h2:hover, .registerPage .container h2:hover {
   cursor: pointer;
 }
-.loginPage .container form {
+.loginPage .container form, .registerPage .container form {
   width: 100%;
   max-width: 60rem;
   border: 2px solid black;
@@ -960,14 +967,19 @@ body {
   display: flex;
   flex-direction: column;
 }
-.loginPage .container form a {
+.loginPage .container form a, .registerPage .container form a {
   text-decoration: none;
   color: black;
   font-weight: bold;
   text-align: center;
+  transition: all 0.3s;
   margin-top: 2rem;
 }
-.loginPage .container form input {
+.loginPage .container form a:hover, .registerPage .container form a:hover {
+  color: #FF7193;
+  transition: all 0.3s;
+}
+.loginPage .container form input, .registerPage .container form input {
   border: 2px solid black;
   padding: 1.5rem 2rem;
   border-radius: 1rem;
@@ -977,16 +989,16 @@ body {
   transition: all 0.3s;
   font-family: Poppins, sans-serif;
 }
-.loginPage .container form input:focus {
+.loginPage .container form input:focus, .registerPage .container form input:focus {
   border: 2px solid #FF7193;
   outline: 0;
   transition: all 0.3s;
 }
-.loginPage .container form input::placeholder {
+.loginPage .container form input::placeholder, .registerPage .container form input::placeholder {
   color: black;
   font-weight: bold;
 }
-.loginPage .container form button {
+.loginPage .container form button, .registerPage .container form button {
   background: black;
   color: white;
   font-family: "Poppins", sans-serif;
@@ -998,17 +1010,91 @@ body {
   border: 2px solid black;
   margin: 3rem auto 0 auto;
 }
-.loginPage .container form button:hover {
+.loginPage .container form button:hover, .registerPage .container form button:hover {
   cursor: pointer;
   transition: all 0.3s;
   background-color: #FF7193;
 }
-.loginPage .container form h3 {
+.loginPage .container form h3, .registerPage .container form h3 {
   color: #FF7193;
   text-align: center;
   font-size: 4rem;
 }
 
+@media all and (max-width: 1750px) {
+  html {
+    font-size: 58%;
+  }
+}
+@media all and (max-width: 1024px) {
+  .sidebar {
+    display: none;
+  }
+
+  .dashboardHeader {
+    width: 100%;
+  }
+  .dashboardHeader .container {
+    margin: 0 auto;
+    max-width: 100%;
+    padding: 0 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .invoices .invoicesContainer {
+    max-width: 100%;
+    margin: 0 auto;
+    left: 50%;
+    padding: 0 2rem;
+    transform: translateX(-50%);
+  }
+  .invoices .invoicesContainer .cardWrap {
+    flex: 1 0 48%;
+    gap: 2rem;
+  }
+
+  .overview .container {
+    max-width: 100%;
+    margin: 0 auto;
+    left: 50%;
+    padding: 0 2rem;
+    transform: translateX(-50%);
+  }
+  .overview .container .overviewContent {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .overview .container .overviewContent .MoneyMade {
+    width: 100%;
+    flex: 0 0 100%;
+    margin: 5rem auto 0 auto;
+  }
+  .overview .container .overviewContent .MoneyMade .moneyMadeContainer {
+    gap: 2rem;
+  }
+  .overview .container .overviewContent .MoneyMade .moneyMadeContainer .clientCard {
+    flex: 1 0 48%;
+  }
+  .overview .container .overviewContent .InvoicesPaid {
+    width: 100%;
+    flex: 0 0 100%;
+    margin: 5rem auto 0 auto;
+  }
+  .overview .container .overviewContent .tabs-wrap {
+    width: 100%;
+    justify-content: space-between;
+    margin: 0 auto;
+    gap: 2rem;
+    height: auto;
+  }
+  .overview .container .overviewContent .tabs-wrap .tab-item, .overview .container .overviewContent .tabs-wrap .active-tab {
+    height: 13rem;
+    flex: 1 0 48%;
+    margin-bottom: 0;
+  }
+}
 .header {
   width: 100%;
   max-width: 140rem;
@@ -1027,6 +1113,7 @@ body {
   width: 100%;
   top: 15vh;
   max-width: 150rem;
+  padding: 0 0 5rem 0;
   left: 16vw;
   height: 100%;
   height: 90rem;

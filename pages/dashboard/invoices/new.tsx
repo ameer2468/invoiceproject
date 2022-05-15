@@ -1,4 +1,4 @@
-import React, {useState, ChangeEvent} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import DashboardLayout from "../../../layouts/DashboardLayout";
 import Input from '../../../src/components/global/Input';
 import {useInvoice} from "../../../src/hooks/useInvoice";
@@ -8,6 +8,7 @@ import {item} from "../../../types/invoice";
 import PdfPage from "../../../src/components/page-specific/dashboard/Invoices/newInvoice/PdfPage";
 
 import "react-datepicker/dist/react-datepicker.css";
+import {numberFormat} from "../../../src/helpers";
 
 const New = () => {
     const [activePdf, setActivePdf] = useState(false);
@@ -18,6 +19,11 @@ const New = () => {
         handleCurrencyChange,
         removeInvoiceItem,
         addItem } = useInvoice();
+
+    const totalCost = invoiceForm.item.reduce((acc: any, item: any) => {
+        const itemAmount = Number(item.amount);
+        return acc + itemAmount;
+    }, 0);
 
 
     return (
@@ -48,14 +54,14 @@ const New = () => {
                                     value={invoiceForm.billTo}
                                     placeholder="Bill to"
                                 />
-                            </div>
-                            <div className="col">
                                 <Input
                                     name={'invoiceNumber'}
                                     onChange={handleInputChange}
                                     value={invoiceForm.invoiceNumber}
                                     placeholder="Invoice Number"
                                 />
+                            </div>
+                            <div className="col">
                                 <h2>Date</h2>
                                 <input type="date"
                                        name="date"
@@ -115,7 +121,7 @@ const New = () => {
                                                 <input type="text" placeholder="0%"/>
                                             </div>
                                             <h2 style={{marginBottom: "0"}}>Amount to be paid</h2>
-                                            <p className="amount">$0.00</p>
+                                            <p className="amount">${numberFormat(totalCost, 2)}</p>
                                         </div>
                                     </div>
                                 </div>

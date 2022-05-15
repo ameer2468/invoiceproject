@@ -32,7 +32,7 @@ const InvoicesPaid = () => {
                     <h3>Date</h3>
                     <h3>Status</h3>
                 </div>
-                <Scrollbars style={{ width: "100%", height: 450 }}>
+                <Scrollbars style={{ width: "100%", height: '43rem' }}>
                     {payments.map((value, index) => {
                         return (
                             <Record key={index.toString()} data={value}/>

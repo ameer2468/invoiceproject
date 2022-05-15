@@ -9,7 +9,8 @@ export const useRegister = () => {
     const [step, setStep] = useState(1);
     const [formError, setFormError] = useState('');
     const [registerForm, setRegisterForm] = useState({
-        name: "",
+        firstName: "",
+        lastName: "",
         email: "",
         password: "",
         confirmPassword: "",
@@ -28,7 +29,6 @@ export const useRegister = () => {
         setRegisterLoading(true);
         try {
             await Auth.confirmSignUp(registerForm.email, registerForm.code).then((res) => {
-                console.log(res)
                 setStep(prevState => prevState + 1);
             });
         } catch (err: any) {
@@ -44,13 +44,15 @@ export const useRegister = () => {
            username: registerForm.email,
            password: registerForm.password,
            attributes: {
-               'custom:name': registerForm.name
+               'custom:firstname': registerForm.firstName,
+               'custom:lastname': registerForm.lastName
            }
        }).then(async (res) => {
            await createUser({
                sub_id: res.userSub,
                email: registerForm.email,
-               name: registerForm.name
+               first_name: registerForm.firstName,
+               last_name: registerForm.lastName
            });
            setRegisterLoading(false);
            setStep(prevState => prevState + 1);

@@ -16,7 +16,8 @@ const RegisterForm = () => {
             form.email.length === 0 ||
             form.password.length === 0 ||
             form.confirmPassword.length === 0 ||
-            form.name.length === 0
+            form.firstName.length === 0 ||
+            form.lastName.length === 0
         ) {
             return "disabledButton";
         } else {
@@ -33,10 +34,46 @@ const RegisterForm = () => {
                 transition={anim.transition}
                 onSubmit={registerHandler}>
                 <h3>Sign up.</h3>
-                <input required={true} onChange={inputHandler} value={registerForm.name} name="name" autoComplete="off" placeholder="Full name" type="text"/>
-                <input required={true} onChange={inputHandler} value={registerForm.email} name="email" autoComplete="off" placeholder="Email address" type="email"/>
-                <input required={true} onChange={inputHandler} value={registerForm.password} name="password" autoComplete="off" placeholder="Password" type="password"/>
-                <input required={true} onChange={inputHandler} value={registerForm.confirmPassword} name="confirmPassword" autoComplete="off" placeholder="Confirm Password" type="password"/>
+                <input required={true}
+                       onChange={inputHandler}
+                       value={registerForm.firstName}
+                       name="firstName"
+                       autoComplete="off"
+                       placeholder="First name"
+                       type="text"
+                />
+                <input required={true}
+                       onChange={inputHandler}
+                       value={registerForm.lastName}
+                       name="lastName"
+                       autoComplete="off"
+                       placeholder="Last name"
+                       type="text"
+                />
+                <input required={true}
+                       onChange={inputHandler}
+                       value={registerForm.email}
+                       name="email"
+                       autoComplete="off"
+                       placeholder="Email address"
+                       type="email"
+                />
+                <input required={true}
+                       onChange={inputHandler}
+                       value={registerForm.password}
+                       name="password"
+                       autoComplete="off"
+                       placeholder="Password"
+                       type="password"
+                />
+                <input required={true}
+                       onChange={inputHandler}
+                       value={registerForm.confirmPassword}
+                       name="confirmPassword"
+                       autoComplete="off"
+                       placeholder="Confirm Password"
+                       type="password"
+                />
                 {formError.length > 0 ? <p className="form-error">{formError}</p> : null}
                 <button
                     disabled={

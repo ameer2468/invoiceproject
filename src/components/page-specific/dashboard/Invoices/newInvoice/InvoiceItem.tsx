@@ -20,8 +20,8 @@ const InvoiceItem = ({item, onChange, removeItem, index, handleCurrencyChange}: 
 
     return (
         <motion.div
-            initial={anim.initial}
-            animate={anim.animate}
+            initial={index !== 0 && anim.initial}
+            animate={index !== 0 && anim.animate}
             className={"inputs-wrap"}>
             <div className="info-item">
                 <Input placeholder="Description of service or product..."
@@ -33,6 +33,7 @@ const InvoiceItem = ({item, onChange, removeItem, index, handleCurrencyChange}: 
                     id="input-example"
                     name="amount"
                     prefix="$"
+                    decimalScale={2}
                     placeholder="Price"
                     decimalsLimit={2}
                     onValueChange={(value, name) => {

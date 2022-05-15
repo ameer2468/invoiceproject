@@ -20,6 +20,7 @@ function MyApp({ Component, pageProps }: props) {
   const {user, isLoading, setUser} = useCheckUser({pageProps});
   const DashboardLayout = Component.Layout ? Component.Layout : React.Fragment;
 
+
   return (
       <UserContext.Provider value={[user, setUser]}>
           {isLoading ? <div className={"absoluteCenter"}>
