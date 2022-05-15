@@ -21,6 +21,22 @@ export const useInvoice = () => {
         amountToPay: 0,
     })
 
+
+    const handleCurrencyChange = (
+        value: string,
+        name: string,
+        index: number
+    ) => {
+        setInvoiceForm({...invoiceForm,
+            item: invoiceForm.item.map((item, i) => {
+                if (i === index) {
+                    return {...item, [name]: value}
+                }
+                return item;
+            })
+        })
+    }
+
     const handleItemChange = (event: ChangeEvent<HTMLInputElement>, index: number) => {
         setInvoiceForm({...invoiceForm,
          item: invoiceForm.item.map((item, i) => {
@@ -55,6 +71,7 @@ export const useInvoice = () => {
         invoiceForm,
         setInvoiceForm,
         handleItemChange,
+        handleCurrencyChange,
         removeInvoiceItem,
         handleInputChange,
         addItem

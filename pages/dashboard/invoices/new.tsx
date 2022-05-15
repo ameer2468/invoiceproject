@@ -7,14 +7,18 @@ import InvoiceItem from "../../../src/components/page-specific/dashboard/Invoice
 import {item} from "../../../types/invoice";
 import PdfPage from "../../../src/components/page-specific/dashboard/Invoices/newInvoice/PdfPage";
 
+import "react-datepicker/dist/react-datepicker.css";
 
 const New = () => {
     const [activePdf, setActivePdf] = useState(false);
     const {
         handleInputChange,
-        handleItemChange, invoiceForm,
+        handleItemChange,
+        invoiceForm,
+        handleCurrencyChange,
         removeInvoiceItem,
         addItem } = useInvoice();
+
 
     return (
         <>
@@ -52,17 +56,17 @@ const New = () => {
                                     value={invoiceForm.invoiceNumber}
                                     placeholder="Invoice Number"
                                 />
-                                <Input
-                                    name={'date'}
-                                    onChange={handleInputChange}
-                                    value={invoiceForm.date}
-                                    placeholder="Date"
-                                />
-                                <Input
-                                    name={'dueDate'}
-                                    onChange={handleInputChange}
-                                    value={invoiceForm.dueDate}
-                                    placeholder="Due Date"
+                                <h2>Date</h2>
+                                <input type="date"
+                                       name="date"
+                                       disabled={true}
+                                       value={new Date().toISOString().split('T')[0]}
+                                       onChange={handleInputChange}
+                                       />
+                                <h2>Due date</h2>
+                                <input type="date"
+                                       name="dueDate"
+                                       onChange={handleInputChange}
                                 />
                             </div>
                             <div className="col">
@@ -76,6 +80,11 @@ const New = () => {
                                                     }}
                                                     index={index}
                                                     key={index.toString()}
+                                                    handleCurrencyChange={(value, name, index) => {
+                                                        if (value && name) {
+                                                            handleCurrencyChange(value, name, index)
+                                                        }
+                                                    }}
                                                     removeItem={() => removeInvoiceItem(index)}
                                                     item={invoiceForm.item[index]}
                                                 />

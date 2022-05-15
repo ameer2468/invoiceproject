@@ -5,6 +5,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTrash} from "@fortawesome/free-solid-svg-icons";
 import { motion } from 'framer-motion';
 import {anim} from "../../../../../framer";
+import CurrencyInput from "react-currency-input-field";
 
 
 interface props {
@@ -12,9 +13,10 @@ interface props {
     onChange: (e: ChangeEvent<HTMLInputElement>) => void;
     removeItem: () => void;
     index: number;
+    handleCurrencyChange: (value: string | undefined, name: string | undefined, index: number) => void;
 }
 
-const InvoiceItem = ({item, onChange, removeItem, index}: props) => {
+const InvoiceItem = ({item, onChange, removeItem, index, handleCurrencyChange}: props) => {
 
     return (
         <motion.div
@@ -27,11 +29,15 @@ const InvoiceItem = ({item, onChange, removeItem, index}: props) => {
                        name={"description"}
                        onChange={onChange}
                 />
-                <Input placeholder="Amount"
-                       type="number"
-                       value={item.amount}
-                       name={"amount"}
-                       onChange={onChange}
+                <CurrencyInput
+                    id="input-example"
+                    name="amount"
+                    prefix="$"
+                    placeholder="Price"
+                    decimalsLimit={2}
+                    onValueChange={(value, name) => {
+                        handleCurrencyChange(value, name, index)
+                    }}
                 />
             </div>
             {index > 0 && <div onClick={removeItem} className="delete">

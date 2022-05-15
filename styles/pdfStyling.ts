@@ -1,5 +1,4 @@
 import {StyleSheet, Font} from "@react-pdf/renderer";
-import { isAbsolute } from "path/posix";
 
 Font.register({family: 'Poppins', src: '../fonts/poppins/Poppins-Bold.ttf'});
 
@@ -43,10 +42,11 @@ export const styles = StyleSheet.create({
         padding: 20,
     },
     footerContainer: {
-        flexDirection: "row",
+        flexDirection: "column",
         alignItems: "center",
-        justifyContent: "space-evenly",
-        width: "100%",
+        justifyContent: "center",
+        width: "80%",
+        margin: "0 auto",
         height: "100%",
     },
     footerTotal :{
@@ -59,7 +59,7 @@ export const styles = StyleSheet.create({
         color: "#5a5a5a",
         flexDirection: "row",
         flex: '0 0 100%',
-        margin: "7px 0",
+        margin: "4px 0",
         justifyContent: "space-between",
         price: {
             color: '#6281ff',
@@ -76,10 +76,43 @@ export const styles = StyleSheet.create({
         textTransform: 'uppercase',
         color: "#6f6f6f",
     },
+    footerText: {
+        color: "white",
+        fontSize: 11,
+        textAlign: "center",
+        flex: "0 0 30%",
+        marginTop: 8,
+    },
+    content: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        width: "100%",
+        marginTop: 10
+    },
+    headings: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      width: "100%",
+      paddingBottom: "8px",
+    },
+    footerHeading: {
+        color: "white",
+        flex: "0 0 30%",
+        textTransform: "uppercase",
+        textAlign: "center",
+        fontSize: 12,
+        opacity: 0.5,
+    },
     text: {
       fontSize: 12,
       color: 'black',
       marginLeft: '5px',
+    },
+    footerLine: {
+            width: '100%',
+            height: 0.5,
+            margin: '10px 0',
+            backgroundColor: '#6f6f6f',
     },
     line: {
         width: '100%',

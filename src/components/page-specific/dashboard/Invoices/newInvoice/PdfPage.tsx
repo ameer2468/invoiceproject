@@ -7,6 +7,7 @@ const PdfPage = ({invoiceInfo}: any) => {
     const totalCost = invoiceInfo.item.reduce((acc: number, item: any) => {
         return acc + Number(item.amount);
     }, 0);
+    const dueBy = invoiceInfo.dueDate;
 
     return (
         <PDFViewer className={"pdfPage"}>
@@ -21,7 +22,15 @@ const PdfPage = ({invoiceInfo}: any) => {
                                 marginTop: 15
                             }}>
                                 <Text style={styles.invoiceTitle}>Date:</Text>
-                                <Text style={styles.text}>{invoiceInfo.date}</Text>
+                                <Text style={styles.text}>{new Date().toISOString().split('T')[0]}</Text>
+                            </View>
+                            <View style={{
+                                flexDirection: "row",
+                                width: "100%",
+                                marginTop: 5
+                            }}>
+                                <Text style={styles.invoiceTitle}>Due date:</Text>
+                                <Text style={styles.text}>{invoiceInfo.dueDate}</Text>
                             </View>
                             <View style={{
                                 flexDirection: "row",
@@ -29,7 +38,7 @@ const PdfPage = ({invoiceInfo}: any) => {
                                 marginTop: 5
                             }}>
                                 <Text style={styles.invoiceTitle}>Invoice No:</Text>
-                                <Text style={styles.text}>{invoiceInfo.invoiceNumber}</Text>
+                                <Text style={styles.text}>#{invoiceInfo.invoiceNumber}</Text>
                             </View>
                         </View>
                     </View>
@@ -43,14 +52,23 @@ const PdfPage = ({invoiceInfo}: any) => {
                                   return (
                                     <View key={index.toString()} style={styles.invoiceItem}>
                                         <Text>{description}</Text>
-                                        <Text style={styles.invoiceItem.price}>{amount}</Text>
+                                        <Text style={styles.invoiceItem.price}>${amount}</Text>
                                   </View>
                                   )
                               })}
                             </View>
                         <View style={styles.footer}>
                             <View style={styles.footerContainer}>
-                                <Text style={styles.footerTotal}>Total: {totalCost}</Text>
+                                <View style={styles.headings}>
+                                       <Text style={styles.footerHeading}>Payment Info</Text>
+                                       <Text style={styles.footerHeading}>Due By</Text>
+                                       <Text style={styles.footerHeading}>Total</Text>
+                                </View>
+                                <View style={styles.content}>
+                                    <Text style={styles.footerText}>Account No: asdasd234</Text>
+                                    <Text style={styles.footerText}>{dueBy}</Text>
+                                    <Text style={styles.footerText}>${totalCost}</Text>
+                                </View>
                             </View>
                         </View>
                 </Page>
