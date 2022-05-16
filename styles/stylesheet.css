@@ -307,11 +307,14 @@ body {
 .newInvoice .newInvoiceContainer .newInvoiceContent .miscInfo .col h2 {
   margin-bottom: 2rem;
 }
+.newInvoice .newInvoiceContainer .newInvoiceContent .miscInfo .col .totalAmount {
+  font-size: 2rem;
+}
 .newInvoice .newInvoiceContainer .newInvoiceContent .miscInfo .col .tax {
   margin-bottom: 2rem;
 }
 .newInvoice .newInvoiceContainer .newInvoiceContent .miscInfo .col .amount {
-  font-size: 1.6rem;
+  font-size: 3.5rem;
 }
 .newInvoice .newInvoiceContainer .newInvoiceContent .addItem {
   background: black;
@@ -828,9 +831,6 @@ body {
   cursor: pointer;
 }
 
-.overview {
-  position: relative;
-}
 .overview .main-header {
   display: flex;
   align-items: center;
@@ -941,6 +941,34 @@ body {
   width: 100%;
   height: 100%;
 }
+.loginPage .loginForm, .registerPage .loginForm {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 110rem;
+  height: 60rem;
+  border: 2px solid black;
+  border-radius: 1.5rem;
+  overflow: hidden;
+}
+.loginPage .loginForm .col, .registerPage .loginForm .col {
+  width: 50%;
+}
+.loginPage .loginForm .col:nth-child(1), .registerPage .loginForm .col:nth-child(1) {
+  background-image: url("../src/images/loginbg.svg");
+  background-color: black;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.loginPage .loginForm .col:nth-child(1) h2, .registerPage .loginForm .col:nth-child(1) h2 {
+  color: white;
+  text-align: center;
+}
+.loginPage .loginForm .col:nth-child(2), .registerPage .loginForm .col:nth-child(2) {
+  padding: 5rem 5rem;
+  align-self: center;
+}
 .loginPage .container, .registerPage .container {
   width: 100%;
   display: flex;
@@ -957,29 +985,23 @@ body {
 .loginPage .container h2:hover, .registerPage .container h2:hover {
   cursor: pointer;
 }
-.loginPage .container form, .registerPage .container form {
-  width: 100%;
-  max-width: 60rem;
-  border: 2px solid black;
-  border-radius: 1.5rem;
-  height: auto;
-  padding: 4rem 2rem;
-  display: flex;
-  flex-direction: column;
-}
-.loginPage .container form a, .registerPage .container form a {
+.loginPage .container a, .registerPage .container a {
   text-decoration: none;
   color: black;
   font-weight: bold;
   text-align: center;
   transition: all 0.3s;
-  margin-top: 2rem;
 }
-.loginPage .container form a:hover, .registerPage .container form a:hover {
+.loginPage .container a:hover, .registerPage .container a:hover {
   color: #FF7193;
   transition: all 0.3s;
 }
-.loginPage .container form input, .registerPage .container form input {
+.loginPage .container .links, .registerPage .container .links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.loginPage .container input, .registerPage .container input {
   border: 2px solid black;
   padding: 1.5rem 2rem;
   border-radius: 1rem;
@@ -988,17 +1010,18 @@ body {
   margin: 1rem auto 0 auto;
   transition: all 0.3s;
   font-family: Poppins, sans-serif;
+  width: 100%;
 }
-.loginPage .container form input:focus, .registerPage .container form input:focus {
+.loginPage .container input:focus, .registerPage .container input:focus {
   border: 2px solid #FF7193;
   outline: 0;
   transition: all 0.3s;
 }
-.loginPage .container form input::placeholder, .registerPage .container form input::placeholder {
+.loginPage .container input::placeholder, .registerPage .container input::placeholder {
   color: black;
   font-weight: bold;
 }
-.loginPage .container form button, .registerPage .container form button {
+.loginPage .container button, .registerPage .container button {
   background: black;
   color: white;
   font-family: "Poppins", sans-serif;
@@ -1008,16 +1031,18 @@ body {
   border-radius: 1rem;
   transition: all 0.3s;
   border: 2px solid black;
-  margin: 3rem auto 0 auto;
+  width: 100%;
+  margin: 3rem auto;
 }
-.loginPage .container form button:hover, .registerPage .container form button:hover {
+.loginPage .container button:hover, .registerPage .container button:hover {
   cursor: pointer;
   transition: all 0.3s;
   background-color: #FF7193;
 }
-.loginPage .container form h3, .registerPage .container form h3 {
+.loginPage .container h3, .registerPage .container h3 {
   color: #FF7193;
-  text-align: center;
+  text-align: left;
+  margin-bottom: 3rem;
   font-size: 4rem;
 }
 

@@ -27,39 +27,44 @@ const LoginForm = () => {
         <motion.form
             initial={anim.initial}
             animate={anim.animate}
+            className={"loginForm"}
             transition={anim.transition}
             onSubmit={loginHandler}>
-            <h3>Login.</h3>
-            <input
-                autoComplete="off"
-                required={true}
-                onChange={inputHandler}
-                name="email"
-                value={loginForm.email}
-                placeholder="Email address"
-                type="email"/>
-            <input
-                autoComplete="off"
-                required={true}
-                onChange={inputHandler}
-                name="password"
-                value={loginForm.password}
-                placeholder="Password"
-                type="password"/>
-            {formError.length > 0 ? <p className="form-error">{formError}</p> : null}
-            <button
-                disabled={loginLoading || formCheck() === "disabledButton"}
-                className={formCheck()}
-            >
-                {loginLoading ? <Loading/> : 'Login'}
-            </button>
-           <div style={{display: "flex", justifyContent: "space-evenly", marginTop: 20}}>
-               <Link passHref={true} href="/register">
-                   No account? Register now
-               </Link>
-               <Link passHref={true} href="/forgot">
-                   Forgot password?
-               </Link>
+            <div className="col">
+            </div>
+           <div className="col">
+               <h3>Login.</h3>
+               <input
+                   autoComplete="off"
+                   required={true}
+                   onChange={inputHandler}
+                   name="email"
+                   value={loginForm.email}
+                   placeholder="Email address"
+                   type="email"/>
+               <input
+                   autoComplete="off"
+                   required={true}
+                   onChange={inputHandler}
+                   name="password"
+                   value={loginForm.password}
+                   placeholder="Password"
+                   type="password"/>
+               {formError.length > 0 ? <p className="form-error">{formError}</p> : null}
+               <button
+                   disabled={loginLoading || formCheck() === "disabledButton"}
+                   className={formCheck()}
+               >
+                   {loginLoading ? <Loading/> : 'Login'}
+               </button>
+               <div className="links">
+                   <Link passHref={true} href="/register">
+                       No account? Register now
+                   </Link>
+                   <Link passHref={true} href="/forgot">
+                       Forgot password?
+                   </Link>
+               </div>
            </div>
         </motion.form>
     );
