@@ -197,6 +197,14 @@ body {
     grid-gap: 30px;
   }
 }
+.unpaid {
+  color: #ff8282;
+}
+
+.paid {
+  color: #77e277;
+}
+
 .newInvoice .newInvoiceContainer {
   position: relative;
   width: 100%;
@@ -307,11 +315,14 @@ body {
 .newInvoice .newInvoiceContainer .newInvoiceContent .miscInfo .col h2 {
   margin-bottom: 2rem;
 }
+.newInvoice .newInvoiceContainer .newInvoiceContent .miscInfo .col .totalAmount {
+  font-size: 2rem;
+}
 .newInvoice .newInvoiceContainer .newInvoiceContent .miscInfo .col .tax {
   margin-bottom: 2rem;
 }
 .newInvoice .newInvoiceContainer .newInvoiceContent .miscInfo .col .amount {
-  font-size: 1.6rem;
+  font-size: 3.5rem;
 }
 .newInvoice .newInvoiceContainer .newInvoiceContent .addItem {
   background: black;
@@ -453,7 +464,6 @@ body {
 .invoices .invoicesContainer .invoiceCard .statusBox {
   position: absolute;
   background: black;
-  color: #a1ffa1;
   width: 100%;
   max-width: 10rem;
   display: flex;
@@ -490,12 +500,6 @@ body {
 .invoices .invoicesContainer .invoiceCard .details p .icon {
   margin-right: 0.5rem;
 }
-.invoices .invoicesContainer .invoiceCard .unpaid {
-  color: red;
-}
-.invoices .invoicesContainer .invoiceCard .paid {
-  color: #039503;
-}
 .invoices .invoicesContainer .invoiceCard .amount {
   font-size: 1.3rem;
 }
@@ -509,7 +513,9 @@ body {
 .invoices .invoicesContainer .invoiceCard p.desc {
   line-height: 2.5rem;
   font-size: 1.4rem;
-  margin: 1.5rem 0 2.5rem 0;
+  height: 8rem;
+  width: 100%;
+  margin: 1.5rem auto 2.5rem auto;
 }
 .invoices .invoicesContainer .invoiceCard:hover {
   cursor: pointer;
@@ -810,10 +816,10 @@ body {
 .dashboardHeader .container .notification {
   width: 5rem;
   height: 5rem;
-  background: black;
   display: flex;
   border: 2px solid black;
   justify-content: center;
+  background: black;
   align-items: center;
   border-radius: 50%;
   transition: all 0.3s;
@@ -828,9 +834,6 @@ body {
   cursor: pointer;
 }
 
-.overview {
-  position: relative;
-}
 .overview .main-header {
   display: flex;
   align-items: center;
@@ -862,6 +865,38 @@ body {
   width: 100%;
   height: 100%;
 }
+.registerPage .registerForm {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 110rem;
+  height: 65rem;
+  border: 2px solid black;
+  border-radius: 1.5rem;
+  overflow: hidden;
+}
+.registerPage .registerForm .col {
+  width: 50%;
+  height: 100%;
+}
+.registerPage .registerForm .col:nth-child(1) {
+  background-image: url("../src/images/register.svg");
+  background-color: black;
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: cover;
+}
+.registerPage .registerForm .col:nth-child(1) h2 {
+  color: white;
+  text-align: center;
+}
+.registerPage .registerForm .col:nth-child(2) {
+  padding: 5rem 5rem;
+  align-self: center;
+}
+.registerPage .links {
+  text-align: center;
+}
 .registerPage .container {
   width: 100%;
   display: flex;
@@ -878,24 +913,14 @@ body {
 .registerPage .container h2:hover {
   cursor: pointer;
 }
-.registerPage .container form {
-  width: 100%;
-  max-width: 60rem;
-  border: 2px solid black;
-  border-radius: 1.5rem;
-  height: auto;
-  padding: 4rem 2rem;
-  display: flex;
-  flex-direction: column;
-}
-.registerPage .container form a {
+.registerPage .container a {
   text-decoration: none;
   color: black;
   font-weight: bold;
   text-align: center;
   margin-top: 2rem;
 }
-.registerPage .container form input {
+.registerPage .container input {
   border: 2px solid black;
   padding: 1.5rem 2rem;
   border-radius: 1rem;
@@ -904,17 +929,18 @@ body {
   margin: 1rem auto 0 auto;
   transition: all 0.3s;
   font-family: Poppins, sans-serif;
+  width: 100%;
 }
-.registerPage .container form input:focus {
+.registerPage .container input:focus {
   border: 2px solid #FF7193;
   outline: 0;
   transition: all 0.3s;
 }
-.registerPage .container form input::placeholder {
+.registerPage .container input::placeholder {
   color: black;
   font-weight: bold;
 }
-.registerPage .container form button {
+.registerPage .container button {
   background: black;
   color: white;
   font-family: "Poppins", sans-serif;
@@ -924,24 +950,54 @@ body {
   border-radius: 1rem;
   transition: all 0.3s;
   border: 2px solid black;
-  margin: 3rem auto 0 auto;
+  width: 100%;
+  margin: 3rem auto;
 }
-.registerPage .container form button:hover {
+.registerPage .container button:hover {
   cursor: pointer;
   transition: all 0.3s;
   background-color: #FF7193;
 }
-.registerPage .container form h3 {
+.registerPage .container h3 {
   color: #FF7193;
-  text-align: center;
+  text-align: left;
+  margin-bottom: 3rem;
   font-size: 4rem;
 }
 
-.loginPage, .registerPage {
+.loginPage {
   width: 100%;
   height: 100%;
 }
-.loginPage .container, .registerPage .container {
+.loginPage .loginForm {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 110rem;
+  height: 60rem;
+  border: 2px solid black;
+  border-radius: 1.5rem;
+  overflow: hidden;
+}
+.loginPage .loginForm .col {
+  width: 50%;
+}
+.loginPage .loginForm .col:nth-child(1) {
+  background-image: url("../src/images/loginbg.svg");
+  background-color: black;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.loginPage .loginForm .col:nth-child(1) h2 {
+  color: white;
+  text-align: center;
+}
+.loginPage .loginForm .col:nth-child(2) {
+  padding: 5rem 5rem;
+  align-self: center;
+}
+.loginPage .container {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -950,36 +1006,30 @@ body {
   flex-direction: column;
   height: 100vh;
 }
-.loginPage .container h2, .registerPage .container h2 {
+.loginPage .container h2 {
   font-size: 2.5rem;
   margin-bottom: 5rem;
 }
-.loginPage .container h2:hover, .registerPage .container h2:hover {
+.loginPage .container h2:hover {
   cursor: pointer;
 }
-.loginPage .container form, .registerPage .container form {
-  width: 100%;
-  max-width: 60rem;
-  border: 2px solid black;
-  border-radius: 1.5rem;
-  height: auto;
-  padding: 4rem 2rem;
-  display: flex;
-  flex-direction: column;
-}
-.loginPage .container form a, .registerPage .container form a {
+.loginPage .container a {
   text-decoration: none;
   color: black;
   font-weight: bold;
   text-align: center;
   transition: all 0.3s;
-  margin-top: 2rem;
 }
-.loginPage .container form a:hover, .registerPage .container form a:hover {
+.loginPage .container a:hover {
   color: #FF7193;
   transition: all 0.3s;
 }
-.loginPage .container form input, .registerPage .container form input {
+.loginPage .container .links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.loginPage .container input {
   border: 2px solid black;
   padding: 1.5rem 2rem;
   border-radius: 1rem;
@@ -988,17 +1038,18 @@ body {
   margin: 1rem auto 0 auto;
   transition: all 0.3s;
   font-family: Poppins, sans-serif;
+  width: 100%;
 }
-.loginPage .container form input:focus, .registerPage .container form input:focus {
+.loginPage .container input:focus {
   border: 2px solid #FF7193;
   outline: 0;
   transition: all 0.3s;
 }
-.loginPage .container form input::placeholder, .registerPage .container form input::placeholder {
+.loginPage .container input::placeholder {
   color: black;
   font-weight: bold;
 }
-.loginPage .container form button, .registerPage .container form button {
+.loginPage .container button {
   background: black;
   color: white;
   font-family: "Poppins", sans-serif;
@@ -1008,16 +1059,18 @@ body {
   border-radius: 1rem;
   transition: all 0.3s;
   border: 2px solid black;
-  margin: 3rem auto 0 auto;
+  width: 100%;
+  margin: 3rem auto;
 }
-.loginPage .container form button:hover, .registerPage .container form button:hover {
+.loginPage .container button:hover {
   cursor: pointer;
   transition: all 0.3s;
   background-color: #FF7193;
 }
-.loginPage .container form h3, .registerPage .container form h3 {
+.loginPage .container h3 {
   color: #FF7193;
-  text-align: center;
+  text-align: left;
+  margin-bottom: 3rem;
   font-size: 4rem;
 }
 

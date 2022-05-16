@@ -46,7 +46,9 @@ export const useLogin = () => {
             })
             .catch((err) => {
                 setLoginLoading(false);
-                if (err.message.startsWith('User does not exist.')) {
+                if (err.message.startsWith('User does not exist.')
+                    || (err.message.startsWith('Incorrect username or password.')
+                    )) {
                     setFormError('Invalid email or password');
                 }
             });

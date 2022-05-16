@@ -20,7 +20,7 @@ const PdfPage = ({invoiceInfo}: any) => {
                             <View style={{
                                 flexDirection: "row",
                                 width: "100%",
-                                marginTop: 5
+                                marginTop: 8
                             }}>
                                 <Text style={styles.invoiceTitle}>Invoice from:</Text>
                                 <Text style={styles.text}>{invoiceInfo.from}</Text>

@@ -1,14 +1,16 @@
 export interface Invoice {
-  invoiceNumber: string;
+  id: string;
+  description: string;
   date: string;
   dueDate: string;
-  billTo: string;
+  to: string
+  status: string;
   from: string;
   item: item[];
   notes: string;
   tos: string;
   tax: string;
-  amountToPay: number;
+  amount: number;
 }
 
 export interface item {
@@ -17,3 +19,11 @@ export interface item {
   rate: number | string;
   amount: number | string;
 }
+
+export interface testcommit {
+  test: string;
+  testtwo: string;
+  testthree: string;
+  testtwo: string;
+}
+

@@ -25,7 +25,6 @@ const New = () => {
         return acc + itemAmount;
     }, 0);
 
-
     return (
         <>
             {activePdf ?  <>
@@ -43,22 +42,30 @@ const New = () => {
                         <h1>Invoice Details</h1>
                         <div className="newInvoiceContent">
                             <div className="col">
-                                <TextArea
-                                    placeholder={"Who is this invoice from?"}
+                                <h2>Info</h2>
+                                <Input
+                                    name={'from'}
+                                    onChange={handleInputChange}
                                     value={invoiceForm.from}
-                                    name={"from"}
-                                    onChange={handleInputChange}/>
+                                    placeholder={"Who is this invoice from?"}
+                                />
                                 <Input
                                     name={'billTo'}
                                     onChange={handleInputChange}
-                                    value={invoiceForm.billTo}
+                                    value={invoiceForm.to}
                                     placeholder="Bill to"
                                 />
                                 <Input
                                     name={'invoiceNumber'}
                                     onChange={handleInputChange}
-                                    value={invoiceForm.invoiceNumber}
+                                    value={invoiceForm.id}
                                     placeholder="Invoice Number"
+                                />
+                                <TextArea
+                                    name={"invoiceDescription"}
+                                    onChange={handleInputChange}
+                                    value={invoiceForm.description}
+                                    placeholder="Invoice Description"
                                 />
                             </div>
                             <div className="col">
@@ -66,6 +73,7 @@ const New = () => {
                                 <input type="date"
                                        name="date"
                                        disabled={true}
+                                       style={{opacity: 0.5}}
                                        value={new Date().toISOString().split('T')[0]}
                                        onChange={handleInputChange}
                                        />
@@ -116,11 +124,7 @@ const New = () => {
                                                 onChange={handleInputChange}/>
                                         </div>
                                         <div className="col">
-                                            <div className="tax">
-                                                <h2>Tax</h2>
-                                                <input type="text" placeholder="0%"/>
-                                            </div>
-                                            <h2 style={{marginBottom: "0"}}>Amount to be paid</h2>
+                                            <h2 className="totalAmount" style={{marginBottom: "0"}}>Amount to be paid</h2>
                                             <p className="amount">${numberFormat(totalCost, 2)}</p>
                                         </div>
                                     </div>

@@ -4,10 +4,12 @@ import {useState, ChangeEvent} from "react";
 export const useInvoice = () => {
 
     const [invoiceForm, setInvoiceForm] = useState<Invoice>({
-        invoiceNumber: '',
+        id: '',
+        status: 'unpaid',
+        description: '',
         date: '',
         dueDate: '',
-        billTo: '',
+        to: '',
         from: '',
         item: [{
             description: '',
@@ -18,8 +20,11 @@ export const useInvoice = () => {
         notes: '',
         tos: '',
         tax: '',
-        amountToPay: 0,
+        amount: 0,
     })
+
+    const itemsToArr = invoiceForm.item
+
 
 
     const handleCurrencyChange = (

@@ -1,4 +1,6 @@
 import React from 'react';
+import {numberFormat} from "../../../../helpers";
+import moment from "moment";
 
 interface props {
     data: any;
@@ -7,10 +9,10 @@ interface props {
 const Record = ({data}: props) => {
     return (
        <div className="record">
-           <p>{data.amount}</p>
+           <p>${numberFormat(data.amount, 2)}</p>
            <p className="pink">{data.id}</p>
-           <p>{data.date}</p>
-           <p className="green">{data.status}</p>
+           <p>{moment(data.date).format("LL")}</p>
+           <p className={`${data.status === 'paid' ? 'paid' : 'unpaid'}`}>{data.status}</p>
        </div>
     );
 };

@@ -1,6 +1,35 @@
-.loginPage, .registerPage {
+
+.loginPage {
   width: 100%;
   height: 100%;
+  .loginForm {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 110rem;
+    height: 60rem;
+    border: 2px solid black;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    .col {
+      width: 50%;
+    }
+    .col:nth-child(1) {
+      background-image: url("../src/images/loginbg.svg");
+      background-color: black;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      h2 {
+        color: white;
+        text-align: center;
+      }
+    }
+    .col:nth-child(2) {
+      padding: 5rem 5rem;
+      align-self: center;
+    }
+  }
   .container {
     width: 100%;
     display: flex;
@@ -16,39 +45,36 @@
         cursor: pointer;
       }
     }
-    form {
-      width: 100%;
-      max-width: 60rem;
-      border: 2px solid black;
-      border-radius: 1.5rem;
-      height: auto;
-      padding: 4rem 2rem;
-      display: flex;
-      flex-direction: column;
       a {
         text-decoration: none;
         color: black;
         font-weight: bold;
         text-align: center;
         transition: all 0.3s;
-        margin-top: 2rem;
         &:hover {
           color: $pink;
           transition: all 0.3s;
         }
       }
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
       input {
         @include formInput();
+        width: 100%;
       }
       button {
         @include button();
-        margin: 3rem auto 0 auto;
+        width: 100%;
+        margin: 3rem auto;
       }
       h3 {
         color: $pink;
-        text-align: center;
+        text-align: left;
+        margin-bottom: 3rem;
         font-size: 4rem;
       }
-    }
   }
 }
