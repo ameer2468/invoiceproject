@@ -1,6 +1,38 @@
 .registerPage {
   width: 100%;
   height: 100%;
+  .registerForm {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 110rem;
+    height: 65rem;
+    border: 2px solid black;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    .col {
+      width: 50%;
+      height: 100%;
+    }
+    .col:nth-child(1) {
+      background-image: url("../src/images/loginbg.svg");
+      background-color: black;
+      background-repeat: no-repeat;
+      background-position: top;
+      background-size: cover;
+      h2 {
+        color: white;
+        text-align: center;
+      }
+    }
+    .col:nth-child(2) {
+      padding: 5rem 5rem;
+      align-self: center;
+    }
+  }
+  .links {
+    text-align: center;
+  }
   .container {
     width: 100%;
     display: flex;
@@ -16,15 +48,6 @@
         cursor: pointer;
       }
     }
-    form {
-      width: 100%;
-      max-width: 60rem;
-      border: 2px solid black;
-      border-radius: 1.5rem;
-      height: auto;
-      padding: 4rem 2rem;
-      display: flex;
-      flex-direction: column;
       a {
         text-decoration: none;
         color: black;
@@ -34,16 +57,18 @@
       }
       input {
         @include formInput();
+        width: 100%;
       }
       button {
         @include button();
-        margin: 3rem auto 0 auto;
+        width: 100%;
+        margin: 3rem auto;
       }
       h3 {
         color: $pink;
-        text-align: center;
+        text-align: left;
+        margin-bottom: 3rem;
         font-size: 4rem;
       }
-    }
   }
 }

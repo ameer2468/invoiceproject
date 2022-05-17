@@ -862,6 +862,38 @@ body {
   width: 100%;
   height: 100%;
 }
+.registerPage .registerForm {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 110rem;
+  height: 65rem;
+  border: 2px solid black;
+  border-radius: 1.5rem;
+  overflow: hidden;
+}
+.registerPage .registerForm .col {
+  width: 50%;
+  height: 100%;
+}
+.registerPage .registerForm .col:nth-child(1) {
+  background-image: url("../src/images/loginbg.svg");
+  background-color: black;
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: cover;
+}
+.registerPage .registerForm .col:nth-child(1) h2 {
+  color: white;
+  text-align: center;
+}
+.registerPage .registerForm .col:nth-child(2) {
+  padding: 5rem 5rem;
+  align-self: center;
+}
+.registerPage .links {
+  text-align: center;
+}
 .registerPage .container {
   width: 100%;
   display: flex;
@@ -878,130 +910,14 @@ body {
 .registerPage .container h2:hover {
   cursor: pointer;
 }
-.registerPage .container form {
-  width: 100%;
-  max-width: 60rem;
-  border: 2px solid black;
-  border-radius: 1.5rem;
-  height: auto;
-  padding: 4rem 2rem;
-  display: flex;
-  flex-direction: column;
-}
-.registerPage .container form a {
+.registerPage .container a {
   text-decoration: none;
   color: black;
   font-weight: bold;
   text-align: center;
   margin-top: 2rem;
 }
-.registerPage .container form input {
-  border: 2px solid black;
-  padding: 1.5rem 2rem;
-  border-radius: 1rem;
-  font-weight: bold;
-  width: 80%;
-  margin: 1rem auto 0 auto;
-  transition: all 0.3s;
-  font-family: Poppins, sans-serif;
-}
-.registerPage .container form input:focus {
-  border: 2px solid #FF7193;
-  outline: 0;
-  transition: all 0.3s;
-}
-.registerPage .container form input::placeholder {
-  color: black;
-  font-weight: bold;
-}
-.registerPage .container form button {
-  background: black;
-  color: white;
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  padding: 0 7rem;
-  height: 5rem;
-  border-radius: 1rem;
-  transition: all 0.3s;
-  border: 2px solid black;
-  margin: 3rem auto 0 auto;
-}
-.registerPage .container form button:hover {
-  cursor: pointer;
-  transition: all 0.3s;
-  background-color: #FF7193;
-}
-.registerPage .container form h3 {
-  color: #FF7193;
-  text-align: center;
-  font-size: 4rem;
-}
-
-.loginPage, .registerPage {
-  width: 100%;
-  height: 100%;
-}
-.loginPage .loginForm, .registerPage .loginForm {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  max-width: 110rem;
-  height: 60rem;
-  border: 2px solid black;
-  border-radius: 1.5rem;
-  overflow: hidden;
-}
-.loginPage .loginForm .col, .registerPage .loginForm .col {
-  width: 50%;
-}
-.loginPage .loginForm .col:nth-child(1), .registerPage .loginForm .col:nth-child(1) {
-  background-image: url("../src/images/loginbg.svg");
-  background-color: black;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-}
-.loginPage .loginForm .col:nth-child(1) h2, .registerPage .loginForm .col:nth-child(1) h2 {
-  color: white;
-  text-align: center;
-}
-.loginPage .loginForm .col:nth-child(2), .registerPage .loginForm .col:nth-child(2) {
-  padding: 5rem 5rem;
-  align-self: center;
-}
-.loginPage .container, .registerPage .container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  padding: 0 2rem;
-  align-items: center;
-  flex-direction: column;
-  height: 100vh;
-}
-.loginPage .container h2, .registerPage .container h2 {
-  font-size: 2.5rem;
-  margin-bottom: 5rem;
-}
-.loginPage .container h2:hover, .registerPage .container h2:hover {
-  cursor: pointer;
-}
-.loginPage .container a, .registerPage .container a {
-  text-decoration: none;
-  color: black;
-  font-weight: bold;
-  text-align: center;
-  transition: all 0.3s;
-}
-.loginPage .container a:hover, .registerPage .container a:hover {
-  color: #FF7193;
-  transition: all 0.3s;
-}
-.loginPage .container .links, .registerPage .container .links {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-.loginPage .container input, .registerPage .container input {
+.registerPage .container input {
   border: 2px solid black;
   padding: 1.5rem 2rem;
   border-radius: 1rem;
@@ -1012,16 +928,16 @@ body {
   font-family: Poppins, sans-serif;
   width: 100%;
 }
-.loginPage .container input:focus, .registerPage .container input:focus {
+.registerPage .container input:focus {
   border: 2px solid #FF7193;
   outline: 0;
   transition: all 0.3s;
 }
-.loginPage .container input::placeholder, .registerPage .container input::placeholder {
+.registerPage .container input::placeholder {
   color: black;
   font-weight: bold;
 }
-.loginPage .container button, .registerPage .container button {
+.registerPage .container button {
   background: black;
   color: white;
   font-family: "Poppins", sans-serif;
@@ -1034,12 +950,121 @@ body {
   width: 100%;
   margin: 3rem auto;
 }
-.loginPage .container button:hover, .registerPage .container button:hover {
+.registerPage .container button:hover {
   cursor: pointer;
   transition: all 0.3s;
   background-color: #FF7193;
 }
-.loginPage .container h3, .registerPage .container h3 {
+.registerPage .container h3 {
+  color: #FF7193;
+  text-align: left;
+  margin-bottom: 3rem;
+  font-size: 4rem;
+}
+
+.loginPage {
+  width: 100%;
+  height: 100%;
+}
+.loginPage .loginForm {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 110rem;
+  height: 60rem;
+  border: 2px solid black;
+  border-radius: 1.5rem;
+  overflow: hidden;
+}
+.loginPage .loginForm .col {
+  width: 50%;
+}
+.loginPage .loginForm .col:nth-child(1) {
+  background-image: url("../src/images/loginbg.svg");
+  background-color: black;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.loginPage .loginForm .col:nth-child(1) h2 {
+  color: white;
+  text-align: center;
+}
+.loginPage .loginForm .col:nth-child(2) {
+  padding: 5rem 5rem;
+  align-self: center;
+}
+.loginPage .container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0 2rem;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+.loginPage .container h2 {
+  font-size: 2.5rem;
+  margin-bottom: 5rem;
+}
+.loginPage .container h2:hover {
+  cursor: pointer;
+}
+.loginPage .container a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  transition: all 0.3s;
+}
+.loginPage .container a:hover {
+  color: #FF7193;
+  transition: all 0.3s;
+}
+.loginPage .container .links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.loginPage .container input {
+  border: 2px solid black;
+  padding: 1.5rem 2rem;
+  border-radius: 1rem;
+  font-weight: bold;
+  width: 80%;
+  margin: 1rem auto 0 auto;
+  transition: all 0.3s;
+  font-family: Poppins, sans-serif;
+  width: 100%;
+}
+.loginPage .container input:focus {
+  border: 2px solid #FF7193;
+  outline: 0;
+  transition: all 0.3s;
+}
+.loginPage .container input::placeholder {
+  color: black;
+  font-weight: bold;
+}
+.loginPage .container button {
+  background: black;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  padding: 0 7rem;
+  height: 5rem;
+  border-radius: 1rem;
+  transition: all 0.3s;
+  border: 2px solid black;
+  width: 100%;
+  margin: 3rem auto;
+}
+.loginPage .container button:hover {
+  cursor: pointer;
+  transition: all 0.3s;
+  background-color: #FF7193;
+}
+.loginPage .container h3 {
   color: #FF7193;
   text-align: left;
   margin-bottom: 3rem;

@@ -30,8 +30,7 @@ const LoginForm = () => {
             className={"loginForm"}
             transition={anim.transition}
             onSubmit={loginHandler}>
-            <div className="col">
-            </div>
+            <div className="col"/>
            <div className="col">
                <h3>Login.</h3>
                <input

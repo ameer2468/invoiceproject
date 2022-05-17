@@ -32,7 +32,10 @@ const RegisterForm = () => {
                 initial={anim.initial}
                 animate={anim.animate}
                 transition={anim.transition}
+                className="registerForm"
                 onSubmit={registerHandler}>
+                <div className="col"/>
+                <div className="col">
                 <h3>Sign up.</h3>
                 <input required={true}
                        onChange={inputHandler}
@@ -85,12 +88,17 @@ const RegisterForm = () => {
                     {registerLoading ?
                         <Loading/> : 'Register'}
                 </button>
-                <Link passHref={true} href="/login">
-                    Have an account? Login now
-                </Link>
+                <div className="links">
+                    <Link passHref={true} href="/login">
+                        Have an account? Login now
+                    </Link>
+                </div>
+                </div>
             </motion.form> :
             step === 2 ?
-                <form onSubmit={confirmHandler}>
+                <form
+                    onSubmit={confirmHandler}
+                >
                     <h3>Code sent to email.</h3>
                     <input required={true} onChange={inputHandler} value={registerForm.code} name="code" autoComplete="off" placeholder="Enter code" type="text"/>
                     {formError.length > 0 ? <p className="form-error">{formError}</p> : null}
