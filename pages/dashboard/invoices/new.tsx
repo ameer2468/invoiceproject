@@ -67,6 +67,7 @@ const New = () => {
                                 <input type="date"
                                        name="date"
                                        disabled={true}
+                                       style={{opacity: 0.5}}
                                        value={new Date().toISOString().split('T')[0]}
                                        onChange={handleInputChange}
                                        />

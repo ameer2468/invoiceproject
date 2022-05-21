@@ -25,12 +25,13 @@ const Overview = () => {
         }
     };
 
+
     return (
      <div className="overview">
          <div className="container">
              <div className="main-header">
                  {userInfo.type === 'unauthenticated' ? "" :
-                     <h1>Welcome, {userInfo.attributes['custom:name']}</h1>
+                     <h1>Welcome, {userInfo.attributes['custom:firstname']}</h1>
                  }
                  <Dropdown onSelect={(option) => {
                  }} options={['Weekly', 'Daily', 'Monthly']}/>
