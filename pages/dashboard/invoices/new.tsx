@@ -52,14 +52,20 @@ const New = () => {
                                 <Input
                                     name={'billTo'}
                                     onChange={handleInputChange}
-                                    value={invoiceForm.billTo}
+                                    value={invoiceForm.to}
                                     placeholder="Bill to"
                                 />
                                 <Input
                                     name={'invoiceNumber'}
                                     onChange={handleInputChange}
-                                    value={invoiceForm.invoiceNumber}
+                                    value={invoiceForm.id}
                                     placeholder="Invoice Number"
+                                />
+                                <TextArea
+                                    name={"invoiceDescription"}
+                                    onChange={handleInputChange}
+                                    value={invoiceForm.description}
+                                    placeholder="Invoice Description"
                                 />
                             </div>
                             <div className="col">
@@ -67,6 +73,7 @@ const New = () => {
                                 <input type="date"
                                        name="date"
                                        disabled={true}
+                                       style={{opacity: 0.5}}
                                        value={new Date().toISOString().split('T')[0]}
                                        onChange={handleInputChange}
                                        />

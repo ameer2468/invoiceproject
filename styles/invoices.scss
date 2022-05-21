@@ -1,3 +1,9 @@
+.unpaid {
+  color: #ff8282;
+}
+.paid {
+  color: #77e277;
+}
 
 
 .newInvoice {
@@ -189,7 +195,6 @@
     .statusBox {
       position: absolute;
       background: black;
-      color: #a1ffa1;
       width: 100%;
       max-width: 10rem;
       display: flex;
@@ -226,12 +231,6 @@
         }
       }
     }
-    .unpaid {
-      color: red;
-    }
-    .paid {
-      color: #039503;
-    }
     .amount {
       font-size: 1.3rem;
     }
@@ -245,7 +244,9 @@
     p.desc {
       line-height: 2.5rem;
       font-size: 1.4rem;
-      margin: 1.5rem 0 2.5rem 0;
+      height: 8rem;
+      width: 100%;
+      margin: 1.5rem auto 2.5rem auto;
     }
     &:hover {
       cursor: pointer;

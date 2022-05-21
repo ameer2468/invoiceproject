@@ -1,17 +1,29 @@
 import React from 'react';
+import {numberFormat} from "../../../../helpers";
+import {Invoice} from "../../../../../types/invoice";
 
 interface props {
     activeTab: number;
     setActiveTab: (tab: number) => void;
+    invoiceValues: {invoices: []};
 }
 
-const OverviewTabs = ({activeTab, setActiveTab}: props) => {
+const OverviewTabs = ({activeTab, setActiveTab, invoiceValues}: props) => {
+
+    const {invoices} = invoiceValues;
+    const totalMoneyMade = invoices.filter((invoice: Invoice) => {
+        return invoice.status === 'paid';
+    }).reduce((acc, curr: any) => {
+        return acc + Number(curr.amount);
+    },0)
+    const unpaidInvoices = invoices.filter((invoice: Invoice) => {
+        return invoice.status === 'unpaid';
+    });
 
     const tabsArr = [
-        {title: "Total invoices paid.", value: 56},
-        {title: "Total money made.", value: "$7,541"},
+        {title: "Total invoices paid.", value: invoices.length},
+        {title: "Total Unpaid invoices.", value: unpaidInvoices.length},
         {title: "Amount due.", value: "$1,432"},
-        {title: "Unpaid invoices.", value: 4},
     ]
 
     return (

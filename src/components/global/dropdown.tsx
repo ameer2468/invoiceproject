@@ -13,7 +13,7 @@ interface props {
 const Dropdown = ({options, onSelect}: props) => {
 
     const [isOpen, setIsOpen] = useState(false);
-    const [activeOption, setActiveOption] = useState('');
+    const [activeOption, setActiveOption] = useState(options[0]);
     const dropdownRef = useRef(null);
     const handleClickOutside = () => {
         setIsOpen(false);
@@ -27,7 +27,7 @@ const Dropdown = ({options, onSelect}: props) => {
     return (
         <div onClick={() => setIsOpen(!isOpen)} className="dropdown">
             <div className="main">
-                <p>{activeOption !== '' ? activeOption : "Period"}</p>
+                <p>{activeOption}</p>
                 <FontAwesomeIcon className={`icon ${isOpen ? 'flipCaret' : ''}`} icon={faCaretDown}/>
             </div>
             {isOpen &&
