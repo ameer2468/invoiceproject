@@ -5,12 +5,19 @@ import InvoicesPaid from "../../src/components/page-specific/dashboard/Overview/
 import MoneyMade from "../../src/components/page-specific/dashboard/Overview/moneyMade";
 import Dropdown from "../../src/components/global/dropdown";
 import {useUser} from "../../src/UserContext";
+import {useQuery} from "react-query";
+import {getInvoices} from "../../src/services/invoices/services";
 
 const Overview = () => {
+
+
 
     const [activeTab, setActiveTab] = useState(0);
     const {user} = useUser();
     const userInfo = user[0];
+    useQuery('All invoices', getInvoices, {
+        refetchOnWindowFocus: false
+    })
 
     const TabContent = () => {
         switch (activeTab) {

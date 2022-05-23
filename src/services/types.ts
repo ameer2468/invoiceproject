@@ -30,12 +30,16 @@ export const putRequest = async (path: string, data: {}) => {
     })
 }
 
-export const getRequest = async (path: string, authed?: boolean) => {
+export const getRequest = async (path: string, params: {}) => {
   const token = await loadToken();
   const headers = {
     'x-api-key': apiKey,
-    Authorization: authed ? token : ''};
+    Authorization: token
+  };
   return await axios.get(`${url}/${path}`, {
+    params: {
+      ...params
+    },
     headers: {
       ...headers
     }
