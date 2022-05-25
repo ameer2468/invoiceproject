@@ -7,6 +7,7 @@ import Dropdown from "../../src/components/global/dropdown";
 import {useUser} from "../../src/UserContext";
 import {useQuery} from "react-query";
 import {getInvoices} from "../../src/services/invoices/services";
+import Loading from "../../src/components/global/loading";
 
 const Overview = () => {
 
@@ -15,14 +16,14 @@ const Overview = () => {
     const [activeTab, setActiveTab] = useState(0);
     const {user} = useUser();
     const userInfo = user[0];
-    useQuery('All invoices', getInvoices, {
+    const {data: invoicesData, isLoading, isFetching, error} = useQuery('All invoices', getInvoices, {
         refetchOnWindowFocus: false
     })
 
     const TabContent = () => {
         switch (activeTab) {
             case 0:
-                return <InvoicesPaid/>;
+                return <InvoicesPaid data={invoicesData}/>;
             case 1:
                 return <MoneyMade/>;
             case 2:
@@ -36,19 +37,25 @@ const Overview = () => {
     return (
      <div className="overview">
          <div className="container">
-             <div className="main-header">
-                 {userInfo.type === 'unauthenticated' ? "" :
-                     <h1>Welcome, {userInfo.attributes['custom:firstname']}</h1>
-                 }
-                 <Dropdown onSelect={(option) => {
-                 }} options={['Weekly', 'Daily', 'Monthly']}/>
-             </div>
-             <div className="overviewContent">
-                 <OverviewTabs activeTab={activeTab} setActiveTab={(tab: number) => {
-                     setActiveTab(tab);
-                 }}/>
-                 <TabContent/>
-             </div>
+             {isLoading || isFetching ? <div className="absoluteCenter">
+                 <Loading size={13} style={'PulseLoader'} color={"black"}/>
+             </div> :
+             <>
+                 <div className="main-header">
+                     {userInfo.type === 'unauthenticated' ? "" :
+                         <h1>Welcome, {userInfo.attributes['custom:firstname']}</h1>
+                     }
+                     <Dropdown onSelect={() => {
+                     }} options={['Weekly', 'Daily', 'Monthly']}/>
+                 </div>
+                 <div className="overviewContent">
+                     <OverviewTabs activeTab={activeTab} setActiveTab={(tab: number) => {
+                         setActiveTab(tab);
+                     }}/>
+                     <TabContent/>
+                 </div>
+             </>
+             }
          </div>
      </div>
     );

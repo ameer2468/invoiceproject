@@ -44,7 +44,7 @@ export const getRequest = async (path: string, params: {}) => {
       ...headers
     }
   }).then((response) => {
-    response.data
+    return response.data
   }).catch((err) => {
     return err.response.data;
   });

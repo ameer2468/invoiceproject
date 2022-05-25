@@ -37,7 +37,7 @@ const InvoiceItem = ({item, onChange, removeItem, index, handleCurrencyChange}: 
                     placeholder="Price"
                     decimalsLimit={2}
                     onValueChange={(value, name) => {
-                        handleCurrencyChange(value, name, index)
+                        handleCurrencyChange(value === undefined ? '0' : value, name, index)
                     }}
                 />
             </div>
