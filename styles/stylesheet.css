@@ -197,6 +197,14 @@ body {
     grid-gap: 30px;
   }
 }
+.unpaid {
+  color: #ff8282;
+}
+
+.paid {
+  color: #77e277;
+}
+
 .newInvoice .newInvoiceContainer {
   position: relative;
   width: 100%;
@@ -456,7 +464,6 @@ body {
 .invoices .invoicesContainer .invoiceCard .statusBox {
   position: absolute;
   background: black;
-  color: #a1ffa1;
   width: 100%;
   max-width: 10rem;
   display: flex;
@@ -493,12 +500,6 @@ body {
 .invoices .invoicesContainer .invoiceCard .details p .icon {
   margin-right: 0.5rem;
 }
-.invoices .invoicesContainer .invoiceCard .unpaid {
-  color: red;
-}
-.invoices .invoicesContainer .invoiceCard .paid {
-  color: #039503;
-}
 .invoices .invoicesContainer .invoiceCard .amount {
   font-size: 1.3rem;
 }
@@ -512,7 +513,9 @@ body {
 .invoices .invoicesContainer .invoiceCard p.desc {
   line-height: 2.5rem;
   font-size: 1.4rem;
-  margin: 1.5rem 0 2.5rem 0;
+  height: 8rem;
+  width: 100%;
+  margin: 1.5rem auto 2.5rem auto;
 }
 .invoices .invoicesContainer .invoiceCard:hover {
   cursor: pointer;

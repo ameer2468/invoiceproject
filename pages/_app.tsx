@@ -34,7 +34,7 @@ function MyApp({ Component, pageProps }: props) {
       <QueryClientProvider client={queryClient}>
       <UserContext.Provider value={[user, setUser]}>
           {isLoading ? <div className={"absoluteCenter"}>
-              <Loading color={"black"}/>
+              <Loading style={"PulseLoader"} color={"black"}/>
           </div>
               :
               <DashboardLayout>

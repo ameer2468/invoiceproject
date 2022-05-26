@@ -16,6 +16,7 @@
     "aws-amplify": "^4.3.19",
     "axios": "^0.21.4",
     "framer-motion": "^6.3.3",
+    "moment": "^2.29.3",
     "next": "12.1.4",
     "react": "18.0.0",
     "react-currency-input-field": "^3.6.4",

@@ -1,13 +1,18 @@
 import React from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSackDollar} from "@fortawesome/free-solid-svg-icons";
+import {Invoice} from "../../../../../types/invoice";
 
-const ClientCard = () => {
+interface props {
+    data: Invoice
+}
+
+const ClientCard = ({data}: props) => {
     return (
         <div className="clientCard">
-            <h2>Client name</h2>
+            <h2>{data.to}</h2>
            <div className="details">
-               <p><FontAwesomeIcon icon={faSackDollar}/> $200.00</p>
+               <p><FontAwesomeIcon icon={faSackDollar}/> ${data.amount}</p>
            </div>
         </div>
     );

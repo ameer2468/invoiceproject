@@ -1,21 +1,31 @@
 import React from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faSackDollar, faClock, faCircleCheck } from "@fortawesome/free-solid-svg-icons";
+import {Invoice} from "../../../../../types/invoice";
+import moment from "moment";
+import {numberFormat} from "../../../../helpers";
 
-const Invoice = () => {
+
+interface props {
+    data: Invoice;
+}
+
+const Invoice = ({data}: props) => {
+
+
     return (
         <div
             className="invoiceCard">
-            <h2>Project Linkin</h2>
-            <p className="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Ab debitis dolorem quidem saepe soluta, vel! Architecto asperiores,
-                assumenda dolorum libero magnam minima optio quisquam rem
-                tempora tempore! Accusamus, expedita, explicabo!
+            <h2>{data.to}</h2>
+            <p className="desc">
+                {data.description.length > 120 ?
+                    data.description.substring(0, 120)
+                    + "..." : data.description}
             </p>
-            <div className="statusBox">
+            <div className={`statusBox ${data.status === 'paid' ? 'paid' : 'unpaid'}`}>
                 <FontAwesomeIcon className={"icon"} icon={faCircleCheck}/>
                     <p>
-                        Paid
+                        {data.status === 'paid' ? 'Paid' : 'Unpaid'}
                     </p>
             </div>
             <div className="details">
@@ -23,19 +33,19 @@ const Invoice = () => {
                     <FontAwesomeIcon
                     className={"icon"}
                     icon={faSackDollar}/>
-                    $500.00
+                    {`$${numberFormat(data.amount, 2)}`}
                 </p>
                 <p className="date">
                     <FontAwesomeIcon icon={faClock}
                     className={"icon"}
                     />
-                    20/12/21
+                    {moment(data.date).format("MMM Do YYYY")}
                 </p>
                 <p className="customer">
                     <FontAwesomeIcon icon={faUser}
                     className={"icon"}
                     />
-                    Coco PLC.
+                    {data.from}
                 </p>
             </div>
         </div>

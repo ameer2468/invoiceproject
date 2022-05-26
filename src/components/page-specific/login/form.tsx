@@ -54,7 +54,7 @@ const LoginForm = () => {
                    disabled={loginLoading || formCheck() === "disabledButton"}
                    className={formCheck()}
                >
-                   {loginLoading ? <Loading/> : 'Login'}
+                   {loginLoading ? <Loading style={"SyncLoader"} color="white"/> : 'Login'}
                </button>
                <div className="links">
                    <Link passHref={true} href="/register">

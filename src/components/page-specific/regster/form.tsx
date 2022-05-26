@@ -86,7 +86,7 @@ const RegisterForm = () => {
                     className={formCheck()}
                     type="submit">
                     {registerLoading ?
-                        <Loading/> : 'Register'}
+                        <Loading style="SyncLoader" color="white"/> : 'Register'}
                 </button>
                 <div className="links">
                     <Link passHref={true} href="/login">
@@ -102,7 +102,7 @@ const RegisterForm = () => {
                     <h3>Code sent to email.</h3>
                     <input required={true} onChange={inputHandler} value={registerForm.code} name="code" autoComplete="off" placeholder="Enter code" type="text"/>
                     {formError.length > 0 ? <p className="form-error">{formError}</p> : null}
-                    <button disabled={registerLoading} type="submit">{registerLoading ? <Loading/> : 'Confirm'}</button>
+                    <button disabled={registerLoading} type="submit">{registerLoading ? <Loading style="SyncLoader" color="white"/>: 'Confirm'}</button>
                     <Link passHref={true} href="/login">
                         Have an account? Login now
                     </Link>
