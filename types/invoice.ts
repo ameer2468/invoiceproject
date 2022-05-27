@@ -19,3 +19,10 @@ export interface item {
   rate: number | string;
   amount: number | string;
 }
+
+export interface TestBranch {
+  firstCommit: string;
+  secondCommit: string;
+  thirdCommit: string;
+  fourthCommit: string;
+}
