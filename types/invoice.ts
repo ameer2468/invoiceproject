@@ -24,4 +24,5 @@ export interface TestBranch {
   firstCommit: string;
   secondCommit: string;
   thirdCommit: string;
+  fourthCommit: string;
 }
