@@ -22,4 +22,5 @@ export interface item {
 
 export interface TestBranch {
   firstCommit: string;
+  secondCommit: string;
 }
