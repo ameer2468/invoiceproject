@@ -308,8 +308,6 @@
     justify-content: space-between;
     padding: 0 0;
   }
-  & .container {
-    @include DashboardContainer;
     .overviewContent {
       display: flex;
       align-items: flex-start;
@@ -317,7 +315,6 @@
       width: 100%;
       margin-top: 4rem;
     }
-  }
   h1 {
     @include PageTitle;
   }

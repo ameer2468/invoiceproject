@@ -21,6 +21,7 @@ const InvoicesPaid = ({ data }: props) => {
         return acc + Number(value.amount);
     }, 0);
 
+
     return (
         <>
         {!data ? '' :

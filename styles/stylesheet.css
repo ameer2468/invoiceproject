@@ -419,41 +419,32 @@ body {
   font-weight: normal;
 }
 
-.invoices .invoicesContainer {
-  position: relative;
-  width: 100%;
-  top: 15vh;
-  max-width: 150rem;
-  padding: 0 0 5rem 0;
-  left: 16vw;
-  height: 100%;
-}
-.invoices .invoicesContainer h1 {
+.invoices h1 {
   color: black;
   font-size: 4rem;
   width: 100%;
 }
-.invoices .invoicesContainer .cards {
+.invoices .cards {
   width: 100%;
   margin-top: 4rem;
   display: flex;
   flex-wrap: wrap;
   gap: 4rem;
 }
-.invoices .invoicesContainer .main-header {
+.invoices .main-header {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
   justify-content: space-between;
   align-items: center;
 }
-.invoices .invoicesContainer .main-header h1 {
+.invoices .main-header h1 {
   max-width: 10rem;
 }
-.invoices .invoicesContainer .cardWrap {
+.invoices .cardWrap {
   flex: 0 0 23%;
 }
-.invoices .invoicesContainer .invoiceCard {
+.invoices .invoiceCard {
   border: 2px solid black;
   border-radius: 1rem;
   padding: 2rem;
@@ -461,7 +452,25 @@ body {
   text-align: center;
   position: relative;
 }
-.invoices .invoicesContainer .invoiceCard .statusBox {
+.invoices .invoiceCard button {
+  background: black;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  padding: 0 7rem;
+  height: 5rem;
+  border-radius: 1rem;
+  transition: all 0.3s;
+  border: 2px solid black;
+  width: 100%;
+  margin-top: 2rem;
+}
+.invoices .invoiceCard button:hover {
+  cursor: pointer;
+  transition: all 0.3s;
+  background-color: #FF7193;
+}
+.invoices .invoiceCard .statusBox {
   position: absolute;
   background: black;
   width: 100%;
@@ -476,13 +485,13 @@ body {
   top: -1.65rem;
   right: 0;
 }
-.invoices .invoicesContainer .invoiceCard .statusBox .icon {
+.invoices .invoiceCard .statusBox .icon {
   margin-right: 0.5rem;
 }
-.invoices .invoicesContainer .invoiceCard .status, .invoices .invoicesContainer .invoiceCard .amount, .invoices .invoicesContainer .invoiceCard .date, .invoices .invoicesContainer .invoiceCard .customer {
+.invoices .invoiceCard .status, .invoices .invoiceCard .amount, .invoices .invoiceCard .date, .invoices .invoiceCard .customer {
   font-weight: bold;
 }
-.invoices .invoicesContainer .invoiceCard .details {
+.invoices .invoiceCard .details {
   display: flex;
   flex-wrap: wrap;
   margin-top: 1.5rem;
@@ -491,33 +500,33 @@ body {
   justify-content: center;
   align-items: center;
 }
-.invoices .invoicesContainer .invoiceCard .details p {
+.invoices .invoiceCard .details p {
   flex: 1 0 45%;
   border: 2px solid black;
   border-radius: 0.5rem;
   padding: 0.4rem 1.2rem;
 }
-.invoices .invoicesContainer .invoiceCard .details p .icon {
+.invoices .invoiceCard .details p .icon {
   margin-right: 0.5rem;
 }
-.invoices .invoicesContainer .invoiceCard .amount {
+.invoices .invoiceCard .amount {
   font-size: 1.3rem;
 }
-.invoices .invoicesContainer .invoiceCard .date {
+.invoices .invoiceCard .date {
   font-size: 1.3rem;
 }
-.invoices .invoicesContainer .invoiceCard h2 {
+.invoices .invoiceCard h2 {
   color: #71AAFF;
   margin-top: 1rem;
 }
-.invoices .invoicesContainer .invoiceCard p.desc {
+.invoices .invoiceCard p.desc {
   line-height: 2.5rem;
   font-size: 1.4rem;
   height: 8rem;
   width: 100%;
   margin: 1.5rem auto 2.5rem auto;
 }
-.invoices .invoicesContainer .invoiceCard:hover {
+.invoices .invoiceCard:hover {
   cursor: pointer;
   transition: all 0.3s;
   transform: scale(1.01);
@@ -840,16 +849,7 @@ body {
   justify-content: space-between;
   padding: 0 0;
 }
-.overview .container {
-  position: relative;
-  width: 100%;
-  top: 15vh;
-  max-width: 150rem;
-  padding: 0 0 5rem 0;
-  left: 16vw;
-  height: 100%;
-}
-.overview .container .overviewContent {
+.overview .overviewContent {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -1187,6 +1187,16 @@ input[type=number] {
 .flipCaret {
   transform: rotate(180deg);
   transition: all 0.3s;
+}
+
+.pageContainer {
+  position: relative;
+  width: 100%;
+  top: 15vh;
+  max-width: 150rem;
+  padding: 0 0 5rem 0;
+  left: 16vw;
+  height: 100%;
 }
 
 .dropdown {

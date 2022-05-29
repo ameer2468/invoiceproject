@@ -48,6 +48,7 @@ const Invoice = ({data}: props) => {
                     {data.from}
                 </p>
             </div>
+            <button className="button">Edit invoice</button>
         </div>
     );
 };

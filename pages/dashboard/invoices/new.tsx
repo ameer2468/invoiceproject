@@ -156,3 +156,4 @@ export async function getStaticProps(context: any) {
 
 export default New;
 New.Layout = DashboardLayout;
+

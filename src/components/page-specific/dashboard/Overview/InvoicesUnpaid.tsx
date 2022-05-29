@@ -5,6 +5,7 @@ import SearchBox from "../../../global/SearchBox";
 import { motion } from "framer-motion"
 import {anim} from "../../../../framer";
 import {Invoice} from "../../../../../types/invoice";
+import {numberFormat} from "../../../../helpers";
 
 interface props {
     data: Invoice[];
@@ -16,6 +17,9 @@ const InvoicesPaid = ({ data }: props) => {
     const dataWithFilter = !data ? [] : searchValue.length > 0 ? data.filter((value) => {
         return value.id === searchValue;
     }) : data
+    const total = data.reduce((acc, value) => {
+        return acc + Number(value.amount);
+    }, 0);
 
     return (
         <>
@@ -27,9 +31,18 @@ const InvoicesPaid = ({ data }: props) => {
             className="InvoicesPaid"
         >
             <div className="invoicesContainer">
+                <div style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    flexWrap: "wrap",
+                    gap: "2rem",
+                    alignItems: "center"
+                }}>
                 <SearchBox value={searchValue} onChange={(e) => {
                     setSearchValue(e.target.value);
                 }} placeholder="Seach invoice id..."/>
+                    <h2>Total: ${numberFormat(total, 2)}</h2>
+                </div>
                 <div className="col-headings">
                     <h3>Amount</h3>
                     <h3>Invoice #</h3>

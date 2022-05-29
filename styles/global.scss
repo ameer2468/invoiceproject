@@ -32,6 +32,10 @@ input[type=number] {
   transition: all 0.3s;
 }
 
+.pageContainer {
+  @include DashboardContainer();
+}
+
 .dropdown {
   width: 100%;
   max-width: 13rem;

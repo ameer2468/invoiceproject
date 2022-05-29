@@ -159,8 +159,6 @@
 
 
 .invoices {
-  .invoicesContainer {
-      @include DashboardContainer;
   h1 {
     @include PageTitle;
     width: 100%;
@@ -192,6 +190,11 @@
     transition: all 0.3s;
     text-align: center;
     position: relative;
+    button {
+      @include button;
+      width: 100%;
+      margin-top: 2rem;
+    }
     .statusBox {
       position: absolute;
       background: black;
@@ -253,7 +256,6 @@
       transition: all 0.3s;
       transform: scale(1.01);
     }
-  }
   }
 }
 
