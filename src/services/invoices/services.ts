@@ -6,6 +6,10 @@ export const getPaidInvoices = () => {
     return getRequest('invoices', {from :'ameer', status: 'paid'},)
 }
 
+export const getInvoice = (id: string) => {
+    return getRequest('invoice', {id: id})
+}
+
 export const getUnpaidInvoices = () => {
     return getRequest('invoices', {from :'ameer', status: 'unpaid'},)
 }

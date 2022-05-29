@@ -54,14 +54,6 @@ const Index = () => {
 export default Index;
 Index.Layout = DashboardLayout;
 
-export async function getStaticPaths() {
-    return {
-        paths: [
-            {params: {id: 'new'}},
-        ],
-        fallback: false,
-    }
-}
 
 export async function getStaticProps(context: any) {
     return {

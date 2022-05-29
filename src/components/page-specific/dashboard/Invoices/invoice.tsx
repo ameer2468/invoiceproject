@@ -4,6 +4,7 @@ import { faUser, faSackDollar, faClock, faCircleCheck } from "@fortawesome/free-
 import {Invoice} from "../../../../../types/invoice";
 import moment from "moment";
 import {numberFormat} from "../../../../helpers";
+import Link from 'next/link';
 
 
 interface props {
@@ -11,8 +12,6 @@ interface props {
 }
 
 const Invoice = ({data}: props) => {
-
-
     return (
         <div
             className="invoiceCard">
@@ -48,7 +47,9 @@ const Invoice = ({data}: props) => {
                     {data.from}
                 </p>
             </div>
-            <button className="button">Edit invoice</button>
+            <Link href={`invoices/edit/${data.id}`}>
+                <button className="button">Edit invoice</button>
+            </Link>
         </div>
     );
 };
