@@ -1,17 +1,22 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faSackDollar, faClock, faCircleCheck } from "@fortawesome/free-solid-svg-icons";
+import {faUser, faSackDollar, faClock, faCircleCheck, faTrash} from "@fortawesome/free-solid-svg-icons";
 import {Invoice} from "../../../../../types/invoice";
 import moment from "moment";
 import {numberFormat} from "../../../../helpers";
-import Link from 'next/link';
+import {useInvoice} from "../../../../hooks/useInvoice";
 
 
 interface props {
     data: Invoice;
+    deleteInvoice: (arg: string) => void;
+    editInvoice: (arg: string) => void;
 }
 
-const Invoice = ({data}: props) => {
+const Invoice = ({data, deleteInvoice, editInvoice}: props) => {
+
+    const {editInvoiceRequest, deleteInvoiceRequest} = useInvoice();
+
     return (
         <div
             className="invoiceCard">
@@ -47,9 +52,29 @@ const Invoice = ({data}: props) => {
                     {data.from}
                 </p>
             </div>
-            <Link href={`invoices/edit/${data.id}`}>
-                <button className="button">Edit invoice</button>
-            </Link>
+            <div className="actions">
+                <button onClick={() => {
+                    editInvoiceRequest({
+                        id: data.id,
+                        field: 'status',
+                        value: data.status === 'paid' ? 'unpaid' : 'paid'
+                    }).then(() => {
+                        editInvoice(data.id)
+                    })
+                }}>
+                    {`Mark as ${data.status === 'paid' ? 'unpaid' : 'paid'}`}
+                </button>
+                <button onClick={() => {
+                    deleteInvoiceRequest(data.id).then(() => {
+                        deleteInvoice(data.id);
+                    })
+                }}>
+                    Delete Invoice
+                </button>
+            </div>
+            {/*<Link href={`invoices/edit/${data.id}`}>*/}
+            {/*    <button className="button">Edit invoice</button>*/}
+            {/*</Link>*/}
         </div>
     );
 };

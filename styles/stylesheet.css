@@ -429,7 +429,7 @@ body {
   margin-top: 4rem;
   display: flex;
   flex-wrap: wrap;
-  gap: 4rem;
+  gap: 3rem;
 }
 .invoices .main-header {
   display: flex;
@@ -442,7 +442,7 @@ body {
   max-width: 10rem;
 }
 .invoices .cardWrap {
-  flex: 0 0 23%;
+  flex: 0 0 30%;
 }
 .invoices .invoiceCard {
   border: 2px solid black;
@@ -451,6 +451,12 @@ body {
   transition: all 0.3s;
   text-align: center;
   position: relative;
+}
+.invoices .invoiceCard .actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
 }
 .invoices .invoiceCard button {
   background: black;
@@ -462,7 +468,8 @@ body {
   border-radius: 1rem;
   transition: all 0.3s;
   border: 2px solid black;
-  width: 100%;
+  padding: 0;
+  width: 45%;
   margin-top: 2rem;
 }
 .invoices .invoiceCard button:hover {
@@ -530,6 +537,12 @@ body {
   cursor: pointer;
   transition: all 0.3s;
   transform: scale(1.01);
+}
+
+/*Edit Invoice*/
+.editInvoiceContent {
+  width: 100%;
+  margin-top: 4rem;
 }
 
 /*Invoice pdf style*/
@@ -855,10 +868,6 @@ body {
   justify-content: space-between;
   width: 100%;
   margin-top: 4rem;
-}
-.overview h1 {
-  color: black;
-  font-size: 4rem;
 }
 
 .registerPage {
@@ -1245,6 +1254,11 @@ input[type=number] {
 }
 .dropdown p {
   color: white;
+}
+
+h1 {
+  color: black;
+  font-size: 4rem;
 }
 
 .searchBox {

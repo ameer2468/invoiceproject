@@ -30,6 +30,26 @@ export const putRequest = async (path: string, data: {}) => {
     })
 }
 
+export const deleteRequest = async (path: string, data: {}) => {
+    const token = await loadToken();
+    const headers = {
+        'x-api-key': apiKey,
+        Authorization: token,
+    }
+    return await axios.delete(`${url}/${path}`, {
+        params: {
+            ...data
+        },
+        headers: {
+            ...headers
+        }
+    }).then((response) => {
+        return response.data;
+    }).catch((err) => {
+        return err;
+    })
+}
+
 export const getRequest = async (path: string, params: {}) => {
   const token = await loadToken();
   const headers = {

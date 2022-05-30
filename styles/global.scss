@@ -84,6 +84,10 @@ input[type=number] {
   }
 }
 
+h1 {
+  @include PageTitle();
+}
+
 .searchBox {
   position: relative;
   width: 100%;

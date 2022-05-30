@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import DashboardLayout from "../../../layouts/DashboardLayout";
 import Invoice from "../../../src/components/page-specific/dashboard/Invoices/invoice";
 import Link from "next/link";
@@ -12,9 +12,22 @@ import Page from "../../../src/components/global/Page";
 
 const Index = () => {
 
-    const {isLoading, data, isFetching, error} = useQuery('invoices', getAllInvoices, {
+    const [invoicesData, setInvoicesData] = useState<any[]>([]);
+    const {isLoading, isFetching, error} = useQuery('invoices',() => {
+        getAllInvoices().then(res => {
+            setInvoicesData(res.invoices);
+        });
+    }, {
         refetchOnWindowFocus: false
     });
+    const deleteInvoice = (id: string) => {
+       setInvoicesData(invoicesData.filter((invoice: {id: string}) => invoice.id !== id))
+    }
+    const mutateInvoice = (id: string) => {
+        setInvoicesData(invoicesData.map((value) => {
+          return value.id === id ? {...value, status: value.status === 'paid' ? 'unpaid' : 'paid'} : value;
+        }))
+    }
 
     return (
         <Page pageName={'invoices'}>
@@ -40,9 +53,17 @@ const Index = () => {
                         animate={anim.animate}
                         transition={anim.transition}
                         className="cards">
-                        {data.invoices.map((item: InvoiceType, index: number) => (
+                        {invoicesData.map((item: InvoiceType, index: number) => (
                             <motion.div className={"cardWrap"} key={index}>
-                                <Invoice data={item}/>
+                                <Invoice
+                                    data={item}
+                                    editInvoice={(id) => {
+                                        mutateInvoice(id)
+                                    }}
+                                    deleteInvoice={(id) => {
+                                        deleteInvoice(id)
+                                    }}
+                                />
                             </motion.div>
                         ))}
                     </motion.div>

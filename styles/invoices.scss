@@ -168,7 +168,7 @@
     margin-top: 4rem;
     display: flex;
     flex-wrap: wrap;
-    gap: 4rem;
+    gap: 3rem;
   }
     .main-header {
       display: flex;
@@ -181,7 +181,7 @@
       }
     }
   .cardWrap {
-    flex: 0 0 23%;
+    flex: 0 0 30%;
   }
   .invoiceCard {
     border: 2px solid $black;
@@ -190,9 +190,16 @@
     transition: all 0.3s;
     text-align: center;
     position: relative;
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+    }
     button {
       @include button;
-      width: 100%;
+      padding: 0;
+      width: 45%;
       margin-top: 2rem;
     }
     .statusBox {
@@ -257,6 +264,14 @@
       transform: scale(1.01);
     }
   }
+}
+
+
+/*Edit Invoice*/
+
+.editInvoiceContent {
+  width: 100%;
+  margin-top: 4rem;
 }
 
 /*Invoice pdf style*/

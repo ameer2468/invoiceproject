@@ -1,8 +1,10 @@
 import {Invoice} from "../../types/invoice";
 import {useState, ChangeEvent} from "react";
+import {deleteInvoice, mutateInvoice} from "../services/invoices/services";
 
 export const useInvoice = () => {
 
+    const [mutateLoading, setMutateLoading] = useState(false);
     const [invoiceForm, setInvoiceForm] = useState<Invoice>({
         id: '',
         status: 'unpaid',
@@ -42,6 +44,19 @@ export const useInvoice = () => {
         })
     }
 
+    const editInvoiceRequest = async (data: mutateInvoice) => {
+        setMutateLoading(true);
+        await mutateInvoice(data).then(() => {
+            setMutateLoading(false);
+        });
+    }
+
+    const deleteInvoiceRequest = async (id: string) => {
+        await deleteInvoice(id).then(() => {
+
+        });
+    }
+
     const handleItemChange = (event: ChangeEvent<HTMLInputElement>, index: number) => {
         setInvoiceForm({...invoiceForm,
          item: invoiceForm.item.map((item, i) => {
@@ -78,6 +93,10 @@ export const useInvoice = () => {
         handleItemChange,
         handleCurrencyChange,
         removeInvoiceItem,
+        mutateLoading,
+        setMutateLoading,
+        editInvoiceRequest,
+        deleteInvoiceRequest,
         handleInputChange,
         addItem
     }

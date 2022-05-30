@@ -3,6 +3,8 @@ import DashboardLayout from "../../../../layouts/DashboardLayout";
 import {useQuery} from "react-query";
 import {useRouter} from "next/router";
 import {getInvoice} from "../../../../src/services/invoices/services";
+import Page from "../../../../src/components/global/Page";
+import Input from "../../../../src/components/global/Input";
 
 
 const EditInvoice = () => {
@@ -13,11 +15,17 @@ const EditInvoice = () => {
     }, {
         refetchOnWindowFocus: false,
     });
+    const invoiceInfo = data && {...data.id[0]}
+
 
     return (
-        <div>
-            <h1>Hello</h1>
-        </div>
+        <Page pageName={'editInvoice'}>
+                <h1>Edit Invoice</h1>
+            <div className="editInvoiceContent">
+                <h2>Info</h2>
+                {/*<Input placeholder={'e'} value={} name={} onChange={}/>*/}
+            </div>
+        </Page>
     );
 };
 
