@@ -50,6 +50,9 @@ const InvoicesPaid = ({ data }: props) => {
                     <h3>Date</h3>
                     <h3>Status</h3>
                 </div>
+                {dataWithFilter.length === 0 && <p style={{fontSize: "2rem", fontWeight: "bold"}} className="absoluteCenter">
+                    No Invoices
+                </p>}
                 <Scrollbars style={{ width: "100%", height: '43rem' }}>
                     {dataWithFilter.map((value, index) => {
                         return (

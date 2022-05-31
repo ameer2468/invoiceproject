@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import DashboardLayout from "../../../layouts/DashboardLayout";
 import Invoice from "../../../src/components/page-specific/dashboard/Invoices/invoice";
 import Link from "next/link";
@@ -9,25 +9,20 @@ import {useQuery} from "react-query";
 import Loading from "../../../src/components/global/loading";
 import {Invoice as InvoiceType} from '../../../types/invoice';
 import Page from "../../../src/components/global/Page";
+import {useInvoice} from "../../../src/hooks/useInvoice";
 
 const Index = () => {
 
-    const [invoicesData, setInvoicesData] = useState<any[]>([]);
-    const {isLoading, isFetching, error} = useQuery('invoices',() => {
-        getAllInvoices().then(res => {
-            setInvoicesData(res.invoices);
-        });
-    }, {
+    const {setInvoicesData, invoicesData, editInvoiceRequest, deleteInvoiceRequest} = useInvoice();
+    const {isLoading, isFetching, data} = useQuery('invoices',getAllInvoices, {
         refetchOnWindowFocus: false
     });
-    const deleteInvoice = (id: string) => {
-       setInvoicesData(invoicesData.filter((invoice: {id: string}) => invoice.id !== id))
-    }
-    const mutateInvoice = (id: string) => {
-        setInvoicesData(invoicesData.map((value) => {
-          return value.id === id ? {...value, status: value.status === 'paid' ? 'unpaid' : 'paid'} : value;
-        }))
-    }
+    useEffect(() => {
+        if (data) {
+            const {invoices} = data;
+            setInvoicesData(invoices);
+        }
+    }, [data]);
 
     return (
         <Page pageName={'invoices'}>
@@ -49,22 +44,17 @@ const Index = () => {
                     </div>
                     :
                     <motion.div
-                        initial={anim.initial}
-                        animate={anim.animate}
-                        transition={anim.transition}
                         className="cards">
                         {invoicesData.map((item: InvoiceType, index: number) => (
-                            <motion.div className={"cardWrap"} key={index}>
+                            <div className={"cardWrap"} key={index}>
                                 <Invoice
                                     data={item}
-                                    editInvoice={(id) => {
-                                        mutateInvoice(id)
-                                    }}
-                                    deleteInvoice={(id) => {
-                                        deleteInvoice(id)
-                                    }}
+                                    editInvoice={() => editInvoiceRequest({
+                                        id: item.id, field: "status", value: item.status === "paid" ? "unpaid" : "paid"
+                                    })}
+                                    deleteInvoice={() => deleteInvoiceRequest(item.id)}
                                 />
-                            </motion.div>
+                            </div>
                         ))}
                     </motion.div>
                 }

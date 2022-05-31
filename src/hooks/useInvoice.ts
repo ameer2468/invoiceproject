@@ -4,7 +4,7 @@ import {deleteInvoice, mutateInvoice} from "../services/invoices/services";
 
 export const useInvoice = () => {
 
-    const [mutateLoading, setMutateLoading] = useState(false);
+    const [invoicesData, setInvoicesData] = useState<Invoice[]>([]);
     const [invoiceForm, setInvoiceForm] = useState<Invoice>({
         id: '',
         status: 'unpaid',
@@ -45,15 +45,18 @@ export const useInvoice = () => {
     }
 
     const editInvoiceRequest = async (data: mutateInvoice) => {
-        setMutateLoading(true);
         await mutateInvoice(data).then(() => {
-            setMutateLoading(false);
+            setInvoicesData(invoicesData.map((value) => {
+                return value.id === data.id ? {...value, status: value.status === 'paid' ? 'unpaid' : 'paid'} : value;
+            }))
+        }).catch(() => {
         });
     }
 
     const deleteInvoiceRequest = async (id: string) => {
         await deleteInvoice(id).then(() => {
-
+            setInvoicesData(invoicesData.filter((invoice: {id: string}) => invoice.id !== id))
+        }).catch(() => {
         });
     }
 
@@ -93,8 +96,8 @@ export const useInvoice = () => {
         handleItemChange,
         handleCurrencyChange,
         removeInvoiceItem,
-        mutateLoading,
-        setMutateLoading,
+        setInvoicesData,
+        invoicesData,
         editInvoiceRequest,
         deleteInvoiceRequest,
         handleInputChange,

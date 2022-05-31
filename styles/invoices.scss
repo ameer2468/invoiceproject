@@ -166,9 +166,9 @@
   .cards {
     width: 100%;
     margin-top: 4rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 3rem;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(300px, 1fr));
+    grid-gap: 4rem;
   }
     .main-header {
       display: flex;
@@ -180,9 +180,6 @@
         max-width: 10rem;
       }
     }
-  .cardWrap {
-    flex: 0 0 30%;
-  }
   .invoiceCard {
     border: 2px solid $black;
     border-radius: 1rem;
@@ -193,13 +190,14 @@
     .actions {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
+      justify-content: space-between;
       gap: 2rem;
     }
     button {
       @include button;
       padding: 0;
-      width: 45%;
+      width: 100%;
+      max-width: 46%;
       margin-top: 2rem;
     }
     .statusBox {

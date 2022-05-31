@@ -427,9 +427,9 @@ body {
 .invoices .cards {
   width: 100%;
   margin-top: 4rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 3rem;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(300px, 1fr));
+  grid-gap: 4rem;
 }
 .invoices .main-header {
   display: flex;
@@ -440,9 +440,6 @@ body {
 }
 .invoices .main-header h1 {
   max-width: 10rem;
-}
-.invoices .cardWrap {
-  flex: 0 0 30%;
 }
 .invoices .invoiceCard {
   border: 2px solid black;
@@ -455,7 +452,7 @@ body {
 .invoices .invoiceCard .actions {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
   gap: 2rem;
 }
 .invoices .invoiceCard button {
@@ -469,7 +466,8 @@ body {
   transition: all 0.3s;
   border: 2px solid black;
   padding: 0;
-  width: 45%;
+  width: 100%;
+  max-width: 46%;
   margin-top: 2rem;
 }
 .invoices .invoiceCard button:hover {
@@ -688,6 +686,7 @@ body {
 }
 .InvoicesPaid .invoicesContainer {
   padding: 2rem;
+  position: relative;
 }
 .InvoicesPaid .invoicesContainer .record {
   border: 2px solid black;
