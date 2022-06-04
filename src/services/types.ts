@@ -50,6 +50,24 @@ export const deleteRequest = async (path: string, data: {}) => {
     })
 }
 
+export const getUnauthenticatedRequest = async (path: string, params: {}) => {
+    const headers = {
+        'x-api-key': apiKey,
+    };
+    return await axios.get(`${url}/${path}`, {
+        params: {
+            ...params
+        },
+        headers: {
+            ...headers
+        }
+    }).then((response) => {
+        return response.data
+    }).catch((err) => {
+        return err.response.data;
+    });
+}
+
 export const getRequest = async (path: string, params: {}) => {
   const token = await loadToken();
   const headers = {

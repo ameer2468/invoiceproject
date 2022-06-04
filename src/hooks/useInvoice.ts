@@ -77,6 +77,10 @@ export const useInvoice = () => {
         })
     }
 
+    const createInvoice = () => {
+
+    }
+
     const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setInvoiceForm({...invoiceForm, [event.target.name]: event.target.value})
     }

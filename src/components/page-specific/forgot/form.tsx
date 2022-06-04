@@ -42,7 +42,7 @@ const ForgotForm = () => {
                     className={forgotForm.email.length < 5 && forgotForm.password.length < 6 ? 'disabledButton' : ''}
                     disabled={forgotLoading}
                 >
-                    {forgotLoading ? <Loading/> : 'Confirm'}
+                    {forgotLoading ? <Loading style={"PulseLoader"}/> : 'Confirm'}
                 </button>
                 <Link passHref={true} href="/register">
                     No account? Register now
@@ -78,7 +78,7 @@ const ForgotForm = () => {
                         className={forgotForm.code.length !== 6 ? 'disabledButton' : ''}
                         disabled={forgotLoading || forgotForm.code.length !== 6 }
                     >
-                        {forgotLoading ? <Loading/> : 'Confirm'}
+                        {forgotLoading ? <Loading style={"PulseLoader"}/> : 'Confirm'}
                     </button>
                 </motion.form>
                 :

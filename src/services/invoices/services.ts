@@ -1,4 +1,4 @@
-import {deleteRequest, getRequest, putRequest} from "../types";
+import {deleteRequest, getRequest, getUnauthenticatedRequest, putRequest} from "../types";
 
 /*Get all invoices of the user*/
 
@@ -7,7 +7,7 @@ export const getPaidInvoices = () => {
 }
 
 export const getInvoice = (id: string) => {
-    return getRequest('invoice', {id: id})
+    return getUnauthenticatedRequest('invoice', {id: id})
 }
 
 export interface mutateInvoice {
@@ -29,7 +29,7 @@ export const getUnpaidInvoices = () => {
 }
 
 export const getAllInvoices = () => {
-    return getRequest('invoices', {from :'ameer'},)
+    return getUnauthenticatedRequest('invoices', {from :'ameer'},)
 }
 
 

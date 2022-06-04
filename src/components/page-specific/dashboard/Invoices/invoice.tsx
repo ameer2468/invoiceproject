@@ -7,6 +7,7 @@ import {numberFormat} from "../../../../helpers";
 import Loading from "../../../global/loading";
 import { motion } from 'framer-motion';
 import {anim} from "../../../../framer";
+import Link from 'next/link';
 
 
 interface props {
@@ -76,9 +77,9 @@ const Invoice = ({data, deleteInvoice, editInvoice}: props) => {
                     {deleteLoading ? <Loading style={"PulseLoader"}/> : "Delete Invoice"}
                 </button>
             </div>
-            {/*<Link href={`invoices/edit/${data.id}`}>*/}
-            {/*    <button className="button">Edit invoice</button>*/}
-            {/*</Link>*/}
+            <Link passHref={true} href={`/dashboard/invoices/${data.id}`}>
+                <button style={{maxWidth: "100%"}}>View details</button>
+            </Link>
         </motion.div>
     );
 };
