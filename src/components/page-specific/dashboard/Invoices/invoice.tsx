@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faUser, faSackDollar, faClock, faCircleCheck, faTrash} from "@fortawesome/free-solid-svg-icons";
+import {faUser, faSackDollar, faClock, faCircleCheck} from "@fortawesome/free-solid-svg-icons";
 import {Invoice} from "../../../../../types/invoice";
 import moment from "moment";
 import {numberFormat} from "../../../../helpers";

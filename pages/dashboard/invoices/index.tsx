@@ -22,13 +22,13 @@ const Index = () => {
             const {invoices} = data;
             setInvoicesData(invoices);
         }
-    }, [data]);
+    }, [data, setInvoicesData]);
 
     return (
         <Page pageName={'invoices'}>
                 <div className="main-header">
                     <h1>Invoices</h1>
-                    <Link href="/dashboard/invoices/new">
+                    <Link passHref={true} href="/dashboard/invoices/new">
                         <button className="button">
                             + New Invoice
                         </button>

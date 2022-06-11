@@ -14,6 +14,7 @@ export const useInvoice = () => {
         to: '',
         from: '',
         item: [{
+            id: '',
             description: '',
             quantity: '',
             rate: '',
@@ -87,12 +88,14 @@ export const useInvoice = () => {
 
     const addItem = () => {
       setInvoiceForm({...invoiceForm, item: [...invoiceForm.item, {
+          id: '',
           description: '',
           quantity: '',
           rate: '',
           amount: '',
           }]})
     }
+
 
     return {
         invoiceForm,
