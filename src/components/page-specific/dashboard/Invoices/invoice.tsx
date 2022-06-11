@@ -57,26 +57,6 @@ const Invoice = ({data, deleteInvoice, editInvoice}: props) => {
                     {data.from}
                 </p>
             </div>
-            <div className="actions">
-                <button
-                    disabled={mutateLoading}
-                    className={mutateLoading ? "disabledButton" : ""}
-                    onClick={() => {
-                        setMutateLoading(true);
-                        editInvoice().then(() => setMutateLoading(false));
-                    }}>
-                    {mutateLoading ? <Loading style={"PulseLoader"}/> : `Mark as ${data.status === 'paid' ? 'unpaid' : 'paid'}`}
-                </button>
-                <button
-                    disabled={deleteLoading}
-                    className={deleteLoading ? "disabledButton" : ""}
-                    onClick={() => {
-                        setDeleteLoading(true);
-                        deleteInvoice().then(() => setDeleteLoading(false));
-                    }}>
-                    {deleteLoading ? <Loading style={"PulseLoader"}/> : "Delete Invoice"}
-                </button>
-            </div>
             <Link passHref={true} href={`/dashboard/invoices/${data.id}`}>
                 <button style={{maxWidth: "100%"}}>View details</button>
             </Link>

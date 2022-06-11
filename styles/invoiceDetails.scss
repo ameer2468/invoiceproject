@@ -45,17 +45,29 @@
         flex: 0 0 22.5%;
         background: transparent;
         border: 3px solid black;
+        position: relative;
         border-radius: 1rem;
         height: 10rem;
         display: flex;
         align-items: center;
         justify-content: center;
+        p:nth-child(2) {
+          margin-right: 1rem;
+        }
         p:nth-child(1) {
           font-weight: bold;
           margin-right: 1rem;
         }
         p {
           font-size: 2rem;
+        }
+        button {
+          top: -1.7rem;
+          border-radius: 0.5rem!important;
+          padding: 0 3rem!important;
+          height: 3rem!important;
+          position: absolute;
+          @include button();
         }
       }
     }

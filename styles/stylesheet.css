@@ -595,11 +595,15 @@ body {
   flex: 0 0 22.5%;
   background: transparent;
   border: 3px solid black;
+  position: relative;
   border-radius: 1rem;
   height: 10rem;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.invoiceId .pageContainer .stats .stat p:nth-child(2) {
+  margin-right: 1rem;
 }
 .invoiceId .pageContainer .stats .stat p:nth-child(1) {
   font-weight: bold;
@@ -607,6 +611,27 @@ body {
 }
 .invoiceId .pageContainer .stats .stat p {
   font-size: 2rem;
+}
+.invoiceId .pageContainer .stats .stat button {
+  top: -1.7rem;
+  border-radius: 0.5rem !important;
+  padding: 0 3rem !important;
+  height: 3rem !important;
+  position: absolute;
+  background: black;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  padding: 0 7rem;
+  height: 5rem;
+  border-radius: 1rem;
+  transition: all 0.3s;
+  border: 2px solid black;
+}
+.invoiceId .pageContainer .stats .stat button:hover {
+  cursor: pointer;
+  transition: all 0.3s;
+  background-color: #FF7193;
 }
 
 .sidebar {
