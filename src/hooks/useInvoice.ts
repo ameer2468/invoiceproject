@@ -26,9 +26,6 @@ export const useInvoice = () => {
         amount: 0,
     })
 
-    const itemsToArr = invoiceForm.item
-
-
 
     const handleCurrencyChange = (
         value: string,

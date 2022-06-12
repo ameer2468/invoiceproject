@@ -7,6 +7,8 @@ import moment from "moment";
 import {numberFormat} from "../../../src/helpers";
 import Loading from "../../../src/components/global/loading";
 import {useInvoice} from "../../../src/hooks/useInvoice";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faMoneyBill, faLayerGroup} from "@fortawesome/free-solid-svg-icons";
 
 interface props {
     invoiceData: {
@@ -68,8 +70,13 @@ const Invoice = ({invoiceData}: props) => {
                             <p>This is an invoice item description.
                                 lorem ipsum greence anarky orem sim neb </p>
                             <div className="info">
-                                <p>Quantity: {item.quantity}</p>
-                                <p>Rate: {item.rate}</p>
+                                <p>
+                                    <FontAwesomeIcon className='icon' icon={faLayerGroup}/>
+                                    Quantity: {item.quantity}</p>
+                                <p>
+                                    <FontAwesomeIcon className='icon' icon={faMoneyBill}/>
+                                    Rate: {item.rate}
+                                </p>
                             </div>
                         </div>
                     )

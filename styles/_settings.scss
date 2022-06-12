@@ -1,0 +1,51 @@
+.settings {
+  .pageContainer {
+    @include DashboardContainer();
+    h1 {
+      @include PageTitle;
+      width: 100%;
+    }
+    h2 {
+      margin-bottom: 2rem;
+    }
+    h3 {
+      text-align: left;
+      width: 80%;
+      margin: 0 auto 1rem auto;
+    }
+    .content {
+      margin-top: 4rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: space-between;
+    }
+    input {
+      @include formInput();
+    }
+    .box {
+      flex: 0 0 48%;
+      padding: 4rem 2rem;
+      max-width: 50%;
+      height: auto;
+      text-align: center;
+      border-radius: 1rem;
+      border: 3px solid $black;
+      form {
+        width: 100%;
+        max-width: 50rem;
+        margin: 0 auto;
+      }
+      button {
+        width: 80%;
+        margin-top: 2rem;
+      }
+    }
+    .account {
+      width: 100%;
+      max-width: 50%;
+      border-radius: 1rem;
+      border: 3px solid $black;
+    }
+  }
+}

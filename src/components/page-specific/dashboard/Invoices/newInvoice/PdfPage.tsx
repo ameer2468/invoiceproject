@@ -16,7 +16,7 @@ const PdfPage = ({invoiceInfo}: any) => {
                 <Page size="A4" style={styles.page}>
                     <View style={styles.header}>
                         <View>
-                            <Text style={styles.clientName}>{invoiceInfo.billTo}</Text>
+                            <Text style={styles.clientName}>{invoiceInfo.to}</Text>
                             <View style={{
                                 flexDirection: "row",
                                 width: "100%",
@@ -47,7 +47,7 @@ const PdfPage = ({invoiceInfo}: any) => {
                                 marginTop: 5
                             }}>
                                 <Text style={styles.invoiceTitle}>Invoice No:</Text>
-                                <Text style={styles.text}>{invoiceInfo.invoiceNumber}</Text>
+                                <Text style={styles.text}>{invoiceInfo.id}</Text>
                             </View>
                         </View>
                     </View>

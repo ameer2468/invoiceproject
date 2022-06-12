@@ -50,19 +50,19 @@ const New = () => {
                                     placeholder={"Who is this invoice from?"}
                                 />
                                 <Input
-                                    name={'billTo'}
+                                    name={'to'}
                                     onChange={handleInputChange}
                                     value={invoiceForm.to}
                                     placeholder="Bill to"
                                 />
                                 <Input
-                                    name={'invoiceNumber'}
+                                    name={'id'}
                                     onChange={handleInputChange}
                                     value={invoiceForm.id}
                                     placeholder="Invoice Number"
                                 />
                                 <TextArea
-                                    name={"invoiceDescription"}
+                                    name={"description"}
                                     onChange={handleInputChange}
                                     value={invoiceForm.description}
                                     placeholder="Invoice Description"

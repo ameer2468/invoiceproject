@@ -573,9 +573,14 @@ body {
   flex-wrap: wrap;
   justify-content: space-between;
 }
+.invoiceId .pageContainer .items .i-item .info .icon {
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+}
 .invoiceId .pageContainer .items .i-item .info p {
   border: 3px solid black;
   padding: 1rem 2rem;
+  font-weight: bold;
   border-radius: 1rem;
 }
 .invoiceId .pageContainer .items .i-item h2 {
@@ -613,10 +618,11 @@ body {
   font-size: 2rem;
 }
 .invoiceId .pageContainer .stats .stat button {
-  top: -1.7rem;
+  top: -4rem;
+  width: 20rem !important;
+  padding: 0 !important;
+  height: 4rem !important;
   border-radius: 0.5rem !important;
-  padding: 0 3rem !important;
-  height: 3rem !important;
   position: absolute;
   background: black;
   color: white;
@@ -632,6 +638,79 @@ body {
   cursor: pointer;
   transition: all 0.3s;
   background-color: #FF7193;
+}
+
+.settings .pageContainer {
+  position: relative;
+  width: 100%;
+  top: 15vh;
+  max-width: 150rem;
+  padding: 0 0 5rem 0;
+  left: 16vw;
+  height: 100%;
+}
+.settings .pageContainer h1 {
+  color: black;
+  font-size: 4rem;
+  width: 100%;
+}
+.settings .pageContainer h2 {
+  margin-bottom: 2rem;
+}
+.settings .pageContainer h3 {
+  text-align: left;
+  width: 80%;
+  margin: 0 auto 1rem auto;
+}
+.settings .pageContainer .content {
+  margin-top: 4rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: space-between;
+}
+.settings .pageContainer input {
+  border: 2px solid black;
+  padding: 1.5rem 2rem;
+  border-radius: 1rem;
+  font-weight: bold;
+  width: 80%;
+  margin: 1rem auto 0 auto;
+  transition: all 0.3s;
+  font-family: Poppins, sans-serif;
+}
+.settings .pageContainer input:focus {
+  border: 2px solid #FF7193;
+  outline: 0;
+  transition: all 0.3s;
+}
+.settings .pageContainer input::placeholder {
+  color: black;
+  font-weight: bold;
+}
+.settings .pageContainer .box {
+  flex: 0 0 48%;
+  padding: 4rem 2rem;
+  max-width: 50%;
+  height: auto;
+  text-align: center;
+  border-radius: 1rem;
+  border: 3px solid black;
+}
+.settings .pageContainer .box form {
+  width: 100%;
+  max-width: 50rem;
+  margin: 0 auto;
+}
+.settings .pageContainer .box button {
+  width: 80%;
+  margin-top: 2rem;
+}
+.settings .pageContainer .account {
+  width: 100%;
+  max-width: 50%;
+  border-radius: 1rem;
+  border: 3px solid black;
 }
 
 .sidebar {

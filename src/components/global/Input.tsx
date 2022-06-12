@@ -6,6 +6,7 @@ interface props {
     name: string;
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     customClass?: string;
+    required?: boolean;
     type?: string;
 }
 
@@ -16,6 +17,7 @@ const Input = (props: props) => {
             type={props.type || 'text'}
             placeholder={props.placeholder}
             value={props.value}
+            required={props.required}
             name={props.name}
             onChange={props.onChange}
             className={`${props.customClass}`}
