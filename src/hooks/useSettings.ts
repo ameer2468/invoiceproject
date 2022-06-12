@@ -1,12 +1,16 @@
 import {ChangeEvent, useEffect, useState} from "react";
 import {Auth} from "aws-amplify";
-import {verify} from "crypto";
 
 export const useSettings = () => {
 
     const getUser = async () => {
         return await Auth.currentAuthenticatedUser();
     }
+
+    const [error, setError] = useState({
+        error: false,
+        message: ''
+    });
 
     const [loading, setLoading] = useState({
         saving: false,
@@ -37,6 +41,19 @@ export const useSettings = () => {
         })
     }
 
+    const errorHandle = (error: boolean, message: string) => {
+        setError({
+            error: error,
+            message: message,
+        });
+        setTimeout(() => {
+            setError({
+                error: false,
+                message: '',
+            });
+        }, 3000)
+    }
+
 
         const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
            setSettings({...settings, [event.target.name]: event.target.value})
@@ -50,7 +67,8 @@ export const useSettings = () => {
             }).then(() => {
                 updateLoading('account', false);
                 updateSettings('verifyStep', 2);
-            }).catch(() => {
+            }).catch((err) => {
+                errorHandle(true, err.message);
                 updateLoading('account', false);
             })
         }
@@ -65,7 +83,8 @@ export const useSettings = () => {
                    currentEmail: ''
                 })
                 updateLoading('account', false);
-            }).catch(() => {
+            }).catch((err) => {
+                errorHandle(true, err.message);
                 updateLoading('account', false);
             })
         }
@@ -89,5 +108,6 @@ export const useSettings = () => {
             handleInputChange,
             changeUserEmail,
             confirmCode,
+            error
         }
 }

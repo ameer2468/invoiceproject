@@ -562,7 +562,7 @@ body {
 .invoiceId .pageContainer .items .i-item {
   flex: 0 0 22.5%;
   background: transparent;
-  border: 3px solid black;
+  border: 2px solid black;
   border-radius: 1rem;
   text-align: center;
   padding: 2rem;
@@ -578,7 +578,7 @@ body {
   margin-right: 0.5rem;
 }
 .invoiceId .pageContainer .items .i-item .info p {
-  border: 3px solid black;
+  border: 2px solid black;
   padding: 1rem 2rem;
   font-weight: bold;
   border-radius: 1rem;
@@ -599,7 +599,7 @@ body {
 .invoiceId .pageContainer .stats .stat {
   flex: 0 0 22.5%;
   background: transparent;
-  border: 3px solid black;
+  border: 2px solid black;
   position: relative;
   border-radius: 1rem;
   height: 10rem;
@@ -666,6 +666,7 @@ body {
   margin-top: 4rem;
   display: flex;
   flex-wrap: wrap;
+  height: auto;
   gap: 2rem;
   justify-content: space-between;
 }
@@ -688,18 +689,20 @@ body {
   color: black;
   font-weight: bold;
 }
+.settings .pageContainer .info {
+  height: 37rem !important;
+}
 .settings .pageContainer .box {
   flex: 0 0 48%;
   padding: 4rem 2rem;
   max-width: 50%;
-  height: auto;
   text-align: center;
+  height: auto;
   border-radius: 1rem;
   border: 3px solid black;
 }
 .settings .pageContainer .box form {
   width: 100%;
-  max-width: 50rem;
   margin: 0 auto;
 }
 .settings .pageContainer .box button {

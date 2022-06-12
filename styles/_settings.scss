@@ -17,23 +17,26 @@
       margin-top: 4rem;
       display: flex;
       flex-wrap: wrap;
+      height: auto;
       gap: 2rem;
       justify-content: space-between;
     }
     input {
       @include formInput();
     }
+    .info {
+      height: 37rem!important;
+    }
     .box {
       flex: 0 0 48%;
       padding: 4rem 2rem;
       max-width: 50%;
-      height: auto;
       text-align: center;
+      height: auto;
       border-radius: 1rem;
       border: 3px solid $black;
       form {
         width: 100%;
-        max-width: 50rem;
         margin: 0 auto;
       }
       button {
