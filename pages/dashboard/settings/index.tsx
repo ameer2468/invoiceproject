@@ -11,6 +11,7 @@ const Settings = () => {
         settings,
         handleInputChange,
         changeUserEmail,
+        confirmCode,
         loading
     }
         = useSettings();
@@ -40,13 +41,13 @@ const Settings = () => {
                 </div>
                 <div className="box email">
                     <h2>Account</h2>
-                    <h3>Email change</h3>
+                    {settings.verifyStep === 3 ? '' : <h3>Email change</h3>}
                     {settings.verifyStep === 1 ?
                         <>
                             <Input
                                 placeholder={'Current email'}
-                                value={settings.newEmail}
-                                name={'newEmail'}
+                                value={settings.currentEmail}
+                                name={'currentEmail'}
                                 required={true}
                                 onChange={handleInputChange}
                             />
@@ -59,25 +60,35 @@ const Settings = () => {
                             />
                         </>
                         :
-                        <>
-                            <Input
-                                placeholder={'Verification code'}
-                                value={settings.verifyCode}
-                                required={true}
-                                name={'verifyCode'}
-                                onChange={handleInputChange}
-                            />
-                        </>
+                        settings.verifyStep === 2 ?
+                            <>
+                                <Input
+                                    placeholder={'Verification code'}
+                                    value={settings.verifyCode}
+                                    required={true}
+                                    name={'verifyCode'}
+                                    onChange={handleInputChange}
+                                />
+                            </>
+                            :
+                        settings.verifyStep === 3 &&
+                            <h2 style={{marginTop: '10rem'}}>Email changed successfully</h2>
                     }
-
+                    {settings.verifyStep === 1 || settings.verifyStep === 2 ?
                     <button
-                        onClick={changeUserEmail}
+                        onClick={async () => {
+                            if (settings.verifyStep === 1) {
+                                await changeUserEmail();
+                            } else {
+                                await confirmCode();
+                            }
+                        }}
                         className="button">
                         {loading.account ?
                             <Loading style={"PulseLoader"} />
                             :
-                            'Save'}
-                    </button>
+                            'Confirm'}
+                    </button> : ''}
                 </div>
             </div>
         </Page>
