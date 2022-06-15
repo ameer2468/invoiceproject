@@ -4,3 +4,9 @@ export interface createUserParams {
     first_name: string,
     last_name: string
 }
+
+export interface mutateUserParams {
+    sub_id: string;
+    field: string;
+    value: string | number;
+}

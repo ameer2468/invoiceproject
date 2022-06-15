@@ -8,6 +8,10 @@
   .sidebar {
     display: none;
   }
+  .pageContainer {
+    left: 0!important;
+    padding: 2rem!important;
+  }
   .dashboardHeader {
     width: 100%;
     .container {
@@ -18,12 +22,24 @@
       transform: translateX(-50%);
     }
   }
+  .overviewContent {
+    flex-direction: column;
+  }
+  .settings {
+      .content {
+        flex-direction: column;
+      }
+      .pageContainer {
+        .box {
+          flex: 0 0 100%;
+          max-width: 100%;
+        }
+      }
+  }
   .invoices {
     .invoicesContainer {
       max-width: 100%;
       margin: 0 auto;
-      left: 50%;
-      padding: 0 2rem;
       transform: translateX(-50%);
       .cardWrap {
         flex: 1 0 48%;
@@ -32,6 +48,11 @@
     }
   }
   .overview {
+    .tabs-wrap {
+      .tab-item, .active-tab {
+        padding: 3rem;
+      }
+    }
     .container {
       max-width: 100%;
       margin: 0 auto;

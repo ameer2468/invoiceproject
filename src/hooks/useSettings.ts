@@ -1,5 +1,6 @@
-import {ChangeEvent, useEffect, useState} from "react";
+import {ChangeEvent, FormEvent, useEffect, useState} from "react";
 import {Auth} from "aws-amplify";
+import {mutateUser} from "../services/user/user";
 
 export const useSettings = () => {
 
@@ -59,7 +60,8 @@ export const useSettings = () => {
            setSettings({...settings, [event.target.name]: event.target.value})
         }
 
-        const changeUserEmail = async () => {
+        const changeUserEmail = async (e?: FormEvent<SubmitEvent>) => {
+            e?.preventDefault();
             updateLoading('account', true);
             const user = await getUser();
             await Auth.updateUserAttributes(user, {
@@ -76,12 +78,16 @@ export const useSettings = () => {
         const confirmCode = async () => {
             const user = await getUser();
             updateLoading('account', true);
-            await Auth.verifyUserAttributeSubmit(user, 'email', settings.verifyCode).then(() => {
+            await Auth.verifyUserAttributeSubmit(user, 'email', settings.verifyCode).then(async () => {
                 setSettings({...settings,
                    verifyStep: 3,
                    newEmail: '',
                    currentEmail: ''
                 })
+                await mutateUser({
+                    sub_id: user.attributes.sub,
+                    field: 'email',
+                    value: settings.newEmail});
                 updateLoading('account', false);
             }).catch((err) => {
                 errorHandle(true, err.message);

@@ -32,6 +32,14 @@ const Settings = () => {
         ...forgotForm
     };
 
+    const emailSubmitHandler = async () => {
+            if (settings.verifyStep === 1) {
+                await changeUserEmail();
+            } else {
+                await confirmCode();
+            }
+    }
+
     return (
         <Page pageName={'settings'}>
             <h1>Settings</h1>
@@ -58,64 +66,56 @@ const Settings = () => {
                 <div className="box email">
                     <h2>Account</h2>
                     {settings.verifyStep === 3 ? '' : <h3>Email change</h3>}
-                    {settings.verifyStep === 1 ?
                         <>
-                            <Input
-                                placeholder={'Current email'}
-                                value={settings.currentEmail}
-                                name={'currentEmail'}
-                                required={true}
-                                onChange={handleInputChange}
-                            />
-                            <Input
-                                placeholder={'New email'}
-                                value={settings.newEmail}
-                                required={true}
-                                name={'newEmail'}
-                                onChange={handleInputChange}
-                            />
-                        </>
-                        :
-                        settings.verifyStep === 2 ?
-                            <>
-                                <Input
+                            <form onSubmit={emailSubmitHandler}>
+                                {settings.verifyStep === 1 ?
+                                    <><Input
+                                        placeholder={'Current email'}
+                                        value={settings.currentEmail}
+                                        name={'currentEmail'}
+                                        required={true}
+                                        onChange={handleInputChange}/><Input
+                                        placeholder={'New email'}
+                                        value={settings.newEmail}
+                                        required={true}
+                                        name={'newEmail'}
+                                        onChange={handleInputChange}/></>
+                                    :
+                                    settings.verifyStep === 2 ?
+                                    <>
+                                    <Input
                                     placeholder={'Verification code'}
                                     value={settings.verifyCode}
                                     required={true}
                                     name={'verifyCode'}
                                     onChange={handleInputChange}
-                                />
-                            </>
-                            :
-                        settings.verifyStep === 3 &&
-                            <h2 style={{marginTop: '10rem'}}>Email changed successfully</h2>
-                    }
-                    {error.error &&
-                    <p className="form-error">
-                        {error.message}
-                    </p>}
-                    {settings.verifyStep === 1 || settings.verifyStep === 2 ?
-                    <button
-                        disabled={
-                            loading.account
-                            ||
-                            newEmailLength < 5
-                            ||
-                             currentEmailLength < 5
-                        }
-                        onClick={async () => {
-                            if (settings.verifyStep === 1) {
-                                await changeUserEmail();
-                            } else {
-                                await confirmCode();
-                            }
-                        }}
-                        className={`${newEmailLength < 5 || currentEmailLength < 5 ? 'button disabledButton' : 'button'}`}>
-                        {loading.account ?
-                            <Loading style={"PulseLoader"} />
-                            :
-                            'Confirm'}
-                    </button> : ''}
+                                    />
+                                    </>
+                                    :
+                                    settings.verifyStep === 3 &&
+                                    <h2 style={{marginTop: '10rem'}}>Email changed successfully</h2>
+                                }
+                                {error.error &&
+                                <p className="form-error">
+                                    {error.message}
+                                </p>}
+                                {settings.verifyStep === 1 || settings.verifyStep === 2 ?
+                                    <button
+                                        disabled={
+                                            loading.account
+                                            ||
+                                            newEmailLength < 5
+                                            ||
+                                            currentEmailLength < 5
+                                        }
+                                        className={`${newEmailLength < 5 || currentEmailLength < 5 ? 'button disabledButton' : 'button'}`}>
+                                        {loading.account ?
+                                            <Loading style={"PulseLoader"} />
+                                            :
+                                            'Confirm'}
+                                    </button> : ''}
+                            </form>
+                        </>
                     <h3 style={{marginTop: '5rem'}}>Password change</h3>
                     {step === 0 ?
                     <>
@@ -158,7 +158,7 @@ const Settings = () => {
                                 {formError.length > 0 ? <p className="form-error">{formError}</p> : null}
                                 <button
                                     className={forgotForm.code.length !== 6 ? 'button disabledButton' : 'button'}
-                                    disabled={forgotLoading || forgotForm.code.length !== 6 }
+                                    disabled={forgotForm.email.length < 5 || forgotLoading || forgotForm.code.length !== 6 }
                                 >
                                     {forgotLoading ? <Loading style={"PulseLoader"}/> : 'Confirm'}
                                 </button>
