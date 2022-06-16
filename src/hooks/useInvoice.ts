@@ -1,6 +1,7 @@
 import {Invoice} from "../../types/invoice";
-import {useState, ChangeEvent} from "react";
-import {deleteInvoice, mutateInvoice} from "../services/invoices/services";
+import {useState, ChangeEvent, useEffect} from "react";
+import {deleteInvoice, getAllInvoices, mutateInvoice} from "../services/invoices/services";
+import {useQuery} from "react-query";
 
 export const useInvoice = () => {
 
@@ -105,5 +106,20 @@ export const useInvoice = () => {
         handleInputChange,
         addItem
     }
+}
 
+export const useFetchInvoices = () => {
+    const { setInvoicesData, invoicesData } = useInvoice();
+    const {isLoading, isFetching, data} = useQuery('invoices',getAllInvoices, {
+        refetchOnWindowFocus: false
+    });
+        useEffect(() => {
+            if (data) {
+                const {invoices} = data;
+                setInvoicesData(invoices);
+            }
+    }, [data, setInvoicesData])
+    return {
+            isLoading, isFetching, invoicesData
+    }
 }

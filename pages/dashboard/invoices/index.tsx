@@ -1,28 +1,18 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import DashboardLayout from "../../../layouts/DashboardLayout";
 import Invoice from "../../../src/components/page-specific/dashboard/Invoices/invoice";
 import Link from "next/link";
 import { motion } from 'framer-motion';
-import {anim} from "../../../src/framer";
-import {getAllInvoices} from "../../../src/services/invoices/services";
-import {useQuery} from "react-query";
 import Loading from "../../../src/components/global/loading";
 import {Invoice as InvoiceType} from '../../../types/invoice';
 import Page from "../../../src/components/global/Page";
-import {useInvoice} from "../../../src/hooks/useInvoice";
+import {useFetchInvoices, useInvoice} from "../../../src/hooks/useInvoice";
 
 const Index = () => {
 
-    const {setInvoicesData, invoicesData, editInvoiceRequest, deleteInvoiceRequest} = useInvoice();
-    const {isLoading, isFetching, data} = useQuery('invoices',getAllInvoices, {
-        refetchOnWindowFocus: false
-    });
-    useEffect(() => {
-        if (data) {
-            const {invoices} = data;
-            setInvoicesData(invoices);
-        }
-    }, [data, setInvoicesData]);
+    useFetchInvoices();
+    const {isLoading, isFetching, invoicesData} = useFetchInvoices();
+    const {editInvoiceRequest, deleteInvoiceRequest} = useInvoice();
 
     return (
         <Page pageName={'invoices'}>
