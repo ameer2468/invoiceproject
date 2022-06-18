@@ -745,7 +745,7 @@ body {
   max-width: 25rem;
   top: 0;
   height: 100vh;
-  border-right: 1px solid #272727;
+  border-right: 2px solid #272727;
   background-color: #171717;
 }
 .sidebar .container {
@@ -1382,6 +1382,14 @@ body {
     height: 13rem;
     flex: 1 0 48%;
     margin-bottom: 0;
+  }
+}
+@media all and (max-width: 768px) {
+  .loginForm .col:nth-child(1), .registerForm .col:nth-child(1) {
+    display: none;
+  }
+  .loginForm .col:nth-child(2), .registerForm .col:nth-child(2) {
+    width: 100%;
   }
 }
 @media all and (max-width: 600px) {
