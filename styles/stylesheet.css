@@ -23,6 +23,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  color: white;
+  font-size: 2rem;
 }
 
 html {
@@ -31,6 +33,7 @@ html {
 
 body {
   font-size: 1.3rem;
+  background-color: #131313;
   font-family: Poppins, sans-serif;
 }
 
@@ -43,7 +46,7 @@ body {
 /*Content*/
 /*Dashboard Page*/
 .loginButton {
-  filter: drop-shadow(4px 7px 0px #000000);
+  filter: drop-shadow(4px 7px 0px #5f62ff);
   background: white;
   font-family: "Poppins", sans-serif;
   padding: 0 5rem;
@@ -51,7 +54,6 @@ body {
   height: 5rem;
   border-radius: 1rem;
   transition: all 0.3s;
-  border: 1px solid black;
 }
 .loginButton:hover {
   cursor: pointer;
@@ -67,7 +69,7 @@ body {
 }
 
 .dbButton {
-  background: black;
+  background: #5f62ff;
   color: white;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
@@ -75,12 +77,10 @@ body {
   height: 5rem;
   border-radius: 1rem;
   transition: all 0.3s;
-  border: 2px solid black;
 }
 .dbButton:hover {
   cursor: pointer;
-  border: 2px solid black;
-  background: #FF7193;
+  background: #4649ff;
   color: white;
 }
 .dbButton:focus {
@@ -103,6 +103,7 @@ body {
 .features h1 {
   font-size: 5rem;
   width: 100%;
+  color: white;
   max-width: 20%;
 }
 .features .cards {
@@ -117,7 +118,8 @@ body {
   grid-row: 1/span 2;
 }
 .features .cards .card {
-  border: 1px solid black;
+  border: 2px solid #252525;
+  background: #171717;
   text-align: center;
   padding: 2rem 2.7rem;
   border-radius: 1rem;
@@ -125,10 +127,11 @@ body {
 .features .cards .card p {
   font-size: 1.8rem;
   margin-top: 1rem;
+  color: white;
   line-height: 3.5rem;
 }
 .features .cards .card h3 {
-  color: #71AAFF;
+  color: #5f62ff;
   font-size: 3rem;
 }
 
@@ -147,7 +150,7 @@ body {
   background-position: bottom;
 }
 .hero button {
-  background: black;
+  background: #5f62ff;
   color: white;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
@@ -155,14 +158,12 @@ body {
   height: 5rem;
   border-radius: 1rem;
   transition: all 0.3s;
-  border: 2px solid black;
   width: auto;
   margin: 3rem auto 0 auto;
 }
 .hero button:hover {
   cursor: pointer;
-  border: 2px solid black;
-  background: #FF7193;
+  background: #4649ff;
   color: white;
 }
 .hero button:focus {
@@ -175,6 +176,7 @@ body {
   font-size: 5rem;
   width: 100%;
   text-align: center;
+  color: white;
   line-height: 7.3rem;
   max-width: 70rem;
   margin: 0 auto;
@@ -223,7 +225,7 @@ body {
   margin-top: 5rem;
   position: relative;
   z-index: 30;
-  background: black;
+  background: #5f62ff;
   color: white;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
@@ -231,14 +233,13 @@ body {
   height: 5rem;
   border-radius: 1rem;
   transition: all 0.3s;
-  border: 2px solid black;
-  background: #71AAFF;
+  background: #5f62ff;
   padding: 0 3rem;
 }
 .newInvoice .newInvoiceContainer .downloadPdf:hover {
   cursor: pointer;
   transition: all 0.3s;
-  background-color: #FF7193;
+  background-color: #4649ff;
 }
 .newInvoice .newInvoiceContainer .downloadPdf:hover {
   background: #589bff;
@@ -263,11 +264,13 @@ body {
   transition: all 0.3s;
 }
 .newInvoice .newInvoiceContainer input {
-  border: 2px solid black;
+  border: 2px solid #383838;
   padding: 1.5rem 2rem;
   border-radius: 1rem;
   font-weight: bold;
+  background: #252525;
   width: 80%;
+  color: white;
   margin: 1rem auto 0 auto;
   transition: all 0.3s;
   font-family: Poppins, sans-serif;
@@ -280,7 +283,7 @@ body {
   transition: all 0.3s;
 }
 .newInvoice .newInvoiceContainer input::placeholder {
-  color: black;
+  color: white;
   font-weight: bold;
 }
 .newInvoice .newInvoiceContainer input::placeholder {
@@ -325,7 +328,7 @@ body {
   font-size: 3.5rem;
 }
 .newInvoice .newInvoiceContainer .newInvoiceContent .addItem {
-  background: black;
+  background: #5f62ff;
   color: white;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
@@ -333,14 +336,13 @@ body {
   height: 5rem;
   border-radius: 1rem;
   transition: all 0.3s;
-  border: 2px solid black;
   padding: 0 4rem;
   margin-top: 3rem;
 }
 .newInvoice .newInvoiceContainer .newInvoiceContent .addItem:hover {
   cursor: pointer;
   transition: all 0.3s;
-  background-color: #FF7193;
+  background-color: #4649ff;
 }
 .newInvoice .newInvoiceContainer .newInvoiceContent .col:nth-child(3) {
   flex: 0 0 100%;
@@ -393,11 +395,13 @@ body {
   margin: 0;
 }
 .newInvoice .newInvoiceContainer textarea {
-  border: 2px solid black;
+  border: 2px solid #383838;
   padding: 1.5rem 2rem;
   border-radius: 1rem;
   font-weight: bold;
+  background: #252525;
   width: 80%;
+  color: white;
   margin: 1rem auto 0 auto;
   transition: all 0.3s;
   font-family: Poppins, sans-serif;
@@ -412,7 +416,7 @@ body {
   transition: all 0.3s;
 }
 .newInvoice .newInvoiceContainer textarea::placeholder {
-  color: black;
+  color: white;
   font-weight: bold;
 }
 .newInvoice .newInvoiceContainer textarea::placeholder {
@@ -440,12 +444,14 @@ body {
 }
 .invoices .main-header h1 {
   max-width: 10rem;
+  color: white;
 }
 .invoices .invoiceCard {
-  border: 2px solid black;
+  border: 2px solid #252525;
   border-radius: 1rem;
   padding: 2rem;
   transition: all 0.3s;
+  background: #171717;
   text-align: center;
   position: relative;
 }
@@ -456,7 +462,7 @@ body {
   gap: 2rem;
 }
 .invoices .invoiceCard button {
-  background: black;
+  background: #5f62ff;
   color: white;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
@@ -464,7 +470,6 @@ body {
   height: 5rem;
   border-radius: 1rem;
   transition: all 0.3s;
-  border: 2px solid black;
   padding: 0;
   width: 100%;
   max-width: 46%;
@@ -473,11 +478,12 @@ body {
 .invoices .invoiceCard button:hover {
   cursor: pointer;
   transition: all 0.3s;
-  background-color: #FF7193;
+  background-color: #4649ff;
 }
 .invoices .invoiceCard .statusBox {
   position: absolute;
-  background: black;
+  background: #171717;
+  border: 2px solid #252525;
   width: 100%;
   max-width: 10rem;
   display: flex;
@@ -507,7 +513,8 @@ body {
 }
 .invoices .invoiceCard .details p {
   flex: 1 0 45%;
-  border: 2px solid black;
+  border: 2px solid #252525;
+  color: white;
   border-radius: 0.5rem;
   padding: 0.4rem 1.2rem;
 }
@@ -521,13 +528,14 @@ body {
   font-size: 1.3rem;
 }
 .invoices .invoiceCard h2 {
-  color: #71AAFF;
+  color: #5f62ff;
   margin-top: 1rem;
 }
 .invoices .invoiceCard p.desc {
   line-height: 2.5rem;
   font-size: 1.4rem;
   height: 8rem;
+  color: white;
   width: 100%;
   margin: 1.5rem auto 2.5rem auto;
 }
@@ -561,8 +569,8 @@ body {
 }
 .invoiceId .pageContainer .items .i-item {
   flex: 0 0 22.5%;
-  background: transparent;
-  border: 2px solid black;
+  border: 2px solid #252525;
+  background: #171717;
   border-radius: 1rem;
   text-align: center;
   padding: 2rem;
@@ -578,16 +586,18 @@ body {
   margin-right: 0.5rem;
 }
 .invoiceId .pageContainer .items .i-item .info p {
-  border: 2px solid black;
+  border: 2px solid #252525;
   padding: 1rem 2rem;
   font-weight: bold;
   border-radius: 1rem;
 }
 .invoiceId .pageContainer .items .i-item h2 {
   font-size: 2.5rem;
+  color: #5f62ff;
 }
 .invoiceId .pageContainer .items .i-item p {
   margin: 1rem auto 2rem auto;
+  color: white;
 }
 .invoiceId .pageContainer .stats {
   display: grid;
@@ -598,8 +608,8 @@ body {
 }
 .invoiceId .pageContainer .stats .stat {
   flex: 0 0 22.5%;
-  background: transparent;
-  border: 2px solid black;
+  background: #171717;
+  border: 2px solid #252525;
   position: relative;
   border-radius: 1rem;
   height: 10rem;
@@ -609,9 +619,10 @@ body {
 }
 .invoiceId .pageContainer .stats .stat p:nth-child(2) {
   margin-right: 1rem;
+  color: white;
 }
 .invoiceId .pageContainer .stats .stat p:nth-child(1) {
-  font-weight: bold;
+  color: white;
   margin-right: 1rem;
 }
 .invoiceId .pageContainer .stats .stat p {
@@ -624,7 +635,7 @@ body {
   height: 4rem !important;
   border-radius: 0.5rem !important;
   position: absolute;
-  background: black;
+  background: #5f62ff;
   color: white;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
@@ -632,12 +643,11 @@ body {
   height: 5rem;
   border-radius: 1rem;
   transition: all 0.3s;
-  border: 2px solid black;
 }
 .invoiceId .pageContainer .stats .stat button:hover {
   cursor: pointer;
   transition: all 0.3s;
-  background-color: #FF7193;
+  background-color: #4649ff;
 }
 
 .settings .pageContainer {
@@ -652,14 +662,17 @@ body {
 .settings .pageContainer h1 {
   color: black;
   font-size: 4rem;
+  color: white;
   width: 100%;
 }
 .settings .pageContainer h2 {
   margin-bottom: 2rem;
+  color: white;
 }
 .settings .pageContainer h3 {
   text-align: left;
   width: 80%;
+  color: white;
   margin: 0 auto 1rem auto;
 }
 .settings .pageContainer .content {
@@ -671,11 +684,13 @@ body {
   justify-content: space-between;
 }
 .settings .pageContainer input {
-  border: 2px solid black;
+  border: 2px solid #383838;
   padding: 1.5rem 2rem;
   border-radius: 1rem;
   font-weight: bold;
+  background: #252525;
   width: 80%;
+  color: white;
   margin: 1rem auto 0 auto;
   transition: all 0.3s;
   font-family: Poppins, sans-serif;
@@ -686,7 +701,7 @@ body {
   transition: all 0.3s;
 }
 .settings .pageContainer input::placeholder {
-  color: black;
+  color: white;
   font-weight: bold;
 }
 .settings .pageContainer .info {
@@ -698,8 +713,9 @@ body {
   max-width: 50%;
   text-align: center;
   height: auto;
+  background: #171717;
   border-radius: 1rem;
-  border: 3px solid black;
+  border: 2px solid #252525;
 }
 .settings .pageContainer .box form {
   width: 100%;
@@ -723,7 +739,8 @@ body {
   max-width: 25rem;
   top: 0;
   height: 100vh;
-  background-color: black;
+  border-right: 1px solid #272727;
+  background-color: #171717;
 }
 .sidebar .container {
   display: flex;
@@ -734,7 +751,7 @@ body {
   position: relative;
 }
 .sidebar .container .logout {
-  background: #71AAFF;
+  background: #5f62ff;
   width: 5rem;
   height: 5rem;
   display: flex;
@@ -746,7 +763,7 @@ body {
   transition: all 0.3s;
 }
 .sidebar .container .logout:hover {
-  background: #3e8bff;
+  background: #4649ff;
   cursor: pointer;
   transition: all 0.3s;
 }
@@ -762,7 +779,7 @@ body {
   margin-top: 6rem;
 }
 .sidebar .container .profile .navlinks .active p {
-  color: #71AAFF;
+  color: #5f62ff;
 }
 .sidebar .container .profile .navlinks .active::before {
   content: "";
@@ -773,7 +790,7 @@ body {
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
   height: 5rem;
-  background: #71AAFF;
+  background: #5f62ff;
 }
 .sidebar .container .profile .navlinks .link {
   display: flex;
@@ -819,7 +836,7 @@ body {
   gap: 3rem;
 }
 .MoneyMade .moneyMadeContainer .clientCard {
-  border: 2px solid black;
+  border: 2px solid white;
   padding: 2rem;
   flex: 0 0 30%;
   text-align: center;
@@ -834,7 +851,7 @@ body {
 .MoneyMade .moneyMadeContainer .clientCard .details p {
   flex: 1 0 45%;
   font-weight: bold;
-  border: 2px solid black;
+  border: 2px solid white;
   border-radius: 0.5rem;
   padding: 0.4rem 1.2rem;
 }
@@ -842,26 +859,31 @@ body {
   margin-right: 0.5rem;
 }
 .MoneyMade .moneyMadeContainer .clientCard h2 {
-  color: #71AAFF;
+  color: #5f62ff;
 }
 
 .InvoicesPaid {
   flex: 0 0 70%;
   height: 60rem;
-  border: 2px solid black;
+  border: 2px solid #252525;
   border-radius: 1rem;
 }
 .InvoicesPaid .invoicesContainer {
   padding: 2rem;
   position: relative;
 }
+.InvoicesPaid .invoicesContainer h2 {
+  color: white;
+}
 .InvoicesPaid .invoicesContainer .record {
-  border: 2px solid black;
+  border: 2px solid #252525;
   display: flex;
   justify-content: space-evenly;
   border-radius: 1rem;
   max-width: 100%;
   transition: all 0.3s;
+  color: white;
+  background: #171717;
   position: relative;
   padding: 2rem 0;
   margin: 2rem auto 2rem auto;
@@ -877,7 +899,7 @@ body {
   transform-origin: right;
   transform: scaleX(0);
   transition: transform 0.6s ease-in-out;
-  background: black;
+  background: transparent;
 }
 .InvoicesPaid .invoicesContainer .record p {
   flex: 0 0 25%;
@@ -896,10 +918,6 @@ body {
   transform-origin: left;
   transform: scaleX(1);
 }
-.InvoicesPaid .invoicesContainer .record:hover p {
-  color: white;
-  cursor: pointer;
-}
 .InvoicesPaid .invoicesContainer .col-headings {
   display: flex;
   justify-content: center;
@@ -908,6 +926,7 @@ body {
 .InvoicesPaid .invoicesContainer .col-headings h3 {
   flex: 0 0 25%;
   text-align: center;
+  color: white;
   justify-items: center;
 }
 
@@ -919,7 +938,7 @@ body {
 }
 .tabs-wrap .active-tab {
   width: 100%;
-  background: black;
+  background: #5f62ff;
   border-radius: 1rem;
   border: 2px solid black;
   display: flex;
@@ -930,17 +949,17 @@ body {
   align-items: center;
 }
 .tabs-wrap .active-tab p {
-  color: white;
+  color: black;
   font-size: 2rem;
 }
 .tabs-wrap .active-tab .tab-item-title {
-  color: #71AAFF;
+  color: black;
   font-weight: bold;
 }
 .tabs-wrap .tab-item {
   width: 100%;
-  background: transparent;
-  border: 2px solid black;
+  background: #171717;
+  border: 2px solid #252525;
   height: auto;
   border-radius: 1rem;
   display: flex;
@@ -962,17 +981,17 @@ body {
   width: 100%;
   transform-origin: bottom;
   transform: scaleY(0);
-  background: black;
+  background: #171717;
 }
 .tabs-wrap .tab-item p {
-  color: black;
+  color: white;
   transition: all 0.3s;
   font-size: 2rem;
 }
 .tabs-wrap .tab-item .tab-item-title {
-  color: #71AAFF;
+  color: white;
+  font-weight: bold;
   text-align: center;
-  font-weight: normal;
 }
 .tabs-wrap .tab-item:hover {
   cursor: pointer;
@@ -1007,7 +1026,7 @@ body {
   display: flex;
   border: 2px solid black;
   justify-content: center;
-  background: black;
+  background: #5f62ff;
   align-items: center;
   border-radius: 50%;
   transition: all 0.3s;
@@ -1017,7 +1036,7 @@ body {
   font-size: 1.8rem;
 }
 .dashboardHeader .container .notification:hover {
-  background: #FF7193;
+  background: #4649ff;
   transition: all 0.3s;
   cursor: pointer;
 }
@@ -1046,7 +1065,7 @@ body {
   width: 100%;
   max-width: 110rem;
   height: 65rem;
-  border: 2px solid black;
+  border: 2px solid #252525;
   border-radius: 1.5rem;
   overflow: hidden;
 }
@@ -1090,17 +1109,19 @@ body {
 }
 .registerPage .container a {
   text-decoration: none;
-  color: black;
+  color: white;
   font-weight: bold;
   text-align: center;
   margin-top: 2rem;
 }
 .registerPage .container input {
-  border: 2px solid black;
+  border: 2px solid #383838;
   padding: 1.5rem 2rem;
   border-radius: 1rem;
   font-weight: bold;
+  background: #252525;
   width: 80%;
+  color: white;
   margin: 1rem auto 0 auto;
   transition: all 0.3s;
   font-family: Poppins, sans-serif;
@@ -1112,11 +1133,11 @@ body {
   transition: all 0.3s;
 }
 .registerPage .container input::placeholder {
-  color: black;
+  color: white;
   font-weight: bold;
 }
 .registerPage .container button {
-  background: black;
+  background: #5f62ff;
   color: white;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
@@ -1124,14 +1145,13 @@ body {
   height: 5rem;
   border-radius: 1rem;
   transition: all 0.3s;
-  border: 2px solid black;
   width: 100%;
   margin: 3rem auto;
 }
 .registerPage .container button:hover {
   cursor: pointer;
   transition: all 0.3s;
-  background-color: #FF7193;
+  background-color: #4649ff;
 }
 .registerPage .container h3 {
   color: #FF7193;
@@ -1150,7 +1170,7 @@ body {
   width: 100%;
   max-width: 110rem;
   height: 60rem;
-  border: 2px solid black;
+  border: 2px solid #252525;
   border-radius: 1.5rem;
   overflow: hidden;
 }
@@ -1190,7 +1210,7 @@ body {
 }
 .loginPage .container a {
   text-decoration: none;
-  color: black;
+  color: white;
   font-weight: bold;
   text-align: center;
   transition: all 0.3s;
@@ -1205,11 +1225,13 @@ body {
   justify-content: space-between;
 }
 .loginPage .container input {
-  border: 2px solid black;
+  border: 2px solid #383838;
   padding: 1.5rem 2rem;
   border-radius: 1rem;
   font-weight: bold;
+  background: #252525;
   width: 80%;
+  color: white;
   margin: 1rem auto 0 auto;
   transition: all 0.3s;
   font-family: Poppins, sans-serif;
@@ -1221,11 +1243,11 @@ body {
   transition: all 0.3s;
 }
 .loginPage .container input::placeholder {
-  color: black;
+  color: white;
   font-weight: bold;
 }
 .loginPage .container button {
-  background: black;
+  background: #5f62ff;
   color: white;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
@@ -1233,14 +1255,13 @@ body {
   height: 5rem;
   border-radius: 1rem;
   transition: all 0.3s;
-  border: 2px solid black;
   width: 100%;
   margin: 3rem auto;
 }
 .loginPage .container button:hover {
   cursor: pointer;
   transition: all 0.3s;
-  background-color: #FF7193;
+  background-color: #4649ff;
 }
 .loginPage .container h3 {
   color: #FF7193;
@@ -1402,7 +1423,7 @@ input[type=number] {
   cursor: pointer;
 }
 .dropdown .main {
-  background: black;
+  background: #5f62ff;
   display: flex;
   align-items: center;
   border-radius: 0.5rem;
@@ -1415,14 +1436,14 @@ input[type=number] {
   position: absolute;
   text-align: left;
   top: 4rem;
-  background: white;
+  background: #171717;
   width: 100%;
   margin-top: 0.5rem;
-  border: 2px solid black;
+  border: 2px solid #252525;
   border-radius: 0.7rem;
 }
 .dropdown .menu p {
-  color: black;
+  color: white;
   padding: 0.4rem 0;
   font-size: 1.4rem;
   font-weight: bold;
@@ -1430,7 +1451,7 @@ input[type=number] {
 }
 .dropdown .menu p:hover {
   cursor: pointer;
-  color: #71AAFF;
+  color: #5f62ff;
   transition: all 0.3s;
 }
 .dropdown .icon {
@@ -1443,6 +1464,7 @@ input[type=number] {
 h1 {
   color: black;
   font-size: 4rem;
+  color: white;
 }
 
 .searchBox {
@@ -1451,8 +1473,9 @@ h1 {
   max-width: 30rem;
   display: flex;
   align-items: center;
-  border: 2px solid black;
+  border: 2px solid #252525;
   border-radius: 0.8rem;
+  background: #171717;
   padding: 1rem;
 }
 .searchBox .icon {
@@ -1460,19 +1483,21 @@ h1 {
   top: 1.5rem;
   right: 1.3rem;
   font-size: 2rem;
+  color: white;
 }
 .searchBox input {
   width: 100%;
   max-width: 24rem;
   outline: 0;
+  background: transparent;
   border: 0;
   transition: all 0.3s;
   font-weight: bold;
-  color: black;
+  color: white;
   font-family: Poppins, "sans-serif";
 }
 .searchBox input::placeholder {
-  color: black;
+  color: white;
   font-weight: bold;
 }
 .searchBox input:focus {
@@ -1481,7 +1506,7 @@ h1 {
 }
 
 .button {
-  background: black;
+  background: #5f62ff;
   color: white;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
@@ -1489,17 +1514,16 @@ h1 {
   height: 5rem;
   border-radius: 1rem;
   transition: all 0.3s;
-  border: 2px solid black;
-  background: #71AAFF;
   padding: 0 3rem;
 }
 .button:hover {
   cursor: pointer;
   transition: all 0.3s;
-  background-color: #FF7193;
+  background-color: #4649ff;
 }
-.button:hover {
-  background: #589bff;
+
+.bold {
+  font-weight: bold;
 }
 
 .disabledButton {
@@ -1526,7 +1550,8 @@ h1 {
 }
 
 footer {
-  background: black;
+  background: #171717;
+  border-top: 2px solid #252525;
 }
 footer .container {
   padding: 10rem 2rem;

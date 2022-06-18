@@ -1,7 +1,10 @@
 $pink: #FF7193;
 $blue: #71AAFF;
 $black: black;
+$purple: #5f62ff;
 $white: white;
+$darkgrey: #171717;
+$border: #252525;
 
 /*Titles*/
 
@@ -11,6 +14,7 @@ $contentHeading: 3rem;
 /*Content*/
 
 $body: 1.8rem;
+$textcolor: white;
 
 /*Dashboard Page*/
 
@@ -30,7 +34,7 @@ $body: 1.8rem;
 }
 
 @mixin button {
-  background: black;
+  background: $purple;
   color: white;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
@@ -38,17 +42,16 @@ $body: 1.8rem;
   height: 5rem;
   border-radius: 1rem;
   transition: all 0.3s;
-  border: 2px solid $black;
   &:hover {
     cursor: pointer;
     transition: all 0.3s;
-    background-color: $pink;
+    background-color: darken($purple, 5%);
   }
 }
 
 @mixin blackButtonShadow {
   //filter: drop-shadow(4px 7px 0px $pink);
-  background: black;
+  background: #5f62ff;
   color: white;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
@@ -56,11 +59,9 @@ $body: 1.8rem;
   height: 5rem;
   border-radius: 1rem;
   transition: all 0.3s;
-  border: 2px solid $black;
   &:hover {
     cursor: pointer;
-    border: 2px solid $black;
-    background: $pink;
+    background: darken($purple, 5%);
     color: white;
   }
   &:focus {
@@ -72,11 +73,13 @@ $body: 1.8rem;
 }
 
 @mixin formInput {
-  border: 2px solid black;
+  border: 2px solid #383838;
   padding: 1.5rem 2rem;
   border-radius: 1rem;
   font-weight: bold;
+  background: #252525;
   width: 80%;
+  color: white;
   margin: 1rem auto 0 auto;
   transition: all 0.3s;
   font-family: Poppins, sans-serif;
@@ -86,13 +89,13 @@ $body: 1.8rem;
     transition: all 0.3s;
   }
   &::placeholder {
-    color: black;
+    color: white;
     font-weight: bold;
   }
 }
 
 @mixin whiteButtonShadow {
-  filter: drop-shadow(4px 7px 0px #000000);
+  filter: drop-shadow(4px 7px 0px $purple);
   background: white;
   font-family: "Poppins", sans-serif;
   padding: 0 5rem;
@@ -100,7 +103,6 @@ $body: 1.8rem;
   height: 5rem;
   border-radius: 1rem;
   transition: all 0.3s;
-  border: 1px solid $black;
   &:hover {
     cursor: pointer;
     filter: drop-shadow(0px 0px 0px #000000);

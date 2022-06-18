@@ -21,6 +21,7 @@
  h1 {
   font-size: $bigHeading;
   width: 100%;
+  color: $textcolor;
   max-width: 20%;
  }
  .cards {
@@ -34,17 +35,19 @@
    grid-row: 1 / span 2;
   }
   .card {
-   border: 1px solid black;
+   border: 2px solid $border;
+   background: $darkgrey;
    text-align: center;
    padding: 2rem 2.7rem;
    border-radius: 1rem;
    p {
     font-size: $body;
     margin-top: 1rem;
+    color: $textcolor;
     line-height: 3.5rem;
    }
    h3 {
-    color: $blue;
+    color: $purple;
     font-size: $contentHeading;
    }
   }
@@ -73,6 +76,7 @@
   font-size: $bigHeading;
   width: 100%;
   text-align: center;
+  color: $textcolor;
   line-height: 7.3rem;
   max-width: 70rem;
   margin: 0 auto;

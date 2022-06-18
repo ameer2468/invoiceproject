@@ -45,7 +45,7 @@ input[type=number] {
     cursor: pointer;
   }
   .main {
-    background: $black;
+    background: $purple;
     display: flex;
     align-items: center;
     border-radius: 0.5rem;
@@ -58,20 +58,20 @@ input[type=number] {
     position: absolute;
     text-align: left;
     top: 4rem;
-    background: white;
+    background: $darkgrey;
     width: 100%;
     margin-top: 0.5rem;
-    border: 2px solid $black;
+    border: 2px solid $border;
     border-radius: 0.7rem;
      p {
-       color: black;
+       color: white;
        padding: 0.4rem 0;
        font-size: 1.4rem;
        font-weight: bold;
        transition: all 0.3s;
        &:hover {
          cursor: pointer;
-         color: $blue;
+         color: $purple;
          transition: all 0.3s;
        }
      }
@@ -86,6 +86,7 @@ input[type=number] {
 
 h1 {
   @include PageTitle();
+  color: $textcolor;
 }
 
 .searchBox {
@@ -94,26 +95,29 @@ h1 {
   max-width: 30rem;
   display: flex;
   align-items: center;
-  border: 2px solid black;
+  border: 2px solid $border;
   border-radius: 0.8rem;
+  background: $darkgrey;
   padding: 1rem;
   .icon {
     position: absolute;
     top: 1.5rem;
     right: 1.3rem;
     font-size: 2rem;
+    color: white;
   }
   input {
     width: 100%;
     max-width: 24rem;
     outline: 0;
+    background: transparent;
     border: 0;
     transition: all 0.3s;
     font-weight: bold;
-    color: black;
+    color: white;
     font-family: Poppins, 'sans-serif';
     &::placeholder {
-      color: black;
+      color: white;
       font-weight: bold;
     }
     &:focus {
@@ -125,11 +129,11 @@ h1 {
 
 .button {
   @include button();
-  background: $blue;
   padding: 0 3rem;
-  &:hover {
-    background: darken($blue, 5%);
-  }
+}
+
+.bold {
+  font-weight: bold;
 }
 
 .disabledButton {
@@ -156,7 +160,8 @@ h1 {
 }
 
 footer  {
-  background: black;
+  background: $darkgrey;
+  border-top: 2px solid $border;
   .container {
     padding: 10rem 2rem;
     width: 100%;

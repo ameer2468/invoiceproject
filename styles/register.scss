@@ -7,7 +7,7 @@
     width: 100%;
     max-width: 110rem;
     height: 65rem;
-    border: 2px solid black;
+    border: 2px solid $border;
     border-radius: 1.5rem;
     overflow: hidden;
     .col {
@@ -50,7 +50,7 @@
     }
       a {
         text-decoration: none;
-        color: black;
+        color: white;
         font-weight: bold;
         text-align: center;
         margin-top: 2rem;

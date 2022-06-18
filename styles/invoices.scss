@@ -18,7 +18,7 @@
       position: relative;
       z-index: 30;
       @include button;
-      background: $blue;
+      background: $purple;
       padding: 0 3rem;
       &:hover {
         background: darken($blue, 5%);
@@ -178,13 +178,15 @@
       align-items: center;
       h1 {
         max-width: 10rem;
+        color: white;
       }
     }
   .invoiceCard {
-    border: 2px solid $black;
+    border: 2px solid $border;
     border-radius: 1rem;
     padding: 2rem;
     transition: all 0.3s;
+    background: $darkgrey;
     text-align: center;
     position: relative;
     .actions {
@@ -202,7 +204,8 @@
     }
     .statusBox {
       position: absolute;
-      background: black;
+      background: $darkgrey;
+      border: 2px solid $border;
       width: 100%;
       max-width: 10rem;
       display: flex;
@@ -231,7 +234,8 @@
       align-items: center;
       p {
         flex: 1 0 45%;
-        border: 2px solid $black;
+        border: 2px solid $border;
+        color: $textcolor;
         border-radius: 0.5rem;
         padding: 0.4rem 1.2rem;
         .icon {
@@ -246,13 +250,14 @@
       font-size: 1.3rem;
     }
     h2 {
-      color: $blue;
+      color: $purple;
       margin-top: 1rem;
     }
     p.desc {
       line-height: 2.5rem;
       font-size: 1.4rem;
       height: 8rem;
+      color: $textcolor;
       width: 100%;
       margin: 1.5rem auto 2.5rem auto;
     }
