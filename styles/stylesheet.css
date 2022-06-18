@@ -227,6 +227,7 @@ body {
   z-index: 30;
   background: #5f62ff;
   color: white;
+  border: 0;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   padding: 0 7rem;
@@ -330,6 +331,7 @@ body {
 .newInvoice .newInvoiceContainer .newInvoiceContent .addItem {
   background: #5f62ff;
   color: white;
+  border: 0;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   padding: 0 7rem;
@@ -464,6 +466,7 @@ body {
 .invoices .invoiceCard button {
   background: #5f62ff;
   color: white;
+  border: 0;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   padding: 0 7rem;
@@ -516,7 +519,7 @@ body {
   border: 2px solid #252525;
   color: white;
   border-radius: 0.5rem;
-  padding: 0.4rem 1.2rem;
+  padding: 1rem 1.2rem;
 }
 .invoices .invoiceCard .details p .icon {
   margin-right: 0.5rem;
@@ -637,6 +640,7 @@ body {
   position: absolute;
   background: #5f62ff;
   color: white;
+  border: 0;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   padding: 0 7rem;
@@ -866,6 +870,7 @@ body {
   flex: 0 0 70%;
   height: 60rem;
   border: 2px solid #252525;
+  background: #171717;
   border-radius: 1rem;
 }
 .InvoicesPaid .invoicesContainer {
@@ -1139,6 +1144,7 @@ body {
 .registerPage .container button {
   background: #5f62ff;
   color: white;
+  border: 0;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   padding: 0 7rem;
@@ -1249,6 +1255,7 @@ body {
 .loginPage .container button {
   background: #5f62ff;
   color: white;
+  border: 0;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   padding: 0 7rem;
@@ -1299,6 +1306,10 @@ body {
   .overviewContent {
     flex-direction: column;
   }
+  .overviewContent .InvoicesPaid {
+    flex: 0 0 100%;
+    width: 100%;
+  }
 
   .settings .content {
     flex-direction: column;
@@ -1318,6 +1329,10 @@ body {
     gap: 2rem;
   }
 
+  .overview .tabs-wrap {
+    flex: 0 0 100%;
+    width: 100%;
+  }
   .overview .tabs-wrap .tab-item, .overview .tabs-wrap .active-tab {
     padding: 3rem;
   }
@@ -1360,6 +1375,11 @@ body {
     height: 13rem;
     flex: 1 0 48%;
     margin-bottom: 0;
+  }
+}
+@media all and (max-width: 600px) {
+  .invoices .cards {
+    grid-template-columns: 1fr;
   }
 }
 .header {
@@ -1508,6 +1528,7 @@ h1 {
 .button {
   background: #5f62ff;
   color: white;
+  border: 0;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   padding: 0 7rem;

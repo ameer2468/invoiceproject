@@ -24,6 +24,10 @@
   }
   .overviewContent {
     flex-direction: column;
+    .InvoicesPaid {
+      flex: 0 0 100%;
+      width: 100%;
+    }
   }
   .settings {
       .content {
@@ -49,6 +53,8 @@
   }
   .overview {
     .tabs-wrap {
+      flex: 0 0 100%;
+      width: 100%;
       .tab-item, .active-tab {
         padding: 3rem;
       }
@@ -93,5 +99,11 @@
         }
       }
     }
+  }
+}
+
+@media all and (max-width: 600px) {
+  .invoices .cards {
+    grid-template-columns: 1fr;
   }
 }
