@@ -143,14 +143,14 @@
       color: $white;
     }
     .record {
-      border: 2px solid $border;
+      border: 2px solid $inputborder;
       display: flex;
       justify-content: space-evenly;
       border-radius: 1rem;
       max-width: 100%;
       transition: all 0.3s;
       color: white;
-      background: $darkgrey;
+      background: $input;
       position: relative;
       padding: 2rem 0;
       margin: 2rem auto 2rem auto;
@@ -176,6 +176,8 @@
       &:hover {
         transition: all 0.6s;
         cursor: pointer;
+        filter: brightness(1.2);
+        -webkit-filter: brightness(1.2);
         transform: scale(0.99);
         &::before {
           width: 100%;
@@ -203,6 +205,7 @@
   flex: 0 0 25%;
   height: 60rem;
   display: flex;
+  gap: 2rem;
   flex-wrap: wrap;
   .active-tab {
     width: 100%;
@@ -212,7 +215,6 @@
     display: flex;
     flex-direction: column;
     transition: all 0.3s;
-    margin-bottom: 2rem;
     justify-content: center;
     align-items: center;
     & p {
@@ -232,7 +234,6 @@
     border-radius: 1rem;
     display: flex;
     flex-direction: column;
-    margin-bottom: 2rem;
     position: relative;
     justify-content: center;
     transition: all 0.3s;
@@ -262,6 +263,8 @@
     }
     &:hover {
       cursor: pointer;
+      filter: brightness(1.2);
+      -webkit-filter: brightness(1.2);
       transform: scale(0.99);
       & p {
         color: white;

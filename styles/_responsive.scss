@@ -25,6 +25,7 @@
   .overviewContent {
     flex-direction: column;
     .InvoicesPaid {
+      margin: 2rem auto 0 auto;
       flex: 0 0 100%;
       width: 100%;
     }
@@ -43,7 +44,6 @@
   .invoices {
     .invoicesContainer {
       max-width: 100%;
-      margin: 0 auto;
       transform: translateX(-50%);
       .cardWrap {
         flex: 1 0 48%;

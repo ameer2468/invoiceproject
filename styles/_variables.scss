@@ -5,6 +5,8 @@ $purple: #5f62ff;
 $white: white;
 $darkgrey: #171717;
 $border: #252525;
+$input: #252525;
+$inputborder: #383838;
 
 /*Titles*/
 
@@ -74,11 +76,11 @@ $textcolor: white;
 }
 
 @mixin formInput {
-  border: 2px solid #383838;
+  border: 2px solid $inputborder;
   padding: 1.5rem 2rem;
   border-radius: 1rem;
   font-weight: bold;
-  background: #252525;
+  background: $input;
   width: 80%;
   color: white;
   margin: 1rem auto 0 auto;

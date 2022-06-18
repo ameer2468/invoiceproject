@@ -485,10 +485,10 @@ body {
 }
 .invoices .invoiceCard .statusBox {
   position: absolute;
-  background: #171717;
-  border: 2px solid #252525;
+  background: #252525;
+  border: 2px solid #383838;
   width: 100%;
-  max-width: 10rem;
+  max-width: 11rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -516,7 +516,8 @@ body {
 }
 .invoices .invoiceCard .details p {
   flex: 1 0 45%;
-  border: 2px solid #252525;
+  border: 2px solid #383838;
+  background: #252525;
   color: white;
   border-radius: 0.5rem;
   padding: 1rem 1.2rem;
@@ -589,7 +590,8 @@ body {
   margin-right: 0.5rem;
 }
 .invoiceId .pageContainer .items .i-item .info p {
-  border: 2px solid #252525;
+  border: 2px solid #383838;
+  background: #252525;
   padding: 1rem 2rem;
   font-weight: bold;
   border-radius: 1rem;
@@ -881,14 +883,14 @@ body {
   color: white;
 }
 .InvoicesPaid .invoicesContainer .record {
-  border: 2px solid #252525;
+  border: 2px solid #383838;
   display: flex;
   justify-content: space-evenly;
   border-radius: 1rem;
   max-width: 100%;
   transition: all 0.3s;
   color: white;
-  background: #171717;
+  background: #252525;
   position: relative;
   padding: 2rem 0;
   margin: 2rem auto 2rem auto;
@@ -915,6 +917,8 @@ body {
 .InvoicesPaid .invoicesContainer .record:hover {
   transition: all 0.6s;
   cursor: pointer;
+  filter: brightness(1.2);
+  -webkit-filter: brightness(1.2);
   transform: scale(0.99);
 }
 .InvoicesPaid .invoicesContainer .record:hover::before {
@@ -939,6 +943,7 @@ body {
   flex: 0 0 25%;
   height: 60rem;
   display: flex;
+  gap: 2rem;
   flex-wrap: wrap;
 }
 .tabs-wrap .active-tab {
@@ -949,7 +954,6 @@ body {
   display: flex;
   flex-direction: column;
   transition: all 0.3s;
-  margin-bottom: 2rem;
   justify-content: center;
   align-items: center;
 }
@@ -969,7 +973,6 @@ body {
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
-  margin-bottom: 2rem;
   position: relative;
   justify-content: center;
   transition: all 0.3s;
@@ -1000,6 +1003,8 @@ body {
 }
 .tabs-wrap .tab-item:hover {
   cursor: pointer;
+  filter: brightness(1.2);
+  -webkit-filter: brightness(1.2);
   transform: scale(0.99);
 }
 .tabs-wrap .tab-item:hover p {
@@ -1071,6 +1076,7 @@ body {
   max-width: 110rem;
   height: 65rem;
   border: 2px solid #252525;
+  background: #171717;
   border-radius: 1.5rem;
   overflow: hidden;
 }
@@ -1177,6 +1183,7 @@ body {
   max-width: 110rem;
   height: 60rem;
   border: 2px solid #252525;
+  background: #171717;
   border-radius: 1.5rem;
   overflow: hidden;
 }
@@ -1307,6 +1314,7 @@ body {
     flex-direction: column;
   }
   .overviewContent .InvoicesPaid {
+    margin: 2rem auto 0 auto;
     flex: 0 0 100%;
     width: 100%;
   }
@@ -1321,7 +1329,6 @@ body {
 
   .invoices .invoicesContainer {
     max-width: 100%;
-    margin: 0 auto;
     transform: translateX(-50%);
   }
   .invoices .invoicesContainer .cardWrap {
@@ -1493,9 +1500,9 @@ h1 {
   max-width: 30rem;
   display: flex;
   align-items: center;
-  border: 2px solid #252525;
+  border: 2px solid #383838;
   border-radius: 0.8rem;
-  background: #171717;
+  background: #252525;
   padding: 1rem;
 }
 .searchBox .icon {

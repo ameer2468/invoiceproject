@@ -26,7 +26,8 @@
            margin-right: 0.5rem;
          }
           p {
-            border: 2px solid $border;
+            border: 2px solid $inputborder;
+            background: $input;
             padding: 1rem 2rem;
             font-weight: bold;
             border-radius: 1rem;

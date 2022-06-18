@@ -95,9 +95,9 @@ h1 {
   max-width: 30rem;
   display: flex;
   align-items: center;
-  border: 2px solid $border;
+  border: 2px solid $inputborder;
   border-radius: 0.8rem;
-  background: $darkgrey;
+  background: $input;
   padding: 1rem;
   .icon {
     position: absolute;

@@ -204,10 +204,10 @@
     }
     .statusBox {
       position: absolute;
-      background: $darkgrey;
-      border: 2px solid $border;
+      background: $input;
+      border: 2px solid $inputborder;
       width: 100%;
-      max-width: 10rem;
+      max-width: 11rem;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -234,7 +234,8 @@
       align-items: center;
       p {
         flex: 1 0 45%;
-        border: 2px solid $border;
+        border: 2px solid $inputborder;
+        background: $input;
         color: $textcolor;
         border-radius: 0.5rem;
         padding: 1rem 1.2rem;
