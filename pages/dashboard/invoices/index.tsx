@@ -32,23 +32,22 @@ const Index = () => {
           <Loading style={"PulseLoader"} color={"white"} />
         </div>
       ) : (
-        <motion.div className="cards">
+        <div className="cards">
           {invoicesData.map((item: InvoiceType, index: number) => (
-            <div className={"cardWrap"} key={index}>
-              <Invoice
-                data={item}
-                editInvoice={() =>
-                  editInvoiceRequest({
-                    id: item.id,
-                    field: "status",
-                    value: item.status === "paid" ? "unpaid" : "paid",
-                  })
-                }
-                deleteInvoice={() => deleteInvoiceRequest(item.id)}
-              />
-            </div>
+            <Invoice
+              key={index.toString()}
+              data={item}
+              editInvoice={() =>
+                editInvoiceRequest({
+                  id: item.id,
+                  field: "status",
+                  value: item.status === "paid" ? "unpaid" : "paid",
+                })
+              }
+              deleteInvoice={() => deleteInvoiceRequest(item.id)}
+            />
           ))}
-        </motion.div>
+        </div>
       )}
     </Page>
   );

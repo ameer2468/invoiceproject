@@ -9,7 +9,7 @@ import { InvoiceData, item, MutateInvoice } from "../../../types/invoice";
 import moment from "moment";
 import { numberFormat } from "../../../src/helpers";
 import Loading from "../../../src/components/global/loading";
-import { useInvoice } from "../../../src/hooks/useInvoice";
+import { useInvoice, useInvoiceData } from "../../../src/hooks/useInvoice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoneyBill, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
 import Dropdown from "../../../src/components/global/dropdown";
@@ -21,28 +21,28 @@ interface props {
 }
 
 const Invoice = ({ invoiceData, invoiceItems }: props) => {
+  const { handleInputChange, invoiceForm } = useInvoice();
   const {
-    invoiceMutate,
-    mutateLoading,
-    setInvoice,
-    handleInputChange,
     invoice,
-    setEditInvoiceMode,
+    invoiceMutate,
     editInvoiceMode,
-  } = useInvoice();
-
+    setEditInvoiceMode,
+    mutateLoading,
+  } = useInvoiceData(
+    {
+      ...invoiceData,
+      invoiceItems: invoiceItems,
+    },
+    invoiceForm
+  );
   const editInvoice = (type: keyof MutateInvoice) => {
     invoiceMutate(type);
   };
 
-  useEffect(() => {
-    setInvoice({ ...invoiceData, invoiceItems: invoiceItems });
-  }, [invoiceData]);
-
   return (
     <Page pageName={"invoiceId"}>
       <div className="flex">
-        <h1>{invoice.to}</h1>
+        <h1>{invoice?.to}</h1>
         <div
           className="edit"
           onClick={() => {
@@ -61,7 +61,7 @@ const Invoice = ({ invoiceData, invoiceItems }: props) => {
           <>
             <div className="stat">
               <p className="bold">Id:</p>
-              <p>{invoice.id}</p>
+              <p>{invoice?.id}</p>
             </div>
             <div className="stat">
               {editInvoiceMode ? (
@@ -86,39 +86,39 @@ const Invoice = ({ invoiceData, invoiceItems }: props) => {
               ) : (
                 <>
                   <p className="bold">Amount:</p>
-                  <p>${numberFormat(Number(invoice.amount), 2)}</p>
+                  <p>${numberFormat(Number(invoice?.amount), 2)}</p>
                 </>
               )}
             </div>
             <div className="stat">
               <p className="bold">Status:</p>
-              <p className={invoice.status === "paid" ? "paid" : "unpaid"}>
+              <p className={invoice?.status === "paid" ? "paid" : "unpaid"}>
                 {mutateLoading ? (
                   <Loading style={"PulseLoader"} />
                 ) : editInvoiceMode ? (
                   <Dropdown
                     defaultValue={"Status"}
-                    options={invoice.status === "paid" ? ["unpaid"] : ["paid"]}
+                    options={invoice?.status === "paid" ? ["unpaid"] : ["paid"]}
                     style={{ backgroundColor: "#252525" }}
                     onSelect={() => {
                       editInvoice("status");
                     }}
                   />
                 ) : (
-                  invoice.status
+                  invoice?.status
                 )}
               </p>
             </div>
             <div className="stat">
               <p className="bold">Date:</p>
-              <p>{moment(invoice.date).format("MMM Do YYYY")}</p>
+              <p>{moment(invoice?.date).format("MMM Do YYYY")}</p>
             </div>
           </>
         )}
       </div>
       <h1>Invoice Items</h1>
       <div className="items">
-        {invoice.invoiceItems.map((item) => {
+        {invoice?.invoiceItems.map((item) => {
           return (
             <div key={item.id} className="i-item">
               <h2>${numberFormat(item.amount as number, 2)}</h2>

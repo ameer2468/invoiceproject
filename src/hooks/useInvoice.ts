@@ -6,43 +6,14 @@ import {
   mutateInvoice,
 } from "../services/invoices/services";
 import { useQuery } from "react-query";
-import { getBindingIdentifiers } from "@babel/types";
+import { invoiceFormState } from "../constants";
 
 export const useInvoice = () => {
   const [invoicesData, setInvoicesData] = useState<Invoice[]>([]);
-  const [mutateLoading, setMutateLoading] = useState<boolean>(false);
   const [editInvoiceMode, setEditInvoiceMode] = useState<boolean>(false);
-  const [invoice, setInvoice] = useState<InvoiceData>({
-    amount: "",
-    date: "",
-    description: "",
-    invoiceItems: [],
-    from: "",
-    id: "",
-    status: "",
-    to: "",
-  });
+  const [invoice, setInvoice] = useState<InvoiceData | null>(null);
   const [invoiceForm, setInvoiceForm] = useState<Invoice>({
-    id: "",
-    status: "unpaid",
-    description: "",
-    date: "",
-    dueDate: "",
-    to: "",
-    from: "",
-    item: [
-      {
-        id: "",
-        description: "",
-        quantity: "",
-        rate: "",
-        amount: "",
-      },
-    ],
-    notes: "",
-    tos: "",
-    tax: "",
-    amount: 0,
+    ...invoiceFormState,
   });
 
   const handleCurrencyChange = (value: string, name: string, index: number) => {
@@ -55,27 +26,6 @@ export const useInvoice = () => {
         return item;
       }),
     });
-  };
-
-  const editInvoiceRequest = async (data: mutateInvoice) => {
-    setMutateLoading(true);
-    await mutateInvoice(data)
-      .then(() => {
-        setMutateLoading(false);
-        setInvoicesData(
-          invoicesData.map((value) => {
-            return value.id === data.id
-              ? {
-                  ...value,
-                  status: value.status === "paid" ? "unpaid" : "paid",
-                }
-              : value;
-          })
-        );
-      })
-      .catch(() => {
-        setMutateLoading(false);
-      });
   };
 
   const deleteInvoiceRequest = async (id: string) => {
@@ -100,29 +50,6 @@ export const useInvoice = () => {
         }
         return item;
       }),
-    });
-  };
-
-  const invoiceMutate = (type: keyof MutateInvoice) => {
-    const mutateValue = (key: keyof MutateInvoice) => {
-      const obj: MutateInvoice = {
-        status: invoice.status === "paid" ? "unpaid" : "paid",
-        amount: invoiceForm.amount.toString().split("$")[1],
-        id: invoiceForm.id,
-        date: invoiceForm.date,
-      };
-      return obj[key];
-    };
-    editInvoiceRequest({
-      id: invoice.id,
-      field: type,
-      value: mutateValue(type),
-    }).then(() => {
-      setInvoice({
-        ...invoice,
-        [type]: mutateValue(type),
-      });
-      setEditInvoiceMode(false);
     });
   };
 
@@ -165,17 +92,64 @@ export const useInvoice = () => {
     handleCurrencyChange,
     removeInvoiceItem,
     setInvoicesData,
-    invoiceMutate,
     invoicesData,
     editInvoiceMode,
     setEditInvoiceMode,
     setInvoice,
     invoice,
-    editInvoiceRequest,
     deleteInvoiceRequest,
     handleInputChange,
     addItem,
+  };
+};
+
+export const useInvoiceData = (
+  invoiceData: InvoiceData,
+  invoiceForm: Invoice
+) => {
+  const [mutateLoading, setMutateLoading] = useState<boolean>(false);
+  const { invoice, setInvoice, editInvoiceMode, setEditInvoiceMode } =
+    useInvoice();
+
+  const invoiceMutate = async (type: keyof MutateInvoice) => {
+    const mutateValue = (key: keyof MutateInvoice) => {
+      const obj: MutateInvoice = {
+        status: invoice?.status === "paid" ? "unpaid" : "paid",
+        amount: invoiceForm.amount.toString().split("$")[1],
+        id: invoiceForm.id,
+        date: invoiceForm.date,
+      };
+      return obj[key];
+    };
+    setMutateLoading(true);
+    await mutateInvoice({
+      id: invoice?.id || "",
+      field: type,
+      value: mutateValue(type),
+    })
+      .then(() => {
+        setInvoice({
+          ...(invoice as InvoiceData),
+          [type]: mutateValue(type),
+        });
+        setMutateLoading(false);
+        setEditInvoiceMode(false);
+      })
+      .catch(() => {
+        setMutateLoading(false);
+      });
+  };
+
+  useEffect(() => {
+    setInvoice({ ...invoiceData, invoiceItems: invoiceData.invoiceItems });
+  }, []);
+  return {
+    invoice,
+    invoiceMutate,
+    setEditInvoiceMode,
+    editInvoiceMode,
     mutateLoading,
+    setMutateLoading,
   };
 };
 

@@ -6,13 +6,7 @@ import React from "react";
 import { UserContext } from "../src/UserContext";
 import Loading from "../src/components/global/loading";
 import { useCheckUser } from "../src/hooks/useCheckUser";
-import {
-  useQuery,
-  useMutation,
-  useQueryClient,
-  QueryClient,
-  QueryClientProvider,
-} from "react-query";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 Amplify.configure(awsconfig);
 Auth.configure(awsconfig);
