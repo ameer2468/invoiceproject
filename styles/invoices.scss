@@ -1,10 +1,9 @@
 .unpaid {
-  color: #ff8282;
+  color: #ff8282 !important;
 }
 .paid {
-  color: #77e277;
+  color: #77e277 !important;
 }
-
 
 .newInvoice {
   .newInvoiceContainer {
@@ -127,7 +126,8 @@
           }
         }
       }
-      .col:nth-child(3), .col:nth-child(4) {
+      .col:nth-child(3),
+      .col:nth-child(4) {
         margin-top: 2rem;
         h2 {
           margin-bottom: 2rem;
@@ -157,7 +157,6 @@
   }
 }
 
-
 .invoices {
   h1 {
     @include PageTitle;
@@ -170,17 +169,17 @@
     grid-template-columns: repeat(4, minmax(300px, 1fr));
     grid-gap: 4rem;
   }
-    .main-header {
-      display: flex;
-      flex-wrap: wrap;
-      width: 100%;
-      justify-content: space-between;
-      align-items: center;
-      h1 {
-        max-width: 10rem;
-        color: white;
-      }
+  .main-header {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    h1 {
+      max-width: 10rem;
+      color: white;
     }
+  }
   .invoiceCard {
     border: 2px solid $border;
     border-radius: 1rem;
@@ -221,7 +220,10 @@
         margin-right: 0.5rem;
       }
     }
-    .status, .amount, .date, .customer {
+    .status,
+    .amount,
+    .date,
+    .customer {
       font-weight: bold;
     }
     .details {
@@ -237,6 +239,7 @@
         border: 2px solid $inputborder;
         background: $input;
         color: $textcolor;
+        font-weight: normal;
         border-radius: 0.5rem;
         padding: 1rem 1.2rem;
         .icon {
@@ -251,7 +254,7 @@
       font-size: 1.3rem;
     }
     h2 {
-      color: $purple;
+      color: $title;
       margin-top: 1rem;
     }
     p.desc {
@@ -269,7 +272,6 @@
     }
   }
 }
-
 
 /*Edit Invoice*/
 

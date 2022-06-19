@@ -48,11 +48,7 @@ const Overview = () => {
   return (
     <Page pageName={"overview"}>
       <div className="main-header">
-        {userInfo.type === "unauthenticated" ? (
-          ""
-        ) : (
-          <h1>Welcome, {userInfo.attributes["custom:firstname"]}</h1>
-        )}
+        {userInfo.type === "unauthenticated" ? "" : <h1>Overview</h1>}
         <Dropdown
           onSelect={() => {}}
           options={["Weekly", "Daily", "Monthly"]}

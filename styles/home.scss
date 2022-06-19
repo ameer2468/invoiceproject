@@ -6,6 +6,13 @@
  @include blackButtonShadow();
 }
 
+.imageWrap {
+ margin-top: 10rem;
+ border-radius: 2rem;
+ img {
+  border-radius: 2rem;
+ }
+}
 
 //Features
 
@@ -47,11 +54,23 @@
     line-height: 3.5rem;
    }
    h3 {
-    color: $purple;
+    color: $title;
     font-size: $contentHeading;
    }
   }
  }
+}
+
+.bg {
+ background-image: url("../src/components/page-specific/home/herobg.png");
+ background-size: contain;
+ background-repeat: no-repeat;
+ background-position: center;
+ width: 100%;
+ z-index: -1;
+ top: -10rem;
+ height: 60rem;
+ position: absolute;
 }
 
 .hero {
@@ -60,13 +79,10 @@
  align-items: center;
  justify-content: center;
  padding: 0 2rem;
+ position: relative;
  margin: 6% auto 0 auto;
  width: 100%;
- height: 70rem;
- background-image: url("../src/components/page-specific/home/herobg.png");
- background-size: contain;
- background-repeat: no-repeat;
- background-position: bottom;
+ height: auto;
  button {
    @include blackButtonShadow();
   width: auto;

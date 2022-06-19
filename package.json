@@ -24,6 +24,8 @@
     "react-custom-scrollbars-2": "^4.4.0",
     "react-datepicker": "^4.7.0",
     "react-dom": "18.0.0",
+    "react-native-user-avatar-component": "^0.0.4",
+    "react-profile-avatar": "^1.0.0",
     "react-query": "^3.39.0",
     "react-spinners": "^0.11.0",
     "socket.io-client": "^4.4.1"

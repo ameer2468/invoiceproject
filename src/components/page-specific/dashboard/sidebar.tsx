@@ -1,7 +1,5 @@
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
-import profile from "./profile.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBook,
@@ -13,6 +11,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
 import { useLogin } from "../../../hooks/useLogin";
+import Avatar from "../../global/Avatar";
+import { useUser } from "../../../UserContext";
 
 interface props {
   children?: JSX.Element;
@@ -20,6 +20,8 @@ interface props {
 
 const Sidebar = ({ children }: props) => {
   const router = useRouter();
+  const { user } = useUser();
+  const userInfo = user[0];
   const { signoutHandler } = useLogin();
   const pathCheck = (path: string) => {
     return router.pathname === path ? "active" : "";
@@ -39,17 +41,14 @@ const Sidebar = ({ children }: props) => {
           <h3>Payee.</h3>
         </Link>
         <div className="profile">
-          <Image
-            priority={true}
-            height={140}
-            alt="user"
-            width={140}
-            layout="fixed"
-            src={profile}
-          />
+          {userInfo && (
+            <Avatar
+              name={userInfo.attributes["custom:firstname"]}
+              color={"#121212"}
+            />
+          )}
           <div className="info">
-            <h4>John Doe</h4>
-            <p>Freelancer</p>
+            <h4>{userInfo.attributes["custom:firstname"]}</h4>
           </div>
           <div className="navlinks">
             {navLinks.map((link, index) => (

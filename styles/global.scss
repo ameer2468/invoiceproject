@@ -24,7 +24,7 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
 .flipCaret {
@@ -48,10 +48,14 @@ input[type=number] {
     background: $purple;
     display: flex;
     align-items: center;
+    font-size: 1.4rem !important;
     border-radius: 0.5rem;
-    font-weight: bold;
+    transition: all 0.3s;
     justify-content: space-between;
     padding: 1rem 2rem;
+    p {
+      font-size: 1.4rem !important;
+    }
   }
   .menu {
     padding: 1rem 1.8rem;
@@ -63,18 +67,17 @@ input[type=number] {
     margin-top: 0.5rem;
     border: 2px solid $border;
     border-radius: 0.7rem;
-     p {
-       color: white;
-       padding: 0.4rem 0;
-       font-size: 1.4rem;
-       font-weight: bold;
-       transition: all 0.3s;
-       &:hover {
-         cursor: pointer;
-         color: $purple;
-         transition: all 0.3s;
-       }
-     }
+    p {
+      color: white;
+      padding: 0.4rem 0;
+      font-size: 1.4rem !important;
+      transition: all 0.3s;
+      &:hover {
+        cursor: pointer !important;
+        color: $purple !important;
+        transition: all 0.3s !important;
+      }
+    }
   }
   .icon {
     color: white;
@@ -115,10 +118,10 @@ h1 {
     transition: all 0.3s;
     font-weight: bold;
     color: white;
-    font-family: Poppins, 'sans-serif';
+    font-family: Poppins, "sans-serif";
     &::placeholder {
       color: white;
-      font-weight: bold;
+      font-weight: normal;
     }
     &:focus {
       outline: 0;
@@ -139,7 +142,7 @@ h1 {
 .disabledButton {
   background-color: #767676 !important;
   &:hover {
-    cursor: not-allowed!important;
+    cursor: not-allowed !important;
   }
 }
 
@@ -159,7 +162,7 @@ h1 {
   font-size: 1.5rem;
 }
 
-footer  {
+footer {
   background: $darkgrey;
   border-top: 2px solid $border;
   .container {
@@ -187,10 +190,13 @@ footer  {
   h3 {
     font-size: $contentHeading;
   }
-  p, li {
+  p,
+  li {
     font-size: 1.5rem;
   }
-  p, h3, li {
+  p,
+  h3,
+  li {
     color: white;
   }
   li {

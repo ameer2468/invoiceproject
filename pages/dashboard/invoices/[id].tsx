@@ -1,83 +1,128 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import DashboardLayout from "../../../layouts/DashboardLayout";
 import Page from "../../../src/components/global/Page";
 import {
   getAllInvoices,
   getInvoice,
 } from "../../../src/services/invoices/services";
-import { invoiceData, item } from "../../../types/invoice";
+import { InvoiceData, item, MutateInvoice } from "../../../types/invoice";
 import moment from "moment";
 import { numberFormat } from "../../../src/helpers";
 import Loading from "../../../src/components/global/loading";
 import { useInvoice } from "../../../src/hooks/useInvoice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoneyBill, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
+import Dropdown from "../../../src/components/global/dropdown";
+import CurrencyInput from "react-currency-input-field";
 
 interface props {
-  invoiceData: {
-    invoice: invoiceData[];
-    invoiceItems: item[];
-  };
+  invoiceData: InvoiceData;
+  invoiceItems: item[];
 }
 
-const Invoice = ({ invoiceData }: props) => {
-  const [mutateLoading, setMutateLoading] = React.useState(false);
-  const [invoiceInfo, setInvoiceInfo] = useState(invoiceData.invoice[0]);
-  const invoiceItems = invoiceData.invoiceItems;
-  const { editInvoiceRequest } = useInvoice();
+const Invoice = ({ invoiceData, invoiceItems }: props) => {
+  const {
+    invoiceMutate,
+    mutateLoading,
+    setInvoice,
+    handleInputChange,
+    invoice,
+    setEditInvoiceMode,
+    editInvoiceMode,
+  } = useInvoice();
 
-  const editInvoice = () => {
-    setMutateLoading(true);
-    editInvoiceRequest({
-      id: invoiceInfo.id,
-      field: "status",
-      value: invoiceInfo.status === "paid" ? "unpaid" : "paid",
-    }).then(() => {
-      setMutateLoading(false);
-      setInvoiceInfo({
-        ...invoiceInfo,
-        status: invoiceInfo.status === "paid" ? "unpaid" : "paid",
-      });
-    });
+  const editInvoice = (type: keyof MutateInvoice) => {
+    invoiceMutate(type);
   };
+
+  useEffect(() => {
+    return () => {
+      setInvoice({ ...invoiceData, invoiceItems: invoiceItems });
+    };
+  }, [invoiceData]);
 
   return (
     <Page pageName={"invoiceId"}>
-      <h1>{invoiceInfo.to}</h1>
+      <div className="flex">
+        <h1>{invoice.to}</h1>
+        <div
+          className="edit"
+          onClick={() => {
+            setEditInvoiceMode(!editInvoiceMode);
+          }}
+        >
+          Edit
+        </div>
+      </div>
       <div className="stats">
-        <div className="stat">
-          <p className="bold">Id:</p>
-          <p>{invoiceInfo.id}</p>
-        </div>
-        <div className="stat">
-          <p className="bold">Amount:</p>
-          <p>{invoiceInfo.amount}</p>
-        </div>
-        <div className="stat">
-          <button
-            onClick={editInvoice}
-            disabled={mutateLoading}
-            className={mutateLoading ? "disabledButton" : ""}
-          >
-            {mutateLoading ? (
-              <Loading style={"PulseLoader"} />
-            ) : (
-              `Mark as ${invoiceInfo.status === "paid" ? "unpaid" : "paid"}`
-            )}
-          </button>
-          <p className="bold">Status:</p>
-          <p className={invoiceInfo.status === "paid" ? "paid" : "unpaid"}>
-            {invoiceInfo.status}
-          </p>
-        </div>
-        <div className="stat">
-          <p className="bold">Date:</p>
-          <p>{moment(invoiceInfo.date).format("MMM Do YYYY")}</p>
-        </div>
+        {mutateLoading ? (
+          <div className="absoluteCenter">
+            <Loading style={"PulseLoader"} />
+          </div>
+        ) : (
+          <>
+            <div className="stat">
+              <p className="bold">Id:</p>
+              <p>{invoice.id}</p>
+            </div>
+            <div className="stat">
+              {editInvoiceMode ? (
+                <div className="flex">
+                  <CurrencyInput
+                    id="input-example"
+                    name="amount"
+                    onChange={handleInputChange}
+                    prefix="$"
+                    decimalScale={2}
+                    placeholder="New amount"
+                    decimalsLimit={2}
+                  />
+                  <button
+                    onClick={() => {
+                      editInvoice("amount");
+                    }}
+                  >
+                    Confirm
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <p className="bold">Amount:</p>
+                  <p>${numberFormat(Number(invoice.amount), 2)}</p>
+                </>
+              )}
+            </div>
+            <div className="stat">
+              <p className="bold">Status:</p>
+              <p className={invoiceData.status === "paid" ? "paid" : "unpaid"}>
+                {mutateLoading ? (
+                  <Loading style={"PulseLoader"} />
+                ) : editInvoiceMode ? (
+                  <Dropdown
+                    defaultValue={"Status"}
+                    options={
+                      invoiceData.status === "paid" ? ["unpaid"] : ["paid"]
+                    }
+                    style={{ backgroundColor: "#252525" }}
+                    onSelect={() => {
+                      editInvoice("status");
+                    }}
+                  />
+                ) : (
+                  invoice.status
+                )}
+              </p>
+            </div>
+            <div className="stat">
+              <p className="bold">Date:</p>
+              <p>{moment(invoice.date).format("MMM Do YYYY")}</p>
+            </div>
+          </>
+        )}
       </div>
       <h1>Invoice Items</h1>
       <div className="items">
-        {invoiceItems.map((item) => {
+        {invoice.invoiceItems.map((item) => {
           return (
             <div key={item.id} className="i-item">
               <h2>${numberFormat(item.amount as number, 2)}</h2>
@@ -108,7 +153,7 @@ Invoice.Layout = DashboardLayout;
 
 export async function getStaticPaths() {
   const { invoices } = await getAllInvoices();
-  const paths = invoices.map((invoice: invoiceData) => ({
+  const paths = invoices.map((invoice: InvoiceData) => ({
     params: { id: invoice.id },
   }));
   return {
@@ -122,7 +167,8 @@ export async function getStaticProps({ params }: any) {
   return {
     props: {
       protected: true,
-      invoiceData: res,
+      invoiceItems: res.invoiceItems,
+      invoiceData: res.invoice[0],
     },
   };
 }
