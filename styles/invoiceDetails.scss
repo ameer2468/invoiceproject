@@ -6,7 +6,7 @@
     }
     input {
       @include formInput();
-      margin-top: 0;
+      margin: 0;
       max-width: 50%;
     }
     .edit {

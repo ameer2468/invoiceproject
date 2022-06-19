@@ -36,9 +36,7 @@ const Invoice = ({ invoiceData, invoiceItems }: props) => {
   };
 
   useEffect(() => {
-    return () => {
-      setInvoice({ ...invoiceData, invoiceItems: invoiceItems });
-    };
+    setInvoice({ ...invoiceData, invoiceItems: invoiceItems });
   }, [invoiceData]);
 
   return (
@@ -94,15 +92,13 @@ const Invoice = ({ invoiceData, invoiceItems }: props) => {
             </div>
             <div className="stat">
               <p className="bold">Status:</p>
-              <p className={invoiceData.status === "paid" ? "paid" : "unpaid"}>
+              <p className={invoice.status === "paid" ? "paid" : "unpaid"}>
                 {mutateLoading ? (
                   <Loading style={"PulseLoader"} />
                 ) : editInvoiceMode ? (
                   <Dropdown
                     defaultValue={"Status"}
-                    options={
-                      invoiceData.status === "paid" ? ["unpaid"] : ["paid"]
-                    }
+                    options={invoice.status === "paid" ? ["unpaid"] : ["paid"]}
                     style={{ backgroundColor: "#252525" }}
                     onSelect={() => {
                       editInvoice("status");
