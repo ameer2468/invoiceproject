@@ -46,7 +46,6 @@ body {
 /*Content*/
 /*Dashboard Page*/
 .loginButton {
-  filter: drop-shadow(4px 7px 0px #5f62ff);
   background: white;
   font-family: "Poppins", sans-serif;
   padding: 0 5rem;
@@ -58,15 +57,13 @@ body {
 }
 .loginButton:hover {
   cursor: pointer;
-  filter: drop-shadow(0px 0px 0px #000000);
+  background: #e6e6e6;
   transition: all 0.3s;
-  transform: translateY(5px);
 }
 .loginButton:focus {
   outline: none;
   filter: drop-shadow(0px 0px 0px #000000);
   transition: all 0.3s;
-  transform: translateY(5px);
 }
 
 .dbButton {

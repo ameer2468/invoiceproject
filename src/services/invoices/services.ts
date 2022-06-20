@@ -18,7 +18,7 @@ export const getInvoice = (id: string) => {
 export interface mutateInvoice {
   id: string;
   field: string;
-  value: string | number;
+  value: string | number | undefined;
 }
 
 export const mutateInvoice = (data: mutateInvoice) => {

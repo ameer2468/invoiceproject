@@ -99,7 +99,6 @@ $textcolor: white;
 }
 
 @mixin whiteButtonShadow {
-  filter: drop-shadow(4px 7px 0px $purple);
   background: white;
   font-family: "Poppins", sans-serif;
   padding: 0 5rem;
@@ -110,14 +109,12 @@ $textcolor: white;
   transition: all 0.3s;
   &:hover {
     cursor: pointer;
-    filter: drop-shadow(0px 0px 0px #000000);
+    background: darken($white, 10%);
     transition: all 0.3s;
-    transform: translateY(5px);
   }
   &:focus {
     outline: none;
     filter: drop-shadow(0px 0px 0px #000000);
     transition: all 0.3s;
-    transform: translateY(5px);
   }
 }

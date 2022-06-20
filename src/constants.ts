@@ -18,5 +18,5 @@ export const invoiceFormState = {
   notes: "",
   tos: "",
   tax: "",
-  amount: 0,
+  amount: "",
 };

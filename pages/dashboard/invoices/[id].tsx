@@ -1,15 +1,16 @@
-import React, { useEffect } from "react";
+import React from "react";
 import DashboardLayout from "../../../layouts/DashboardLayout";
 import Page from "../../../src/components/global/Page";
 import {
   getAllInvoices,
   getInvoice,
 } from "../../../src/services/invoices/services";
-import { InvoiceData, item, MutateInvoice } from "../../../types/invoice";
+import { InvoiceData, item } from "../../../types/invoice";
 import moment from "moment";
 import { numberFormat } from "../../../src/helpers";
 import Loading from "../../../src/components/global/loading";
 import { useInvoice, useInvoiceData } from "../../../src/hooks/useInvoice";
+import Input from "../../../src/components/global/Input";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoneyBill, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
 import Dropdown from "../../../src/components/global/dropdown";
@@ -21,23 +22,26 @@ interface props {
 }
 
 const Invoice = ({ invoiceData, invoiceItems }: props) => {
-  const { handleInputChange, invoiceForm } = useInvoice();
+  const {
+    invoiceForm,
+    handleCurrencyValueChange,
+    handleInputChange,
+    setInvoiceForm,
+  } = useInvoice();
   const {
     invoice,
     invoiceMutate,
     editInvoiceMode,
-    setEditInvoiceMode,
+    editInvoiceHandler,
     mutateLoading,
   } = useInvoiceData(
     {
       ...invoiceData,
       invoiceItems: invoiceItems,
     },
-    invoiceForm
+    invoiceForm,
+    setInvoiceForm
   );
-  const editInvoice = (type: keyof MutateInvoice) => {
-    invoiceMutate(type);
-  };
 
   return (
     <Page pageName={"invoiceId"}>
@@ -46,7 +50,7 @@ const Invoice = ({ invoiceData, invoiceItems }: props) => {
         <div
           className="edit"
           onClick={() => {
-            setEditInvoiceMode(!editInvoiceMode);
+            editInvoiceHandler(invoiceData);
           }}
         >
           Edit
@@ -60,24 +64,50 @@ const Invoice = ({ invoiceData, invoiceItems }: props) => {
         ) : (
           <>
             <div className="stat">
-              <p className="bold">Id:</p>
-              <p>{invoice?.id}</p>
+              {editInvoiceMode ? (
+                <div className="flex">
+                  <Input
+                    name="id"
+                    placeholder="id"
+                    value={invoiceForm.id}
+                    onChange={handleInputChange}
+                  />
+                  <button
+                    onClick={async () => {
+                      await invoiceMutate("id");
+                    }}
+                  >
+                    Confirm
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <p className="bold">Id:</p>
+                  <p>{invoice?.id}</p>
+                </>
+              )}
             </div>
             <div className="stat">
               {editInvoiceMode ? (
                 <div className="flex">
                   <CurrencyInput
-                    id="input-example"
                     name="amount"
-                    onChange={handleInputChange}
+                    onValueChange={handleCurrencyValueChange}
+                    value={invoiceForm?.amount}
                     prefix="$"
-                    decimalScale={2}
                     placeholder="New amount"
+                    decimalScale={2}
                     decimalsLimit={2}
                   />
                   <button
-                    onClick={() => {
-                      editInvoice("amount");
+                    disabled={invoice?.amount === invoiceForm.amount}
+                    className={
+                      invoice?.amount === invoiceForm.amount
+                        ? "disabledButton"
+                        : ""
+                    }
+                    onClick={async () => {
+                      await invoiceMutate("amount");
                     }}
                   >
                     Confirm
@@ -100,8 +130,8 @@ const Invoice = ({ invoiceData, invoiceItems }: props) => {
                     defaultValue={"Status"}
                     options={invoice?.status === "paid" ? ["unpaid"] : ["paid"]}
                     style={{ backgroundColor: "#252525" }}
-                    onSelect={() => {
-                      editInvoice("status");
+                    onSelect={async () => {
+                      await invoiceMutate("status");
                     }}
                   />
                 ) : (

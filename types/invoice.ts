@@ -10,7 +10,7 @@ export interface Invoice {
   notes: string;
   tos: string;
   tax: string;
-  amount: number;
+  amount: string;
 }
 
 export interface MutateInvoice {

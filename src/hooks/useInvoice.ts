@@ -60,6 +60,13 @@ export const useInvoice = () => {
     });
   };
 
+  const handleCurrencyValueChange = (value: string | undefined) => {
+    setInvoiceForm({
+      ...invoiceForm,
+      amount: value as string,
+    });
+  };
+
   const handleInputChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -91,6 +98,7 @@ export const useInvoice = () => {
     handleItemChange,
     handleCurrencyChange,
     removeInvoiceItem,
+    handleCurrencyValueChange,
     setInvoicesData,
     invoicesData,
     editInvoiceMode,
@@ -105,17 +113,29 @@ export const useInvoice = () => {
 
 export const useInvoiceData = (
   invoiceData: InvoiceData,
-  invoiceForm: Invoice
+  invoiceForm: Invoice,
+  setInvoiceForm: (invoiceForm: Invoice) => void
 ) => {
   const [mutateLoading, setMutateLoading] = useState<boolean>(false);
   const { invoice, setInvoice, editInvoiceMode, setEditInvoiceMode } =
     useInvoice();
 
+  const editInvoiceHandler = (invoiceData: InvoiceData) => {
+    setEditInvoiceMode(!editInvoiceMode);
+    setInvoiceForm({
+      ...invoiceForm,
+      id: invoiceData.id,
+      date: invoiceData.date,
+      amount: invoiceData.amount,
+      status: invoiceData.status,
+    });
+  };
+
   const invoiceMutate = async (type: keyof MutateInvoice) => {
     const mutateValue = (key: keyof MutateInvoice) => {
       const obj: MutateInvoice = {
         status: invoice?.status === "paid" ? "unpaid" : "paid",
-        amount: invoiceForm.amount.toString().split("$")[1],
+        amount: invoiceForm.amount,
         id: invoiceForm.id,
         date: invoiceForm.date,
       };
@@ -145,6 +165,7 @@ export const useInvoiceData = (
   }, []);
   return {
     invoice,
+    editInvoiceHandler,
     invoiceMutate,
     setEditInvoiceMode,
     editInvoiceMode,
