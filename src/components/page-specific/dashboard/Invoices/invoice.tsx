@@ -16,7 +16,6 @@ import Link from "next/link";
 interface props {
   data: Invoice;
   deleteInvoice: () => Promise<void>;
-  editInvoice: () => Promise<void>;
 }
 
 const Invoice = ({ data }: props) => {
@@ -37,7 +36,7 @@ const Invoice = ({ data }: props) => {
       <div className="details">
         <p className="amount">
           <FontAwesomeIcon className={"icon"} icon={faSackDollar} />
-          {`$${numberFormat(data.amount, 2)}`}
+          {`$${numberFormat(Number(data.amount), 2)}`}
         </p>
         <p className="date">
           <FontAwesomeIcon icon={faClock} className={"icon"} />

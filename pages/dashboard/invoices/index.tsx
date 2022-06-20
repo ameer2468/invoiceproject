@@ -11,7 +11,7 @@ import { useFetchInvoices, useInvoice } from "../../../src/hooks/useInvoice";
 const Index = () => {
   useFetchInvoices();
   const { isLoading, isFetching, invoicesData } = useFetchInvoices();
-  const { editInvoiceRequest, deleteInvoiceRequest } = useInvoice();
+  const { deleteInvoiceRequest } = useInvoice();
 
   return (
     <Page pageName={"invoices"}>
@@ -37,13 +37,6 @@ const Index = () => {
             <Invoice
               key={index.toString()}
               data={item}
-              editInvoice={() =>
-                editInvoiceRequest({
-                  id: item.id,
-                  field: "status",
-                  value: item.status === "paid" ? "unpaid" : "paid",
-                })
-              }
               deleteInvoice={() => deleteInvoiceRequest(item.id)}
             />
           ))}

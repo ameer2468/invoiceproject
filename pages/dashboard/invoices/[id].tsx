@@ -73,6 +73,10 @@ const Invoice = ({ invoiceData, invoiceItems }: props) => {
                     onChange={handleInputChange}
                   />
                   <button
+                    disabled={invoice?.id === invoiceForm.id}
+                    className={
+                      invoice?.id === invoiceForm.id ? "disabledButton" : ""
+                    }
                     onClick={async () => {
                       await invoiceMutate("id");
                     }}
