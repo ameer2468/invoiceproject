@@ -234,7 +234,7 @@ body {
   height: 100%;
 }
 .newInvoice .newInvoiceContainer h1 {
-  color: black;
+  color: white;
   font-size: 4rem;
   width: 100%;
 }
@@ -337,12 +337,14 @@ body {
 }
 .newInvoice .newInvoiceContainer .newInvoiceContent .miscInfo .col .totalAmount {
   font-size: 2rem;
+  color: white;
 }
 .newInvoice .newInvoiceContainer .newInvoiceContent .miscInfo .col .tax {
   margin-bottom: 2rem;
 }
 .newInvoice .newInvoiceContainer .newInvoiceContent .miscInfo .col .amount {
   font-size: 3.5rem;
+  color: #5f62ff;
 }
 .newInvoice .newInvoiceContainer .newInvoiceContent .addItem {
   background: #5f62ff;
@@ -413,6 +415,7 @@ body {
 }
 .newInvoice .newInvoiceContainer .newInvoiceContent .col h2 {
   width: 100%;
+  color: white;
   margin: 0;
 }
 .newInvoice .newInvoiceContainer textarea {
@@ -443,7 +446,7 @@ body {
 }
 
 .invoices h1 {
-  color: black;
+  color: white;
   font-size: 4rem;
   width: 100%;
 }
@@ -743,7 +746,7 @@ body {
   height: 100%;
 }
 .settings .pageContainer h1 {
-  color: black;
+  color: white;
   font-size: 4rem;
   color: white;
   width: 100%;
@@ -1519,6 +1522,11 @@ input[type=number] {
   height: 100%;
 }
 
+li,
+ul {
+  list-style: none;
+}
+
 .dropdown {
   width: 100%;
   max-width: 13rem;
@@ -1571,7 +1579,7 @@ input[type=number] {
 }
 
 h1 {
-  color: black;
+  color: white;
   font-size: 4rem;
   color: white;
 }

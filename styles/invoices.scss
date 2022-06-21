@@ -78,12 +78,14 @@
           }
           .totalAmount {
             font-size: 2rem;
+            color: white;
           }
           .tax {
             margin-bottom: 2rem;
           }
           .amount {
             font-size: 3.5rem;
+            color: $purple;
           }
         }
       }
@@ -140,6 +142,7 @@
         flex-direction: column;
         h2 {
           width: 100%;
+          color: white;
           margin: 0;
         }
       }

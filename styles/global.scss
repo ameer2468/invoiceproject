@@ -36,6 +36,11 @@ input[type="number"] {
   @include DashboardContainer();
 }
 
+li,
+ul {
+  list-style: none;
+}
+
 .dropdown {
   width: 100%;
   max-width: 13rem;

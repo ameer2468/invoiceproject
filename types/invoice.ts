@@ -6,11 +6,18 @@ export interface Invoice {
   to: string;
   status: string;
   from: string;
-  item: item[];
+  invoiceItems: item[];
   notes: string;
   tos: string;
   tax: string;
   amount: string;
+}
+
+export interface MutateLoading {
+  id: boolean;
+  amount: boolean;
+  date: boolean;
+  status: boolean;
 }
 
 export interface MutateInvoice {
@@ -34,7 +41,5 @@ export interface InvoiceData {
 export interface item {
   id: string;
   description: string;
-  quantity: number | string;
-  rate: number | string;
   amount: number | string;
 }

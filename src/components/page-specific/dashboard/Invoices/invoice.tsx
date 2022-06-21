@@ -10,7 +10,7 @@ import { Invoice } from "../../../../../types/invoice";
 import moment from "moment";
 import { numberFormat } from "../../../../helpers";
 import { motion } from "framer-motion";
-import { anim } from "../../../../framer";
+import { staggerChildren } from "../../../../framer";
 import Link from "next/link";
 
 interface props {
@@ -20,7 +20,7 @@ interface props {
 
 const Invoice = ({ data }: props) => {
   return (
-    <motion.div {...anim} className="invoiceCard">
+    <motion.li {...staggerChildren} className="invoiceCard">
       <h2>{data.to}</h2>
       <p className="desc">
         {data.description.length > 120
@@ -50,7 +50,7 @@ const Invoice = ({ data }: props) => {
       <Link passHref={true} href={`/dashboard/invoices/${data.id}`}>
         <button style={{ maxWidth: "100%" }}>View details</button>
       </Link>
-    </motion.div>
+    </motion.li>
   );
 };
 

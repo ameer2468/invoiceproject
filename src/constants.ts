@@ -1,17 +1,17 @@
+import { v4 as uuidv4 } from "uuid";
+
 export const invoiceFormState = {
   id: "",
   status: "unpaid",
   description: "",
-  date: "",
+  date: new Date().toISOString().split("T")[0],
   dueDate: "",
   to: "",
   from: "",
-  item: [
+  invoiceItems: [
     {
-      id: "",
+      id: uuidv4(),
       description: "",
-      quantity: "",
-      rate: "",
       amount: "",
     },
   ],

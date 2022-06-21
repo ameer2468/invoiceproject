@@ -1,39 +1,88 @@
-import { Invoice, InvoiceData, MutateInvoice } from "../../types/invoice";
-import { useState, ChangeEvent, useEffect } from "react";
 import {
+  Invoice,
+  InvoiceData,
+  MutateInvoice,
+  MutateLoading,
+} from "../../types/invoice";
+import { v4 as uuidv4 } from "uuid";
+import { useState, ChangeEvent, useEffect, FormEvent } from "react";
+import {
+  createInvoice,
   deleteInvoice,
   getAllInvoices,
   mutateInvoice,
 } from "../services/invoices/services";
 import { useQuery } from "react-query";
 import { invoiceFormState } from "../constants";
+import { useRouter } from "next/router";
+
+/*
+  This hook is used to manage the state of the invoice form,
+    and the data that is being displayed in the form,
+    and the data that is being sent to the server.
+
+    hooks in file:
+
+        useInvoice,
+        useInvoiceData: Deals with data of an individual invoice,
+        useFetchInvoices: Fetches all invoices from database
+ */
 
 export const useInvoice = () => {
   const [invoicesData, setInvoicesData] = useState<Invoice[]>([]);
   const [editInvoiceMode, setEditInvoiceMode] = useState<boolean>(false);
+  const [createInvoiceLoading, setCreateInvoiceLoading] =
+    useState<boolean>(false);
   const [invoiceForm, setInvoiceForm] = useState<Invoice>({
     ...invoiceFormState,
   });
+  const route = useRouter();
 
-  const handleCurrencyChange = (value: string, name: string, index: number) => {
+  /* Input handler when pricing items on create invoice form */
+
+  const handleCurrencyChange = (value: string, key: string, index: number) => {
     setInvoiceForm({
       ...invoiceForm,
-      item: invoiceForm.item.map((item, i) => {
+      invoiceItems: invoiceForm.invoiceItems.map((item, i) => {
         if (i === index) {
-          return { ...item, [name]: value };
+          return { ...item, [key]: value };
         }
         return item;
       }),
     });
   };
 
-  const deleteInvoiceRequest = (id: string) => {
-    deleteInvoice(id).then(() => {
-      setInvoicesData(
-        invoicesData.filter((invoice: { id: string }) => invoice.id !== id)
-      );
-    });
+  /* Create invoice handler */
+
+  const handleCreateInvoice = (e?: FormEvent<SubmitEvent>) => {
+    e?.preventDefault();
+    setCreateInvoiceLoading(true);
+    createInvoice(invoiceForm)
+      .then(() => {
+        setInvoiceForm({ ...invoiceFormState });
+      })
+      .then(() => {})
+      .finally(() => {
+        setCreateInvoiceLoading(false);
+        route.replace(invoiceForm.id);
+      });
   };
+
+  /* Delete invoice from database & UI */
+
+  const deleteInvoiceRequest = (id: string) => {
+    deleteInvoice(id)
+      .then(() => {
+        setInvoicesData(
+          invoicesData.filter((invoice: { id: string }) => invoice.id !== id)
+        );
+      })
+      .catch(() => {
+        console.log("Error deleting invoice");
+      });
+  };
+
+  /* Input handler for invoice form of individual items */
 
   const handleItemChange = (
     event: ChangeEvent<HTMLInputElement>,
@@ -41,7 +90,7 @@ export const useInvoice = () => {
   ) => {
     setInvoiceForm({
       ...invoiceForm,
-      item: invoiceForm.item.map((item, i) => {
+      invoiceItems: invoiceForm.invoiceItems.map((item, i) => {
         if (i === index) {
           return { ...item, [event.target.name]: event.target.value };
         }
@@ -50,12 +99,16 @@ export const useInvoice = () => {
     });
   };
 
+  /* Removes an item from the invoice form */
+
   const removeInvoiceItem = (index: number) => {
     setInvoiceForm({
       ...invoiceForm,
-      item: invoiceForm.item.filter((item, i) => i !== index),
+      invoiceItems: invoiceForm.invoiceItems.filter((item, i) => i !== index),
     });
   };
+
+  /* Handles currency change on an individual invoice/individual basis */
 
   const handleCurrencyValueChange = (value: string | undefined) => {
     setInvoiceForm({
@@ -63,6 +116,17 @@ export const useInvoice = () => {
       amount: value as string,
     });
   };
+
+  /* Update an individual key in the invoice form */
+
+  const updateInvoiceForm = (key: string, value: string | boolean) => {
+    setInvoiceForm({
+      ...invoiceForm,
+      [key]: value,
+    });
+  };
+
+  /* Generic input handler for invoice form */
 
   const handleInputChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -73,16 +137,16 @@ export const useInvoice = () => {
     });
   };
 
+  /* Adds an item to the invoice form */
+
   const addItem = () => {
     setInvoiceForm({
       ...invoiceForm,
-      item: [
-        ...invoiceForm.item,
+      invoiceItems: [
+        ...invoiceForm.invoiceItems,
         {
-          id: "",
+          id: uuidv4(),
           description: "",
-          quantity: "",
-          rate: "",
           amount: "",
         },
       ],
@@ -94,8 +158,11 @@ export const useInvoice = () => {
     setInvoiceForm,
     handleItemChange,
     handleCurrencyChange,
+    createInvoiceLoading,
     removeInvoiceItem,
     handleCurrencyValueChange,
+    handleCreateInvoice,
+    updateInvoiceForm,
     setInvoicesData,
     invoicesData,
     editInvoiceMode,
@@ -111,9 +178,26 @@ export const useInvoiceData = (
   invoiceForm: Invoice,
   setInvoiceForm: (invoiceForm: Invoice) => void
 ) => {
-  const [mutateLoading, setMutateLoading] = useState<boolean>(false);
+  const [mutateLoading, setMutateLoading] = useState<MutateLoading>({
+    id: false,
+    amount: false,
+    date: false,
+    status: false,
+  });
   const [invoice, setInvoice] = useState<InvoiceData | null>(null);
   const { editInvoiceMode, setEditInvoiceMode } = useInvoice();
+
+  /* When editing an individual invoice - this is a loading handler
+  depending on the field that is being edited */
+
+  const mutateLoadHandler = (key: string, value: boolean) => {
+    setMutateLoading({
+      ...mutateLoading,
+      [key]: value,
+    });
+  };
+
+  /* When editing an individual invoice - this is a mutate handler */
 
   const editInvoiceHandler = (invoiceData: InvoiceData) => {
     setEditInvoiceMode(!editInvoiceMode);
@@ -126,6 +210,9 @@ export const useInvoiceData = (
     });
   };
 
+  /* When editing an individual invoice - this makes the request
+   * on confirm button click */
+
   const invoiceMutate = (type: keyof MutateInvoice) => {
     const mutateValue = (key: keyof MutateInvoice) => {
       const obj: MutateInvoice = {
@@ -136,7 +223,7 @@ export const useInvoiceData = (
       };
       return obj[key];
     };
-    setMutateLoading(true);
+    mutateLoadHandler(type, true);
     mutateInvoice({
       id: invoice?.id || "",
       field: type,
@@ -147,13 +234,15 @@ export const useInvoiceData = (
           ...(invoice as InvoiceData),
           [type]: mutateValue(type),
         });
-        setMutateLoading(false);
         setEditInvoiceMode(false);
       })
-      .catch(() => {
-        setMutateLoading(false);
+      .catch(() => {})
+      .finally(() => {
+        mutateLoadHandler(type, false);
       });
   };
+
+  /* useEffect sets invoice data to state on page load*/
 
   useEffect(() => {
     setInvoice({ ...invoiceData, invoiceItems: invoiceData.invoiceItems });
@@ -162,9 +251,9 @@ export const useInvoiceData = (
     invoice,
     editInvoiceHandler,
     invoiceMutate,
+    mutateLoading,
     setEditInvoiceMode,
     editInvoiceMode,
-    mutateLoading,
     setMutateLoading,
   };
 };

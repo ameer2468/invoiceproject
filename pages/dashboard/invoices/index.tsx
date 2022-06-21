@@ -4,6 +4,7 @@ import Invoice from "../../../src/components/page-specific/dashboard/Invoices/in
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Loading from "../../../src/components/global/loading";
+import { staggerParent } from "../../../src/framer";
 import { Invoice as InvoiceType } from "../../../types/invoice";
 import Page from "../../../src/components/global/Page";
 import { useFetchInvoices, useInvoice } from "../../../src/hooks/useInvoice";
@@ -32,15 +33,20 @@ const Index = () => {
           <Loading style={"PulseLoader"} color={"white"} />
         </div>
       ) : (
-        <div className="cards">
+        <motion.ul
+          initial={"closed"}
+          animate={"open"}
+          variants={{ ...staggerParent.variants }}
+          className="cards"
+        >
           {invoicesData.map((item: InvoiceType, index: number) => (
             <Invoice
               key={index.toString()}
               data={item}
-              deleteInvoice={() => deleteInvoiceRequest(item.id)}
+              deleteInvoice={async () => deleteInvoiceRequest(item.id)}
             />
           ))}
-        </div>
+        </motion.ul>
       )}
     </Page>
   );
