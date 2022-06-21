@@ -11,7 +11,6 @@ import { invoiceFormState } from "../constants";
 export const useInvoice = () => {
   const [invoicesData, setInvoicesData] = useState<Invoice[]>([]);
   const [editInvoiceMode, setEditInvoiceMode] = useState<boolean>(false);
-  const [invoice, setInvoice] = useState<InvoiceData | null>(null);
   const [invoiceForm, setInvoiceForm] = useState<Invoice>({
     ...invoiceFormState,
   });
@@ -28,14 +27,12 @@ export const useInvoice = () => {
     });
   };
 
-  const deleteInvoiceRequest = async (id: string) => {
-    await deleteInvoice(id)
-      .then(() => {
-        setInvoicesData(
-          invoicesData.filter((invoice: { id: string }) => invoice.id !== id)
-        );
-      })
-      .catch(() => {});
+  const deleteInvoiceRequest = (id: string) => {
+    deleteInvoice(id).then(() => {
+      setInvoicesData(
+        invoicesData.filter((invoice: { id: string }) => invoice.id !== id)
+      );
+    });
   };
 
   const handleItemChange = (
@@ -103,8 +100,6 @@ export const useInvoice = () => {
     invoicesData,
     editInvoiceMode,
     setEditInvoiceMode,
-    setInvoice,
-    invoice,
     deleteInvoiceRequest,
     handleInputChange,
     addItem,
@@ -117,8 +112,8 @@ export const useInvoiceData = (
   setInvoiceForm: (invoiceForm: Invoice) => void
 ) => {
   const [mutateLoading, setMutateLoading] = useState<boolean>(false);
-  const { invoice, setInvoice, editInvoiceMode, setEditInvoiceMode } =
-    useInvoice();
+  const [invoice, setInvoice] = useState<InvoiceData | null>(null);
+  const { editInvoiceMode, setEditInvoiceMode } = useInvoice();
 
   const editInvoiceHandler = (invoiceData: InvoiceData) => {
     setEditInvoiceMode(!editInvoiceMode);
@@ -131,7 +126,7 @@ export const useInvoiceData = (
     });
   };
 
-  const invoiceMutate = async (type: keyof MutateInvoice) => {
+  const invoiceMutate = (type: keyof MutateInvoice) => {
     const mutateValue = (key: keyof MutateInvoice) => {
       const obj: MutateInvoice = {
         status: invoice?.status === "paid" ? "unpaid" : "paid",
@@ -142,7 +137,7 @@ export const useInvoiceData = (
       return obj[key];
     };
     setMutateLoading(true);
-    await mutateInvoice({
+    mutateInvoice({
       id: invoice?.id || "",
       field: type,
       value: mutateValue(type),

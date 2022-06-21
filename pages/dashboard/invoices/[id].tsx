@@ -50,7 +50,7 @@ const Invoice = ({ invoiceData, invoiceItems }: props) => {
         <div
           className="edit"
           onClick={() => {
-            editInvoiceHandler(invoiceData);
+            editInvoiceHandler(invoice as InvoiceData);
           }}
         >
           Edit
@@ -77,8 +77,8 @@ const Invoice = ({ invoiceData, invoiceItems }: props) => {
                     className={
                       invoice?.id === invoiceForm.id ? "disabledButton" : ""
                     }
-                    onClick={async () => {
-                      await invoiceMutate("id");
+                    onClick={() => {
+                      invoiceMutate("id");
                     }}
                   >
                     Confirm
@@ -110,8 +110,8 @@ const Invoice = ({ invoiceData, invoiceItems }: props) => {
                         ? "disabledButton"
                         : ""
                     }
-                    onClick={async () => {
-                      await invoiceMutate("amount");
+                    onClick={() => {
+                      invoiceMutate("amount");
                     }}
                   >
                     Confirm
@@ -134,8 +134,8 @@ const Invoice = ({ invoiceData, invoiceItems }: props) => {
                     defaultValue={"Status"}
                     options={invoice?.status === "paid" ? ["unpaid"] : ["paid"]}
                     style={{ backgroundColor: "#252525" }}
-                    onSelect={async () => {
-                      await invoiceMutate("status");
+                    onSelect={() => {
+                      invoiceMutate("status");
                     }}
                   />
                 ) : (
