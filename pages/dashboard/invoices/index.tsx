@@ -7,12 +7,11 @@ import Loading from "../../../src/components/global/loading";
 import { staggerParent } from "../../../src/framer";
 import { Invoice as InvoiceType } from "../../../types/invoice";
 import Page from "../../../src/components/global/Page";
-import { useFetchInvoices, useInvoice } from "../../../src/hooks/useInvoice";
+import { useFetchInvoices } from "../../../src/hooks/useInvoice";
 
 const Index = () => {
   useFetchInvoices();
   const { isLoading, isFetching, invoicesData } = useFetchInvoices();
-  const { deleteInvoiceRequest } = useInvoice();
 
   return (
     <Page pageName={"invoices"}>
@@ -40,11 +39,7 @@ const Index = () => {
           className="cards"
         >
           {invoicesData.map((item: InvoiceType, index: number) => (
-            <Invoice
-              key={index.toString()}
-              data={item}
-              deleteInvoice={async () => deleteInvoiceRequest(item.id)}
-            />
+            <Invoice key={index.toString()} data={item} />
           ))}
         </motion.ul>
       )}

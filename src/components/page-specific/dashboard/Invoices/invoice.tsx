@@ -15,7 +15,6 @@ import Link from "next/link";
 
 interface props {
   data: Invoice;
-  deleteInvoice: () => Promise<void>;
 }
 
 const Invoice = ({ data }: props) => {

@@ -590,6 +590,11 @@ body {
   display: flex;
   align-items: center;
 }
+.invoiceId .pageContainer .action-buttons {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
 .invoiceId .pageContainer input {
   border: 2px solid #383838;
   padding: 1.5rem 2rem;
@@ -1525,6 +1530,40 @@ input[type=number] {
 li,
 ul {
   list-style: none;
+}
+
+.pinkButton {
+  background: #ff7193;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  border: 0;
+  padding: 0 5rem;
+  height: 5rem;
+  border-radius: 1rem;
+  transition: all 0.3s;
+}
+.pinkButton:hover {
+  cursor: pointer;
+  background: #ff5880;
+  color: white;
+}
+
+.purpleButton {
+  background: #5f62ff;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  border: 0;
+  padding: 0 5rem;
+  height: 5rem;
+  border-radius: 1rem;
+  transition: all 0.3s;
+}
+.purpleButton:hover {
+  cursor: pointer;
+  background: #4649ff;
+  color: white;
 }
 
 .dropdown {

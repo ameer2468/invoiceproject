@@ -4,6 +4,11 @@
       display: flex;
       align-items: center;
     }
+    .action-buttons {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
     input {
       @include formInput();
       margin: 0;

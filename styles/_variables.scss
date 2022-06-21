@@ -98,6 +98,40 @@ $textcolor: white;
   }
 }
 
+@mixin PurpleButton {
+  background: $purple;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  border: 0;
+  padding: 0 5rem;
+  height: 5rem;
+  border-radius: 1rem;
+  transition: all 0.3s;
+  &:hover {
+    cursor: pointer;
+    background: darken($purple, 5%);
+    color: white;
+  }
+}
+
+@mixin PinkButton {
+  background: $pink;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  border: 0;
+  padding: 0 5rem;
+  height: 5rem;
+  border-radius: 1rem;
+  transition: all 0.3s;
+  &:hover {
+    cursor: pointer;
+    background: darken($pink, 5%);
+    color: white;
+  }
+}
+
 @mixin whiteButtonShadow {
   background: white;
   font-family: "Poppins", sans-serif;

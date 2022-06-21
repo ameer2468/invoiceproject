@@ -68,20 +68,6 @@ export const useInvoice = () => {
       });
   };
 
-  /* Delete invoice from database & UI */
-
-  const deleteInvoiceRequest = (id: string) => {
-    deleteInvoice(id)
-      .then(() => {
-        setInvoicesData(
-          invoicesData.filter((invoice: { id: string }) => invoice.id !== id)
-        );
-      })
-      .catch(() => {
-        console.log("Error deleting invoice");
-      });
-  };
-
   /* Input handler for invoice form of individual items */
 
   const handleItemChange = (
@@ -167,7 +153,6 @@ export const useInvoice = () => {
     invoicesData,
     editInvoiceMode,
     setEditInvoiceMode,
-    deleteInvoiceRequest,
     handleInputChange,
     addItem,
   };
@@ -182,10 +167,12 @@ export const useInvoiceData = (
     id: false,
     amount: false,
     date: false,
+    delete: false,
     status: false,
   });
   const [invoice, setInvoice] = useState<InvoiceData | null>(null);
   const { editInvoiceMode, setEditInvoiceMode } = useInvoice();
+  const router = useRouter();
 
   /* When editing an individual invoice - this is a loading handler
   depending on the field that is being edited */
@@ -195,6 +182,20 @@ export const useInvoiceData = (
       ...mutateLoading,
       [key]: value,
     });
+  };
+
+  /* Delete invoice from database & UI */
+
+  const deleteInvoiceRequest = (id: string) => {
+    mutateLoadHandler("delete", true);
+    deleteInvoice(id)
+      .then(() => {
+        router.replace("/dashboard/invoices");
+      })
+      .catch(() => {})
+      .finally(() => {
+        mutateLoadHandler("delete", false);
+      });
   };
 
   /* When editing an individual invoice - this is a mutate handler */
@@ -253,6 +254,7 @@ export const useInvoiceData = (
     invoiceMutate,
     mutateLoading,
     setEditInvoiceMode,
+    deleteInvoiceRequest,
     editInvoiceMode,
     setMutateLoading,
   };

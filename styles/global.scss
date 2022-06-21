@@ -41,6 +41,14 @@ ul {
   list-style: none;
 }
 
+.pinkButton {
+  @include PinkButton();
+}
+
+.purpleButton {
+  @include PurpleButton();
+}
+
 .dropdown {
   width: 100%;
   max-width: 13rem;

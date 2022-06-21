@@ -16,6 +16,7 @@ export interface Invoice {
 export interface MutateLoading {
   id: boolean;
   amount: boolean;
+  delete: boolean;
   date: boolean;
   status: boolean;
 }

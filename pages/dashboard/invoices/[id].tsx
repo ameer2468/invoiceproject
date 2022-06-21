@@ -29,6 +29,7 @@ const Invoice = ({ invoiceData, invoiceItems }: props) => {
     editInvoiceMode,
     editInvoiceHandler,
     mutateLoading,
+    deleteInvoiceRequest,
   } = useInvoiceData(
     {
       ...invoiceData,
@@ -40,16 +41,25 @@ const Invoice = ({ invoiceData, invoiceItems }: props) => {
 
   return (
     <Page pageName={"invoiceId"}>
-      <div className="flex">
+      <div className="action-buttons">
         <h1>{invoice?.to}</h1>
-        <div
-          className="edit"
+        <button
+          className="purpleButton"
           onClick={() => {
             editInvoiceHandler(invoice as InvoiceData);
           }}
         >
           Edit
-        </div>
+        </button>
+        <button
+          disabled={mutateLoading.delete}
+          onClick={() => {
+            deleteInvoiceRequest(invoice?.id as string);
+          }}
+          className={`pinkButton ${mutateLoading.delete && "disabledButton"}`}
+        >
+          {mutateLoading.delete ? <Loading style="PulseLoader" /> : "Delete"}
+        </button>
       </div>
       <div className="stats">
         <div className="stat">
