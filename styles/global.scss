@@ -11,6 +11,30 @@
   }
 }
 
+.noContent {
+  width: 100%;
+  max-width: 60rem;
+  margin: 0 auto;
+  height: auto;
+  text-align: center;
+  padding: 2rem;
+  position: absolute;
+  transform: translate(-50%, 10%);
+  left: 50%;
+  h2 {
+    color: white;
+    font-size: 3rem;
+  }
+  p {
+    color: lighten($darkgrey, 50%);
+    width: 100%;
+    max-width: 100%;
+    line-height: 3rem;
+    margin: 1rem auto 5rem auto;
+    font-size: 1.6rem;
+  }
+}
+
 .pdfPage {
   @include DashboardContainer();
   height: 90rem;

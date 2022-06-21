@@ -161,6 +161,7 @@
 }
 
 .invoices {
+  position: relative;
   h1 {
     @include PageTitle;
     width: 100%;
