@@ -267,8 +267,7 @@ export const useFetchInvoices = () => {
   });
   useEffect(() => {
     if (data) {
-      const { invoices } = data;
-      setInvoicesData(invoices);
+      setInvoicesData(data);
     }
   }, [data, setInvoicesData]);
   return {

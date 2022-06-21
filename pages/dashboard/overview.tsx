@@ -37,9 +37,9 @@ const Overview = () => {
   const TabContent = () => {
     switch (activeTab) {
       case 0:
-        return <InvoicesPaid data={paidInvoices.invoices} />;
+        return <InvoicesPaid data={paidInvoices} />;
       case 1:
-        return <InvoicesUnpaid data={unpaidInvoices.invoices} />;
+        return <InvoicesUnpaid data={unpaidInvoices} />;
       default:
         return <div>Tab 3</div>;
     }
@@ -67,8 +67,8 @@ const Overview = () => {
       ) : (
         <div className="overviewContent">
           <OverviewTabs
-            paidInvoices={paidInvoices.invoices}
-            unpaidInvoices={unpaidInvoices.invoices}
+            paidInvoices={paidInvoices}
+            unpaidInvoices={unpaidInvoices}
             activeTab={activeTab}
             setActiveTab={(tab: number) => {
               setActiveTab(tab);

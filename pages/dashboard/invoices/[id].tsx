@@ -150,7 +150,7 @@ export default Invoice;
 Invoice.Layout = DashboardLayout;
 
 export async function getStaticPaths() {
-  const { invoices } = await getAllInvoices();
+  const invoices = await getAllInvoices();
   const paths = invoices.map((invoice: InvoiceData) => ({
     params: { id: invoice.id },
   }));

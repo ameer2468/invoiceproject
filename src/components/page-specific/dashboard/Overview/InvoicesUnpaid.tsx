@@ -8,7 +8,7 @@ import { Invoice } from "../../../../../types/invoice";
 import { numberFormat } from "../../../../helpers";
 
 interface props {
-  data: Invoice[];
+  data: Invoice[] | undefined;
 }
 
 const InvoicesPaid = ({ data }: props) => {
@@ -20,7 +20,7 @@ const InvoicesPaid = ({ data }: props) => {
         return value.id === searchValue;
       })
     : data;
-  const total = data.reduce((acc, value) => {
+  const total = data?.reduce((acc, value) => {
     return acc + Number(value.amount);
   }, 0);
 
@@ -52,7 +52,7 @@ const InvoicesPaid = ({ data }: props) => {
                 }}
                 placeholder="Seach invoice id..."
               />
-              <h2>Total: ${numberFormat(total, 2)}</h2>
+              <h2>Total: ${numberFormat(total as number, 2)}</h2>
             </div>
             <div className="col-headings">
               <h3>Amount</h3>
