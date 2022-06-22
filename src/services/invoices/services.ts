@@ -7,12 +7,6 @@ import {
 } from "../types";
 import { Invoice } from "../../../types/invoice";
 
-/*Get all invoices of the user*/
-
-export const getPaidInvoices = () => {
-  return getRequest("invoices", { from: "ameer", status: "paid" });
-};
-
 /*Get an individual invoicer*/
 
 export const getInvoice = (id: string) => {
@@ -43,12 +37,18 @@ export const deleteInvoice = (id: string) => {
 
 /*Get unpaid invoices*/
 
-export const getUnpaidInvoices = () => {
-  return getRequest("invoices", { from: "ameer", status: "unpaid" });
+export const getUnpaidInvoices = (user: string) => {
+  return getRequest("invoices", { from: user, status: "unpaid" });
+};
+
+/*Get all invoices of the user*/
+
+export const getPaidInvoices = (user: string) => {
+  return getRequest("invoices", { from: user, status: "paid" });
 };
 
 /*Get all invoices*/
 
-export const getAllInvoices = () => {
-  return getUnauthenticatedRequest("invoices", { from: "ameer" });
+export const getAllInvoices = (user: string) => {
+  return getUnauthenticatedRequest("invoices", { from: user });
 };

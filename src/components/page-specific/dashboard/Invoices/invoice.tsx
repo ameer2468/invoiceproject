@@ -12,12 +12,15 @@ import { numberFormat } from "../../../../helpers";
 import { motion } from "framer-motion";
 import { staggerChildren } from "../../../../framer";
 import Link from "next/link";
+import { useUser } from "../../../../UserContext";
 
 interface props {
   data: Invoice;
 }
 
 const Invoice = ({ data }: props) => {
+  const { user } = useUser();
+  const userInfo = user[0];
   return (
     <motion.li {...staggerChildren} className="invoiceCard">
       <h2>{data.to}</h2>
@@ -26,9 +29,7 @@ const Invoice = ({ data }: props) => {
           ? data.description.substring(0, 120) + "..."
           : data.description}
       </p>
-      <div
-        className={`statusBox ${data.status === "paid" ? "paid" : "unpaid"}`}
-      >
+      <div className={`statusBox ${data.status === "paid" ? "paid" : "unpaid"}`}>
         <FontAwesomeIcon className={"icon"} icon={faCircleCheck} />
         <p>{data.status === "paid" ? "Paid" : "Unpaid"}</p>
       </div>
@@ -46,7 +47,7 @@ const Invoice = ({ data }: props) => {
           {data.from}
         </p>
       </div>
-      <Link passHref={true} href={`/dashboard/invoices/${data.id}`}>
+      <Link passHref={true} href={`/dashboard/invoices/invoice?q=${data.id}`}>
         <button style={{ maxWidth: "100%" }}>View details</button>
       </Link>
     </motion.li>

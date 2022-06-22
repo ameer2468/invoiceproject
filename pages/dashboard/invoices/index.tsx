@@ -15,6 +15,8 @@ const Index = () => {
   useFetchInvoices();
   const { isLoading, isFetching, invoicesData } = useFetchInvoices();
 
+  console.log(invoicesData);
+
   return (
     <Page pageName={"invoices"}>
       <div className="main-header">
@@ -44,7 +46,7 @@ const Index = () => {
           variants={{ ...staggerParent.variants }}
           className="cards"
         >
-          {invoicesData.length === 0 && (
+          {!isLoading && !isFetching && invoicesData.length === 0 && (
             <NoContent
               title={"No invoices"}
               image={noinvoices}

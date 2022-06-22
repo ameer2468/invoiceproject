@@ -109,7 +109,7 @@ export const postRequest = async (
 ): Promise<[]> => {
   const token = authed && (await loadToken());
   const headers = {
-    "x-api-key": apiKey,
+    "X-Api-Key": apiKey,
     Authorization: authed ? token : "",
   };
   return await axios

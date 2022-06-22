@@ -5,10 +5,7 @@ import InvoicesPaid from "../../src/components/page-specific/dashboard/Overview/
 import Dropdown from "../../src/components/global/dropdown";
 import { useUser } from "../../src/UserContext";
 import { useQuery } from "react-query";
-import {
-  getPaidInvoices,
-  getUnpaidInvoices,
-} from "../../src/services/invoices/services";
+import { getPaidInvoices, getUnpaidInvoices } from "../../src/services/invoices/services";
 import Loading from "../../src/components/global/loading";
 import InvoicesUnpaid from "../../src/components/page-specific/dashboard/Overview/InvoicesUnpaid";
 import Page from "../../src/components/global/Page";
@@ -22,17 +19,25 @@ const Overview = () => {
     isLoading,
     isFetching,
     error,
-  } = useQuery("All invoices", getPaidInvoices, {
-    refetchOnWindowFocus: false,
-  });
+  } = useQuery(
+    "All invoices",
+    () => getPaidInvoices(userInfo.attributes["custom:firstname"]),
+    {
+      refetchOnWindowFocus: false,
+    }
+  );
   const {
     data: unpaidInvoices,
     isLoading: isLoadingUnpaid,
     isFetching: isFetchingUnpaid,
     error: errorUnpaid,
-  } = useQuery("All unpaid invoices", getUnpaidInvoices, {
-    refetchOnWindowFocus: false,
-  });
+  } = useQuery(
+    "All unpaid invoices",
+    () => getUnpaidInvoices(userInfo.attributes["custom:firstname"]),
+    {
+      refetchOnWindowFocus: false,
+    }
+  );
 
   const TabContent = () => {
     switch (activeTab) {
@@ -49,10 +54,7 @@ const Overview = () => {
     <Page pageName={"overview"}>
       <div className="main-header">
         {userInfo.type === "unauthenticated" ? "" : <h1>Overview</h1>}
-        <Dropdown
-          onSelect={() => {}}
-          options={["Weekly", "Daily", "Monthly"]}
-        />
+        <Dropdown onSelect={() => {}} options={["Weekly", "Daily", "Monthly"]} />
       </div>
       {isLoading || isLoadingUnpaid || isFetchingUnpaid || isFetching ? (
         <div

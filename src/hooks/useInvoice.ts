@@ -1,9 +1,4 @@
-import {
-  Invoice,
-  InvoiceData,
-  MutateInvoice,
-  MutateLoading,
-} from "../../types/invoice";
+import { Invoice, InvoiceData, MutateInvoice, MutateLoading } from "../../types/invoice";
 import { v4 as uuidv4 } from "uuid";
 import { useState, ChangeEvent, useEffect, FormEvent } from "react";
 import {
@@ -15,6 +10,7 @@ import {
 import { useQuery } from "react-query";
 import { invoiceFormState } from "../constants";
 import { useRouter } from "next/router";
+import { useUser } from "../UserContext";
 
 /*
   This hook is used to manage the state of the invoice form,
@@ -31,10 +27,11 @@ import { useRouter } from "next/router";
 export const useInvoice = () => {
   const [invoicesData, setInvoicesData] = useState<Invoice[]>([]);
   const [editInvoiceMode, setEditInvoiceMode] = useState<boolean>(false);
-  const [createInvoiceLoading, setCreateInvoiceLoading] =
-    useState<boolean>(false);
+  const { user } = useUser();
+  const [createInvoiceLoading, setCreateInvoiceLoading] = useState<boolean>(false);
   const [invoiceForm, setInvoiceForm] = useState<Invoice>({
     ...invoiceFormState,
+    from: user[0].attributes["custom:firstname"],
   });
   const route = useRouter();
 
@@ -70,10 +67,7 @@ export const useInvoice = () => {
 
   /* Input handler for invoice form of individual items */
 
-  const handleItemChange = (
-    event: ChangeEvent<HTMLInputElement>,
-    index: number
-  ) => {
+  const handleItemChange = (event: ChangeEvent<HTMLInputElement>, index: number) => {
     setInvoiceForm({
       ...invoiceForm,
       invoiceItems: invoiceForm.invoiceItems.map((item, i) => {
@@ -262,9 +256,15 @@ export const useInvoiceData = (
 
 export const useFetchInvoices = () => {
   const { setInvoicesData, invoicesData } = useInvoice();
-  const { isLoading, isFetching, data } = useQuery("invoices", getAllInvoices, {
-    refetchOnWindowFocus: false,
-  });
+  const { user } = useUser();
+  const userInfo = user[0];
+  const { isLoading, isFetching, data } = useQuery(
+    "invoices",
+    () => getAllInvoices(userInfo.attributes["custom:firstname"]),
+    {
+      refetchOnWindowFocus: false,
+    }
+  );
   useEffect(() => {
     if (data) {
       setInvoicesData(data);

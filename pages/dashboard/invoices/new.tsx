@@ -59,12 +59,6 @@ const New = () => {
               <div className="col">
                 <h2>Info</h2>
                 <Input
-                  name={"from"}
-                  onChange={handleInputChange}
-                  value={invoiceForm.from}
-                  placeholder={"Who is this invoice from?"}
-                />
-                <Input
                   name={"to"}
                   onChange={handleInputChange}
                   value={invoiceForm.to}

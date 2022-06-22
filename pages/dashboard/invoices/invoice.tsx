@@ -1,10 +1,7 @@
 import React from "react";
 import DashboardLayout from "../../../layouts/DashboardLayout";
 import Page from "../../../src/components/global/Page";
-import {
-  getAllInvoices,
-  getInvoice,
-} from "../../../src/services/invoices/services";
+import { getAllInvoices, getInvoice } from "../../../src/services/invoices/services";
 import { InvoiceData, item } from "../../../types/invoice";
 import moment from "moment";
 import { numberFormat } from "../../../src/helpers";
@@ -14,6 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoneyBill } from "@fortawesome/free-solid-svg-icons";
 import Dropdown from "../../../src/components/global/dropdown";
 import CurrencyInput from "react-currency-input-field";
+import { GetServerSideProps } from "next";
 
 interface props {
   invoiceData: InvoiceData;
@@ -21,8 +19,7 @@ interface props {
 }
 
 const Invoice = ({ invoiceData, invoiceItems }: props) => {
-  const { invoiceForm, handleCurrencyValueChange, setInvoiceForm } =
-    useInvoice();
+  const { invoiceForm, handleCurrencyValueChange, setInvoiceForm } = useInvoice();
   const {
     invoice,
     invoiceMutate,
@@ -80,9 +77,7 @@ const Invoice = ({ invoiceData, invoiceItems }: props) => {
               />
               <button
                 disabled={invoice?.amount === invoiceForm.amount}
-                className={
-                  invoice?.amount === invoiceForm.amount ? "disabledButton" : ""
-                }
+                className={invoice?.amount === invoiceForm.amount ? "disabledButton" : ""}
                 onClick={() => {
                   invoiceMutate("amount");
                 }}
@@ -149,19 +144,8 @@ const Invoice = ({ invoiceData, invoiceItems }: props) => {
 export default Invoice;
 Invoice.Layout = DashboardLayout;
 
-export async function getStaticPaths() {
-  const invoices = await getAllInvoices();
-  const paths = invoices.map((invoice: InvoiceData) => ({
-    params: { id: invoice.id },
-  }));
-  return {
-    paths,
-    fallback: false,
-  };
-}
-
-export async function getStaticProps({ params }: any) {
-  const res = await getInvoice(params.id);
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const res = await getInvoice(context.query.q as string);
   return {
     props: {
       protected: true,
@@ -169,4 +153,4 @@ export async function getStaticProps({ params }: any) {
       invoiceData: res.invoice[0],
     },
   };
-}
+};

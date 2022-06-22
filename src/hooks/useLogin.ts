@@ -1,66 +1,64 @@
-import {ChangeEvent, useContext, useState} from "react";
-import {Auth} from "aws-amplify";
-import {useRouter} from "next/router";
-import {UserContext} from "../UserContext";
+import { ChangeEvent, useContext, useState } from "react";
+import { Auth } from "aws-amplify";
+import { useRouter } from "next/router";
+import { UserContext } from "../UserContext";
 
 interface loginForm {
-    email: string;
-    password: string;
+  email: string;
+  password: string;
 }
 
 export const useLogin = () => {
+  const [loginLoading, setLoginLoading] = useState<boolean>(false);
+  const [formError, setFormError] = useState("");
+  const [setUser] = useContext(UserContext);
+  const router = useRouter();
+  const [loginForm, setLoginForm] = useState<loginForm>({
+    email: "",
+    password: "",
+  });
 
-    const [loginLoading, setLoginLoading] = useState<boolean>(false);
-    const [formError, setFormError] = useState('');
-    const [user, setUser] = useContext(UserContext);
-    const router = useRouter();
-    const [loginForm, setLoginForm] = useState<loginForm>({
-        email: "",
-        password: ""
+  const inputHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setLoginForm({
+      ...loginForm,
+      [e.target.name]: e.target.value,
     });
+  };
 
-    const inputHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setLoginForm({
-            ...loginForm,
-            [e.target.name]: e.target.value
-        });
-    };
+  const signoutHandler = async () => {
+    await Auth.signOut().then(() => {
+      router.push("/").then(() => {
+        setUser({ type: "unauthenticated" });
+      });
+    });
+  };
 
-    const signoutHandler = async () => {
-           await Auth.signOut().then(() => {
-               router.push('/').then(() => {
-                   setUser({type: "unauthenticated"})
-               });
-           })
-    }
+  const loginHandler = async (e: ChangeEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoginLoading(true);
+    await Auth.signIn(loginForm.email, loginForm.password)
+      .then((res) => {
+        setLoginLoading(false);
+        setUser({ ...res, type: "authenticated" });
+        router.push("/dashboard/overview");
+      })
+      .catch((err) => {
+        setLoginLoading(false);
+        if (
+          err.message.startsWith("User does not exist.") ||
+          err.message.startsWith("Incorrect username or password.")
+        ) {
+          setFormError("Invalid email or password");
+        }
+      });
+  };
 
-
-    const loginHandler = async (e: ChangeEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        setLoginLoading(true);
-        await Auth.signIn(loginForm.email, loginForm.password)
-            .then((res) => {
-                setLoginLoading(false);
-                setUser({...res, type: "authenticated"})
-                router.push('/dashboard/overview');
-            })
-            .catch((err) => {
-                setLoginLoading(false);
-                if (err.message.startsWith('User does not exist.')
-                    || (err.message.startsWith('Incorrect username or password.')
-                    )) {
-                    setFormError('Invalid email or password');
-                }
-            });
-    };
-
-    return {
-        loginForm,
-        formError,
-        loginLoading,
-        signoutHandler,
-        inputHandler,
-        loginHandler
-    };
-
-}
+  return {
+    loginForm,
+    formError,
+    loginLoading,
+    signoutHandler,
+    inputHandler,
+    loginHandler,
+  };
+};
