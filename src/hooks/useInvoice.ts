@@ -60,8 +60,9 @@ export const useInvoice = () => {
       })
       .then(() => {})
       .finally(() => {
-        setCreateInvoiceLoading(false);
-        route.replace(invoiceForm.id);
+        route.replace(`invoice?q=${invoiceForm.id}`).then(() => {
+          setCreateInvoiceLoading(false);
+        });
       });
   };
 
