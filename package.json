@@ -22,7 +22,7 @@
     "react": "18.0.0",
     "react-currency-input-field": "^3.6.4",
     "react-custom-scrollbars-2": "^4.4.0",
-    "react-datepicker": "^4.7.0",
+    "react-datepicker": "^4.8.0",
     "react-dom": "18.0.0",
     "react-native-user-avatar-component": "^0.0.4",
     "react-profile-avatar": "^1.0.0",

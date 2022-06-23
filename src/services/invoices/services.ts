@@ -13,6 +13,8 @@ export const getInvoice = (id: string) => {
   return getUnauthenticatedRequest("invoice", { id: id });
 };
 
+/*Create an invoice*/
+
 export const createInvoice = (invoice: Invoice) => {
   return postRequest("invoice", invoice);
 };

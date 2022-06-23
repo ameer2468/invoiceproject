@@ -11,7 +11,7 @@ interface loginForm {
 export const useLogin = () => {
   const [loginLoading, setLoginLoading] = useState<boolean>(false);
   const [formError, setFormError] = useState("");
-  const [setUser] = useContext(UserContext);
+  const [user, setUser] = useContext(UserContext);
   const router = useRouter();
   const [loginForm, setLoginForm] = useState<loginForm>({
     email: "",
@@ -38,18 +38,19 @@ export const useLogin = () => {
     setLoginLoading(true);
     await Auth.signIn(loginForm.email, loginForm.password)
       .then((res) => {
-        setLoginLoading(false);
         setUser({ ...res, type: "authenticated" });
         router.push("/dashboard/overview");
       })
       .catch((err) => {
-        setLoginLoading(false);
         if (
           err.message.startsWith("User does not exist.") ||
           err.message.startsWith("Incorrect username or password.")
         ) {
           setFormError("Invalid email or password");
         }
+      })
+      .finally(() => {
+        setLoginLoading(false);
       });
   };
 

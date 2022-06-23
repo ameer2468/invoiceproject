@@ -5,6 +5,7 @@ import { useInvoice } from "../../../src/hooks/useInvoice";
 import TextArea from "../../../src/components/global/Textarea";
 import InvoiceItem from "../../../src/components/page-specific/dashboard/Invoices/newInvoice/InvoiceItem";
 import { item } from "../../../types/invoice";
+import DatePicker from "react-datepicker";
 import PdfPage from "../../../src/components/page-specific/dashboard/Invoices/newInvoice/PdfPage";
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -22,6 +23,8 @@ const New = () => {
     createInvoiceLoading,
     removeInvoiceItem,
     updateInvoiceForm,
+    toggleCalendar,
+    handleDateChange,
     addItem,
   } = useInvoice();
 
@@ -88,35 +91,35 @@ const New = () => {
                   onChange={handleInputChange}
                 />
                 <h2>Due date</h2>
-                <input
-                  type="date"
-                  name="dueDate"
-                  onChange={handleInputChange}
+                <DatePicker
+                  selected={invoiceForm.dueDate}
+                  onChange={(date) => handleDateChange(date)}
+                  onCalendarClose={() => toggleCalendar(false)}
+                  onCalendarOpen={() => toggleCalendar(true)}
+                  calendarClassName="datePicker"
                 />
               </div>
               <div className="col">
                 <h2>Item</h2>
                 <div className="itemInfo">
-                  {invoiceForm.invoiceItems.map(
-                    (value: item, index: number) => {
-                      return (
-                        <InvoiceItem
-                          onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                            handleItemChange(e, index);
-                          }}
-                          index={index}
-                          key={index.toString()}
-                          handleCurrencyChange={(value, name, index) => {
-                            if (value && name) {
-                              handleCurrencyChange(value, name, index);
-                            }
-                          }}
-                          removeItem={() => removeInvoiceItem(index)}
-                          item={invoiceForm.invoiceItems[index]}
-                        />
-                      );
-                    }
-                  )}
+                  {invoiceForm.invoiceItems.map((value: item, index: number) => {
+                    return (
+                      <InvoiceItem
+                        onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                          handleItemChange(e, index);
+                        }}
+                        index={index}
+                        key={index.toString()}
+                        handleCurrencyChange={(value, name, index) => {
+                          if (value && name) {
+                            handleCurrencyChange(value, name, index);
+                          }
+                        }}
+                        removeItem={() => removeInvoiceItem(index)}
+                        item={invoiceForm.invoiceItems[index]}
+                      />
+                    );
+                  })}
                   <button onClick={addItem} className="addItem">
                     + Add item
                   </button>
@@ -158,11 +161,7 @@ const New = () => {
                 handleCreateInvoice();
               }}
             >
-              {createInvoiceLoading ? (
-                <Loading style="PulseLoader" />
-              ) : (
-                "Create Invoice"
-              )}
+              {createInvoiceLoading ? <Loading style="PulseLoader" /> : "Create Invoice"}
             </button>
             {/*<PDFDownloadLink document={<PdfPage />} fileName="invoice.pdf">*/}
             {/*<button*/}

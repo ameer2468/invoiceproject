@@ -73,6 +73,47 @@ ul {
   @include PurpleButton();
 }
 
+.react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle::before,
+.react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle::after {
+  border-bottom-color: $darkgrey !important;
+}
+
+.react-datepicker {
+  background-color: $darkgrey !important;
+  border: 1px solid $inputborder !important;
+  transform: scale(1.4);
+}
+
+.datePicker {
+  .react-datepicker__header {
+    background: $darkgrey;
+    border-bottom-color: $inputborder;
+    color: white;
+  }
+  .react-datepicker__navigation {
+    width: 20px;
+    height: 20px;
+  }
+  .react-datepicker__day {
+    &:hover {
+      background: $blue;
+    }
+  }
+  .react-datepicker__day--selected {
+    background: $purple;
+  }
+  .react-datepicker__current-month,
+  .react-datepicker-time__header,
+  .react-datepicker-year-header {
+    color: white;
+  }
+  .react-datepicker__day-name,
+  .react-datepicker__day,
+  .react-datepicker__time-name {
+    color: white;
+  }
+}
+
 .dropdown {
   width: 100%;
   max-width: 13rem;

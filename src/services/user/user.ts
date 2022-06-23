@@ -1,6 +1,8 @@
 import { postRequest, putRequest } from "../types";
 import { createUserParams, mutateUserParams, postBankingParams } from "./types";
 
+/*Request to create user*/
+
 export const createUser = ({
   sub_id,
   email,
@@ -19,6 +21,8 @@ export const createUser = ({
   );
 };
 
+/*Post banking details*/
+
 export const postBankingRequest = ({
   user_subid,
   account_number,
@@ -34,6 +38,8 @@ export const postBankingRequest = ({
     true
   );
 };
+
+/*Request to update user*/
 
 export const mutateUser = ({ sub_id, field, value }: mutateUserParams) => {
   return putRequest("user", {

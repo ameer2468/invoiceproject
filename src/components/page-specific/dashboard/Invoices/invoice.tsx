@@ -12,15 +12,12 @@ import { numberFormat } from "../../../../helpers";
 import { motion } from "framer-motion";
 import { staggerChildren } from "../../../../framer";
 import Link from "next/link";
-import { useUser } from "../../../../UserContext";
 
 interface props {
   data: Invoice;
 }
 
 const Invoice = ({ data }: props) => {
-  const { user } = useUser();
-  const userInfo = user[0];
   return (
     <motion.li {...staggerChildren} className="invoiceCard">
       <h2>{data.to}</h2>

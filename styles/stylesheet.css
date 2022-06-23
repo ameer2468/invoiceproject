@@ -1594,6 +1594,43 @@ ul {
   color: white;
 }
 
+.react-datepicker-popper[data-placement^=bottom] .react-datepicker__triangle::before,
+.react-datepicker-popper[data-placement^=bottom] .react-datepicker__triangle::after {
+  border-bottom-color: #171717 !important;
+}
+
+.react-datepicker {
+  background-color: #171717 !important;
+  border: 1px solid #383838 !important;
+  transform: scale(1.4);
+}
+
+.datePicker .react-datepicker__header {
+  background: #171717;
+  border-bottom-color: #383838;
+  color: white;
+}
+.datePicker .react-datepicker__navigation {
+  width: 20px;
+  height: 20px;
+}
+.datePicker .react-datepicker__day:hover {
+  background: #71aaff;
+}
+.datePicker .react-datepicker__day--selected {
+  background: #5f62ff;
+}
+.datePicker .react-datepicker__current-month,
+.datePicker .react-datepicker-time__header,
+.datePicker .react-datepicker-year-header {
+  color: white;
+}
+.datePicker .react-datepicker__day-name,
+.datePicker .react-datepicker__day,
+.datePicker .react-datepicker__time-name {
+  color: white;
+}
+
 .dropdown {
   width: 100%;
   max-width: 13rem;

@@ -28,6 +28,7 @@ export const useInvoice = () => {
   const [invoicesData, setInvoicesData] = useState<Invoice[]>([]);
   const [editInvoiceMode, setEditInvoiceMode] = useState<boolean>(false);
   const { user } = useUser();
+  const [calendarOpen, setCalendarOpen] = useState<boolean>(false);
   const [createInvoiceLoading, setCreateInvoiceLoading] = useState<boolean>(false);
   const [invoiceForm, setInvoiceForm] = useState<Invoice>({
     ...invoiceFormState,
@@ -47,6 +48,18 @@ export const useInvoice = () => {
         return item;
       }),
     });
+  };
+
+  /*Toggle Calendar*/
+
+  const toggleCalendar = (active: boolean) => {
+    setCalendarOpen(active);
+  };
+
+  /*Date handler*/
+
+  const handleDateChange = (date: Date | null) => {
+    setInvoiceForm({ ...invoiceForm, dueDate: date });
   };
 
   /* Create invoice handler */
@@ -143,7 +156,9 @@ export const useInvoice = () => {
     removeInvoiceItem,
     handleCurrencyValueChange,
     handleCreateInvoice,
+    handleDateChange,
     updateInvoiceForm,
+    toggleCalendar,
     setInvoicesData,
     invoicesData,
     editInvoiceMode,
