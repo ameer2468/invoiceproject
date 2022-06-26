@@ -15,8 +15,6 @@ const Index = () => {
   useFetchInvoices();
   const { isLoading, isFetching, invoicesData } = useFetchInvoices();
 
-  console.log(invoicesData);
-
   return (
     <Page pageName={"invoices"}>
       <div className="main-header">
