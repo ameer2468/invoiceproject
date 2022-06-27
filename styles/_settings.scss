@@ -27,8 +27,35 @@
     input {
       @include formInput();
     }
-    .info {
-      height: 37rem!important;
+    .account-details {
+      background: lighten($darkgrey, 5%);
+      border: 1px solid $inputborder;
+      width: 80%;
+      margin: 2rem auto;
+      border-radius: 1rem;
+      display: flex;
+      padding: 2rem;
+      flex-direction: column;
+      gap: 1.5rem;
+      height: auto;
+      h3 {
+        text-align: center;
+        opacity: 0.5;
+        font-weight: normal;
+      }
+      h2 {
+        margin: 0;
+      }
+      p {
+        background: lighten($input, 4%);
+        color: white;
+        font-size: 1.4rem;
+        padding: 2rem;
+        width: 80%;
+        border-radius: 1rem;
+        border: 2px solid $inputborder;
+        margin: 0 auto;
+      }
     }
     .box {
       flex: 0 0 48%;

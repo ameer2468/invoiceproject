@@ -1,10 +1,12 @@
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, SetStateAction, useEffect, useState } from "react";
 import { Auth } from "aws-amplify";
-import { mutateUser, postBankingRequest } from "../services/user/user";
-import { Settings } from "../../types/settings";
+import { getBankingRequest, mutateUser, postBankingRequest } from "../services/user/user";
+import { BankingInfo, Settings } from "../../types/settings";
 import { useUser } from "../UserContext";
+import { useQuery } from "react-query";
 
 export const useSettings = () => {
+  const [bankingInfo, setBankingInfo] = useState(null as BankingInfo | null);
   const { user } = useUser();
   const getUser = async () => {
     return await Auth.currentAuthenticatedUser();
@@ -58,7 +60,8 @@ export const useSettings = () => {
   };
 
   const handleInputChange = (
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    modifyValue?: any
   ) => {
     setSettings({ ...settings, [event.target.name]: event.target.value });
   };
@@ -77,11 +80,19 @@ export const useSettings = () => {
           accountNumber: "",
           sortCode: "",
         });
+        setBankingInfo({
+          account_number: settings.accountNumber,
+          sort_code: settings.sortCode,
+        });
       })
       .catch((err) => {})
       .finally(() => {
         updateLoading("saving", false);
       });
+  };
+
+  const getBankingInfo = () => {
+    return getBankingRequest(user[0].attributes.sub);
   };
 
   const changeUserEmail = async (e?: FormEvent<SubmitEvent>) => {
@@ -136,10 +147,33 @@ export const useSettings = () => {
     settings,
     loading,
     handleInputChange,
-
+    getBankingInfo,
+    setBankingInfo,
+    bankingInfo,
+    updateSettings,
     bankingInfoHandler,
     changeUserEmail,
     confirmCode,
     error,
   };
+};
+
+export const useFetchBankingInfo = (
+  bankingInfo: BankingInfo | null,
+  setBankingInfo: (bankingInfo: BankingInfo | null) => void
+) => {
+  const { getBankingInfo } = useSettings();
+  const { data, isLoading } = useQuery<BankingInfo>(
+    "bankingInfo",
+    () => getBankingInfo(),
+    {
+      refetchOnWindowFocus: false,
+    }
+  );
+  useEffect(() => {
+    if (data) {
+      setBankingInfo(data);
+    }
+  }, [data]);
+  return { bankingInfo, isLoading };
 };

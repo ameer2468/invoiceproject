@@ -23,9 +23,7 @@ export const useCheckUser = ({ pageProps }: props) => {
         ...userInfo,
         attributes: {
           ...userInfo.attributes,
-          ["custom:firstname"]: capitalize(
-            userInfo.attributes["custom:firstname"]
-          ),
+          ["custom:firstname"]: capitalize(userInfo.attributes["custom:firstname"]),
         },
         type: "authenticated",
       });

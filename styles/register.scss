@@ -49,26 +49,26 @@
         cursor: pointer;
       }
     }
-      a {
-        text-decoration: none;
-        color: white;
-        text-align: center;
-        margin-top: 2rem;
-      }
-      input {
-        @include formInput();
-        width: 100%;
-      }
-      button {
-        @include button();
-        width: 100%;
-        margin: 3rem auto;
-      }
-      h3 {
-        color: $pink;
-        text-align: left;
-        margin-bottom: 3rem;
-        font-size: 4rem;
-      }
+    a {
+      text-decoration: none;
+      color: white;
+      text-align: center;
+      margin-top: 2rem;
+    }
+    input {
+      @include formInput();
+      width: 100%;
+    }
+    button {
+      @include button();
+      width: 100%;
+      margin: 3rem auto;
+    }
+    h3 {
+      color: $pink;
+      text-align: left;
+      margin-bottom: 3rem;
+      font-size: 4rem;
+    }
   }
 }

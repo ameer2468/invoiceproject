@@ -228,6 +228,7 @@ body {
   position: relative;
   width: 100%;
   top: 15vh;
+  z-index: 0;
   max-width: 150rem;
   padding: 0 0 5rem 0;
   left: 16vw;
@@ -749,6 +750,7 @@ body {
   position: relative;
   width: 100%;
   top: 15vh;
+  z-index: 0;
   max-width: 150rem;
   padding: 0 0 5rem 0;
   left: 16vw;
@@ -797,8 +799,35 @@ body {
 .settings .pageContainer input::placeholder {
   color: white;
 }
-.settings .pageContainer .info {
-  height: 37rem !important;
+.settings .pageContainer .account-details {
+  background: #242424;
+  border: 1px solid #383838;
+  width: 80%;
+  margin: 2rem auto;
+  border-radius: 1rem;
+  display: flex;
+  padding: 2rem;
+  flex-direction: column;
+  gap: 1.5rem;
+  height: auto;
+}
+.settings .pageContainer .account-details h3 {
+  text-align: center;
+  opacity: 0.5;
+  font-weight: normal;
+}
+.settings .pageContainer .account-details h2 {
+  margin: 0;
+}
+.settings .pageContainer .account-details p {
+  background: #2f2f2f;
+  color: white;
+  font-size: 1.4rem;
+  padding: 2rem;
+  width: 80%;
+  border-radius: 1rem;
+  border: 2px solid #383838;
+  margin: 0 auto;
 }
 .settings .pageContainer .box {
   flex: 0 0 48%;
@@ -1103,10 +1132,15 @@ body {
   transform: scaleY(1);
 }
 
+.dashboardHeader {
+  position: relative;
+  z-index: 30;
+}
 .dashboardHeader .container {
   position: relative;
   width: 100%;
   top: 15vh;
+  z-index: 0;
   max-width: 150rem;
   padding: 0 0 5rem 0;
   left: 16vw;
@@ -1128,6 +1162,15 @@ body {
   border-radius: 50%;
   transition: all 0.3s;
 }
+.dashboardHeader .container .notification .alert {
+  width: 0.9rem;
+  height: 0.9rem;
+  right: 1.4rem;
+  top: 1.6rem;
+  border-radius: 3rem;
+  background: #ff7193;
+  position: absolute;
+}
 .dashboardHeader .container .notification .icon {
   color: white;
   font-size: 1.8rem;
@@ -1136,6 +1179,54 @@ body {
   background: #4649ff;
   transition: all 0.3s;
   cursor: pointer;
+}
+.dashboardHeader .container .notification-drop {
+  position: absolute;
+  background: #171717;
+  border: 1px solid #383838;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 30rem;
+  right: 0;
+  justify-content: center;
+  top: 6rem;
+  z-index: 200;
+  border-radius: 1rem;
+}
+.dashboardHeader .container .read {
+  background: #5f62ff;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  border: 0;
+  padding: 0 5rem;
+  height: 5rem;
+  border-radius: 1rem;
+  transition: all 0.3s;
+  width: 100%;
+}
+.dashboardHeader .container .read:hover {
+  cursor: pointer;
+  background: #4649ff;
+  color: white;
+}
+.dashboardHeader .container .notification-item {
+  background: #202020;
+  padding: 2rem;
+  width: 100%;
+  border-radius: 1rem;
+  border: 1px solid #383838;
+}
+.dashboardHeader .container .notification-item h2 {
+  color: white;
+  font-size: 1.6rem;
+}
+.dashboardHeader .container .notification-item p {
+  color: gray;
+  font-size: 1.2rem;
 }
 
 .overview .main-header {
@@ -1444,7 +1535,8 @@ body {
     flex: 0 0 100%;
     width: 100%;
   }
-  .overview .tabs-wrap .tab-item, .overview .tabs-wrap .active-tab {
+  .overview .tabs-wrap .tab-item,
+.overview .tabs-wrap .active-tab {
     padding: 3rem;
   }
   .overview .container {
@@ -1482,17 +1574,20 @@ body {
     gap: 2rem;
     height: auto;
   }
-  .overview .container .overviewContent .tabs-wrap .tab-item, .overview .container .overviewContent .tabs-wrap .active-tab {
+  .overview .container .overviewContent .tabs-wrap .tab-item,
+.overview .container .overviewContent .tabs-wrap .active-tab {
     height: 13rem;
     flex: 1 0 48%;
     margin-bottom: 0;
   }
 }
 @media all and (max-width: 768px) {
-  .loginForm .col:nth-child(1), .registerForm .col:nth-child(1) {
+  .loginForm .col:nth-child(1),
+.registerForm .col:nth-child(1) {
     display: none;
   }
-  .loginForm .col:nth-child(2), .registerForm .col:nth-child(2) {
+  .loginForm .col:nth-child(2),
+.registerForm .col:nth-child(2) {
     width: 100%;
   }
 }
@@ -1542,6 +1637,7 @@ body {
   position: relative;
   width: 100%;
   top: 15vh;
+  z-index: 0;
   max-width: 150rem;
   padding: 0 0 5rem 0;
   left: 16vw;
@@ -1570,6 +1666,7 @@ input[type=number] {
   position: relative;
   width: 100%;
   top: 15vh;
+  z-index: 0;
   max-width: 150rem;
   padding: 0 0 5rem 0;
   left: 16vw;

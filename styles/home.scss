@@ -1,119 +1,118 @@
 .loginButton {
- @include whiteButtonShadow();
+  @include whiteButtonShadow();
 }
 
 .dbButton {
- @include blackButtonShadow();
+  @include blackButtonShadow();
 }
 
 .imageWrap {
- margin-top: 10rem;
- border-radius: 2rem;
- img {
+  margin-top: 10rem;
   border-radius: 2rem;
- }
+  img {
+    border-radius: 2rem;
+  }
 }
 
 //Features
 
 .features {
- width: 100%;
- max-width: 140rem;
- margin: 20rem auto 20rem auto;
- display: flex;
- padding: 0 2rem;
- flex-wrap: wrap;
- align-items: center;
- justify-content: space-between;
- h1 {
-  font-size: $bigHeading;
   width: 100%;
-  color: $textcolor;
-  max-width: 20%;
- }
- .cards {
-  flex: 0 0 60%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  grid-gap: 50px;
+  max-width: 140rem;
+  margin: 20rem auto 20rem auto;
+  display: flex;
+  padding: 0 2rem;
+  flex-wrap: wrap;
   align-items: center;
-  .card:nth-child(2) {
-   grid-row: 1 / span 2;
-  }
-  .card {
-   border: 2px solid $border;
-   background: $darkgrey;
-   text-align: center;
-   padding: 2rem 2.7rem;
-   border-radius: 1rem;
-   p {
-    font-size: $body;
-    margin-top: 1rem;
+  justify-content: space-between;
+  h1 {
+    font-size: $bigHeading;
+    width: 100%;
     color: $textcolor;
-    line-height: 3.5rem;
-   }
-   h3 {
-    color: $title;
-    font-size: $contentHeading;
-   }
+    max-width: 20%;
   }
- }
+  .cards {
+    flex: 0 0 60%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 50px;
+    align-items: center;
+    .card:nth-child(2) {
+      grid-row: 1 / span 2;
+    }
+    .card {
+      border: 2px solid $border;
+      background: $darkgrey;
+      text-align: center;
+      padding: 2rem 2.7rem;
+      border-radius: 1rem;
+      p {
+        font-size: $body;
+        margin-top: 1rem;
+        color: $textcolor;
+        line-height: 3.5rem;
+      }
+      h3 {
+        color: $title;
+        font-size: $contentHeading;
+      }
+    }
+  }
 }
 
 .bg {
- background-image: url("../src/components/page-specific/home/herobg.png");
- background-size: contain;
- background-repeat: no-repeat;
- background-position: center;
- width: 100%;
- z-index: -1;
- top: -10rem;
- height: 60rem;
- position: absolute;
+  background-image: url("../src/components/page-specific/home/herobg.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  z-index: -1;
+  top: -10rem;
+  height: 60rem;
+  position: absolute;
 }
 
 .hero {
- display: flex;
- flex-direction: column;
- align-items: center;
- justify-content: center;
- padding: 0 2rem;
- position: relative;
- margin: 6% auto 0 auto;
- width: 100%;
- height: auto;
- button {
-   @include blackButtonShadow();
-  width: auto;
-  margin: 3rem auto 0 auto;
- }
- h1 {
-  font-size: $bigHeading;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2rem;
+  position: relative;
+  margin: 6% auto 0 auto;
   width: 100%;
-  text-align: center;
-  color: $textcolor;
-  line-height: 7.3rem;
-  max-width: 70rem;
-  margin: 0 auto;
- }
- .pink {
-  color: $pink;
- }
+  height: auto;
+  button {
+    @include blackButtonShadow();
+    width: auto;
+    margin: 3rem auto 0 auto;
+  }
+  h1 {
+    font-size: $bigHeading;
+    width: 100%;
+    text-align: center;
+    color: $textcolor;
+    line-height: 7.3rem;
+    max-width: 70rem;
+    margin: 0 auto;
+  }
+  .pink {
+    color: $pink;
+  }
 }
 
-
 @media all and (max-width: 768px) {
- .features {
-  flex-direction: column-reverse;
-  h1 {
-   max-width: 100%;
-   margin-bottom: 3rem;
+  .features {
+    flex-direction: column-reverse;
+    h1 {
+      max-width: 100%;
+      margin-bottom: 3rem;
+    }
+    .cards {
+      grid-template-columns: 1fr;
+      flex: 0 0 100%;
+      grid-gap: 30px;
+    }
   }
-  .cards {
-   grid-template-columns: 1fr;
-   flex: 0 0 100%;
-   grid-gap: 30px;
-  }
- }
 }

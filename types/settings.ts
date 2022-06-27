@@ -7,3 +7,8 @@ export interface Settings {
   verifyCode: string;
   verifyStep: number;
 }
+
+export interface BankingInfo {
+  account_number: string;
+  sort_code: string;
+}

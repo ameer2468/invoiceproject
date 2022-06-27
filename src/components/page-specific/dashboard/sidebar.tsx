@@ -42,20 +42,14 @@ const Sidebar = ({ children }: props) => {
         </Link>
         <div className="profile">
           {userInfo && (
-            <Avatar
-              name={userInfo.attributes["custom:firstname"]}
-              color={"#121212"}
-            />
+            <Avatar name={userInfo.attributes["custom:firstname"]} color={"#121212"} />
           )}
           <div className="info">
             <h4>{userInfo.attributes["custom:firstname"]}</h4>
           </div>
           <div className="navlinks">
             {navLinks.map((link, index) => (
-              <div
-                key={index.toString()}
-                className={`link ${pathCheck(link.href)}`}
-              >
+              <div key={index.toString()} className={`link ${pathCheck(link.href)}`}>
                 <FontAwesomeIcon
                   style={{
                     color: router.pathname === link.href ? "#5f62ff" : "white",

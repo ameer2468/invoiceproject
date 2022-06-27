@@ -9,8 +9,8 @@
     display: none;
   }
   .pageContainer {
-    left: 0!important;
-    padding: 2rem!important;
+    left: 0 !important;
+    padding: 2rem !important;
   }
   .dashboardHeader {
     width: 100%;
@@ -31,15 +31,15 @@
     }
   }
   .settings {
-      .content {
-        flex-direction: column;
+    .content {
+      flex-direction: column;
+    }
+    .pageContainer {
+      .box {
+        flex: 0 0 100%;
+        max-width: 100%;
       }
-      .pageContainer {
-        .box {
-          flex: 0 0 100%;
-          max-width: 100%;
-        }
-      }
+    }
   }
   .invoices {
     .invoicesContainer {
@@ -55,7 +55,8 @@
     .tabs-wrap {
       flex: 0 0 100%;
       width: 100%;
-      .tab-item, .active-tab {
+      .tab-item,
+      .active-tab {
         padding: 3rem;
       }
     }
@@ -91,7 +92,8 @@
           margin: 0 auto;
           gap: 2rem;
           height: auto;
-          .tab-item, .active-tab {
+          .tab-item,
+          .active-tab {
             height: 13rem;
             flex: 1 0 48%;
             margin-bottom: 0;
@@ -103,7 +105,8 @@
 }
 
 @media all and (max-width: 768px) {
-  .loginForm, .registerForm {
+  .loginForm,
+  .registerForm {
     .col:nth-child(1) {
       display: none;
     }

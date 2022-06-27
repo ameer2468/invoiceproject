@@ -1,4 +1,4 @@
-import { postRequest, putRequest } from "../types";
+import { getRequest, postRequest, putRequest } from "../types";
 import { createUserParams, mutateUserParams, postBankingParams } from "./types";
 
 /*Request to create user*/
@@ -37,6 +37,14 @@ export const postBankingRequest = ({
     },
     true
   );
+};
+
+/*Get banking details*/
+
+export const getBankingRequest = (user_subid: string) => {
+  return getRequest("banking", {
+    user_subid: user_subid,
+  });
 };
 
 /*Request to update user*/

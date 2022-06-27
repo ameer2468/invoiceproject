@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Page from "../../../src/components/global/Page";
 import DashboardLayout from "../../../layouts/DashboardLayout";
 import Input from "../../../src/components/global/Input";
-import { useSettings } from "../../../src/hooks/useSettings";
+import { useFetchBankingInfo, useSettings } from "../../../src/hooks/useSettings";
 import Loading from "../../../src/components/global/loading";
 import { useForgot } from "../../../src/hooks/useForgot";
 
@@ -11,7 +11,10 @@ const Settings = () => {
     settings,
     handleInputChange,
     changeUserEmail,
+    bankingInfo,
+    setBankingInfo,
     confirmCode,
+    updateSettings,
     loading,
     error,
     bankingInfoHandler,
@@ -25,6 +28,7 @@ const Settings = () => {
     inputHandler,
     forgotHandler,
   } = useForgot();
+  const { isLoading } = useFetchBankingInfo(bankingInfo, setBankingInfo);
   const currentEmailLength = settings.currentEmail.length;
   const newEmailLength = settings.newEmail.length;
   const accountLength = settings.accountNumber.toString().length;
@@ -42,6 +46,19 @@ const Settings = () => {
     }
   };
 
+  /*UseEffect to prevent users from inputting a
+ length that exceeds the length for banking info
+   */
+
+  useEffect(() => {
+    if (accountLength > 13) {
+      updateSettings("accountNumber", settings.accountNumber.slice(0, 13));
+    }
+    if (sortCodeLength > 6) {
+      updateSettings("sortCode", settings.sortCode.slice(0, 6));
+    }
+  }, [settings.accountNumber, settings.sortCode]);
+
   return (
     <Page pageName={"settings"}>
       <h1>Settings</h1>
@@ -55,16 +72,12 @@ const Settings = () => {
               placeholder={"Account number"}
               value={settings.accountNumber}
               name={"accountNumber"}
-              maxLength={13}
-              minLength={13}
               required={true}
               onChange={handleInputChange}
             />
             <Input
               type="number"
               placeholder={"Sort code"}
-              maxLength={6}
-              minLength={6}
               value={settings.sortCode}
               name={"sortCode"}
               required={true}
@@ -78,6 +91,23 @@ const Settings = () => {
               {loading.saving ? <Loading style={"PulseLoader"} /> : "Save"}
             </button>
           </form>
+          <div className="account-details">
+            <h2>Current Information</h2>
+            {isLoading ? (
+              <Loading style="PulseLoader" />
+            ) : bankingInfo ? (
+              Object.keys(bankingInfo).length > 0 ? (
+                <>
+                  <p>Account number: {bankingInfo.account_number}</p>
+                  <p>Sort code: {bankingInfo.sort_code}</p>
+                </>
+              ) : (
+                <h3>You have not set your banking info</h3>
+              )
+            ) : (
+              ""
+            )}
+          </div>
         </div>
         <div className="box email">
           <h2>Account</h2>

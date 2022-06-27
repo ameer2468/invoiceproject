@@ -15,8 +15,7 @@ const Hero = () => {
     <div className="hero">
       <motion.div {...fadeAnim} className="bg" />
       <motion.h1 {...fadeAnim}>
-        Worry less about invoices and{" "}
-        <span className="pink">get paid faster</span>.
+        Worry less about invoices and <span className="pink">get paid faster</span>.
       </motion.h1>
       {user[0].type !== "unauthenticated" ? (
         <Link passHref={true} href={"/dashboard/overview"}>

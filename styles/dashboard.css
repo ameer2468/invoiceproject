@@ -1,13 +1,6 @@
-/* Error: Undefined variable.
- *   ,
- * 9 |   background-color: $darkgrey;
- *   |                     ^^^^^^^^^
- *   '
- *   dashboard.scss 9:21  root stylesheet */
-
 body::before {
   font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
+    "Droid Sans Mono", monospace, monospace;
   white-space: pre;
   display: block;
   padding: 1em;
