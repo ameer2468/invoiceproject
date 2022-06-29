@@ -774,11 +774,7 @@ body {
 }
 .settings .pageContainer .content {
   margin-top: 4rem;
-  display: flex;
-  flex-wrap: wrap;
-  height: auto;
   gap: 2rem;
-  justify-content: space-between;
 }
 .settings .pageContainer input {
   border: 2px solid #383838;
@@ -800,16 +796,16 @@ body {
   color: white;
 }
 .settings .pageContainer .account-details {
-  background: #242424;
-  border: 1px solid #383838;
-  width: 80%;
-  margin: 2rem auto;
+  width: 100%;
+  margin: 0 auto;
   border-radius: 1rem;
   display: flex;
-  padding: 2rem;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
   height: auto;
+}
+.settings .pageContainer .account-details button {
+  margin: 0 auto;
 }
 .settings .pageContainer .account-details h3 {
   text-align: center;
@@ -820,7 +816,7 @@ body {
   margin: 0;
 }
 .settings .pageContainer .account-details p {
-  background: #2f2f2f;
+  background: #252525;
   color: white;
   font-size: 1.4rem;
   padding: 2rem;
@@ -830,22 +826,32 @@ body {
   margin: 0 auto;
 }
 .settings .pageContainer .box {
-  flex: 0 0 48%;
+  width: 100%;
   padding: 4rem 2rem;
-  max-width: 50%;
   text-align: center;
+  display: inline-block;
   height: auto;
+  max-width: 45%;
+  vertical-align: top;
+  margin: 0 3rem 2rem 3rem;
   background: #171717;
   border-radius: 1rem;
   border: 2px solid #252525;
 }
+.settings .pageContainer .box input {
+  margin: 0;
+}
 .settings .pageContainer .box form {
   width: 100%;
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
 }
 .settings .pageContainer .box button {
   width: 80%;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 .settings .pageContainer .account {
   width: 100%;

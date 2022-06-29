@@ -16,3 +16,7 @@ export interface postBankingParams {
   sort_code: string;
   user_subid: string;
 }
+
+export interface deleteBankingParams {
+  user_subid: string;
+}

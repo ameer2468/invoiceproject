@@ -6,14 +6,15 @@ import { useClickOutside } from "../../../hooks/useClickOutside";
 interface props {
   isOpen: boolean;
   setIsOpen: (value: boolean) => void;
+  parentRef?: React.RefObject<HTMLDivElement>;
 }
 
-const NotificationsDropdown = ({ isOpen, setIsOpen }: props) => {
+const NotificationsDropdown = ({ isOpen, setIsOpen, parentRef }: props) => {
   const notifRef = useRef(null);
   const handleClickOutside = () => {
-    setIsOpen(false);
+    setIsOpen(!isOpen);
   };
-  useClickOutside(notifRef, handleClickOutside);
+  useClickOutside(notifRef, handleClickOutside, parentRef);
   const notifArray = () => {
     const arr = [];
     for (let i = 0; i < 4; i++) {

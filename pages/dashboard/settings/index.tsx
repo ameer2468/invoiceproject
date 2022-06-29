@@ -5,6 +5,7 @@ import Input from "../../../src/components/global/Input";
 import { useFetchBankingInfo, useSettings } from "../../../src/hooks/useSettings";
 import Loading from "../../../src/components/global/loading";
 import { useForgot } from "../../../src/hooks/useForgot";
+import { button } from "aws-amplify";
 
 const Settings = () => {
   const {
@@ -17,6 +18,7 @@ const Settings = () => {
     updateSettings,
     loading,
     error,
+    deleteBankingInfo,
     bankingInfoHandler,
   } = useSettings();
   const {
@@ -37,6 +39,7 @@ const Settings = () => {
     ...forgotForm,
   };
   const disabled = loading.saving || accountLength < 13 || sortCodeLength < 6;
+  const bankingInfoLength = bankingInfo && Object.keys(bankingInfo).length;
 
   const emailSubmitHandler = () => {
     if (settings.verifyStep === 1) {
@@ -45,6 +48,8 @@ const Settings = () => {
       confirmCode();
     }
   };
+
+  console.log(bankingInfo);
 
   /*UseEffect to prevent users from inputting a
  length that exceeds the length for banking info
@@ -66,46 +71,54 @@ const Settings = () => {
         <div className="box info">
           <h2>Info</h2>
           <h3>Banking</h3>
-          <form onSubmit={bankingInfoHandler}>
-            <Input
-              type="number"
-              placeholder={"Account number"}
-              value={settings.accountNumber}
-              name={"accountNumber"}
-              required={true}
-              onChange={handleInputChange}
-            />
-            <Input
-              type="number"
-              placeholder={"Sort code"}
-              value={settings.sortCode}
-              name={"sortCode"}
-              required={true}
-              onChange={handleInputChange}
-            />
-            <button
-              type="submit"
-              disabled={disabled}
-              className={`button ${disabled ? "disabledButton" : ""}`}
-            >
-              {loading.saving ? <Loading style={"PulseLoader"} /> : "Save"}
-            </button>
-          </form>
+          {isLoading ? (
+            <Loading style="PulseLoader" />
+          ) : (
+            !bankingInfo && (
+              <form onSubmit={bankingInfoHandler}>
+                <Input
+                  type="number"
+                  placeholder={"Account number"}
+                  value={settings.accountNumber}
+                  name={"accountNumber"}
+                  required={true}
+                  onChange={handleInputChange}
+                />
+                <Input
+                  type="number"
+                  placeholder={"Sort code"}
+                  value={settings.sortCode}
+                  name={"sortCode"}
+                  required={true}
+                  onChange={handleInputChange}
+                />
+                <button
+                  type="submit"
+                  disabled={disabled}
+                  className={`button ${disabled ? "disabledButton" : ""}`}
+                >
+                  {loading.saving ? <Loading style={"PulseLoader"} /> : "Save"}
+                </button>
+              </form>
+            )
+          )}
           <div className="account-details">
-            <h2>Current Information</h2>
-            {isLoading ? (
-              <Loading style="PulseLoader" />
-            ) : bankingInfo ? (
-              Object.keys(bankingInfo).length > 0 ? (
-                <>
-                  <p>Account number: {bankingInfo.account_number}</p>
-                  <p>Sort code: {bankingInfo.sort_code}</p>
-                </>
-              ) : (
-                <h3>You have not set your banking info</h3>
-              )
-            ) : (
-              ""
+            {isLoading
+              ? ""
+              : bankingInfo && (
+                  <>
+                    <p>Account number: {bankingInfo.account_number}</p>
+                    <p>Sort code: {bankingInfo.sort_code}</p>
+                  </>
+                )}
+            {bankingInfoLength! > 0 && !isLoading && (
+              <button
+                disabled={loading.banking}
+                onClick={deleteBankingInfo}
+                className={`button ${loading.banking && "disabledButton"}`}
+              >
+                {loading.banking ? <Loading style="PulseLoader" /> : "Delete"}
+              </button>
             )}
           </div>
         </div>

@@ -1,12 +1,17 @@
 import { ChangeEvent, FormEvent, SetStateAction, useEffect, useState } from "react";
 import { Auth } from "aws-amplify";
-import { getBankingRequest, mutateUser, postBankingRequest } from "../services/user/user";
+import {
+  deleteBankingRequest,
+  getBankingRequest,
+  mutateUser,
+  postBankingRequest,
+} from "../services/user/user";
 import { BankingInfo, Settings } from "../../types/settings";
 import { useUser } from "../UserContext";
 import { useQuery } from "react-query";
 
 export const useSettings = () => {
-  const [bankingInfo, setBankingInfo] = useState(null as BankingInfo | null);
+  const [bankingInfo, setBankingInfo] = useState<BankingInfo | null>(null);
   const { user } = useUser();
   const getUser = async () => {
     return await Auth.currentAuthenticatedUser();
@@ -20,6 +25,7 @@ export const useSettings = () => {
   const [loading, setLoading] = useState({
     saving: false,
     account: false,
+    banking: false,
   });
 
   const [settings, setSettings] = useState<Settings>({
@@ -64,6 +70,18 @@ export const useSettings = () => {
     modifyValue?: any
   ) => {
     setSettings({ ...settings, [event.target.name]: event.target.value });
+  };
+
+  const deleteBankingInfo = () => {
+    updateLoading("banking", true);
+    deleteBankingRequest(user[0].attributes.sub)
+      .then(() => {
+        setBankingInfo(null);
+      })
+      .catch(() => {})
+      .finally(() => {
+        updateLoading("banking", false);
+      });
   };
 
   const bankingInfoHandler = (e: FormEvent) => {
@@ -149,6 +167,7 @@ export const useSettings = () => {
     handleInputChange,
     getBankingInfo,
     setBankingInfo,
+    deleteBankingInfo,
     bankingInfo,
     updateSettings,
     bankingInfoHandler,
@@ -160,7 +179,7 @@ export const useSettings = () => {
 
 export const useFetchBankingInfo = (
   bankingInfo: BankingInfo | null,
-  setBankingInfo: (bankingInfo: BankingInfo | null) => void
+  setBankingInfo: (bankingInfo: BankingInfo) => void
 ) => {
   const { getBankingInfo } = useSettings();
   const { data, isLoading } = useQuery<BankingInfo>(
@@ -171,7 +190,7 @@ export const useFetchBankingInfo = (
     }
   );
   useEffect(() => {
-    if (data) {
+    if (data && Object.keys(data).length > 0) {
       setBankingInfo(data);
     }
   }, [data]);

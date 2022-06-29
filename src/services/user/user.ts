@@ -1,5 +1,10 @@
-import { getRequest, postRequest, putRequest } from "../types";
-import { createUserParams, mutateUserParams, postBankingParams } from "./types";
+import { deleteRequest, getRequest, postRequest, putRequest } from "../types";
+import {
+  createUserParams,
+  deleteBankingParams,
+  mutateUserParams,
+  postBankingParams,
+} from "./types";
 
 /*Request to create user*/
 
@@ -19,6 +24,14 @@ export const createUser = ({
     },
     false
   );
+};
+
+/*Delete banking details*/
+
+export const deleteBankingRequest = (user_subid: deleteBankingParams) => {
+  return deleteRequest("banking", {
+    user_subid: user_subid,
+  });
 };
 
 /*Post banking details*/
