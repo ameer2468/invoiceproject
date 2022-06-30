@@ -37,16 +37,14 @@ export const deleteInvoice = (id: string) => {
   return deleteRequest("invoice", { id: id });
 };
 
-/*Get unpaid invoices*/
+/*Get invoices*/
 
-export const getUnpaidInvoices = (user: string) => {
-  return getRequest("invoices", { from: user, status: "unpaid" });
-};
-
-/*Get all invoices of the user*/
-
-export const getPaidInvoices = (user: string) => {
-  return getRequest("invoices", { from: user, status: "paid" });
+export const getInvoices = (
+  status: "paid" | "unpaid",
+  user: string,
+  timeperiod?: string
+) => {
+  return getRequest("invoices", { from: user, status, timeperiod });
 };
 
 /*Get all invoices*/

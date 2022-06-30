@@ -4,40 +4,24 @@ import OverviewTabs from "../../src/components/page-specific/dashboard/Overview/
 import InvoicesPaid from "../../src/components/page-specific/dashboard/Overview/InvoicesPaid";
 import Dropdown from "../../src/components/global/dropdown";
 import { useUser } from "../../src/UserContext";
-import { useQuery } from "react-query";
-import { getPaidInvoices, getUnpaidInvoices } from "../../src/services/invoices/services";
 import Loading from "../../src/components/global/loading";
 import InvoicesUnpaid from "../../src/components/page-specific/dashboard/Overview/InvoicesUnpaid";
 import Page from "../../src/components/global/Page";
+import { useFetchOverviewInvoices } from "../../src/hooks/useInvoice";
 
 const Overview = () => {
   const [activeTab, setActiveTab] = useState(0);
   const { user } = useUser();
   const userInfo = user[0];
   const {
-    data: paidInvoices,
+    unpaidInvoices,
+    paidInvoices,
+    isLoadingUnpaid,
     isLoading,
     isFetching,
-    error,
-  } = useQuery(
-    "All invoices",
-    () => getPaidInvoices(userInfo.attributes["custom:firstname"]),
-    {
-      refetchOnWindowFocus: false,
-    }
-  );
-  const {
-    data: unpaidInvoices,
-    isLoading: isLoadingUnpaid,
-    isFetching: isFetchingUnpaid,
-    error: errorUnpaid,
-  } = useQuery(
-    "All unpaid invoices",
-    () => getUnpaidInvoices(userInfo.attributes["custom:firstname"]),
-    {
-      refetchOnWindowFocus: false,
-    }
-  );
+    isFetchingUnpaid,
+    setPeriod,
+  } = useFetchOverviewInvoices();
 
   const TabContent = () => {
     switch (activeTab) {
@@ -54,7 +38,12 @@ const Overview = () => {
     <Page pageName={"overview"}>
       <div className="main-header">
         {userInfo.type === "unauthenticated" ? "" : <h1>Overview</h1>}
-        <Dropdown onSelect={() => {}} options={["Weekly", "Daily", "Monthly"]} />
+        <Dropdown
+          onSelect={(option: string) => {
+            setPeriod(option);
+          }}
+          options={["All", "1 day", "7 days", "30 days"]}
+        />
       </div>
       {isLoading || isLoadingUnpaid || isFetchingUnpaid || isFetching ? (
         <div

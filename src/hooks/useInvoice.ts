@@ -5,12 +5,15 @@ import {
   createInvoice,
   deleteInvoice,
   getAllInvoices,
+  getInvoices,
   mutateInvoice,
 } from "../services/invoices/services";
 import { useQuery } from "react-query";
 import { invoiceFormState } from "../constants";
 import { useRouter } from "next/router";
 import { useUser } from "../UserContext";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 /*
   This hook is used to manage the state of the invoice form,
@@ -75,6 +78,14 @@ export const useInvoice = () => {
       .finally(() => {
         route.replace(`invoice?q=${invoiceForm.id}`).then(() => {
           setCreateInvoiceLoading(false);
+        });
+        toast("Invoice created successfully", {
+          autoClose: 2000,
+          type: "success",
+          theme: "dark",
+          bodyStyle: {
+            fontSize: "1.5rem",
+          },
         });
       });
   };
@@ -267,6 +278,65 @@ export const useInvoiceData = (
     deleteInvoiceRequest,
     editInvoiceMode,
     setMutateLoading,
+  };
+};
+
+export const useFetchOverviewInvoices = () => {
+  const { user } = useUser();
+  const userInfo = user[0];
+  const [period, setPeriod] = useState("All");
+  const {
+    data: paidInvoices,
+    isLoading,
+    isFetching,
+    refetch: refetchPaidInvoices,
+    error,
+  } = useQuery(
+    "All invoices",
+    () =>
+      getInvoices(
+        "paid",
+        userInfo.attributes["custom:firstname"],
+        period === "All" ? "" : period
+      ),
+    {
+      refetchOnWindowFocus: false,
+    }
+  );
+  const {
+    data: unpaidInvoices,
+    isLoading: isLoadingUnpaid,
+    isFetching: isFetchingUnpaid,
+    refetch: refetchUnpaid,
+    error: errorUnpaid,
+  } = useQuery(
+    "All unpaid invoices",
+    () =>
+      getInvoices(
+        "unpaid",
+        userInfo.attributes["custom:firstname"],
+        period === "All" ? "" : period
+      ),
+    {
+      refetchOnWindowFocus: false,
+    }
+  );
+
+  useEffect(() => {
+    const refetchData = async () => {
+      await axios.all([refetchPaidInvoices(), refetchUnpaid()]);
+    };
+    refetchData();
+  }, [period]);
+
+  return {
+    unpaidInvoices,
+    paidInvoices,
+    isLoadingUnpaid,
+    isLoading,
+    isFetchingUnpaid,
+    setPeriod,
+    isFetching,
   };
 };
 
