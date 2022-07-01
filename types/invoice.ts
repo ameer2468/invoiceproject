@@ -13,6 +13,15 @@ export interface Invoice {
   amount: string;
 }
 
+export interface TextAreaLimits {
+  description: string;
+}
+
+export interface InputLengthLimit {
+  name: keyof TextAreaLimits | undefined;
+  limit: number;
+}
+
 export interface MutateLoading {
   id: boolean;
   amount: boolean;

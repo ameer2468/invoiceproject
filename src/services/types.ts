@@ -1,6 +1,5 @@
 import axios from "axios";
 import { Auth } from "aws-amplify";
-import { BankingInfo } from "../../types/settings";
 
 const url = process.env.NEXT_PUBLIC_API_URL;
 const apiKey = process.env.NEXT_PUBLIC_API_KEY;

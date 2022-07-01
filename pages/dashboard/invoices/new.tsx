@@ -77,6 +77,7 @@ const New = () => {
                   name={"description"}
                   onChange={handleInputChange}
                   value={invoiceForm.description}
+                  limitValue={600}
                   placeholder="Invoice Description"
                 />
               </div>

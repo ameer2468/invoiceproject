@@ -49,8 +49,6 @@ const Settings = () => {
     }
   };
 
-  console.log(bankingInfo);
-
   /*UseEffect to prevent users from inputting a
  length that exceeds the length for banking info
    */

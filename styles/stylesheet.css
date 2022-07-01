@@ -100,7 +100,7 @@ body {
 .features {
   width: 100%;
   max-width: 140rem;
-  margin: 20rem auto 20rem auto;
+  margin: 10rem auto;
   display: flex;
   padding: 0 2rem;
   flex-wrap: wrap;
@@ -222,6 +222,20 @@ body {
 
 .paid {
   color: #77e277 !important;
+}
+
+.charLimit {
+  position: absolute;
+  bottom: -2.5rem;
+  right: 0rem;
+  color: white;
+  opacity: 0.5;
+  z-index: 10;
+  font-size: 1.3rem;
+}
+
+.textAreaWrap {
+  position: relative;
 }
 
 .newInvoice .newInvoiceContainer {
@@ -430,6 +444,7 @@ body {
   transition: all 0.3s;
   font-family: Poppins, sans-serif;
   width: 100%;
+  position: relative;
   margin: 0;
   height: 10rem;
   resize: none;
@@ -620,6 +635,11 @@ body {
 }
 .invoiceId .pageContainer input::placeholder {
   color: white;
+}
+.invoiceId .pageContainer .description {
+  color: white;
+  font-size: 1.5rem;
+  margin-top: 1rem;
 }
 .invoiceId .pageContainer .edit {
   background: #5f62ff;
@@ -1637,6 +1657,28 @@ body {
   line-height: 3rem;
   margin: 1rem auto 5rem auto;
   font-size: 1.6rem;
+}
+
+.ModalWrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 900;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.ModalWrap .Modal {
+  width: 100%;
+  max-width: 50rem;
+  margin: 0 auto;
+  padding: 2rem;
+  position: relative;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  background-color: #171717;
+  border-radius: 1rem;
 }
 
 .pdfPage {

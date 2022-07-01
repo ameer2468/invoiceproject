@@ -1,7 +1,7 @@
 import React from "react";
 import DashboardLayout from "../../../layouts/DashboardLayout";
 import Page from "../../../src/components/global/Page";
-import { getAllInvoices, getInvoice } from "../../../src/services/invoices/services";
+import { getInvoice } from "../../../src/services/invoices/services";
 import { InvoiceData, item } from "../../../types/invoice";
 import moment from "moment";
 import { numberFormat } from "../../../src/helpers";
@@ -58,6 +58,9 @@ const Invoice = ({ invoiceData, invoiceItems }: props) => {
           {mutateLoading.delete ? <Loading style="PulseLoader" /> : "Delete"}
         </button>
       </div>
+      <div className="description">
+        <p>{invoice?.description}</p>
+      </div>
       <div className="stats">
         <div className="stat">
           <p className="bold">Id:</p>
@@ -99,21 +102,24 @@ const Invoice = ({ invoiceData, invoiceItems }: props) => {
         <div className="stat">
           <p className="bold">Status:</p>
           <p className={invoice?.status === "paid" ? "paid" : "unpaid"}>
+            {editInvoiceMode ? "" : invoice?.status}
+          </p>
+          <div>
             {mutateLoading.status ? (
               <Loading style={"PulseLoader"} />
-            ) : editInvoiceMode ? (
-              <Dropdown
-                defaultValue={"Status"}
-                options={invoice?.status === "paid" ? ["unpaid"] : ["paid"]}
-                style={{ backgroundColor: "#252525" }}
-                onSelect={() => {
-                  invoiceMutate("status");
-                }}
-              />
             ) : (
-              invoice?.status
+              editInvoiceMode && (
+                <Dropdown
+                  defaultValue={"Status"}
+                  options={invoice?.status === "paid" ? ["unpaid"] : ["paid"]}
+                  style={{ backgroundColor: "#252525" }}
+                  onSelect={() => {
+                    invoiceMutate("status");
+                  }}
+                />
+              )
             )}
-          </p>
+          </div>
         </div>
         <div className="stat">
           <p className="bold">Date:</p>
@@ -125,12 +131,11 @@ const Invoice = ({ invoiceData, invoiceItems }: props) => {
         {invoice?.invoiceItems.map((item) => {
           return (
             <div key={item.id} className="i-item">
-              <h2>${numberFormat(item.amount as number, 2)}</h2>
-              <p>{item.description}</p>
+              <h2>{item.description}</h2>
               <div className="info">
                 <p>
                   <FontAwesomeIcon className="icon" icon={faMoneyBill} />
-                  Amount: {item.amount}
+                  Amount: ${item.amount}
                 </p>
               </div>
             </div>

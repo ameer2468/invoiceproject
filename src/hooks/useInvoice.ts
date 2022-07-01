@@ -1,4 +1,10 @@
-import { Invoice, InvoiceData, MutateInvoice, MutateLoading } from "../../types/invoice";
+import {
+  InputLengthLimit,
+  Invoice,
+  InvoiceData,
+  MutateInvoice,
+  MutateLoading,
+} from "../../types/invoice";
 import { v4 as uuidv4 } from "uuid";
 import { useState, ChangeEvent, useEffect, FormEvent } from "react";
 import {
@@ -14,6 +20,7 @@ import { useRouter } from "next/router";
 import { useUser } from "../UserContext";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { successToast } from "../helpers";
 
 /*
   This hook is used to manage the state of the invoice form,
@@ -79,14 +86,7 @@ export const useInvoice = () => {
         route.replace(`invoice?q=${invoiceForm.id}`).then(() => {
           setCreateInvoiceLoading(false);
         });
-        toast("Invoice created successfully", {
-          autoClose: 2000,
-          type: "success",
-          theme: "dark",
-          bodyStyle: {
-            fontSize: "1.5rem",
-          },
-        });
+        toast("Invoice created successfully", successToast);
       });
   };
 
@@ -132,7 +132,6 @@ export const useInvoice = () => {
   };
 
   /* Generic input handler for invoice form */
-
   const handleInputChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -212,6 +211,7 @@ export const useInvoiceData = (
     deleteInvoice(id)
       .then(() => {
         router.replace("/dashboard/invoices");
+        toast("Invoice deleted successfully", successToast);
       })
       .catch(() => {})
       .finally(() => {

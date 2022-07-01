@@ -28,7 +28,7 @@ const Dropdown = ({ options, onSelect, style, defaultValue }: props) => {
   return (
     <div onClick={() => setIsOpen(!isOpen)} className="dropdown">
       <div style={style} className="main">
-        <p>{activeOption}</p>
+        <p>{activeOption ? activeOption : ""}</p>
         <FontAwesomeIcon
           className={`icon ${isOpen ? "flipCaret" : ""}`}
           icon={faCaretDown}

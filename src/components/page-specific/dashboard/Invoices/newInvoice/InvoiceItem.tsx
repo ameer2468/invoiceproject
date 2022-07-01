@@ -35,7 +35,7 @@ const InvoiceItem = ({
       >
         <div className="info-item">
           <Input
-            placeholder="Description of service or product..."
+            placeholder="Name of item or service"
             value={item.description}
             name={"description"}
             onChange={onChange}

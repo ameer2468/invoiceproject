@@ -4,6 +4,18 @@
 .paid {
   color: #77e277 !important;
 }
+.charLimit {
+  position: absolute;
+  bottom: -2.5rem;
+  right: 0rem;
+  color: $textcolor;
+  opacity: 0.5;
+  z-index: 10;
+  font-size: 1.3rem;
+}
+.textAreaWrap {
+  position: relative;
+}
 
 .newInvoice {
   .newInvoiceContainer {
@@ -150,6 +162,7 @@
     textarea {
       @include formInput;
       width: 100%;
+      position: relative;
       margin: 0;
       height: 10rem;
       resize: none;
