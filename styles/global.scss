@@ -37,23 +37,30 @@
 
 .ModalWrap {
   position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   z-index: 900;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: rgba(0, 0, 0, 0.5);
   .Modal {
     width: 100%;
     max-width: 50rem;
+    height: auto;
     margin: 0 auto;
     padding: 2rem;
     position: relative;
-    transform: translate(-50%, -50%);
-    left: 50%;
-    top: 50%;
     background-color: $darkgrey;
     border-radius: 1rem;
+    .loading {
+      text-align: center;
+      margin: 2rem 0 0 0;
+    }
+    h1 {
+      font-size: 2rem;
+      text-align: center;
+    }
   }
 }
 

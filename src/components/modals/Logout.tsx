@@ -5,7 +5,9 @@ import Loading from "../global/loading";
 const Logout = () => {
   return (
     <Modal title="Logging out...">
-      <Loading style="PulseLoader" color="white" />
+      <div className="loading">
+        <Loading style="PulseLoader" color="white" />
+      </div>
     </Modal>
   );
 };

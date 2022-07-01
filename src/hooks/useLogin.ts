@@ -2,6 +2,7 @@ import { ChangeEvent, useContext, useState } from "react";
 import { Auth } from "aws-amplify";
 import { useRouter } from "next/router";
 import { UserContext } from "../UserContext";
+import { useModal } from "../ModalContext";
 
 interface loginForm {
   email: string;
@@ -13,6 +14,8 @@ export const useLogin = () => {
   const [formError, setFormError] = useState("");
   const [user, setUser] = useContext(UserContext);
   const router = useRouter();
+  const { modalContext } = useModal();
+  const { setModalId } = modalContext;
   const [loginForm, setLoginForm] = useState<loginForm>({
     email: "",
     password: "",
@@ -26,7 +29,9 @@ export const useLogin = () => {
   };
 
   const signoutHandler = async () => {
+    setModalId("logout");
     await Auth.signOut().then(() => {
+      setModalId(null);
       router.push("/").then(() => {
         setUser({ type: "unauthenticated" });
       });

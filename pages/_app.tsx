@@ -9,6 +9,9 @@ import { useCheckUser } from "../src/hooks/useCheckUser";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ModalManager from "../src/components/modals/ModalManager";
+import { ModalContext } from "../src/ModalContext";
+import { useModal } from "../src/ModalContext";
 
 Amplify.configure(awsconfig);
 Auth.configure(awsconfig);
@@ -23,21 +26,25 @@ type props = AppProps & {
 function MyApp({ Component, pageProps }: props) {
   const { user, isLoading, setUser } = useCheckUser({ pageProps });
   const DashboardLayout = Component.Layout ? Component.Layout : React.Fragment;
+  const { modalId, setModalId } = useModal();
 
   return (
     <QueryClientProvider client={queryClient}>
-      <UserContext.Provider value={[user, setUser]}>
-        <ToastContainer />
-        {isLoading ? (
-          <div className={"absoluteCenter"}>
-            <Loading style={"PulseLoader"} color={"white"} />
-          </div>
-        ) : (
-          <DashboardLayout>
-            <Component {...pageProps} />
-          </DashboardLayout>
-        )}
-      </UserContext.Provider>
+      <ModalContext.Provider value={{ modalId, setModalId }}>
+        <UserContext.Provider value={[user, setUser]}>
+          <ToastContainer />
+          <ModalManager />
+          {isLoading ? (
+            <div className={"absoluteCenter"}>
+              <Loading style={"PulseLoader"} color={"white"} />
+            </div>
+          ) : (
+            <DashboardLayout>
+              <Component {...pageProps} />
+            </DashboardLayout>
+          )}
+        </UserContext.Provider>
+      </ModalContext.Provider>
     </QueryClientProvider>
   );
 }
