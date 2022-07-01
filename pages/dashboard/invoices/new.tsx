@@ -7,6 +7,7 @@ import InvoiceItem from "../../../src/components/page-specific/dashboard/Invoice
 import { item } from "../../../types/invoice";
 import DatePicker from "react-datepicker";
 import PdfPage from "../../../src/components/page-specific/dashboard/Invoices/newInvoice/PdfPage";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 
 import "react-datepicker/dist/react-datepicker.css";
 import { numberFormat } from "../../../src/helpers";
@@ -93,7 +94,7 @@ const New = () => {
                 />
                 <h2>Due date</h2>
                 <DatePicker
-                  selected={invoiceForm.dueDate}
+                  selected={invoiceForm.dueDate as Date}
                   onChange={(date) => handleDateChange(date)}
                   onCalendarClose={() => toggleCalendar(false)}
                   onCalendarOpen={() => toggleCalendar(true)}
@@ -164,13 +165,13 @@ const New = () => {
             >
               {createInvoiceLoading ? <Loading style="PulseLoader" /> : "Create Invoice"}
             </button>
+            <button onClick={() => setActivePdf(!activePdf)} className="downloadPdf">
+              Download Invoice
+            </button>
             {/*<PDFDownloadLink document={<PdfPage />} fileName="invoice.pdf">*/}
-            {/*<button*/}
-            {/*  onClick={() => setActivePdf(!activePdf)}*/}
-            {/*  className="downloadPdf"*/}
-            {/*>*/}
-            {/*  Download Invoice*/}
-            {/*</button>*/}
+            {/*  <button onClick={() => setActivePdf(!activePdf)} className="downloadPdf">*/}
+            {/*    Download Invoice*/}
+            {/*  </button>*/}
             {/*</PDFDownloadLink>*/}
           </div>
         </div>

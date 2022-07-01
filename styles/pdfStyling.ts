@@ -8,7 +8,6 @@ export const styles = StyleSheet.create({
     backgroundColor: "#ffffff",
     position: "relative",
     padding: "30px 80px",
-    fontFamily: "Poppins",
   },
   header: {
     flexDirection: "row",

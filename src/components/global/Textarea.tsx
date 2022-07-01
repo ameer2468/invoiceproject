@@ -21,7 +21,9 @@ const TextArea = (props: props) => {
         onChange={props.onChange}
         className={`${props.customClass}`}
       />
-      <CharacterLimit textValue={props.value.length} limitValue={600} />
+      {props.limitValue && (
+        <CharacterLimit textValue={props.value.length} limitValue={props.limitValue} />
+      )}
     </div>
   );
 };

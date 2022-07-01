@@ -2,7 +2,7 @@ export interface Invoice {
   id: string;
   description: string;
   date: string;
-  dueDate: Date | null;
+  dueDate: Date | null | string | any;
   to: string;
   status: string;
   from: string;

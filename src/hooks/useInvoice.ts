@@ -256,6 +256,7 @@ export const useInvoiceData = (
           ...(invoice as InvoiceData),
           [type]: mutateValue(type),
         });
+        toast("Invoice updated successfully", successToast);
         setEditInvoiceMode(false);
       })
       .catch(() => {})
