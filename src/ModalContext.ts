@@ -6,7 +6,7 @@ export const ModalContext = createContext<{
   setModalId: Dispatch<SetStateAction<keyof ModalID | null>>;
 }>({
   modalId: null,
-  setModalId: () => {},
+  setModalId: () => "",
 });
 export const useModal = () => {
   const [modalId, setModalId] = useState<keyof ModalID | null>(null);
