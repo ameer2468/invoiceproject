@@ -31,9 +31,9 @@ export const useLogin = () => {
   const signoutHandler = async () => {
     setModalId("logout");
     await Auth.signOut().then(() => {
-      setModalId(null);
       router.push("/").then(() => {
         setUser({ type: "unauthenticated" });
+        setModalId(null);
       });
     });
   };
