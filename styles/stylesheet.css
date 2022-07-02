@@ -433,33 +433,6 @@ body {
   color: white;
   margin: 0;
 }
-.newInvoice .newInvoiceContainer textarea {
-  border: 2px solid #383838;
-  padding: 1.5rem 2rem;
-  border-radius: 1rem;
-  background: #252525;
-  width: 80%;
-  color: white;
-  margin: 1rem auto 0 auto;
-  transition: all 0.3s;
-  font-family: Poppins, sans-serif;
-  width: 100%;
-  position: relative;
-  margin: 0;
-  height: 10rem;
-  resize: none;
-}
-.newInvoice .newInvoiceContainer textarea:focus {
-  border: 2px solid #ff7193;
-  outline: 0;
-  transition: all 0.3s;
-}
-.newInvoice .newInvoiceContainer textarea::placeholder {
-  color: white;
-}
-.newInvoice .newInvoiceContainer textarea::placeholder {
-  font-weight: normal;
-}
 
 .invoices h1 {
   color: white;
@@ -1633,6 +1606,54 @@ body {
 }
 .header h1 {
   font-weight: bold;
+}
+
+textarea {
+  border: 2px solid #383838;
+  padding: 1.5rem 2rem;
+  border-radius: 1rem;
+  background: #252525;
+  width: 80%;
+  color: white;
+  margin: 1rem auto 0 auto;
+  transition: all 0.3s;
+  font-family: Poppins, sans-serif;
+  width: 100%;
+  position: relative;
+  margin: 0;
+  height: 10rem;
+  resize: none;
+}
+textarea:focus {
+  border: 2px solid #ff7193;
+  outline: 0;
+  transition: all 0.3s;
+}
+textarea::placeholder {
+  color: white;
+}
+textarea::placeholder {
+  font-weight: normal;
+}
+
+.textAreaButton {
+  background: #5f62ff;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  border: 0;
+  padding: 0 5rem;
+  height: 5rem;
+  border-radius: 1rem;
+  transition: all 0.3s;
+  height: 4rem;
+  padding: 0 3rem;
+  margin-top: 1rem;
+}
+.textAreaButton:hover {
+  cursor: pointer;
+  background: #4649ff;
+  color: white;
 }
 
 .noContent {

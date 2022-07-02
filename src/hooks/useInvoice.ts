@@ -188,6 +188,7 @@ export const useInvoiceData = (
     amount: false,
     date: false,
     delete: false,
+    description: false,
     status: false,
   });
   const [invoice, setInvoice] = useState<InvoiceData | null>(null);
@@ -242,6 +243,7 @@ export const useInvoiceData = (
         amount: invoiceForm.amount,
         id: invoiceForm.id,
         date: invoiceForm.date,
+        description: invoiceForm.description,
       };
       return obj[key];
     };

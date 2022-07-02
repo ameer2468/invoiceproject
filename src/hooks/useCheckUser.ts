@@ -12,7 +12,6 @@ export const useCheckUser = ({ pageProps }: props) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const pageProtected = pageProps.protected;
   const capitalize = (s: string) => {
-    if (typeof s !== "string") return "";
     return s.charAt(0).toUpperCase() + s.slice(1);
   };
 

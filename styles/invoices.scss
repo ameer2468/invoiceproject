@@ -159,17 +159,6 @@
         }
       }
     }
-    textarea {
-      @include formInput;
-      width: 100%;
-      position: relative;
-      margin: 0;
-      height: 10rem;
-      resize: none;
-      &::placeholder {
-        font-weight: normal;
-      }
-    }
   }
 }
 

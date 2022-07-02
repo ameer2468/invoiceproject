@@ -11,6 +11,25 @@
   }
 }
 
+textarea {
+  @include formInput;
+  width: 100%;
+  position: relative;
+  margin: 0;
+  height: 10rem;
+  resize: none;
+  &::placeholder {
+    font-weight: normal;
+  }
+}
+
+.textAreaButton {
+  @include PurpleButton();
+  height: 4rem;
+  padding: 0 3rem;
+  margin-top: 1rem;
+}
+
 .noContent {
   width: 100%;
   max-width: 60rem;

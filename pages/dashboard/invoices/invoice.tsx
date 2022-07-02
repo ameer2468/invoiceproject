@@ -12,6 +12,7 @@ import { faMoneyBill } from "@fortawesome/free-solid-svg-icons";
 import Dropdown from "../../../src/components/global/dropdown";
 import CurrencyInput from "react-currency-input-field";
 import { GetServerSideProps } from "next";
+import TextArea from "../../../src/components/global/Textarea";
 
 interface props {
   invoiceData: InvoiceData;
@@ -19,7 +20,8 @@ interface props {
 }
 
 const Invoice = ({ invoiceData, invoiceItems }: props) => {
-  const { invoiceForm, handleCurrencyValueChange, setInvoiceForm } = useInvoice();
+  const { invoiceForm, handleCurrencyValueChange, setInvoiceForm, handleInputChange } =
+    useInvoice();
   const {
     invoice,
     invoiceMutate,
@@ -59,7 +61,30 @@ const Invoice = ({ invoiceData, invoiceItems }: props) => {
         </button>
       </div>
       <div className="description">
-        <p>{invoice?.description}</p>
+        {editInvoiceMode ? (
+          <>
+            <TextArea
+              placeholder={invoice?.description as string}
+              value={invoiceForm.description}
+              name="description"
+              limitValue={300}
+              onChange={handleInputChange}
+            />
+            <button
+              disabled={mutateLoading.description}
+              onClick={() => {
+                invoiceMutate("description");
+              }}
+              className={`textAreaButton ${
+                mutateLoading.description && "disabledButton"
+              }`}
+            >
+              {mutateLoading.description ? <Loading style="PulseLoader" /> : "Save"}
+            </button>
+          </>
+        ) : (
+          <p>{invoice?.description}</p>
+        )}
       </div>
       <div className="stats">
         <div className="stat">
