@@ -9,9 +9,9 @@ export const useNotifications = () => {
   const [loading, setLoading] = useState(false);
   const { user } = useUser();
 
-  const markAllAsRead = async () => {
+  const markAllAsRead = () => {
     setLoading(true);
-    await markAllAsReadRequest(user[0].attributes.sub)
+    markAllAsReadRequest(user[0].attributes.sub)
       .then(() => {
         if (notifications) {
           setNotifications(
@@ -34,9 +34,9 @@ export const useNotifications = () => {
       });
   };
 
-  const notificationRequest = async () => {
+  const notificationRequest = () => {
     setLoading(true);
-    await getNotifications(user[0].attributes.sub)
+    getNotifications(user[0].attributes.sub)
       .then((res) => {
         const { data } = res;
         setNotifications(data);
