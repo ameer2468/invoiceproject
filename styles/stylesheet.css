@@ -1221,11 +1221,12 @@ body {
 }
 .dashboardHeader .container .notification-item h2 {
   color: white;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
+  margin-bottom: 0.4rem;
 }
 .dashboardHeader .container .notification-item p {
   color: gray;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 }
 
 .overview .main-header {

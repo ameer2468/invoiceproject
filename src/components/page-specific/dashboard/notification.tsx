@@ -1,10 +1,15 @@
 import React from "react";
+import { INotification } from "../../../../types/user";
 
-const Notification = () => {
+interface props {
+  notification: INotification;
+}
+
+const Notification = ({ notification }: props) => {
   return (
     <div className="notification-item">
-      <h2>Title</h2>
-      <p>You received a new message!</p>
+      <h2>{notification.title}</h2>
+      <p>{notification.text}</p>
     </div>
   );
 };

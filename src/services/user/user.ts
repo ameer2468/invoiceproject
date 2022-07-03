@@ -6,6 +6,22 @@ import {
   postBankingParams,
 } from "./types";
 
+/*Request to get notifications*/
+
+export const getNotifications = (user_subid: string) => {
+  return getRequest(`notifications`, {
+    user_subid,
+  });
+};
+
+/*Request to read notifs*/
+
+export const markAllAsReadRequest = (user_subid: string) => {
+  return putRequest(`notifications`, {
+    user_subid: user_subid,
+  });
+};
+
 /*Request to create user*/
 
 export const createUser = ({

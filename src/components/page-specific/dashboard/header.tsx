@@ -2,9 +2,11 @@ import React, { useRef } from "react";
 import { faSearch, faBell } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import NotificationsDropdown from "./notifications-dropdown";
+import { useNotifications } from "../../../hooks/useNotifications";
 
 const Header = () => {
   const [isOpen, setIsOpen] = React.useState(false);
+  const { notifications, notificationRequest, loading } = useNotifications();
   const buttonRef = useRef(null);
 
   return (
@@ -18,12 +20,23 @@ const Header = () => {
             icon={faSearch}
           />
         </div>
-        <div ref={buttonRef} onClick={() => setIsOpen(!isOpen)} className="notification">
+        <div
+          ref={buttonRef}
+          onClick={() => {
+            setIsOpen(!isOpen);
+            if (!isOpen) {
+              notificationRequest();
+            }
+          }}
+          className="notification"
+        >
           <FontAwesomeIcon className="icon" icon={faBell} />
-          <div className="alert" />
+          {notifications?.every((value) => value.read) ? "" : <div className="alert" />}
         </div>
         <NotificationsDropdown
           isOpen={isOpen}
+          loading={loading}
+          data={notifications}
           parentRef={buttonRef}
           setIsOpen={(active: boolean) => {
             setIsOpen(active);
