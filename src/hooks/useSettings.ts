@@ -178,8 +178,8 @@ export const useSettings = () => {
 };
 
 export const useFetchBankingInfo = (
-  bankingInfo: BankingInfo | null,
-  setBankingInfo: (bankingInfo: BankingInfo) => void
+  bankingInfo?: BankingInfo | null,
+  setBankingInfo?: (bankingInfo: BankingInfo) => void
 ) => {
   const { getBankingInfo } = useSettings();
   const { data, isLoading } = useQuery<BankingInfo>(
@@ -191,8 +191,10 @@ export const useFetchBankingInfo = (
   );
   useEffect(() => {
     if (data && Object.keys(data).length > 0) {
-      setBankingInfo(data);
+      if (setBankingInfo) {
+        setBankingInfo(data);
+      }
     }
   }, [data]);
-  return { bankingInfo, isLoading };
+  return { bankingInfo, isLoading, data };
 };

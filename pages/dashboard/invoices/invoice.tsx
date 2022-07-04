@@ -37,6 +37,7 @@ const Invoice = ({ invoiceData, invoiceItems }: props) => {
     invoiceForm,
     setInvoiceForm
   );
+  const checkDescriptionValue = invoiceForm.description === invoice?.description;
 
   return (
     <Page pageName={"invoiceId"}>
@@ -71,12 +72,12 @@ const Invoice = ({ invoiceData, invoiceItems }: props) => {
               onChange={handleInputChange}
             />
             <button
-              disabled={mutateLoading.description}
+              disabled={mutateLoading.description || checkDescriptionValue}
               onClick={() => {
                 invoiceMutate("description");
               }}
               className={`textAreaButton ${
-                mutateLoading.description && "disabledButton"
+                mutateLoading.description || checkDescriptionValue ? "disabledButton" : ""
               }`}
             >
               {mutateLoading.description ? <Loading style="PulseLoader" /> : "Save"}

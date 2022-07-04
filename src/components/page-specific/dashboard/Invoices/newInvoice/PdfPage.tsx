@@ -87,11 +87,24 @@ const PdfPage = ({ invoiceInfo }: props) => {
                 <Text style={styles.footerHeading}>Total</Text>
               </View>
               <View style={styles.content}>
-                <Text style={styles.footerText}>Account No: asdasd234</Text>
-                <Text style={styles.footerText}>
-                  {invoiceInfo.dueDate?.toISOString().split("T")[0]}
-                </Text>
-                <Text style={styles.footerText}>${numberFormat(totalCost, 2)}</Text>
+                <View style={styles.textWrap}>
+                  <Text style={styles.whiteText}>
+                    Account No:
+                    {invoiceInfo.account_number ? invoiceInfo.account_number : "N/A"}
+                  </Text>
+                  <Text style={styles.whiteText}>
+                    Sort code:
+                    {invoiceInfo.sort_code ? invoiceInfo.sort_code : "N/A"}
+                  </Text>
+                </View>
+                <View style={styles.textWrap}>
+                  <Text style={styles.whiteText}>
+                    {invoiceInfo.dueDate?.toISOString().split("T")[0]}
+                  </Text>
+                </View>
+                <View style={styles.textWrap}>
+                  <Text style={styles.whiteText}>${numberFormat(totalCost, 2)}</Text>
+                </View>
               </View>
             </View>
           </View>

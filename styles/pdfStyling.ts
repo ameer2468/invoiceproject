@@ -40,6 +40,10 @@ export const styles = StyleSheet.create({
     right: 0,
     padding: 20,
   },
+  footerTextWrap: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
   footerContainer: {
     flexDirection: "column",
     alignItems: "center",
@@ -75,11 +79,21 @@ export const styles = StyleSheet.create({
     textTransform: "uppercase",
     color: "#6f6f6f",
   },
+  textWrap: {
+    textAlign: "center",
+    width: "auto",
+    flex: "0 0 33%",
+  },
+  whiteText: {
+    color: "white",
+    marginBottom: 5,
+    fontSize: 11,
+  },
   footerText: {
     color: "white",
     fontSize: 11,
     textAlign: "center",
-    flex: "0 0 30%",
+    flex: "0 0 33%",
     marginTop: 8,
   },
   content: {
@@ -96,7 +110,7 @@ export const styles = StyleSheet.create({
   },
   footerHeading: {
     color: "white",
-    flex: "0 0 30%",
+    flex: "0 0 33%",
     textTransform: "uppercase",
     textAlign: "center",
     fontSize: 12,

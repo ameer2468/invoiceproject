@@ -51,9 +51,11 @@ const NotificationsDropdown = ({
               <Loading style="PulseLoader" />
             </div>
           ) : (
-            data?.map((value) => {
-              return <Notification key={value.id} notification={value} />;
-            })
+            <div className="notif-container">
+              {data?.map((value) => {
+                return <Notification key={value.id} notification={value} />;
+              })}
+            </div>
           )}
         </motion.div>
       ) : (

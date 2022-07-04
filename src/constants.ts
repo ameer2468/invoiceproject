@@ -8,6 +8,8 @@ export const invoiceFormState = {
   dueDate: null,
   to: "",
   from: "",
+  account_number: "",
+  sort_code: "",
   invoiceItems: [
     {
       id: uuidv4(),

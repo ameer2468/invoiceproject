@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useMemo, useState } from "react";
+import React, { ChangeEvent, useEffect, useMemo, useState } from "react";
 import DashboardLayout from "../../../layouts/DashboardLayout";
 import Input from "../../../src/components/global/Input";
 import { useInvoice } from "../../../src/hooks/useInvoice";
@@ -10,8 +10,10 @@ import PdfPage from "../../../src/components/page-specific/dashboard/Invoices/ne
 import { PDFDownloadLink } from "@react-pdf/renderer";
 
 import "react-datepicker/dist/react-datepicker.css";
+
 import { numberFormat } from "../../../src/helpers";
 import Loading from "../../../src/components/global/loading";
+import { useFetchBankingInfo } from "../../../src/hooks/useSettings";
 
 const New = () => {
   const [activePdf, setActivePdf] = useState(false);
@@ -24,10 +26,12 @@ const New = () => {
     createInvoiceLoading,
     removeInvoiceItem,
     updateInvoiceForm,
+    updateMultiValues,
     toggleCalendar,
     handleDateChange,
     addItem,
   } = useInvoice();
+  const { data } = useFetchBankingInfo();
 
   const totalCost = invoiceForm.invoiceItems.reduce((acc: any, item: any) => {
     const itemAmount = Number(item.amount);
@@ -41,6 +45,14 @@ const New = () => {
   useMemo(() => {
     updateInvoiceForm("amount", totalCost.toString());
   }, [totalCost]);
+  useEffect(() => {
+    if (data) {
+      updateMultiValues([
+        { key: "account_number", value: data.account_number },
+        { key: "sort_code", value: data.sort_code },
+      ]);
+    }
+  }, [data]);
 
   return (
     <>

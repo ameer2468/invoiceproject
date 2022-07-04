@@ -321,21 +321,29 @@
       position: absolute;
       background: $darkgrey;
       border: 1px solid $inputborder;
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
       width: 100%;
-      max-width: 30rem;
+      max-width: 40rem;
+      padding: 2rem;
       right: 0;
-      justify-content: center;
       top: 6rem;
       z-index: 200;
       border-radius: 1rem;
     }
+    .notif-container {
+      display: flex;
+      padding: 2rem;
+      background: lighten($darkgrey, 6%);
+      border: 1px solid $inputborder;
+      border-radius: 1rem;
+      margin-top: 2rem;
+      flex-direction: column;
+      gap: 1rem;
+    }
     .read {
       @include PurpleButton;
-      width: 100%;
+      width: auto;
+      padding: 0 2rem;
+      height: 4rem;
     }
     .notification-item {
       background: darken($input, 2%);

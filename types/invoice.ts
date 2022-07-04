@@ -7,10 +7,17 @@ export interface Invoice {
   status: string;
   from: string;
   invoiceItems: item[];
+  account_number?: string;
+  sort_code?: string;
   notes: string;
   tos: string;
   tax: string;
   amount: string;
+}
+
+export interface updateKeys {
+  key: keyof Invoice;
+  value: string | number | boolean;
 }
 
 export interface TextAreaLimits {

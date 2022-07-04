@@ -23,7 +23,6 @@ const Overview = () => {
     setPeriod,
   } = useFetchOverviewInvoices();
 
-
   const TabContent = () => {
     switch (activeTab) {
       case 0:

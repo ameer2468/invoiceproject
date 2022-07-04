@@ -1183,17 +1183,23 @@ body {
   position: absolute;
   background: #171717;
   border: 1px solid #383838;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
   width: 100%;
-  max-width: 30rem;
+  max-width: 40rem;
+  padding: 2rem;
   right: 0;
-  justify-content: center;
   top: 6rem;
   z-index: 200;
   border-radius: 1rem;
+}
+.dashboardHeader .container .notif-container {
+  display: flex;
+  padding: 2rem;
+  background: #262626;
+  border: 1px solid #383838;
+  border-radius: 1rem;
+  margin-top: 2rem;
+  flex-direction: column;
+  gap: 1rem;
 }
 .dashboardHeader .container .read {
   background: #5f62ff;
@@ -1205,7 +1211,9 @@ body {
   height: 5rem;
   border-radius: 1rem;
   transition: all 0.3s;
-  width: 100%;
+  width: auto;
+  padding: 0 2rem;
+  height: 4rem;
 }
 .dashboardHeader .container .read:hover {
   cursor: pointer;

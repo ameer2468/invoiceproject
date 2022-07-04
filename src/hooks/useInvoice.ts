@@ -4,6 +4,7 @@ import {
   InvoiceData,
   MutateInvoice,
   MutateLoading,
+  updateKeys,
 } from "../../types/invoice";
 import { v4 as uuidv4 } from "uuid";
 import { useState, ChangeEvent, useEffect, FormEvent } from "react";
@@ -122,9 +123,19 @@ export const useInvoice = () => {
     });
   };
 
+  /* Update multiple invoice values*/
+
+  const updateMultiValues = (valuesToUpdate: updateKeys[]) => {
+    setInvoiceForm(
+      valuesToUpdate.reduce((acc, curr) => {
+        return { ...acc, [curr.key]: curr.value };
+      }, invoiceForm)
+    );
+  };
+
   /* Update an individual key in the invoice form */
 
-  const updateInvoiceForm = (key: string, value: string | boolean) => {
+  const updateInvoiceForm = (key: keyof Invoice, value: string | number | boolean) => {
     setInvoiceForm({
       ...invoiceForm,
       [key]: value,
@@ -168,6 +179,7 @@ export const useInvoice = () => {
     handleCreateInvoice,
     handleDateChange,
     updateInvoiceForm,
+    updateMultiValues,
     toggleCalendar,
     setInvoicesData,
     invoicesData,
@@ -227,6 +239,7 @@ export const useInvoiceData = (
     setInvoiceForm({
       ...invoiceForm,
       id: invoiceData.id,
+      description: invoiceData.description,
       date: invoiceData.date,
       amount: invoiceData.amount,
       status: invoiceData.status,
