@@ -350,6 +350,7 @@
       padding: 2rem;
       width: 100%;
       border-radius: 1rem;
+      position: relative;
       border: 1px solid $inputborder;
       h2 {
         color: white;
@@ -359,6 +360,38 @@
       p {
         color: gray;
         font-size: 1.4rem;
+      }
+      @keyframes circleanim {
+        0% {
+          transform: scale(0);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(3);
+          opacity: 0;
+        }
+      }
+      .alert {
+        width: 0.8rem;
+        position: absolute;
+        height: 0.8rem;
+        right: 2rem;
+        z-index: 2;
+        top: 2.5rem;
+        background: $pink;
+        border-radius: 10rem;
+        &::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          z-index: 1;
+          height: 100%;
+          border-radius: 50%;
+          background: $pink;
+          animation: circleanim 2s ease-in-out infinite;
+        }
       }
     }
   }

@@ -1217,6 +1217,7 @@ body {
   padding: 2rem;
   width: 100%;
   border-radius: 1rem;
+  position: relative;
   border: 1px solid #383838;
 }
 .dashboardHeader .container .notification-item h2 {
@@ -1227,6 +1228,38 @@ body {
 .dashboardHeader .container .notification-item p {
   color: gray;
   font-size: 1.4rem;
+}
+@keyframes circleanim {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+.dashboardHeader .container .notification-item .alert {
+  width: 0.8rem;
+  position: absolute;
+  height: 0.8rem;
+  right: 2rem;
+  z-index: 2;
+  top: 2.5rem;
+  background: #ff7193;
+  border-radius: 10rem;
+}
+.dashboardHeader .container .notification-item .alert::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+  height: 100%;
+  border-radius: 50%;
+  background: #ff7193;
+  animation: circleanim 2s ease-in-out infinite;
 }
 
 .overview .main-header {

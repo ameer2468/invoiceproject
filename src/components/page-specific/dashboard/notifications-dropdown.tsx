@@ -4,7 +4,6 @@ import { INotification } from "../../../../types/user";
 import { useClickOutside } from "../../../hooks/useClickOutside";
 import Loading from "../../global/loading";
 import Notification from "./notification";
-import { useNotifications } from "../../../hooks/useNotifications";
 
 interface props {
   isOpen: boolean;
@@ -12,6 +11,7 @@ interface props {
   parentRef?: React.RefObject<HTMLDivElement>;
   data: INotification[] | null;
   loading: boolean;
+  markAllAsRead: () => void;
 }
 
 const NotificationsDropdown = ({
@@ -19,6 +19,7 @@ const NotificationsDropdown = ({
   setIsOpen,
   parentRef,
   data,
+  markAllAsRead,
   loading,
 }: props) => {
   const notifRef = useRef(null);
@@ -26,7 +27,6 @@ const NotificationsDropdown = ({
     setIsOpen(!isOpen);
   };
   useClickOutside(notifRef, handleClickOutside, parentRef);
-  const { markAllAsRead } = useNotifications();
   const notificationRead = data?.every((value) => value.read);
 
   return (
@@ -44,7 +44,7 @@ const NotificationsDropdown = ({
             disabled={loading || notificationRead}
             className={`read ${loading || notificationRead ? "disabledButton" : ""}`}
           >
-            Mark all as read
+            {loading ? <Loading style="PulseLoader" /> : "Mark all as read"}
           </button>
           {loading ? (
             <div style={{ textAlign: "center", marginTop: "2rem" }}>

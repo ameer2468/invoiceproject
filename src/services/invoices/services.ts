@@ -23,6 +23,7 @@ export interface mutateInvoice {
   id: string;
   field: string;
   value: string | number | undefined;
+  user_subid: string;
 }
 
 /*Update an individual invoice*/

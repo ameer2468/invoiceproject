@@ -205,6 +205,7 @@ export const useInvoiceData = (
   const [invoice, setInvoice] = useState<InvoiceData | null>(null);
   const { editInvoiceMode, setEditInvoiceMode } = useInvoice();
   const router = useRouter();
+  const { user } = useUser();
 
   /* When editing an individual invoice - this is a loading handler
   depending on the field that is being edited */
@@ -264,6 +265,7 @@ export const useInvoiceData = (
       id: invoice?.id || "",
       field: type,
       value: mutateValue(type),
+      user_subid: user[0].attributes.sub,
     })
       .then(() => {
         setInvoice({

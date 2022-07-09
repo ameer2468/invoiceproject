@@ -6,7 +6,8 @@ import { useNotifications } from "../../../hooks/useNotifications";
 
 const Header = () => {
   const [isOpen, setIsOpen] = React.useState(false);
-  const { notifications, notificationRequest, loading } = useNotifications();
+  const { notifications, notificationRequest, loading, markAllAsRead } =
+    useNotifications();
   const buttonRef = useRef(null);
 
   return (
@@ -35,6 +36,7 @@ const Header = () => {
         </div>
         <NotificationsDropdown
           isOpen={isOpen}
+          markAllAsRead={markAllAsRead}
           loading={loading}
           data={notifications}
           parentRef={buttonRef}
