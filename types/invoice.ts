@@ -38,6 +38,13 @@ export interface MutateLoading {
   status: boolean;
 }
 
+export interface InvoiceRecord {
+  amount: number | string;
+  id: string;
+  date: string;
+  status: "paid" | "unpaid";
+}
+
 export interface MutateInvoice {
   id: string;
   amount: string;

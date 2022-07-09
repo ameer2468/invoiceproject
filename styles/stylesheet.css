@@ -216,14 +216,6 @@ body {
     grid-gap: 30px;
   }
 }
-.unpaid {
-  color: #ff8282 !important;
-}
-
-.paid {
-  color: #77e277 !important;
-}
-
 .charLimit {
   position: absolute;
   bottom: -2.5rem;
@@ -1842,6 +1834,14 @@ h1 {
   color: white;
   font-size: 4rem;
   color: white;
+}
+
+.unpaid {
+  color: #ff8282 !important;
+}
+
+.paid {
+  color: #77e277 !important;
 }
 
 .searchBox {

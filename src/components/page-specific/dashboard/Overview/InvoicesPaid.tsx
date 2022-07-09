@@ -4,11 +4,11 @@ import { Scrollbars } from "react-custom-scrollbars-2";
 import SearchBox from "../../../global/SearchBox";
 import { motion } from "framer-motion";
 import { anim } from "../../../../framer";
-import { Invoice } from "../../../../../types/invoice";
+import { InvoiceRecord } from "../../../../../types/invoice";
 import { numberFormat } from "../../../../helpers";
 
 interface props {
-  data: Invoice[] | undefined;
+  data: InvoiceRecord[] | undefined;
 }
 
 const InvoicesPaid = ({ data }: props) => {
@@ -17,7 +17,9 @@ const InvoicesPaid = ({ data }: props) => {
     ? []
     : searchValue.length > 0
     ? data.filter((value) => {
-        return value.id.includes(searchValue) || value.amount.includes(searchValue);
+        return (
+          value.id.includes(searchValue) || value.amount.toString().includes(searchValue)
+        );
       })
     : data;
   const totalMade = data?.reduce((acc, value) => {
