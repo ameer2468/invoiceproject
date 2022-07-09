@@ -352,10 +352,15 @@
       border-radius: 1rem;
       position: relative;
       border: 1px solid $inputborder;
+      .icon {
+        font-size: 1.2rem;
+        margin-right: 0.5rem;
+        color: $pink;
+      }
       h2 {
         color: white;
+        margin-bottom: 1rem;
         font-size: 1.5rem;
-        margin-bottom: 0.4rem;
       }
       p {
         color: gray;

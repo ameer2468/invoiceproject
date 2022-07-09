@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import DashboardLayout from "../../../layouts/DashboardLayout";
 import Page from "../../../src/components/global/Page";
 import { getInvoice } from "../../../src/services/invoices/services";
@@ -14,6 +14,7 @@ import TextArea from "../../../src/components/global/Textarea";
 import { motion } from "framer-motion";
 import { staggerChildren, staggerParent } from "../../../src/framer";
 import InvoiceItem from "../../../src/components/page-specific/dashboard/Invoices/InvoiceItem";
+import { useRouter } from "next/router";
 
 interface props {
   invoiceData: InvoiceData;
@@ -23,6 +24,7 @@ interface props {
 const Invoice = ({ invoiceData, invoiceItems }: props) => {
   const { invoiceForm, handleCurrencyValueChange, setInvoiceForm, handleInputChange } =
     useInvoice();
+  const params = useRouter().query;
   const {
     invoice,
     invoiceMutate,
@@ -38,7 +40,19 @@ const Invoice = ({ invoiceData, invoiceItems }: props) => {
     invoiceForm,
     setInvoiceForm
   );
-  const checkDescriptionValue = invoiceForm.description === invoice?.description;
+
+  useEffect(() => {
+    if (invoice) {
+      if (Number(params?.q) !== Number(invoice?.id)) {
+        window.location.reload();
+      } else {
+        return;
+      }
+    }
+  }, [params?.q]);
+
+  const checkDescriptionValue =
+    invoiceForm && invoiceForm.description === invoice?.description;
 
   return (
     <Page pageName={"invoiceId"}>

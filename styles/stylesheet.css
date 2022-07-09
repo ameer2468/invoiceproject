@@ -1220,10 +1220,15 @@ body {
   position: relative;
   border: 1px solid #383838;
 }
+.dashboardHeader .container .notification-item .icon {
+  font-size: 1.2rem;
+  margin-right: 0.5rem;
+  color: #ff7193;
+}
 .dashboardHeader .container .notification-item h2 {
   color: white;
+  margin-bottom: 1rem;
   font-size: 1.5rem;
-  margin-bottom: 0.4rem;
 }
 .dashboardHeader .container .notification-item p {
   color: gray;
@@ -1682,6 +1687,7 @@ textarea::placeholder {
   max-width: 50rem;
   height: auto;
   margin: 0 auto;
+  border: 1px solid #252525;
   padding: 2rem;
   position: relative;
   background-color: #171717;
@@ -1946,6 +1952,16 @@ li {
 }
 .disabledButton:hover {
   cursor: not-allowed !important;
+}
+
+.highlight {
+  color: #71aaff;
+  transition: all 0.3s;
+}
+.highlight:hover {
+  cursor: pointer;
+  transition: all 0.3s;
+  opacity: 0.5;
 }
 
 .pink {

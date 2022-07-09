@@ -72,6 +72,7 @@ textarea {
     max-width: 50rem;
     height: auto;
     margin: 0 auto;
+    border: 1px solid $border;
     padding: 2rem;
     position: relative;
     background-color: $darkgrey;
@@ -283,6 +284,16 @@ li {
   background-color: #767676 !important;
   &:hover {
     cursor: not-allowed !important;
+  }
+}
+
+.highlight {
+  color: $blue;
+  transition: all 0.3s;
+  &:hover {
+    cursor: pointer;
+    transition: all 0.3s;
+    opacity: 0.5;
   }
 }
 

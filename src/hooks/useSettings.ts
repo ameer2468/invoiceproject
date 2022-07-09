@@ -68,8 +68,7 @@ export const useSettings = () => {
   };
 
   const handleInputChange = (
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    modifyValue?: any
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setSettings({ ...settings, [event.target.name]: event.target.value });
   };
