@@ -1844,6 +1844,10 @@ h1 {
   color: #77e277 !important;
 }
 
+li {
+  list-style: none;
+}
+
 .searchBox {
   position: relative;
   width: 100%;

@@ -16,7 +16,6 @@ const OverviewTabs = ({
   const tabsArr = [
     { title: "Total invoices paid.", value: paidInvoices?.length },
     { title: "Total Unpaid invoices.", value: unpaidInvoices?.length },
-    { title: "Amount due.", value: "$1,432" },
   ];
 
   return (

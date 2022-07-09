@@ -7,12 +7,13 @@ import moment from "moment";
 import { numberFormat } from "../../../src/helpers";
 import Loading from "../../../src/components/global/loading";
 import { useInvoice, useInvoiceData } from "../../../src/hooks/useInvoice";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMoneyBill } from "@fortawesome/free-solid-svg-icons";
 import Dropdown from "../../../src/components/global/dropdown";
 import CurrencyInput from "react-currency-input-field";
 import { GetServerSideProps } from "next";
 import TextArea from "../../../src/components/global/Textarea";
+import { motion } from "framer-motion";
+import { staggerChildren, staggerParent } from "../../../src/framer";
+import InvoiceItem from "../../../src/components/page-specific/dashboard/Invoices/InvoiceItem";
 
 interface props {
   invoiceData: InvoiceData;
@@ -87,12 +88,17 @@ const Invoice = ({ invoiceData, invoiceItems }: props) => {
           <p>{invoice?.description}</p>
         )}
       </div>
-      <div className="stats">
-        <div className="stat">
+      <motion.ul
+        variants={{ ...staggerParent.variants }}
+        initial="closed"
+        animate="open"
+        className="stats"
+      >
+        <motion.li {...staggerChildren} className="stat">
           <p className="bold">Id:</p>
           <p>{invoice?.id}</p>
-        </div>
-        <div className="stat">
+        </motion.li>
+        <motion.li {...staggerChildren} className="stat">
           {editInvoiceMode ? (
             <div className="flex">
               <CurrencyInput
@@ -124,8 +130,8 @@ const Invoice = ({ invoiceData, invoiceItems }: props) => {
               )}
             </>
           )}
-        </div>
-        <div className="stat">
+        </motion.li>
+        <motion.li {...staggerChildren} className="stat">
           <p className="bold">Status:</p>
           <p className={invoice?.status === "paid" ? "paid" : "unpaid"}>
             {editInvoiceMode ? "" : invoice?.status}
@@ -146,28 +152,29 @@ const Invoice = ({ invoiceData, invoiceItems }: props) => {
               )
             )}
           </div>
-        </div>
-        <div className="stat">
+        </motion.li>
+        <motion.li {...staggerChildren} className="stat">
           <p className="bold">Date:</p>
           <p>{moment(invoice?.date).format("MMM Do YYYY")}</p>
-        </div>
-      </div>
+        </motion.li>
+      </motion.ul>
       <h1>Invoice Items</h1>
-      <div className="items">
-        {invoice?.invoiceItems.map((item) => {
-          return (
-            <div key={item.id} className="i-item">
-              <h2>{item.description}</h2>
-              <div className="info">
-                <p>
-                  <FontAwesomeIcon className="icon" icon={faMoneyBill} />
-                  Amount: ${item.amount}
-                </p>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+      <motion.ul
+        initial={"closed"}
+        animate={"open"}
+        variants={{ ...staggerParent.variants }}
+        className="items"
+      >
+        {invoice?.invoiceItems.length === 0 ? (
+          <div style={{ top: "120%", opacity: 0.5 }} className="absoluteCenter">
+            <p>No Items</p>
+          </div>
+        ) : (
+          invoice?.invoiceItems.map((item, index) => (
+            <InvoiceItem item={item} key={index.toString()} />
+          ))
+        )}
+      </motion.ul>
     </Page>
   );
 };
