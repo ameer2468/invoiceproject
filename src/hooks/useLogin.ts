@@ -44,7 +44,6 @@ export const useLogin = () => {
     await Auth.signIn(loginForm.email, loginForm.password)
       .then((res) => {
         setUser({ ...res, type: "authenticated" });
-        router.push("/dashboard/overview");
       })
       .catch((err) => {
         if (
@@ -64,6 +63,7 @@ export const useLogin = () => {
     formError,
     loginLoading,
     signoutHandler,
+    user,
     inputHandler,
     loginHandler,
   };

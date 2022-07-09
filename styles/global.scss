@@ -30,6 +30,10 @@ textarea {
   margin-top: 1rem;
 }
 
+.success {
+  background-color: #3db573 !important;
+}
+
 .noContent {
   width: 100%;
   max-width: 60rem;
@@ -230,8 +234,7 @@ h1 {
   padding: 1rem;
   .icon {
     position: absolute;
-    top: 1.5rem;
-    right: 1.3rem;
+    right: 2rem;
     font-size: 2rem;
     color: white;
   }

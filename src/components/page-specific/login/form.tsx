@@ -1,26 +1,18 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { useLogin } from "../../../hooks/useLogin";
 import Loading from "../../global/loading";
 import { motion } from "framer-motion";
 import { anim } from "../../../framer";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
 const LoginForm = () => {
-  const { loginForm, inputHandler, loginHandler, formError, loginLoading } = useLogin();
+  const { loginForm, inputHandler, loginHandler, formError, loginLoading, user } =
+    useLogin();
   const formLength = {
     ...loginForm,
   };
-  const [loginBar, setLoginBar] = useState(0);
-  const loginBarWidth = useMemo(() => {
-    if (formLength.email.length > 5 && formLength.password.length > 5) {
-      setLoginBar(100);
-    } else if (formLength.email.length > 5 || formLength.password.length > 5) {
-      setLoginBar(50);
-    } else {
-      setLoginBar(0);
-    }
-    return loginBar;
-  }, [formLength.email, formLength.password, loginBar]);
 
   return (
     <motion.form
@@ -53,30 +45,30 @@ const LoginForm = () => {
         />
         {formError.length > 0 ? <p className="form-error">{formError}</p> : null}
         <button
-          style={{ position: "relative" }}
-          className={`${
-            formLength.email.length < 5 || formLength.password.length < 5
+          className={`purpleButton ${
+            formLength.email.length < 5 || formLength.password.length < 5 || loginLoading
               ? "disabledButton"
-              : loginLoading && "disabledButton"
+              : user.type === "authenticated" && "success"
           }`}
           disabled={
             loginLoading ||
             (formLength.email.length < 5 && formLength.password.length < 5)
           }
         >
-          {!loginLoading ? (
-            <div
-              className="loginBar"
-              style={{
-                width: `${loginBarWidth}%`,
-              }}
-            />
+          {loginLoading ? (
+            <Loading style={"SyncLoader"} color="white" />
+          ) : "Login" ? (
+            user.type === "authenticated" ? (
+              <FontAwesomeIcon
+                style={{ color: "white", fontSize: "1.7rem" }}
+                icon={faCheck}
+              />
+            ) : (
+              "Login"
+            )
           ) : (
             ""
           )}
-          <div style={{ fontSize: "1.4rem" }} className="absoluteCenter">
-            {loginLoading ? <Loading style={"SyncLoader"} color="white" /> : "Login"}
-          </div>
         </button>
         <div className="links">
           <Link passHref={true} href="/register">

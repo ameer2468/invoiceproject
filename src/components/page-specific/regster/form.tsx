@@ -88,7 +88,7 @@ const RegisterForm = () => {
             {formError.length > 0 ? <p className="form-error">{formError}</p> : null}
             <button
               disabled={registerLoading || formCheck === "disabledButton"}
-              className={formCheck}
+              className={`purpleButton ${formCheck}`}
               type="submit"
             >
               {registerLoading ? (

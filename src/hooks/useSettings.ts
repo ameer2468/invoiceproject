@@ -9,6 +9,8 @@ import {
 import { BankingInfo, Settings } from "../../types/settings";
 import { useUser } from "../UserContext";
 import { useQuery } from "react-query";
+import { toast } from "react-toastify";
+import { errorToast } from "../helpers";
 
 export const useSettings = () => {
   const [bankingInfo, setBankingInfo] = useState<BankingInfo | null>(null);
@@ -78,7 +80,9 @@ export const useSettings = () => {
       .then(() => {
         setBankingInfo(null);
       })
-      .catch(() => {})
+      .catch((err) => {
+        toast(err.message, errorToast);
+      })
       .finally(() => {
         updateLoading("banking", false);
       });
@@ -103,7 +107,9 @@ export const useSettings = () => {
           sort_code: settings.sortCode,
         });
       })
-      .catch((err) => {})
+      .catch((err) => {
+        toast(err.message, errorToast);
+      })
       .finally(() => {
         updateLoading("saving", false);
       });
@@ -121,11 +127,12 @@ export const useSettings = () => {
       email: settings.newEmail,
     })
       .then(() => {
-        updateLoading("account", false);
         updateSettings("verifyStep", 2);
       })
       .catch((err) => {
         errorHandle(true, err.message);
+      })
+      .finally(() => {
         updateLoading("account", false);
       });
   };
@@ -141,10 +148,11 @@ export const useSettings = () => {
           field: "email",
           value: settings.newEmail,
         });
-        updateLoading("account", false);
       })
       .catch((err) => {
         errorHandle(true, err.message);
+      })
+      .finally(() => {
         updateLoading("account", false);
       });
   };

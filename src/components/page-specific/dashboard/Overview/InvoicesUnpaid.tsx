@@ -17,7 +17,7 @@ const InvoicesPaid = ({ data }: props) => {
     ? []
     : searchValue.length > 0
     ? data.filter((value) => {
-        return value.id === searchValue;
+        return value.id.includes(searchValue) || value.amount.includes(searchValue);
       })
     : data;
   const total = data?.reduce((acc, value) => {
@@ -50,7 +50,7 @@ const InvoicesPaid = ({ data }: props) => {
                 onChange={(e) => {
                   setSearchValue(e.target.value);
                 }}
-                placeholder="Seach invoice id..."
+                placeholder="Seach invoice id or amount..."
               />
               <h2>Total: ${numberFormat(total as number, 2)}</h2>
             </div>

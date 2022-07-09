@@ -13,3 +13,12 @@ export const successToast: ToastOptions = {
     fontSize: "1.5rem",
   },
 };
+
+export const errorToast: ToastOptions = {
+  autoClose: 2000,
+  theme: "dark",
+  type: "error",
+  bodyStyle: {
+    fontSize: "1.5rem",
+  },
+};

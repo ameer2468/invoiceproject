@@ -60,9 +60,8 @@
       width: 100%;
     }
     button {
-      @include button();
       width: 100%;
-      margin: 3rem auto;
+      margin: 3rem auto 1.5rem auto;
     }
     h3 {
       color: $pink;

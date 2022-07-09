@@ -3,6 +3,7 @@ import { INotification } from "../../types/user";
 import { getNotifications, markAllAsReadRequest } from "../services/user/user";
 import { useUser } from "../UserContext";
 import { toast } from "react-toastify";
+import { errorToast } from "../helpers";
 
 export const useNotifications = () => {
   const [notifications, setNotifications] = useState<INotification[] | null>(null);
@@ -25,9 +26,7 @@ export const useNotifications = () => {
         }
       })
       .catch(() => {
-        toast.error("An error has occurred", {
-          theme: "dark",
-        });
+        toast.error("An error has occurred", errorToast);
       })
       .finally(() => {
         setLoading(false);
@@ -42,9 +41,7 @@ export const useNotifications = () => {
         setNotifications(data);
       })
       .catch(() => {
-        toast.error("Failed to fetch notifications", {
-          theme: "dark",
-        });
+        toast("Failed to fetch notifications", errorToast);
       })
       .finally(() => {
         setLoading(false);

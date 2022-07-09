@@ -41,7 +41,7 @@ const NotificationsDropdown = ({
         >
           <button
             onClick={markAllAsRead}
-            disabled={loading && notificationRead}
+            disabled={loading || notificationRead}
             className={`read ${loading || notificationRead ? "disabledButton" : ""}`}
           >
             Mark all as read

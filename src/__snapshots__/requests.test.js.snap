@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`get invoices 1`] = `
+Object {
+  "amount": "2323.00",
+  "date": "2022-06-30T00:00:00.000Z",
+  "description": "asdasdasdasdsada",
+  "from": "Ameer",
+  "id": "324345756",
+  "status": "paid      ",
+  "to": "sdfsd",
+}
+`;

@@ -1331,23 +1331,8 @@ body {
   color: white;
 }
 .registerPage .container button {
-  background: #5f62ff;
-  color: white;
-  border: 0;
-  font-size: 1.3rem;
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  padding: 0 7rem;
-  height: 5rem;
-  border-radius: 1rem;
-  transition: all 0.3s;
   width: 100%;
-  margin: 3rem auto;
-}
-.registerPage .container button:hover {
-  cursor: pointer;
-  transition: all 0.3s;
-  background-color: #4649ff;
+  margin: 3rem auto 1.5rem auto;
 }
 .registerPage .container h3 {
   color: #ff7193;
@@ -1359,23 +1344,6 @@ body {
 .loginPage {
   width: 100%;
   height: 100%;
-}
-.loginPage .loginBar {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  top: 0;
-  border-radius: 1rem;
-  z-index: 0;
-  position: absolute;
-  left: 0;
-  transition: all 0.3s;
-  background-color: #5f62ffff;
-}
-.loginPage .loginBar:hover {
-  transition: all 0.3s;
-  background-color: #4649ff;
 }
 .loginPage .loginForm {
   display: flex;
@@ -1458,27 +1426,8 @@ body {
   color: white;
 }
 .loginPage .container button {
-  background: #5f62ff;
-  color: white;
-  border: 0;
-  font-size: 1.3rem;
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  padding: 0 7rem;
-  height: 5rem;
-  border-radius: 1rem;
-  transition: all 0.3s;
-  background: grey;
   width: 100%;
-  margin: 3rem auto;
-}
-.loginPage .container button:hover {
-  cursor: pointer;
-  transition: all 0.3s;
-  background-color: #4649ff;
-}
-.loginPage .container button:hover {
-  background: gray;
+  margin: 3rem auto 1.5rem auto;
 }
 .loginPage .container h3 {
   color: #ff7193;
@@ -1663,6 +1612,10 @@ textarea::placeholder {
   cursor: pointer;
   background: #4649ff;
   color: white;
+}
+
+.success {
+  background-color: #3db573 !important;
 }
 
 .noContent {
@@ -1904,8 +1857,7 @@ h1 {
 }
 .searchBox .icon {
   position: absolute;
-  top: 1.5rem;
-  right: 1.3rem;
+  right: 2rem;
   font-size: 2rem;
   color: white;
 }
