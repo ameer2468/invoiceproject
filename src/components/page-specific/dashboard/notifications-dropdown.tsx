@@ -4,6 +4,7 @@ import { INotification } from "../../../../types/user";
 import { useClickOutside } from "../../../hooks/useClickOutside";
 import Loading from "../../global/loading";
 import Notification from "./notification";
+import Scrollbars from "react-custom-scrollbars-2";
 
 interface props {
   isOpen: boolean;
@@ -52,9 +53,13 @@ const NotificationsDropdown = ({
             </div>
           ) : (
             <div className="notif-container">
-              {data?.map((value) => {
-                return <Notification key={value.id} notification={value} />;
-              })}
+              <Scrollbars style={{ height: "30rem" }}>
+                {data
+                  ?.sort((a, b) => Number(a.read) - Number(b.read))
+                  .map((value) => {
+                    return <Notification key={value.id} notification={value} />;
+                  })}
+              </Scrollbars>
             </div>
           )}
         </motion.div>

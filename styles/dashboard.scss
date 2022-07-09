@@ -322,7 +322,7 @@
       background: $darkgrey;
       border: 1px solid $inputborder;
       width: 100%;
-      max-width: 40rem;
+      max-width: 35rem;
       padding: 2rem;
       right: 0;
       top: 6rem;
@@ -332,12 +332,11 @@
     .notif-container {
       display: flex;
       padding: 2rem;
-      background: lighten($darkgrey, 6%);
+      background: lighten($darkgrey, 2%);
       border: 1px solid $inputborder;
       border-radius: 1rem;
       margin-top: 2rem;
       flex-direction: column;
-      gap: 1rem;
     }
     .read {
       @include PurpleButton;
@@ -346,9 +345,10 @@
       height: 4rem;
     }
     .notification-item {
-      background: darken($input, 2%);
+      background: darken($input, 1%);
       padding: 2rem;
       width: 100%;
+      margin: 1rem 0;
       border-radius: 1rem;
       position: relative;
       border: 1px solid $inputborder;
@@ -377,7 +377,7 @@
         height: 0.8rem;
         right: 2rem;
         z-index: 2;
-        top: 2.5rem;
+        top: 2.8rem;
         background: $pink;
         border-radius: 10rem;
         &::before {

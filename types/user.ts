@@ -4,5 +4,5 @@ export interface INotification {
   title: string;
   type: string;
   user_subid: string;
-  read: boolean;
+  read: boolean | number;
 }

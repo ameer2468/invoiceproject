@@ -1176,7 +1176,7 @@ body {
   background: #171717;
   border: 1px solid #383838;
   width: 100%;
-  max-width: 40rem;
+  max-width: 35rem;
   padding: 2rem;
   right: 0;
   top: 6rem;
@@ -1186,12 +1186,11 @@ body {
 .dashboardHeader .container .notif-container {
   display: flex;
   padding: 2rem;
-  background: #262626;
+  background: #1c1c1c;
   border: 1px solid #383838;
   border-radius: 1rem;
   margin-top: 2rem;
   flex-direction: column;
-  gap: 1rem;
 }
 .dashboardHeader .container .read {
   background: #5f62ff;
@@ -1213,9 +1212,10 @@ body {
   color: white;
 }
 .dashboardHeader .container .notification-item {
-  background: #202020;
+  background: #222222;
   padding: 2rem;
   width: 100%;
+  margin: 1rem 0;
   border-radius: 1rem;
   position: relative;
   border: 1px solid #383838;
@@ -1245,7 +1245,7 @@ body {
   height: 0.8rem;
   right: 2rem;
   z-index: 2;
-  top: 2.5rem;
+  top: 2.8rem;
   background: #ff7193;
   border-radius: 10rem;
 }
