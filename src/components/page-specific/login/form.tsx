@@ -52,9 +52,10 @@ const LoginForm = () => {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             className={`purpleButton ${
-              loginLoading ||
-              ((formLength.email.length < 5 || formLength.password.length < 5) &&
-                "disabledButton")
+              (loginLoading ||
+                formLength.email.length < 5 ||
+                formLength.password.length < 5) &&
+              "disabledButton"
             }`}
             disabled={
               loginLoading ||

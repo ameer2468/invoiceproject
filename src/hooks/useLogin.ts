@@ -46,6 +46,7 @@ export const useLogin = () => {
         setUser({ ...res, type: "authenticated" });
       })
       .catch((err) => {
+        setUser({ type: "unauthenticated" });
         if (
           err.message.startsWith("User does not exist.") ||
           err.message.startsWith("Incorrect username or password.")
