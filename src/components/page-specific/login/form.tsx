@@ -5,7 +5,9 @@ import Loading from "../../global/loading";
 import { motion } from "framer-motion";
 import { anim } from "../../../framer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faClose } from "@fortawesome/free-solid-svg-icons";
+import ErrorButton from "./errorButton";
+import SuccessButton from "./successButton";
 
 const LoginForm = () => {
   const { loginForm, inputHandler, loginHandler, formError, loginLoading, user } =
@@ -43,33 +45,27 @@ const LoginForm = () => {
           placeholder="Password"
           type="password"
         />
-        {formError.length > 0 ? <p className="form-error">{formError}</p> : null}
-        <button
-          className={`purpleButton ${
-            formLength.email.length < 5 || formLength.password.length < 5 || loginLoading
-              ? "disabledButton"
-              : user.type === "authenticated" && "success"
-          }`}
-          disabled={
-            loginLoading ||
-            (formLength.email.length < 5 && formLength.password.length < 5)
-          }
-        >
-          {loginLoading ? (
-            <Loading style={"SyncLoader"} color="white" />
-          ) : "Login" ? (
-            user.type === "authenticated" ? (
-              <FontAwesomeIcon
-                style={{ color: "white", fontSize: "1.7rem" }}
-                icon={faCheck}
-              />
-            ) : (
-              "Login"
-            )
-          ) : (
-            ""
-          )}
-        </button>
+        {formError.length > 1 ? (
+          <ErrorButton formError={formError} />
+        ) : user.type === "authenticated" ? (
+          <SuccessButton />
+        ) : (
+          <motion.button
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className={`purpleButton ${
+              loginLoading ||
+              ((formLength.email.length < 5 || formLength.password.length < 5) &&
+                "disabledButton")
+            }`}
+            disabled={
+              loginLoading ||
+              (formLength.email.length < 5 && formLength.password.length < 5)
+            }
+          >
+            {loginLoading ? <Loading style={"SyncLoader"} color="white" /> : "Login"}
+          </motion.button>
+        )}
         <div className="links">
           <Link passHref={true} href="/register">
             No account? Register now

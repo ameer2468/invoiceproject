@@ -1148,7 +1148,6 @@ body {
   width: 5rem;
   height: 5rem;
   display: flex;
-  border: 2px solid black;
   justify-content: center;
   background: #5f62ff;
   align-items: center;
@@ -1956,6 +1955,14 @@ li {
   cursor: not-allowed !important;
 }
 
+.error {
+  background-color: #ff6363;
+}
+.error:hover {
+  cursor: not-allowed;
+  background-color: #ff4a4a;
+}
+
 .highlight {
   color: #71aaff;
   transition: all 0.3s;
@@ -1978,7 +1985,7 @@ li {
   color: red;
   font-weight: bold;
   text-align: center;
-  margin-top: 2rem;
+  margin-bottom: 1rem;
   font-size: 1.5rem;
 }
 

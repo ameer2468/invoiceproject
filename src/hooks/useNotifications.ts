@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { INotification } from "../../types/user";
 import { getNotifications, markAllAsReadRequest } from "../services/user/user";
 import { useUser } from "../UserContext";
@@ -8,6 +8,7 @@ import { errorToast } from "../helpers";
 export const useNotifications = () => {
   const [notifications, setNotifications] = useState<INotification[] | null>(null);
   const [loading, setLoading] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const { user } = useUser();
 
   const markAllAsRead = () => {
@@ -33,12 +34,17 @@ export const useNotifications = () => {
       });
   };
 
+  const toggleNotification = (active: boolean) => {
+    setIsOpen(active);
+  };
+
   const notificationRequest = () => {
     setLoading(true);
     getNotifications(user[0].attributes.sub)
       .then((res) => {
         const { data } = res;
         setNotifications(data);
+        setIsOpen(true);
       })
       .catch(() => {
         toast("Failed to fetch notifications", errorToast);
@@ -47,5 +53,20 @@ export const useNotifications = () => {
         setLoading(false);
       });
   };
-  return { notifications, notificationRequest, loading, markAllAsRead };
+
+  useEffect(() => {
+    if (isOpen) {
+      notificationRequest();
+    }
+  }, [isOpen]);
+
+  return {
+    notifications,
+    notificationRequest,
+    loading,
+    markAllAsRead,
+    isOpen,
+    toggleNotification,
+    setIsOpen,
+  };
 };

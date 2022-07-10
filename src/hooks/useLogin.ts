@@ -1,4 +1,4 @@
-import { ChangeEvent, useContext, useState } from "react";
+import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { Auth } from "aws-amplify";
 import { useRouter } from "next/router";
 import { UserContext } from "../UserContext";
@@ -11,7 +11,7 @@ interface loginForm {
 
 export const useLogin = () => {
   const [loginLoading, setLoginLoading] = useState<boolean>(false);
-  const [formError, setFormError] = useState("");
+  const [formError, setFormError] = useState<string>("");
   const [user, setUser] = useContext(UserContext);
   const router = useRouter();
   const { modalContext } = useModal();
@@ -57,6 +57,18 @@ export const useLogin = () => {
         setLoginLoading(false);
       });
   };
+
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+    if (formError.length > 1) {
+      timeout = setTimeout(() => {
+        setFormError("");
+      }, 2000);
+    }
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [formError]);
 
   return {
     loginForm,

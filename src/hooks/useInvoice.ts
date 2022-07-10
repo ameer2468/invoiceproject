@@ -21,6 +21,7 @@ import { useUser } from "../UserContext";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { successToast } from "../helpers";
+import { useNotifications } from "./useNotifications";
 
 /*
   This hook is used to manage the state of the invoice form,
@@ -267,7 +268,7 @@ export const useInvoiceData = (
       value: mutateValue(type),
       user_subid: user[0].attributes.sub,
     })
-      .then(() => {
+      .then(async () => {
         setInvoice({
           ...(invoice as InvoiceData),
           [type]: mutateValue(type),

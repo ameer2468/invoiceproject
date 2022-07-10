@@ -287,6 +287,14 @@ li {
   }
 }
 
+.error {
+  background-color: #ff6363;
+  &:hover {
+    cursor: not-allowed;
+    background-color: darken(#ff6363, 5%);
+  }
+}
+
 .highlight {
   color: $blue;
   transition: all 0.3s;
@@ -309,7 +317,7 @@ li {
   color: red;
   font-weight: bold;
   text-align: center;
-  margin-top: 2rem;
+  margin-bottom: 1rem;
   font-size: 1.5rem;
 }
 

@@ -5,9 +5,15 @@ import NotificationsDropdown from "./notifications-dropdown";
 import { useNotifications } from "../../../hooks/useNotifications";
 
 const Header = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const { notifications, notificationRequest, loading, markAllAsRead } =
-    useNotifications();
+  const {
+    notifications,
+    notificationRequest,
+    loading,
+    markAllAsRead,
+    isOpen,
+    setIsOpen,
+    toggleNotification,
+  } = useNotifications();
   const buttonRef = useRef(null);
 
   return (
@@ -23,12 +29,7 @@ const Header = () => {
         </div>
         <div
           ref={buttonRef}
-          onClick={() => {
-            setIsOpen(!isOpen);
-            if (!isOpen) {
-              notificationRequest();
-            }
-          }}
+          onClick={() => toggleNotification(true)}
           className="notification"
         >
           <FontAwesomeIcon className="icon" icon={faBell} />
