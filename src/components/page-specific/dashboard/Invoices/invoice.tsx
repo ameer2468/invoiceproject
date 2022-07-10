@@ -12,7 +12,6 @@ import { numberFormat } from "../../../../helpers";
 import { motion } from "framer-motion";
 import { staggerChildren } from "../../../../framer";
 import Link from "next/link";
-
 interface props {
   data: Invoice;
 }

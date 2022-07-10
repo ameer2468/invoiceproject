@@ -327,6 +327,15 @@
       top: 6rem;
       z-index: 200;
       border-radius: 1rem;
+      .top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        p {
+          color: #7d7d7d;
+          font-size: 1.3rem;
+        }
+      }
     }
     .notif-container {
       display: flex;
@@ -339,9 +348,10 @@
     }
     .read {
       @include PurpleButton;
-      width: auto;
+      width: 100%;
       padding: 0 2rem;
       height: 4rem;
+      margin-top: 2rem;
     }
     .notification-item {
       background: darken($input, 1%);

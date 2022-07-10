@@ -5,15 +5,8 @@ import NotificationsDropdown from "./notifications-dropdown";
 import { useNotifications } from "../../../hooks/useNotifications";
 
 const Header = () => {
-  const {
-    notifications,
-    notificationRequest,
-    loading,
-    markAllAsRead,
-    isOpen,
-    setIsOpen,
-    toggleNotification,
-  } = useNotifications();
+  const { notifications, loading, markAllAsRead, isOpen, setIsOpen, toggleNotification } =
+    useNotifications();
   const buttonRef = useRef(null);
 
   return (

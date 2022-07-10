@@ -1184,6 +1184,15 @@ body {
   z-index: 200;
   border-radius: 1rem;
 }
+.dashboardHeader .container .notification-drop .top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.dashboardHeader .container .notification-drop .top p {
+  color: #7d7d7d;
+  font-size: 1.3rem;
+}
 .dashboardHeader .container .notif-container {
   display: flex;
   padding: 2rem;
@@ -1203,9 +1212,10 @@ body {
   height: 5rem;
   border-radius: 1rem;
   transition: all 0.3s;
-  width: auto;
+  width: 100%;
   padding: 0 2rem;
   height: 4rem;
+  margin-top: 2rem;
 }
 .dashboardHeader .container .read:hover {
   cursor: pointer;

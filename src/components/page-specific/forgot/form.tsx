@@ -40,11 +40,11 @@ const ForgotForm = () => {
           />
           {formError.length > 0 ? <p className="form-error">{formError}</p> : null}
           <button
-            className={
-              forgotForm.email.length < 5 && forgotForm.password.length < 6
-                ? "disabledButton"
-                : ""
-            }
+            className={`purpleButton ${
+              forgotForm.email.length < 5 &&
+              forgotForm.password.length < 6 &&
+              "disabledButton"
+            }`}
             disabled={forgotLoading}
           >
             {forgotLoading ? <Loading style={"PulseLoader"} /> : "Confirm"}
@@ -82,7 +82,7 @@ const ForgotForm = () => {
           />
           {formError.length > 0 ? <p className="form-error">{formError}</p> : null}
           <button
-            className={forgotForm.code.length !== 6 ? "disabledButton" : ""}
+            className={`purpleButton ${forgotForm.code.length !== 6 && "disabledButton"}`}
             disabled={forgotLoading || forgotForm.code.length !== 6}
           >
             {forgotLoading ? <Loading style={"PulseLoader"} /> : "Confirm"}

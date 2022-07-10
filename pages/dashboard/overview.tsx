@@ -8,6 +8,8 @@ import Loading from "../../src/components/global/loading";
 import InvoicesUnpaid from "../../src/components/page-specific/dashboard/Overview/InvoicesUnpaid";
 import Page from "../../src/components/global/Page";
 import { useFetchOverviewInvoices } from "../../src/hooks/useInvoice";
+import TabSkeleton from "../../src/components/skeletons/tab";
+import SquareSkeleton from "../../src/components/skeletons/square";
 
 const Overview = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -23,15 +25,18 @@ const Overview = () => {
     setPeriod,
   } = useFetchOverviewInvoices();
 
-  const TabContent = () => {
-    switch (activeTab) {
-      case 0:
-        return <InvoicesPaid data={paidInvoices} />;
-      case 1:
-        return <InvoicesUnpaid data={unpaidInvoices} />;
-      default:
-        return <div>Tab 3</div>;
-    }
+  const TabContent = ({ loading }: { loading: boolean }) => {
+    const Tabs = () => {
+      switch (activeTab) {
+        case 0:
+          return <InvoicesPaid data={paidInvoices} />;
+        case 1:
+          return <InvoicesUnpaid data={unpaidInvoices} />;
+        default:
+          return <div>Tab 3</div>;
+      }
+    };
+    return <>{loading ? <SquareSkeleton width={1050} height={580} /> : <Tabs />}</>;
   };
 
   return (
@@ -45,29 +50,20 @@ const Overview = () => {
           options={["All", "1 day", "7 days", "30 days"]}
         />
       </div>
-      {isLoading || isLoadingUnpaid || isFetchingUnpaid || isFetching ? (
-        <div
-          style={{
-            position: "absolute",
-            top: "60%",
-            left: "55%",
+      <div className="overviewContent">
+        <OverviewTabs
+          loading={isLoading || isLoadingUnpaid || isFetchingUnpaid || isFetching}
+          paidInvoices={paidInvoices}
+          unpaidInvoices={unpaidInvoices}
+          activeTab={activeTab}
+          setActiveTab={(tab: number) => {
+            setActiveTab(tab);
           }}
-        >
-          <Loading style={"PulseLoader"} color={"white"} />
-        </div>
-      ) : (
-        <div className="overviewContent">
-          <OverviewTabs
-            paidInvoices={paidInvoices}
-            unpaidInvoices={unpaidInvoices}
-            activeTab={activeTab}
-            setActiveTab={(tab: number) => {
-              setActiveTab(tab);
-            }}
-          />
-          <TabContent />
-        </div>
-      )}
+        />
+        <TabContent
+          loading={isLoading || isLoadingUnpaid || isFetchingUnpaid || isFetching}
+        />
+      </div>
     </Page>
   );
 };
