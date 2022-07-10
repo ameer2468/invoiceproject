@@ -57,7 +57,13 @@ const NotificationsDropdown = ({
                 {data
                   ?.sort((a, b) => Number(a.read) - Number(b.read))
                   .map((value) => {
-                    return <Notification key={value.id} notification={value} />;
+                    return (
+                      <Notification
+                        close={() => setIsOpen(false)}
+                        key={value.id}
+                        notification={value}
+                      />
+                    );
                   })}
               </Scrollbars>
             </div>

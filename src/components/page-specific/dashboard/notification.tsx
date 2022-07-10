@@ -6,9 +6,10 @@ import { useRouter } from "next/router";
 
 interface props {
   notification: INotification;
+  close: () => void;
 }
 
-const Notification = ({ notification }: props) => {
+const Notification = ({ notification, close }: props) => {
   const router = useRouter();
   const UpdatedInvoiceText = () => {
     const invoiceNotif = notification.text.split(" ");
@@ -18,7 +19,12 @@ const Notification = ({ notification }: props) => {
       return router.push(`/dashboard/invoices/invoice?q=${invoiceNotif[1]}`);
     };
     return (
-      <p onClick={link}>
+      <p
+        onClick={() => {
+          close();
+          link();
+        }}
+      >
         {
           <span className="highlight">
             {invoiceNotif[0]} {invoiceNotif[1]}

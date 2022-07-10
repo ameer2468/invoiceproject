@@ -40,13 +40,7 @@ const Hero = () => {
         transition={{ transition: "easeInOut", delay: 0.5 }}
         className="imageWrap"
       >
-        <Image
-          alt="product image"
-          placeholder="blur"
-          src={product}
-          width={1300}
-          height={700}
-        />
+        <img src={"https://i.imgur.com/Ags1V5e.png"} alt="product" />
       </motion.div>
     </div>
   );
