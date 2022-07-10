@@ -4,8 +4,6 @@ import { useLogin } from "../../../hooks/useLogin";
 import Loading from "../../global/loading";
 import { motion } from "framer-motion";
 import { anim } from "../../../framer";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faClose } from "@fortawesome/free-solid-svg-icons";
 import ErrorButton from "./errorButton";
 import SuccessButton from "./successButton";
 
