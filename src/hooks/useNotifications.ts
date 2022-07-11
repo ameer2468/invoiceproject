@@ -13,6 +13,9 @@ export const useNotifications = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user } = useUser();
 
+  /*This is to mark all notifications as
+  read - based on a true or null value*/
+
   const markAllAsRead = () => {
     markAllAsReadRequest(user[0].attributes.sub)
       .then(() => {
@@ -36,6 +39,8 @@ export const useNotifications = () => {
     setIsOpen(active);
   };
 
+  /*Call the notification endpoint and set the notifications*/
+
   const notificationRequest = () => {
     setLoading(true);
     getNotifications(user[0].attributes.sub)
@@ -51,6 +56,9 @@ export const useNotifications = () => {
         setLoading(false);
       });
   };
+
+  /*If notification state has been set to true, make a request
+   * and fetch the notifications */
 
   useEffect(() => {
     if (isOpen) {

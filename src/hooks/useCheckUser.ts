@@ -6,6 +6,10 @@ interface props {
   pageProps?: any;
 }
 
+/*A hook that checks if the user is logged in or not
+ * We redirect the user if they are logged in, otherwise
+ * redirect to relevant page*/
+
 export const useCheckUser = ({ pageProps }: props) => {
   const [user, setUser] = useState<any>({ type: null });
   const router = useRouter();

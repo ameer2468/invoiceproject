@@ -40,12 +40,16 @@ export const useSettings = () => {
     verifyStep: 1,
   });
 
+  /*A function that makes it easier to update an object key within the loading state*/
+
   const updateLoading = (key: keyof typeof loading, value: boolean) => {
     setLoading({
       ...loading,
       [key]: value,
     });
   };
+
+  /* A function that makes it easier to update the settings state */
 
   const updateSettings = (
     key: keyof typeof settings,
@@ -56,6 +60,9 @@ export const useSettings = () => {
       [key]: value,
     });
   };
+
+  /*This is an error handler function
+   * to update the error message and display based on boolean*/
 
   const errorHandle = (error: boolean, message: string) => {
     setError({
@@ -163,6 +170,9 @@ export const useSettings = () => {
         updateLoading('account', false);
       });
   };
+
+  /*If user is on the last step of the form
+   * a timer will clear and reset the form */
 
   useEffect(() => {
     let stepTime: NodeJS.Timeout;

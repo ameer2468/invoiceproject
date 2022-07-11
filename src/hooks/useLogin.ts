@@ -59,6 +59,9 @@ export const useLogin = () => {
       });
   };
 
+  /* When the login form errors out,
+   clear the error message after 2 seconds */
+
   useEffect(() => {
     let timeout: NodeJS.Timeout;
     if (formError.length > 1) {

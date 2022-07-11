@@ -1,5 +1,10 @@
 import { useEffect, RefObject } from 'react';
 
+/*This is a hook to close modals, dropdowns, etc...
+ * on outside click - a 2nd ref if check has been done
+ * to check if a dev has a parent element. If there is a
+ * parent element, it will close the JSX element*/
+
 export const useClickOutside = (
   ref: RefObject<HTMLDivElement>,
   callback: () => void,
