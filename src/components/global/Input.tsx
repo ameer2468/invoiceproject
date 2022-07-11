@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface props {
   placeholder: string;
@@ -18,7 +18,7 @@ const Input = (props: props) => {
       <input
         maxLength={props.maxLength}
         minLength={props.minLength}
-        type={props.type || "text"}
+        type={props.type || 'text'}
         placeholder={props.placeholder}
         value={props.value}
         required={props.required}

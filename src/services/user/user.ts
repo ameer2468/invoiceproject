@@ -1,10 +1,10 @@
-import { deleteRequest, getRequest, postRequest, putRequest } from "../types";
+import { deleteRequest, getRequest, postRequest, putRequest } from '../types';
 import {
   createUserParams,
   deleteBankingParams,
   mutateUserParams,
   postBankingParams,
-} from "./types";
+} from './types';
 
 /*Request to get notifications*/
 
@@ -31,7 +31,7 @@ export const createUser = ({
   last_name,
 }: createUserParams) => {
   return postRequest(
-    "user",
+    'user',
     {
       sub_id: sub_id,
       email: email,
@@ -45,7 +45,7 @@ export const createUser = ({
 /*Delete banking details*/
 
 export const deleteBankingRequest = (user_subid: deleteBankingParams) => {
-  return deleteRequest("banking", {
+  return deleteRequest('banking', {
     user_subid: user_subid,
   });
 };
@@ -58,7 +58,7 @@ export const postBankingRequest = ({
   sort_code,
 }: postBankingParams) => {
   return postRequest(
-    "banking",
+    'banking',
     {
       user_subid: user_subid,
       account_number: account_number,
@@ -71,7 +71,7 @@ export const postBankingRequest = ({
 /*Get banking details*/
 
 export const getBankingRequest = (user_subid: string) => {
-  return getRequest("banking", {
+  return getRequest('banking', {
     user_subid: user_subid,
   });
 };
@@ -79,7 +79,7 @@ export const getBankingRequest = (user_subid: string) => {
 /*Request to update user*/
 
 export const mutateUser = ({ sub_id, field, value }: mutateUserParams) => {
-  return putRequest("user", {
+  return putRequest('user', {
     sub_id: sub_id,
     field: field,
     value: value,

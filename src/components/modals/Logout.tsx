@@ -1,6 +1,6 @@
-import React from "react";
-import Modal from "../global/Modal";
-import Loading from "../global/loading";
+import React from 'react';
+import Modal from '../global/Modal';
+import Loading from '../global/loading';
 
 const Logout = () => {
   return (

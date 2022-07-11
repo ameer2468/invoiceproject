@@ -1,11 +1,11 @@
-import React, { ChangeEvent } from "react";
-import Input from "../../../../global/Input";
-import { item } from "../../../../../../types/invoice";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { AnimatePresence, motion } from "framer-motion";
-import { anim } from "../../../../../framer";
-import CurrencyInput from "react-currency-input-field";
+import React, { ChangeEvent } from 'react';
+import Input from '../../../../global/Input';
+import { item } from '../../../../../../types/invoice';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { AnimatePresence, motion } from 'framer-motion';
+import { anim } from '../../../../../framer';
+import CurrencyInput from 'react-currency-input-field';
 
 interface props {
   item: item;
@@ -31,13 +31,13 @@ const InvoiceItem = ({
       <motion.div
         initial={index !== 0 && anim.initial}
         animate={index !== 0 && anim.animate}
-        className={"inputs-wrap"}
+        className={'inputs-wrap'}
       >
         <div className="info-item">
           <Input
             placeholder="Name of item or service"
             value={item.description}
-            name={"description"}
+            name={'description'}
             onChange={onChange}
           />
           <CurrencyInput
@@ -48,7 +48,11 @@ const InvoiceItem = ({
             placeholder="Price"
             decimalsLimit={2}
             onValueChange={(value, name) => {
-              handleCurrencyChange(value === undefined ? "0" : value, name, index);
+              handleCurrencyChange(
+                value === undefined ? '0' : value,
+                name,
+                index
+              );
             }}
           />
         </div>

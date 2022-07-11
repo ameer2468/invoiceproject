@@ -1,9 +1,9 @@
-import React from "react";
-import Link from "next/link";
-import Loading from "../../global/loading";
-import { motion } from "framer-motion";
-import { anim } from "../../../framer";
-import { useForgot } from "../../../hooks/useForgot";
+import React from 'react';
+import Link from 'next/link';
+import Loading from '../../global/loading';
+import { motion } from 'framer-motion';
+import { anim } from '../../../framer';
+import { useForgot } from '../../../hooks/useForgot';
 
 const ForgotForm = () => {
   const {
@@ -38,16 +38,18 @@ const ForgotForm = () => {
             placeholder="Email address"
             type="email"
           />
-          {formError.length > 0 ? <p className="form-error">{formError}</p> : null}
+          {formError.length > 0 ? (
+            <p className="form-error">{formError}</p>
+          ) : null}
           <button
             className={`purpleButton ${
               forgotForm.email.length < 5 &&
               forgotForm.password.length < 6 &&
-              "disabledButton"
+              'disabledButton'
             }`}
             disabled={forgotLoading}
           >
-            {forgotLoading ? <Loading style={"PulseLoader"} /> : "Confirm"}
+            {forgotLoading ? <Loading style={'PulseLoader'} /> : 'Confirm'}
           </button>
           <Link passHref={true} href="/register">
             No account? Register now
@@ -80,12 +82,16 @@ const ForgotForm = () => {
             placeholder="Confirmation code"
             type="text"
           />
-          {formError.length > 0 ? <p className="form-error">{formError}</p> : null}
+          {formError.length > 0 ? (
+            <p className="form-error">{formError}</p>
+          ) : null}
           <button
-            className={`purpleButton ${forgotForm.code.length !== 6 && "disabledButton"}`}
+            className={`purpleButton ${
+              forgotForm.code.length !== 6 && 'disabledButton'
+            }`}
             disabled={forgotLoading || forgotForm.code.length !== 6}
           >
-            {forgotLoading ? <Loading style={"PulseLoader"} /> : "Confirm"}
+            {forgotLoading ? <Loading style={'PulseLoader'} /> : 'Confirm'}
           </button>
         </motion.form>
       ) : (

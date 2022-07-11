@@ -1,6 +1,6 @@
-import React from "react";
-import Link from "next/link";
-import Image from "next/image";
+import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 
 interface props {
   link: string;
@@ -15,9 +15,9 @@ const NoContent = ({ link, buttonText, content, image, title }: props) => {
     <div className="noContent">
       <div
         style={{
-          width: "100%",
-          maxWidth: "25rem",
-          margin: "0 auto 3rem auto",
+          width: '100%',
+          maxWidth: '25rem',
+          margin: '0 auto 3rem auto',
         }}
       >
         <Image src={image} layout="responsive" quality={100} />

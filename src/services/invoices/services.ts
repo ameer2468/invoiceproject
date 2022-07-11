@@ -4,19 +4,19 @@ import {
   getUnauthenticatedRequest,
   postRequest,
   putRequest,
-} from "../types";
-import { Invoice } from "../../../types/invoice";
+} from '../types';
+import { Invoice } from '../../../types/invoice';
 
 /*Get an individual invoicer*/
 
 export const getInvoice = (id: string) => {
-  return getUnauthenticatedRequest("invoice", { id: id });
+  return getUnauthenticatedRequest('invoice', { id: id });
 };
 
 /*Create an invoice*/
 
 export const createInvoice = (invoice: Invoice) => {
-  return postRequest("invoice", invoice);
+  return postRequest('invoice', invoice);
 };
 
 export interface mutateInvoice {
@@ -29,27 +29,27 @@ export interface mutateInvoice {
 /*Update an individual invoice*/
 
 export const mutateInvoice = (data: mutateInvoice) => {
-  return putRequest("invoice", data);
+  return putRequest('invoice', data);
 };
 
 /*Delete an individual invoice*/
 
 export const deleteInvoice = (id: string) => {
-  return deleteRequest("invoice", { id: id });
+  return deleteRequest('invoice', { id: id });
 };
 
 /*Get invoices*/
 
 export const getInvoices = (
-  status: "paid" | "unpaid",
+  status: 'paid' | 'unpaid',
   user: string,
   timeperiod?: string
 ) => {
-  return getRequest("invoices", { from: user, status, timeperiod });
+  return getRequest('invoices', { from: user, status, timeperiod });
 };
 
 /*Get all invoices*/
 
 export const getAllInvoices = (user: string) => {
-  return getUnauthenticatedRequest("invoices", { from: user });
+  return getUnauthenticatedRequest('invoices', { from: user });
 };

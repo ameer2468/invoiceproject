@@ -1,9 +1,9 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { staggerChildren } from "../../../../framer";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMoneyBill } from "@fortawesome/free-solid-svg-icons";
-import { item } from "../../../../../types/invoice";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { staggerChildren } from '../../../../framer';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMoneyBill } from '@fortawesome/free-solid-svg-icons';
+import { item } from '../../../../../types/invoice';
 
 interface props {
   item: item;

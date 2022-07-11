@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
-import { INotification } from "../../types/user";
-import { getNotifications, markAllAsReadRequest } from "../services/user/user";
-import { useUser } from "../UserContext";
-import { toast } from "react-toastify";
-import { errorToast } from "../helpers";
+import { useEffect, useState } from 'react';
+import { INotification } from '../../types/user';
+import { getNotifications, markAllAsReadRequest } from '../services/user/user';
+import { useUser } from '../UserContext';
+import { toast } from 'react-toastify';
+import { errorToast } from '../helpers';
 
 export const useNotifications = () => {
-  const [notifications, setNotifications] = useState<INotification[] | null>(null);
+  const [notifications, setNotifications] = useState<INotification[] | null>(
+    null
+  );
   const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const { user } = useUser();
@@ -26,7 +28,7 @@ export const useNotifications = () => {
         }
       })
       .catch(() => {
-        toast.error("An error has occurred", errorToast);
+        toast.error('An error has occurred', errorToast);
       });
   };
 
@@ -43,7 +45,7 @@ export const useNotifications = () => {
         setIsOpen(true);
       })
       .catch(() => {
-        toast("Failed to fetch notifications", errorToast);
+        toast('Failed to fetch notifications', errorToast);
       })
       .finally(() => {
         setLoading(false);

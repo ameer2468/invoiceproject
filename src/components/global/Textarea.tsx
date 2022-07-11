@@ -1,5 +1,5 @@
-import React, { ChangeEvent } from "react";
-import CharacterLimit from "./CharacterLimit";
+import React, { ChangeEvent } from 'react';
+import CharacterLimit from './CharacterLimit';
 
 interface props {
   placeholder: string;
@@ -22,7 +22,10 @@ const TextArea = (props: props) => {
         className={`${props.customClass}`}
       />
       {props.limitValue && (
-        <CharacterLimit textValue={props.value.length} limitValue={props.limitValue} />
+        <CharacterLimit
+          textValue={props.value.length}
+          limitValue={props.limitValue}
+        />
       )}
     </div>
   );

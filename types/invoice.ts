@@ -42,7 +42,7 @@ export interface InvoiceRecord {
   amount: number | string;
   id: string;
   date: string;
-  status: "paid" | "unpaid";
+  status: 'paid' | 'unpaid';
 }
 
 export interface MutateInvoice {

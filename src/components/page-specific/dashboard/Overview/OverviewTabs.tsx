@@ -1,5 +1,5 @@
-import React from "react";
-import TabSkeleton from "../../../skeletons/tab";
+import React from 'react';
+import TabSkeleton from '../../../skeletons/tab';
 
 interface props {
   activeTab: number;
@@ -17,8 +17,8 @@ const OverviewTabs = ({
   loading,
 }: props) => {
   const tabsArr = [
-    { title: "Total invoices paid.", value: paidInvoices?.length },
-    { title: "Total Unpaid invoices.", value: unpaidInvoices?.length },
+    { title: 'Total invoices paid.', value: paidInvoices?.length },
+    { title: 'Total Unpaid invoices.', value: unpaidInvoices?.length },
   ];
   return (
     <div className="tabs-wrap">
@@ -32,7 +32,7 @@ const OverviewTabs = ({
           return (
             <div
               onClick={() => setActiveTab(index)}
-              className={`${activeTab === index ? "active-tab" : "tab-item"}`}
+              className={`${activeTab === index ? 'active-tab' : 'tab-item'}`}
               key={index}
             >
               <h2 className="tab-item-title">{tab.title}</h2>

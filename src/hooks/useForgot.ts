@@ -1,5 +1,5 @@
-import { ChangeEvent, useEffect, useState } from "react";
-import { Auth } from "aws-amplify";
+import { ChangeEvent, useEffect, useState } from 'react';
+import { Auth } from 'aws-amplify';
 
 interface forgotForm {
   email: string;
@@ -9,18 +9,18 @@ interface forgotForm {
 
 export const useForgot = () => {
   const [forgotLoading, setForgotLoading] = useState<boolean>(false);
-  const [formError, setFormError] = useState("");
+  const [formError, setFormError] = useState('');
   const [step, setStep] = useState(0);
   const [forgotForm, setForgotForm] = useState<forgotForm>({
-    email: "",
-    code: "",
-    password: "",
+    email: '',
+    code: '',
+    password: '',
   });
 
   const errorHandle = (message: string) => {
     setFormError(message);
     setTimeout(() => {
-      setFormError("");
+      setFormError('');
     }, 3000);
   };
 
@@ -41,8 +41,8 @@ export const useForgot = () => {
       })
       .catch((err) => {
         setForgotLoading(false);
-        if (err.message.startsWith("User does not exist.")) {
-          setFormError("Invalid email or password");
+        if (err.message.startsWith('User does not exist.')) {
+          setFormError('Invalid email or password');
         }
         errorHandle(err.message);
       });

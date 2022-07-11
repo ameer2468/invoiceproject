@@ -1,5 +1,5 @@
-import axios from "axios";
-import { Auth } from "aws-amplify";
+import axios from 'axios';
+import { Auth } from 'aws-amplify';
 
 const url = process.env.NEXT_PUBLIC_API_URL;
 const apiKey = process.env.NEXT_PUBLIC_API_KEY;
@@ -12,7 +12,7 @@ export const loadToken = async () => {
 export const putRequest = async (path: string, data: {}) => {
   const token = await loadToken();
   const headers = {
-    "x-api-key": apiKey,
+    'x-api-key': apiKey,
     Authorization: token,
   };
   return await axios
@@ -38,7 +38,7 @@ export const putRequest = async (path: string, data: {}) => {
 export const deleteRequest = async (path: string, data: {}) => {
   const token = await loadToken();
   const headers = {
-    "x-api-key": apiKey,
+    'x-api-key': apiKey,
     Authorization: token,
   };
   return await axios
@@ -60,7 +60,7 @@ export const deleteRequest = async (path: string, data: {}) => {
 
 export const getUnauthenticatedRequest = async (path: string, params: {}) => {
   const headers = {
-    "x-api-key": apiKey,
+    'x-api-key': apiKey,
   };
   return await axios
     .get(`${url}/${path}`, {
@@ -82,7 +82,7 @@ export const getUnauthenticatedRequest = async (path: string, params: {}) => {
 export const getRequest = async (path: string, params: {}): Promise<any> => {
   const token = await loadToken();
   const headers = {
-    "x-api-key": apiKey,
+    'x-api-key': apiKey,
     Authorization: token,
   };
   return await axios
@@ -109,8 +109,8 @@ export const postRequest = async (
 ): Promise<[]> => {
   const token = authed && (await loadToken());
   const headers = {
-    "X-Api-Key": apiKey,
-    Authorization: authed ? token : "",
+    'X-Api-Key': apiKey,
+    Authorization: authed ? token : '',
   };
   return await axios
     .post(

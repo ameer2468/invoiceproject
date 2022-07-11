@@ -1,19 +1,19 @@
-import React, { ChangeEvent, useEffect, useMemo, useState } from "react";
-import DashboardLayout from "../../../layouts/DashboardLayout";
-import Input from "../../../src/components/global/Input";
-import { useInvoice } from "../../../src/hooks/useInvoice";
-import TextArea from "../../../src/components/global/Textarea";
-import InvoiceItem from "../../../src/components/page-specific/dashboard/Invoices/newInvoice/InvoiceItem";
-import { item } from "../../../types/invoice";
-import DatePicker from "react-datepicker";
-import PdfPage from "../../../src/components/page-specific/dashboard/Invoices/newInvoice/PdfPage";
-import { PDFDownloadLink } from "@react-pdf/renderer";
+import React, { ChangeEvent, useEffect, useMemo, useState } from 'react';
+import DashboardLayout from '../../../layouts/DashboardLayout';
+import Input from '../../../src/components/global/Input';
+import { useInvoice } from '../../../src/hooks/useInvoice';
+import TextArea from '../../../src/components/global/Textarea';
+import InvoiceItem from '../../../src/components/page-specific/dashboard/Invoices/newInvoice/InvoiceItem';
+import { item } from '../../../types/invoice';
+import DatePicker from 'react-datepicker';
+import PdfPage from '../../../src/components/page-specific/dashboard/Invoices/newInvoice/PdfPage';
+import { PDFDownloadLink } from '@react-pdf/renderer';
 
-import "react-datepicker/dist/react-datepicker.css";
+import 'react-datepicker/dist/react-datepicker.css';
 
-import { numberFormat } from "../../../src/helpers";
-import Loading from "../../../src/components/global/loading";
-import { useFetchBankingInfo } from "../../../src/hooks/useSettings";
+import { numberFormat } from '../../../src/helpers';
+import Loading from '../../../src/components/global/loading';
+import { useFetchBankingInfo } from '../../../src/hooks/useSettings';
 
 const New = () => {
   const [activePdf, setActivePdf] = useState(false);
@@ -43,13 +43,13 @@ const New = () => {
    * when total cost value changes */
 
   useMemo(() => {
-    updateInvoiceForm("amount", totalCost.toString());
+    updateInvoiceForm('amount', totalCost.toString());
   }, [totalCost]);
   useEffect(() => {
     if (data) {
       updateMultiValues([
-        { key: "account_number", value: data.account_number },
-        { key: "sort_code", value: data.sort_code },
+        { key: 'account_number', value: data.account_number },
+        { key: 'sort_code', value: data.sort_code },
       ]);
     }
   }, [data]);
@@ -61,7 +61,7 @@ const New = () => {
           <PdfPage invoiceInfo={invoiceForm} />
           <button
             onClick={() => setActivePdf(!activePdf)}
-            style={{ position: "relative", zIndex: 20 }}
+            style={{ position: 'relative', zIndex: 20 }}
             className="downloadPdf"
           >
             Download Invoice
@@ -75,19 +75,19 @@ const New = () => {
               <div className="col">
                 <h2>Info</h2>
                 <Input
-                  name={"to"}
+                  name={'to'}
                   onChange={handleInputChange}
                   value={invoiceForm.to}
                   placeholder="Bill to"
                 />
                 <Input
-                  name={"id"}
+                  name={'id'}
                   onChange={handleInputChange}
                   value={invoiceForm.id}
                   placeholder="Invoice Number"
                 />
                 <TextArea
-                  name={"description"}
+                  name={'description'}
                   onChange={handleInputChange}
                   value={invoiceForm.description}
                   limitValue={300}
@@ -101,7 +101,7 @@ const New = () => {
                   name="date"
                   disabled={true}
                   style={{ opacity: 0.5 }}
-                  value={new Date().toISOString().split("T")[0]}
+                  value={new Date().toISOString().split('T')[0]}
                   onChange={handleInputChange}
                 />
                 <h2>Due date</h2>
@@ -116,24 +116,26 @@ const New = () => {
               <div className="col">
                 <h2>Item</h2>
                 <div className="itemInfo">
-                  {invoiceForm.invoiceItems.map((value: item, index: number) => {
-                    return (
-                      <InvoiceItem
-                        onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                          handleItemChange(e, index);
-                        }}
-                        index={index}
-                        key={index.toString()}
-                        handleCurrencyChange={(value, name, index) => {
-                          if (value && name) {
-                            handleCurrencyChange(value, name, index);
-                          }
-                        }}
-                        removeItem={() => removeInvoiceItem(index)}
-                        item={invoiceForm.invoiceItems[index]}
-                      />
-                    );
-                  })}
+                  {invoiceForm.invoiceItems.map(
+                    (value: item, index: number) => {
+                      return (
+                        <InvoiceItem
+                          onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                            handleItemChange(e, index);
+                          }}
+                          index={index}
+                          key={index.toString()}
+                          handleCurrencyChange={(value, name, index) => {
+                            if (value && name) {
+                              handleCurrencyChange(value, name, index);
+                            }
+                          }}
+                          removeItem={() => removeInvoiceItem(index)}
+                          item={invoiceForm.invoiceItems[index]}
+                        />
+                      );
+                    }
+                  )}
                   <button onClick={addItem} className="addItem">
                     + Add item
                   </button>
@@ -145,20 +147,20 @@ const New = () => {
                   <div className="miscInfo">
                     <div className="col">
                       <TextArea
-                        placeholder={"Notes"}
+                        placeholder={'Notes'}
                         value={invoiceForm.notes}
-                        name={"notes"}
+                        name={'notes'}
                         onChange={handleInputChange}
                       />
                       <TextArea
-                        placeholder={"Terms and conditions"}
+                        placeholder={'Terms and conditions'}
                         value={invoiceForm.tos}
-                        name={"tos"}
+                        name={'tos'}
                         onChange={handleInputChange}
                       />
                     </div>
                     <div className="col">
-                      <h2 className="totalAmount" style={{ marginBottom: "0" }}>
+                      <h2 className="totalAmount" style={{ marginBottom: '0' }}>
                         Amount to be paid
                       </h2>
                       <p className="amount">${numberFormat(totalCost, 2)}</p>
@@ -168,16 +170,23 @@ const New = () => {
               </div>
             </div>
             <button
-              className={`button ${createInvoiceLoading && "disabledButton"}`}
+              className={`button ${createInvoiceLoading && 'disabledButton'}`}
               disabled={createInvoiceLoading}
-              style={{ marginTop: "3rem" }}
+              style={{ marginTop: '3rem' }}
               onClick={() => {
                 handleCreateInvoice();
               }}
             >
-              {createInvoiceLoading ? <Loading style="PulseLoader" /> : "Create Invoice"}
+              {createInvoiceLoading ? (
+                <Loading style="PulseLoader" />
+              ) : (
+                'Create Invoice'
+              )}
             </button>
-            <button onClick={() => setActivePdf(!activePdf)} className="downloadPdf">
+            <button
+              onClick={() => setActivePdf(!activePdf)}
+              className="downloadPdf"
+            >
               Download Invoice
             </button>
             {/*<PDFDownloadLink document={<PdfPage />} fileName="invoice.pdf">*/}

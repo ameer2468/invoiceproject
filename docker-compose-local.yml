@@ -7,7 +7,7 @@ services:
     command: npm run dev
     container_name: frontend
     ports:
-      - "3000:3000"
+      - '3000:3000'
     volumes:
       - ./:/frontend
       - /frontend/node_modules

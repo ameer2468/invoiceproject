@@ -1,15 +1,21 @@
-import React from "react";
-import Link from "next/link";
-import { useLogin } from "../../../hooks/useLogin";
-import Loading from "../../global/loading";
-import { motion } from "framer-motion";
-import { anim } from "../../../framer";
-import ErrorButton from "./errorButton";
-import SuccessButton from "./successButton";
+import React from 'react';
+import Link from 'next/link';
+import { useLogin } from '../../../hooks/useLogin';
+import Loading from '../../global/loading';
+import { motion } from 'framer-motion';
+import { anim } from '../../../framer';
+import ErrorButton from './errorButton';
+import SuccessButton from './successButton';
 
 const LoginForm = () => {
-  const { loginForm, inputHandler, loginHandler, formError, loginLoading, user } =
-    useLogin();
+  const {
+    loginForm,
+    inputHandler,
+    loginHandler,
+    formError,
+    loginLoading,
+    user,
+  } = useLogin();
   const formLength = {
     ...loginForm,
   };
@@ -18,7 +24,7 @@ const LoginForm = () => {
     <motion.form
       initial={anim.initial}
       animate={anim.animate}
-      className={"loginForm"}
+      className={'loginForm'}
       transition={anim.transition}
       onSubmit={loginHandler}
     >
@@ -45,7 +51,7 @@ const LoginForm = () => {
         />
         {formError.length > 1 ? (
           <ErrorButton formError={formError} />
-        ) : user.type === "authenticated" ? (
+        ) : user.type === 'authenticated' ? (
           <SuccessButton />
         ) : (
           <motion.button
@@ -55,14 +61,18 @@ const LoginForm = () => {
               (loginLoading ||
                 formLength.email.length < 5 ||
                 formLength.password.length < 5) &&
-              "disabledButton"
+              'disabledButton'
             }`}
             disabled={
               loginLoading ||
               (formLength.email.length < 5 && formLength.password.length < 5)
             }
           >
-            {loginLoading ? <Loading style={"SyncLoader"} color="white" /> : "Login"}
+            {loginLoading ? (
+              <Loading style={'SyncLoader'} color="white" />
+            ) : (
+              'Login'
+            )}
           </motion.button>
         )}
         <div className="links">

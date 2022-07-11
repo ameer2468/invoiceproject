@@ -1,7 +1,7 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClose } from "@fortawesome/free-solid-svg-icons";
-import { AnimatePresence, motion } from "framer-motion";
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClose } from '@fortawesome/free-solid-svg-icons';
+import { AnimatePresence, motion } from 'framer-motion';
 
 interface props {
   formError: string;
@@ -19,21 +19,21 @@ const ErrorButton = ({ formError }: props) => {
         >
           <div
             style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              width: "100%",
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: '100%',
             }}
           >
             <FontAwesomeIcon
-              style={{ color: "white", fontSize: "1.7rem" }}
+              style={{ color: 'white', fontSize: '1.7rem' }}
               icon={faClose}
             />
-            <p style={{ marginLeft: "1rem" }}>{formError}</p>
+            <p style={{ marginLeft: '1rem' }}>{formError}</p>
           </div>
         </motion.button>
       ) : (
-        ""
+        ''
       )}
     </AnimatePresence>
   );

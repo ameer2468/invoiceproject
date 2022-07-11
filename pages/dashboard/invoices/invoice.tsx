@@ -1,20 +1,20 @@
-import React, { useEffect } from "react";
-import DashboardLayout from "../../../layouts/DashboardLayout";
-import Page from "../../../src/components/global/Page";
-import { getInvoice } from "../../../src/services/invoices/services";
-import { InvoiceData, item } from "../../../types/invoice";
-import moment from "moment";
-import { numberFormat } from "../../../src/helpers";
-import Loading from "../../../src/components/global/loading";
-import { useInvoice, useInvoiceData } from "../../../src/hooks/useInvoice";
-import Dropdown from "../../../src/components/global/dropdown";
-import CurrencyInput from "react-currency-input-field";
-import { GetServerSideProps } from "next";
-import TextArea from "../../../src/components/global/Textarea";
-import { motion } from "framer-motion";
-import { staggerChildren, staggerParent } from "../../../src/framer";
-import InvoiceItem from "../../../src/components/page-specific/dashboard/Invoices/InvoiceItem";
-import { useRouter } from "next/router";
+import React, { useEffect } from 'react';
+import DashboardLayout from '../../../layouts/DashboardLayout';
+import Page from '../../../src/components/global/Page';
+import { getInvoice } from '../../../src/services/invoices/services';
+import { InvoiceData, item } from '../../../types/invoice';
+import moment from 'moment';
+import { numberFormat } from '../../../src/helpers';
+import Loading from '../../../src/components/global/loading';
+import { useInvoice, useInvoiceData } from '../../../src/hooks/useInvoice';
+import Dropdown from '../../../src/components/global/dropdown';
+import CurrencyInput from 'react-currency-input-field';
+import { GetServerSideProps } from 'next';
+import TextArea from '../../../src/components/global/Textarea';
+import { motion } from 'framer-motion';
+import { staggerChildren, staggerParent } from '../../../src/framer';
+import InvoiceItem from '../../../src/components/page-specific/dashboard/Invoices/InvoiceItem';
+import { useRouter } from 'next/router';
 
 interface props {
   invoiceData: InvoiceData;
@@ -22,8 +22,12 @@ interface props {
 }
 
 const Invoice = ({ invoiceData, invoiceItems }: props) => {
-  const { invoiceForm, handleCurrencyValueChange, setInvoiceForm, handleInputChange } =
-    useInvoice();
+  const {
+    invoiceForm,
+    handleCurrencyValueChange,
+    setInvoiceForm,
+    handleInputChange,
+  } = useInvoice();
   const params = useRouter().query;
   const {
     invoice,
@@ -55,7 +59,7 @@ const Invoice = ({ invoiceData, invoiceItems }: props) => {
     invoiceForm && invoiceForm.description === invoice?.description;
 
   return (
-    <Page pageName={"invoiceId"}>
+    <Page pageName={'invoiceId'}>
       <div className="action-buttons">
         <h1>{invoice?.to}</h1>
         <button
@@ -71,9 +75,9 @@ const Invoice = ({ invoiceData, invoiceItems }: props) => {
           onClick={() => {
             deleteInvoiceRequest(invoice?.id as string);
           }}
-          className={`pinkButton ${mutateLoading.delete && "disabledButton"}`}
+          className={`pinkButton ${mutateLoading.delete && 'disabledButton'}`}
         >
-          {mutateLoading.delete ? <Loading style="PulseLoader" /> : "Delete"}
+          {mutateLoading.delete ? <Loading style="PulseLoader" /> : 'Delete'}
         </button>
       </div>
       <div className="description">
@@ -89,13 +93,19 @@ const Invoice = ({ invoiceData, invoiceItems }: props) => {
             <button
               disabled={mutateLoading.description || checkDescriptionValue}
               onClick={() => {
-                invoiceMutate("description");
+                invoiceMutate('description');
               }}
               className={`textAreaButton ${
-                mutateLoading.description || checkDescriptionValue ? "disabledButton" : ""
+                mutateLoading.description || checkDescriptionValue
+                  ? 'disabledButton'
+                  : ''
               }`}
             >
-              {mutateLoading.description ? <Loading style="PulseLoader" /> : "Save"}
+              {mutateLoading.description ? (
+                <Loading style="PulseLoader" />
+              ) : (
+                'Save'
+              )}
             </button>
           </>
         ) : (
@@ -126,9 +136,11 @@ const Invoice = ({ invoiceData, invoiceItems }: props) => {
               />
               <button
                 disabled={invoice?.amount === invoiceForm.amount}
-                className={invoice?.amount === invoiceForm.amount ? "disabledButton" : ""}
+                className={
+                  invoice?.amount === invoiceForm.amount ? 'disabledButton' : ''
+                }
                 onClick={() => {
-                  invoiceMutate("amount");
+                  invoiceMutate('amount');
                 }}
               >
                 Confirm
@@ -138,7 +150,7 @@ const Invoice = ({ invoiceData, invoiceItems }: props) => {
             <>
               <p className="bold">Amount:</p>
               {mutateLoading.amount ? (
-                <Loading style={"PulseLoader"} />
+                <Loading style={'PulseLoader'} />
               ) : (
                 <p>${numberFormat(Number(invoice?.amount), 2)}</p>
               )}
@@ -147,20 +159,20 @@ const Invoice = ({ invoiceData, invoiceItems }: props) => {
         </motion.li>
         <motion.li {...staggerChildren} className="stat">
           <p className="bold">Status:</p>
-          <p className={invoice?.status === "paid" ? "paid" : "unpaid"}>
-            {editInvoiceMode ? "" : invoice?.status}
+          <p className={invoice?.status === 'paid' ? 'paid' : 'unpaid'}>
+            {editInvoiceMode ? '' : invoice?.status}
           </p>
           <div>
             {mutateLoading.status ? (
-              <Loading style={"PulseLoader"} />
+              <Loading style={'PulseLoader'} />
             ) : (
               editInvoiceMode && (
                 <Dropdown
-                  defaultValue={"Status"}
-                  options={invoice?.status === "paid" ? ["unpaid"] : ["paid"]}
-                  style={{ backgroundColor: "#252525" }}
+                  defaultValue={'Status'}
+                  options={invoice?.status === 'paid' ? ['unpaid'] : ['paid']}
+                  style={{ backgroundColor: '#252525' }}
                   onSelect={() => {
-                    invoiceMutate("status");
+                    invoiceMutate('status');
                   }}
                 />
               )
@@ -169,18 +181,18 @@ const Invoice = ({ invoiceData, invoiceItems }: props) => {
         </motion.li>
         <motion.li {...staggerChildren} className="stat">
           <p className="bold">Date:</p>
-          <p>{moment(invoice?.date).format("MMM Do YYYY")}</p>
+          <p>{moment(invoice?.date).format('MMM Do YYYY')}</p>
         </motion.li>
       </motion.ul>
       <h1>Invoice Items</h1>
       <motion.ul
-        initial={"closed"}
-        animate={"open"}
+        initial={'closed'}
+        animate={'open'}
         variants={{ ...staggerParent.variants }}
         className="items"
       >
         {invoice?.invoiceItems.length === 0 ? (
-          <div style={{ top: "120%", opacity: 0.5 }} className="absoluteCenter">
+          <div style={{ top: '120%', opacity: 0.5 }} className="absoluteCenter">
             <p>No Items</p>
           </div>
         ) : (

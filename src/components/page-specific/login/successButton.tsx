@@ -1,7 +1,7 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
-import { AnimatePresence, motion } from "framer-motion";
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const SuccessButton = () => {
   return (
@@ -14,14 +14,14 @@ const SuccessButton = () => {
       >
         <div
           style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            width: "100%",
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '100%',
           }}
         >
           <FontAwesomeIcon
-            style={{ color: "white", fontSize: "1.7rem" }}
+            style={{ color: 'white', fontSize: '1.7rem' }}
             icon={faCheck}
           />
         </div>

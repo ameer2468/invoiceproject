@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import DashboardLayout from "../../layouts/DashboardLayout";
-import OverviewTabs from "../../src/components/page-specific/dashboard/Overview/OverviewTabs";
-import InvoicesPaid from "../../src/components/page-specific/dashboard/Overview/InvoicesPaid";
-import Dropdown from "../../src/components/global/dropdown";
-import { useUser } from "../../src/UserContext";
-import Loading from "../../src/components/global/loading";
-import InvoicesUnpaid from "../../src/components/page-specific/dashboard/Overview/InvoicesUnpaid";
-import Page from "../../src/components/global/Page";
-import { useFetchOverviewInvoices } from "../../src/hooks/useInvoice";
-import TabSkeleton from "../../src/components/skeletons/tab";
-import SquareSkeleton from "../../src/components/skeletons/square";
+import React, { useState } from 'react';
+import DashboardLayout from '../../layouts/DashboardLayout';
+import OverviewTabs from '../../src/components/page-specific/dashboard/Overview/OverviewTabs';
+import InvoicesPaid from '../../src/components/page-specific/dashboard/Overview/InvoicesPaid';
+import Dropdown from '../../src/components/global/dropdown';
+import { useUser } from '../../src/UserContext';
+import Loading from '../../src/components/global/loading';
+import InvoicesUnpaid from '../../src/components/page-specific/dashboard/Overview/InvoicesUnpaid';
+import Page from '../../src/components/global/Page';
+import { useFetchOverviewInvoices } from '../../src/hooks/useInvoice';
+import TabSkeleton from '../../src/components/skeletons/tab';
+import SquareSkeleton from '../../src/components/skeletons/square';
 
 const Overview = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -36,23 +36,27 @@ const Overview = () => {
           return <div>Tab 3</div>;
       }
     };
-    return <>{loading ? <SquareSkeleton width={1050} height={580} /> : <Tabs />}</>;
+    return (
+      <>{loading ? <SquareSkeleton width={1050} height={580} /> : <Tabs />}</>
+    );
   };
 
   return (
-    <Page pageName={"overview"}>
+    <Page pageName={'overview'}>
       <div className="main-header">
-        {userInfo.type === "unauthenticated" ? "" : <h1>Overview</h1>}
+        {userInfo.type === 'unauthenticated' ? '' : <h1>Overview</h1>}
         <Dropdown
           onSelect={(option: string) => {
             setPeriod(option);
           }}
-          options={["All", "1 day", "7 days", "30 days"]}
+          options={['All', '1 day', '7 days', '30 days']}
         />
       </div>
       <div className="overviewContent">
         <OverviewTabs
-          loading={isLoading || isLoadingUnpaid || isFetchingUnpaid || isFetching}
+          loading={
+            isLoading || isLoadingUnpaid || isFetchingUnpaid || isFetching
+          }
           paidInvoices={paidInvoices}
           unpaidInvoices={unpaidInvoices}
           activeTab={activeTab}
@@ -61,7 +65,9 @@ const Overview = () => {
           }}
         />
         <TabContent
-          loading={isLoading || isLoadingUnpaid || isFetchingUnpaid || isFetching}
+          loading={
+            isLoading || isLoadingUnpaid || isFetchingUnpaid || isFetching
+          }
         />
       </div>
     </Page>

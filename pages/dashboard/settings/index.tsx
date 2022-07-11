@@ -1,11 +1,14 @@
-import React, { useEffect } from "react";
-import Page from "../../../src/components/global/Page";
-import DashboardLayout from "../../../layouts/DashboardLayout";
-import Input from "../../../src/components/global/Input";
-import { useFetchBankingInfo, useSettings } from "../../../src/hooks/useSettings";
-import Loading from "../../../src/components/global/loading";
-import { useForgot } from "../../../src/hooks/useForgot";
-import { button } from "aws-amplify";
+import React, { useEffect } from 'react';
+import Page from '../../../src/components/global/Page';
+import DashboardLayout from '../../../layouts/DashboardLayout';
+import Input from '../../../src/components/global/Input';
+import {
+  useFetchBankingInfo,
+  useSettings,
+} from '../../../src/hooks/useSettings';
+import Loading from '../../../src/components/global/loading';
+import { useForgot } from '../../../src/hooks/useForgot';
+import { button } from 'aws-amplify';
 
 const Settings = () => {
   const {
@@ -55,15 +58,15 @@ const Settings = () => {
 
   useEffect(() => {
     if (accountLength > 13) {
-      updateSettings("accountNumber", settings.accountNumber.slice(0, 13));
+      updateSettings('accountNumber', settings.accountNumber.slice(0, 13));
     }
     if (sortCodeLength > 6) {
-      updateSettings("sortCode", settings.sortCode.slice(0, 6));
+      updateSettings('sortCode', settings.sortCode.slice(0, 6));
     }
   }, [settings.accountNumber, settings.sortCode]);
 
   return (
-    <Page pageName={"settings"}>
+    <Page pageName={'settings'}>
       <h1>Settings</h1>
       <div className="content">
         <div className="box info">
@@ -76,33 +79,33 @@ const Settings = () => {
               <form onSubmit={bankingInfoHandler}>
                 <Input
                   type="number"
-                  placeholder={"Account number"}
+                  placeholder={'Account number'}
                   value={settings.accountNumber}
-                  name={"accountNumber"}
+                  name={'accountNumber'}
                   required={true}
                   onChange={handleInputChange}
                 />
                 <Input
                   type="number"
-                  placeholder={"Sort code"}
+                  placeholder={'Sort code'}
                   value={settings.sortCode}
-                  name={"sortCode"}
+                  name={'sortCode'}
                   required={true}
                   onChange={handleInputChange}
                 />
                 <button
                   type="submit"
                   disabled={disabled}
-                  className={`button ${disabled ? "disabledButton" : ""}`}
+                  className={`button ${disabled ? 'disabledButton' : ''}`}
                 >
-                  {loading.saving ? <Loading style={"PulseLoader"} /> : "Save"}
+                  {loading.saving ? <Loading style={'PulseLoader'} /> : 'Save'}
                 </button>
               </form>
             )
           )}
           <div className="account-details">
             {isLoading
-              ? ""
+              ? ''
               : bankingInfo && (
                   <>
                     <p>Account number: {bankingInfo.account_number}</p>
@@ -113,42 +116,42 @@ const Settings = () => {
               <button
                 disabled={loading.banking}
                 onClick={deleteBankingInfo}
-                className={`button ${loading.banking && "disabledButton"}`}
+                className={`button ${loading.banking && 'disabledButton'}`}
               >
-                {loading.banking ? <Loading style="PulseLoader" /> : "Delete"}
+                {loading.banking ? <Loading style="PulseLoader" /> : 'Delete'}
               </button>
             )}
           </div>
         </div>
         <div className="box email">
           <h2>Account</h2>
-          {settings.verifyStep === 3 ? "" : <h3>Email change</h3>}
+          {settings.verifyStep === 3 ? '' : <h3>Email change</h3>}
           <>
             <form onSubmit={emailSubmitHandler}>
               {settings.verifyStep === 1 ? (
                 <>
                   <Input
-                    placeholder={"Current email"}
+                    placeholder={'Current email'}
                     value={settings.currentEmail}
-                    name={"currentEmail"}
+                    name={'currentEmail'}
                     required={true}
                     onChange={handleInputChange}
                   />
                   <Input
-                    placeholder={"New email"}
+                    placeholder={'New email'}
                     value={settings.newEmail}
                     required={true}
-                    name={"newEmail"}
+                    name={'newEmail'}
                     onChange={handleInputChange}
                   />
                 </>
               ) : settings.verifyStep === 2 ? (
                 <>
                   <Input
-                    placeholder={"Verification code"}
+                    placeholder={'Verification code'}
                     value={settings.verifyCode}
                     required={true}
-                    name={"verifyCode"}
+                    name={'verifyCode'}
                     onChange={handleInputChange}
                   />
                 </>
@@ -156,7 +159,7 @@ const Settings = () => {
                 settings.verifyStep === 3 && (
                   <h2
                     style={{
-                      marginTop: "10rem",
+                      marginTop: '10rem',
                     }}
                   >
                     Email changed successfully
@@ -167,42 +170,55 @@ const Settings = () => {
               {settings.verifyStep === 1 || settings.verifyStep === 2 ? (
                 <button
                   disabled={
-                    loading.account || newEmailLength < 5 || currentEmailLength < 5
+                    loading.account ||
+                    newEmailLength < 5 ||
+                    currentEmailLength < 5
                   }
                   className={`${
                     newEmailLength < 5 || currentEmailLength < 5
-                      ? "button disabledButton"
-                      : "button"
+                      ? 'button disabledButton'
+                      : 'button'
                   }`}
                 >
-                  {loading.account ? <Loading style={"PulseLoader"} /> : "Confirm"}
+                  {loading.account ? (
+                    <Loading style={'PulseLoader'} />
+                  ) : (
+                    'Confirm'
+                  )}
                 </button>
               ) : (
-                ""
+                ''
               )}
             </form>
           </>
-          <h3 style={{ marginTop: "5rem" }}>Password change</h3>
+          <h3 style={{ marginTop: '5rem' }}>Password change</h3>
           {step === 0 ? (
             <>
               <form onSubmit={forgotHandler}>
                 <Input
-                  placeholder={"Email"}
+                  placeholder={'Email'}
                   value={forgotForm.email}
-                  name={"email"}
+                  name={'email'}
                   required={true}
                   onChange={inputHandler}
                 />
-                {formError.length > 0 ? <p className="form-error">{formError}</p> : null}
+                {formError.length > 0 ? (
+                  <p className="form-error">{formError}</p>
+                ) : null}
                 <button
                   className={
-                    forgotForm.email.length < 5 && forgotForm.password.length < 6
-                      ? "button disabledButton"
-                      : "button"
+                    forgotForm.email.length < 5 &&
+                    forgotForm.password.length < 6
+                      ? 'button disabledButton'
+                      : 'button'
                   }
                   disabled={forgotLoading}
                 >
-                  {forgotLoading ? <Loading style={"PulseLoader"} /> : "Confirm"}
+                  {forgotLoading ? (
+                    <Loading style={'PulseLoader'} />
+                  ) : (
+                    'Confirm'
+                  )}
                 </button>
               </form>
             </>
@@ -227,10 +243,14 @@ const Settings = () => {
                 placeholder="Confirmation code"
                 type="text"
               />
-              {formError.length > 0 ? <p className="form-error">{formError}</p> : null}
+              {formError.length > 0 ? (
+                <p className="form-error">{formError}</p>
+              ) : null}
               <button
                 className={
-                  forgotForm.code.length !== 6 ? "button disabledButton" : "button"
+                  forgotForm.code.length !== 6
+                    ? 'button disabledButton'
+                    : 'button'
                 }
                 disabled={
                   forgotForm.email.length < 5 ||
@@ -238,13 +258,13 @@ const Settings = () => {
                   forgotForm.code.length !== 6
                 }
               >
-                {forgotLoading ? <Loading style={"PulseLoader"} /> : "Confirm"}
+                {forgotLoading ? <Loading style={'PulseLoader'} /> : 'Confirm'}
               </button>
             </form>
           ) : (
             <h2
               style={{
-                marginTop: "3rem",
+                marginTop: '3rem',
               }}
             >
               Password changed successfully

@@ -4,24 +4,24 @@ import {
   MutateInvoice,
   MutateLoading,
   updateKeys,
-} from "../../types/invoice";
-import { v4 as uuidv4 } from "uuid";
-import { useState, ChangeEvent, useEffect, FormEvent } from "react";
+} from '../../types/invoice';
+import { v4 as uuidv4 } from 'uuid';
+import { useState, ChangeEvent, useEffect, FormEvent } from 'react';
 import {
   createInvoice,
   deleteInvoice,
   getAllInvoices,
   getInvoices,
   mutateInvoice,
-} from "../services/invoices/services";
-import { useQuery } from "react-query";
-import { invoiceFormState } from "../constants";
-import { useRouter } from "next/router";
-import { useUser } from "../UserContext";
-import axios from "axios";
-import { toast } from "react-toastify";
-import { successToast } from "../helpers";
-import { useNotifications } from "./useNotifications";
+} from '../services/invoices/services';
+import { useQuery } from 'react-query';
+import { invoiceFormState } from '../constants';
+import { useRouter } from 'next/router';
+import { useUser } from '../UserContext';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import { successToast } from '../helpers';
+import { useNotifications } from './useNotifications';
 
 /*
   This hook is used to manage the state of the invoice form,
@@ -40,10 +40,11 @@ export const useInvoice = () => {
   const [editInvoiceMode, setEditInvoiceMode] = useState<boolean>(false);
   const { user } = useUser();
   const [calendarOpen, setCalendarOpen] = useState<boolean>(false);
-  const [createInvoiceLoading, setCreateInvoiceLoading] = useState<boolean>(false);
+  const [createInvoiceLoading, setCreateInvoiceLoading] =
+    useState<boolean>(false);
   const [invoiceForm, setInvoiceForm] = useState<Invoice>({
     ...invoiceFormState,
-    from: user[0].attributes["custom:firstname"],
+    from: user[0].attributes['custom:firstname'],
   });
   const route = useRouter();
 
@@ -87,13 +88,16 @@ export const useInvoice = () => {
         route.replace(`invoice?q=${invoiceForm.id}`).then(() => {
           setCreateInvoiceLoading(false);
         });
-        toast("Invoice created successfully", successToast);
+        toast('Invoice created successfully', successToast);
       });
   };
 
   /* Input handler for invoice form of individual items */
 
-  const handleItemChange = (event: ChangeEvent<HTMLInputElement>, index: number) => {
+  const handleItemChange = (
+    event: ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => {
     setInvoiceForm({
       ...invoiceForm,
       invoiceItems: invoiceForm.invoiceItems.map((item, i) => {
@@ -135,7 +139,10 @@ export const useInvoice = () => {
 
   /* Update an individual key in the invoice form */
 
-  const updateInvoiceForm = (key: keyof Invoice, value: string | number | boolean) => {
+  const updateInvoiceForm = (
+    key: keyof Invoice,
+    value: string | number | boolean
+  ) => {
     setInvoiceForm({
       ...invoiceForm,
       [key]: value,
@@ -161,8 +168,8 @@ export const useInvoice = () => {
         ...invoiceForm.invoiceItems,
         {
           id: uuidv4(),
-          description: "",
-          amount: "",
+          description: '',
+          amount: '',
         },
       ],
     });
@@ -221,15 +228,15 @@ export const useInvoiceData = (
   /* Delete invoice from database & UI */
 
   const deleteInvoiceRequest = (id: string) => {
-    mutateLoadHandler("delete", true);
+    mutateLoadHandler('delete', true);
     deleteInvoice(id)
       .then(() => {
-        router.replace("/dashboard/invoices");
-        toast("Invoice deleted successfully", successToast);
+        router.replace('/dashboard/invoices');
+        toast('Invoice deleted successfully', successToast);
       })
       .catch(() => {})
       .finally(() => {
-        mutateLoadHandler("delete", false);
+        mutateLoadHandler('delete', false);
       });
   };
 
@@ -253,7 +260,7 @@ export const useInvoiceData = (
   const invoiceMutate = (type: keyof MutateInvoice) => {
     const mutateValue = (key: keyof MutateInvoice) => {
       const obj: MutateInvoice = {
-        status: invoice?.status === "paid" ? "unpaid" : "paid",
+        status: invoice?.status === 'paid' ? 'unpaid' : 'paid',
         amount: invoiceForm.amount,
         id: invoiceForm.id,
         date: invoiceForm.date,
@@ -263,7 +270,7 @@ export const useInvoiceData = (
     };
     mutateLoadHandler(type, true);
     mutateInvoice({
-      id: invoice?.id || "",
+      id: invoice?.id || '',
       field: type,
       value: mutateValue(type),
       user_subid: user[0].attributes.sub,
@@ -273,7 +280,7 @@ export const useInvoiceData = (
           ...(invoice as InvoiceData),
           [type]: mutateValue(type),
         });
-        toast("Invoice updated successfully", successToast);
+        toast('Invoice updated successfully', successToast);
         setEditInvoiceMode(false);
       })
       .catch(() => {})
@@ -302,7 +309,7 @@ export const useInvoiceData = (
 export const useFetchOverviewInvoices = () => {
   const { user } = useUser();
   const userInfo = user[0];
-  const [period, setPeriod] = useState("All");
+  const [period, setPeriod] = useState('All');
   const {
     data: paidInvoices,
     isLoading,
@@ -310,12 +317,12 @@ export const useFetchOverviewInvoices = () => {
     refetch: refetchPaidInvoices,
     error,
   } = useQuery(
-    "All invoices",
+    'All invoices',
     () =>
       getInvoices(
-        "paid",
-        userInfo.attributes["custom:firstname"],
-        period === "All" ? "" : period
+        'paid',
+        userInfo.attributes['custom:firstname'],
+        period === 'All' ? '' : period
       ),
     {
       refetchOnWindowFocus: false,
@@ -328,12 +335,12 @@ export const useFetchOverviewInvoices = () => {
     refetch: refetchUnpaid,
     error: errorUnpaid,
   } = useQuery(
-    "All unpaid invoices",
+    'All unpaid invoices',
     () =>
       getInvoices(
-        "unpaid",
-        userInfo.attributes["custom:firstname"],
-        period === "All" ? "" : period
+        'unpaid',
+        userInfo.attributes['custom:firstname'],
+        period === 'All' ? '' : period
       ),
     {
       refetchOnWindowFocus: false,
@@ -363,8 +370,8 @@ export const useFetchInvoices = () => {
   const { user } = useUser();
   const userInfo = user[0];
   const { isLoading, isFetching, data } = useQuery(
-    "invoices",
-    () => getAllInvoices(userInfo.attributes["custom:firstname"]),
+    'invoices',
+    () => getAllInvoices(userInfo.attributes['custom:firstname']),
     {
       refetchOnWindowFocus: false,
     }

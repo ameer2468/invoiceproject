@@ -1,5 +1,5 @@
-import React from "react";
-import ForgotForm from "../src/components/page-specific/forgot/form";
+import React from 'react';
+import ForgotForm from '../src/components/page-specific/forgot/form';
 
 const Forgot = () => {
   return (

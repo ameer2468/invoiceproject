@@ -101,7 +101,7 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type="number"] {
+input[type='number'] {
   -moz-appearance: textfield;
 }
 .flipCaret {
@@ -126,8 +126,10 @@ ul {
   @include PurpleButton();
 }
 
-.react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle::before,
-.react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle::after {
+.react-datepicker-popper[data-placement^='bottom']
+  .react-datepicker__triangle::before,
+.react-datepicker-popper[data-placement^='bottom']
+  .react-datepicker__triangle::after {
   border-bottom-color: $darkgrey !important;
 }
 
@@ -259,7 +261,7 @@ li {
     transition: all 0.3s;
     font-weight: bold;
     color: white;
-    font-family: Poppins, "sans-serif";
+    font-family: Poppins, 'sans-serif';
     &::placeholder {
       color: white;
       font-weight: normal;

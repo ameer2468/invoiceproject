@@ -1,12 +1,18 @@
-import React, { useRef } from "react";
-import { faSearch, faBell } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import NotificationsDropdown from "./notifications-dropdown";
-import { useNotifications } from "../../../hooks/useNotifications";
+import React, { useRef } from 'react';
+import { faSearch, faBell } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import NotificationsDropdown from './notifications-dropdown';
+import { useNotifications } from '../../../hooks/useNotifications';
 
 const Header = () => {
-  const { notifications, loading, markAllAsRead, isOpen, setIsOpen, toggleNotification } =
-    useNotifications();
+  const {
+    notifications,
+    loading,
+    markAllAsRead,
+    isOpen,
+    setIsOpen,
+    toggleNotification,
+  } = useNotifications();
   const buttonRef = useRef(null);
 
   return (
@@ -16,7 +22,7 @@ const Header = () => {
           <input type="text" placeholder="Search..." />
           <FontAwesomeIcon
             className="icon"
-            style={{ fontSize: "1.5rem" }}
+            style={{ fontSize: '1.5rem' }}
             icon={faSearch}
           />
         </div>
@@ -26,7 +32,11 @@ const Header = () => {
           className="notification"
         >
           <FontAwesomeIcon className="icon" icon={faBell} />
-          {notifications?.every((value) => value.read) ? "" : <div className="alert" />}
+          {notifications?.every((value) => value.read) ? (
+            ''
+          ) : (
+            <div className="alert" />
+          )}
         </div>
         <NotificationsDropdown
           isOpen={isOpen}

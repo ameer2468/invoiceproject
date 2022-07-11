@@ -1,9 +1,9 @@
-import React from "react";
-import Link from "next/link";
-import { useRegister } from "../../../hooks/useRegister";
-import Loading from "../../global/loading";
-import { anim } from "../../../framer";
-import { motion } from "framer-motion";
+import React from 'react';
+import Link from 'next/link';
+import { useRegister } from '../../../hooks/useRegister';
+import Loading from '../../global/loading';
+import { anim } from '../../../framer';
+import { motion } from 'framer-motion';
 
 const RegisterForm = () => {
   const {
@@ -24,8 +24,8 @@ const RegisterForm = () => {
     form.confirmPassword.length === 0 ||
     form.firstName.length === 0 ||
     form.lastName.length === 0
-      ? "disabledButton"
-      : "";
+      ? 'disabledButton'
+      : '';
 
   return (
     <>
@@ -85,16 +85,18 @@ const RegisterForm = () => {
               placeholder="Confirm Password"
               type="password"
             />
-            {formError.length > 0 ? <p className="form-error">{formError}</p> : null}
+            {formError.length > 0 ? (
+              <p className="form-error">{formError}</p>
+            ) : null}
             <button
-              disabled={registerLoading || formCheck === "disabledButton"}
+              disabled={registerLoading || formCheck === 'disabledButton'}
               className={`purpleButton ${formCheck}`}
               type="submit"
             >
               {registerLoading ? (
                 <Loading style="SyncLoader" color="white" />
               ) : (
-                "Register"
+                'Register'
               )}
             </button>
             <div className="links">
@@ -116,9 +118,15 @@ const RegisterForm = () => {
             placeholder="Enter code"
             type="text"
           />
-          {formError.length > 0 ? <p className="form-error">{formError}</p> : null}
+          {formError.length > 0 ? (
+            <p className="form-error">{formError}</p>
+          ) : null}
           <button disabled={registerLoading} type="submit">
-            {registerLoading ? <Loading style="SyncLoader" color="white" /> : "Confirm"}
+            {registerLoading ? (
+              <Loading style="SyncLoader" color="white" />
+            ) : (
+              'Confirm'
+            )}
           </button>
           <Link passHref={true} href="/login">
             Have an account? Login now

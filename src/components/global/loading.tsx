@@ -1,10 +1,10 @@
-import React from "react";
-import { ClimbingBoxLoader, PulseLoader, SyncLoader } from "react-spinners";
+import React from 'react';
+import { ClimbingBoxLoader, PulseLoader, SyncLoader } from 'react-spinners';
 
 const loadingTypes = {
-  ClimbingBoxLoader: "ClimbingBoxLoader",
-  SyncLoader: "SyncLoader",
-  PulseLoader: "PulseLoader",
+  ClimbingBoxLoader: 'ClimbingBoxLoader',
+  SyncLoader: 'SyncLoader',
+  PulseLoader: 'PulseLoader',
 };
 
 interface props {
@@ -16,14 +16,21 @@ interface props {
 const Loading = ({ color, size, style }: props) => {
   const LoadingComp = () => {
     switch (style) {
-      case "ClimbingBoxLoader":
+      case 'ClimbingBoxLoader':
         return (
-          <ClimbingBoxLoader color={color ? color : "white"} size={size ? size : 8} />
+          <ClimbingBoxLoader
+            color={color ? color : 'white'}
+            size={size ? size : 8}
+          />
         );
-      case "SyncLoader":
-        return <SyncLoader color={color ? color : "white"} size={size ? size : 8} />;
-      case "PulseLoader":
-        return <PulseLoader color={color ? color : "white"} size={size ? size : 8} />;
+      case 'SyncLoader':
+        return (
+          <SyncLoader color={color ? color : 'white'} size={size ? size : 8} />
+        );
+      case 'PulseLoader':
+        return (
+          <PulseLoader color={color ? color : 'white'} size={size ? size : 8} />
+        );
     }
   };
 

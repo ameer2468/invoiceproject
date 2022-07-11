@@ -1,6 +1,6 @@
-import { motion } from "framer-motion";
-import React from "react";
-import { fadeAnim } from "../../framer";
+import { motion } from 'framer-motion';
+import React from 'react';
+import { fadeAnim } from '../../framer';
 
 interface props {
   children: React.ReactNode;

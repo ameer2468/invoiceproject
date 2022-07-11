@@ -45,7 +45,7 @@
             color: $purple;
           }
           &::before {
-            content: "";
+            content: '';
             z-index: -1;
             left: 0;
             position: absolute;
@@ -155,7 +155,7 @@
       padding: 2rem 0;
       margin: 2rem auto 2rem auto;
       &::before {
-        content: "";
+        content: '';
         z-index: -1;
         position: absolute;
         left: 0;
@@ -239,7 +239,7 @@
     transition: all 0.3s;
     align-items: center;
     &::before {
-      content: "";
+      content: '';
       z-index: -1;
       position: absolute;
       transition: 0.5s ease-in-out;
@@ -395,7 +395,7 @@
         background: $pink;
         border-radius: 10rem;
         &::before {
-          content: "";
+          content: '';
           position: absolute;
           top: 0;
           left: 0;

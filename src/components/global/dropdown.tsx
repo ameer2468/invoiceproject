@@ -1,9 +1,9 @@
-import React, { useRef, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
-import { useClickOutside } from "../../hooks/useClickOutside";
-import { motion } from "framer-motion";
-import { anim } from "../../framer";
+import React, { useRef, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import { useClickOutside } from '../../hooks/useClickOutside';
+import { motion } from 'framer-motion';
+import { anim } from '../../framer';
 
 interface props {
   options: string[];
@@ -28,9 +28,9 @@ const Dropdown = ({ options, onSelect, style, defaultValue }: props) => {
   return (
     <div onClick={() => setIsOpen(!isOpen)} className="dropdown">
       <div style={style} className="main">
-        <p>{activeOption ? activeOption : ""}</p>
+        <p>{activeOption ? activeOption : ''}</p>
         <FontAwesomeIcon
-          className={`icon ${isOpen ? "flipCaret" : ""}`}
+          className={`icon ${isOpen ? 'flipCaret' : ''}`}
           icon={faCaretDown}
         />
       </div>
@@ -45,7 +45,7 @@ const Dropdown = ({ options, onSelect, style, defaultValue }: props) => {
             return (
               <div key={index.toString()}>
                 {activeOption === option ? (
-                  ""
+                  ''
                 ) : (
                   <div onClick={() => clickHandler(option)}>
                     <p>{option}</p>

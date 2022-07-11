@@ -1,18 +1,18 @@
-import { ChangeEvent, useState } from "react";
-import { Auth } from "aws-amplify";
-import { createUser } from "../services/user/user";
+import { ChangeEvent, useState } from 'react';
+import { Auth } from 'aws-amplify';
+import { createUser } from '../services/user/user';
 
 export const useRegister = () => {
   const [registerLoading, setRegisterLoading] = useState(false);
   const [step, setStep] = useState(1);
-  const [formError, setFormError] = useState("");
+  const [formError, setFormError] = useState('');
   const [registerForm, setRegisterForm] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    code: "",
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    code: '',
   });
 
   const inputHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -26,9 +26,11 @@ export const useRegister = () => {
     e.preventDefault();
     setRegisterLoading(true);
     try {
-      await Auth.confirmSignUp(registerForm.email, registerForm.code).then((res) => {
-        setStep((prevState) => prevState + 1);
-      });
+      await Auth.confirmSignUp(registerForm.email, registerForm.code).then(
+        (res) => {
+          setStep((prevState) => prevState + 1);
+        }
+      );
     } catch (err: any) {
       setFormError(err.message);
     }
@@ -42,8 +44,8 @@ export const useRegister = () => {
       username: registerForm.email,
       password: registerForm.password,
       attributes: {
-        "custom:firstname": registerForm.firstName,
-        "custom:lastname": registerForm.lastName,
+        'custom:firstname': registerForm.firstName,
+        'custom:lastname': registerForm.lastName,
       },
     })
       .then(async (res) => {

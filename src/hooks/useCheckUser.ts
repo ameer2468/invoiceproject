@@ -1,6 +1,6 @@
-import { Auth } from "aws-amplify";
-import { useCallback, useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import { Auth } from 'aws-amplify';
+import { useCallback, useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 
 interface props {
   pageProps?: any;
@@ -22,21 +22,23 @@ export const useCheckUser = ({ pageProps }: props) => {
         ...userInfo,
         attributes: {
           ...userInfo.attributes,
-          ["custom:firstname"]: capitalize(userInfo.attributes["custom:firstname"]),
+          ['custom:firstname']: capitalize(
+            userInfo.attributes['custom:firstname']
+          ),
         },
-        type: "authenticated",
+        type: 'authenticated',
       });
-      if (router.pathname === "/login" || router.pathname === "/register") {
-        router.push("/dashboard/overview").then(() => {
+      if (router.pathname === '/login' || router.pathname === '/register') {
+        router.push('/dashboard/overview').then(() => {
           setIsLoading(false);
         });
       } else {
         setIsLoading(false);
       }
     } catch (e) {
-      setUser({ type: "unauthenticated" });
+      setUser({ type: 'unauthenticated' });
       if (pageProtected) {
-        router.push("/login").then(() => {
+        router.push('/login').then(() => {
           setIsLoading(false);
         });
       } else {

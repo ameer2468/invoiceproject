@@ -5,16 +5,16 @@
 }
 
 @font-face {
-  font-family: "Poppins";
-  src: url("../fonts/poppins/Poppins-Regular.ttf");
+  font-family: 'Poppins';
+  src: url('../fonts/poppins/Poppins-Regular.ttf');
   font-style: normal;
   font-weight: 400;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Poppins";
-  src: url("../fonts/poppins/Poppins-Bold.ttf");
+  font-family: 'Poppins';
+  src: url('../fonts/poppins/Poppins-Bold.ttf');
   font-style: normal;
   font-weight: 800;
   font-display: swap;
@@ -45,13 +45,13 @@ body {
   }
 }
 
-@import "variables";
-@import "home";
-@import "invoices";
-@import "invoiceDetails";
-@import "settings";
-@import "dashboard";
-@import "register";
-@import "login";
-@import "responsive";
-@import "global";
+@import 'variables';
+@import 'home';
+@import 'invoices';
+@import 'invoiceDetails';
+@import 'settings';
+@import 'dashboard';
+@import 'register';
+@import 'login';
+@import 'responsive';
+@import 'global';

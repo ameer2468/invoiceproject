@@ -1,16 +1,16 @@
-import { ChangeEvent, FormEvent, SetStateAction, useEffect, useState } from "react";
-import { Auth } from "aws-amplify";
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import { Auth } from 'aws-amplify';
 import {
   deleteBankingRequest,
   getBankingRequest,
   mutateUser,
   postBankingRequest,
-} from "../services/user/user";
-import { BankingInfo, Settings } from "../../types/settings";
-import { useUser } from "../UserContext";
-import { useQuery } from "react-query";
-import { toast } from "react-toastify";
-import { errorToast } from "../helpers";
+} from '../services/user/user';
+import { BankingInfo, Settings } from '../../types/settings';
+import { useUser } from '../UserContext';
+import { useQuery } from 'react-query';
+import { toast } from 'react-toastify';
+import { errorToast } from '../helpers';
 
 export const useSettings = () => {
   const [bankingInfo, setBankingInfo] = useState<BankingInfo | null>(null);
@@ -21,7 +21,7 @@ export const useSettings = () => {
 
   const [error, setError] = useState({
     error: false,
-    message: "",
+    message: '',
   });
 
   const [loading, setLoading] = useState({
@@ -31,12 +31,12 @@ export const useSettings = () => {
   });
 
   const [settings, setSettings] = useState<Settings>({
-    accountNumber: "",
-    accountName: "",
-    sortCode: "",
-    newEmail: "",
-    currentEmail: "",
-    verifyCode: "",
+    accountNumber: '',
+    accountName: '',
+    sortCode: '',
+    newEmail: '',
+    currentEmail: '',
+    verifyCode: '',
     verifyStep: 1,
   });
 
@@ -47,7 +47,10 @@ export const useSettings = () => {
     });
   };
 
-  const updateSettings = (key: keyof typeof settings, value: string | number) => {
+  const updateSettings = (
+    key: keyof typeof settings,
+    value: string | number
+  ) => {
     setSettings({
       ...settings,
       [key]: value,
@@ -62,7 +65,7 @@ export const useSettings = () => {
     setTimeout(() => {
       setError({
         error: false,
-        message: "",
+        message: '',
       });
     }, 3000);
   };
@@ -74,7 +77,7 @@ export const useSettings = () => {
   };
 
   const deleteBankingInfo = () => {
-    updateLoading("banking", true);
+    updateLoading('banking', true);
     deleteBankingRequest(user[0].attributes.sub)
       .then(() => {
         setBankingInfo(null);
@@ -83,13 +86,13 @@ export const useSettings = () => {
         toast(err.message, errorToast);
       })
       .finally(() => {
-        updateLoading("banking", false);
+        updateLoading('banking', false);
       });
   };
 
   const bankingInfoHandler = (e: FormEvent) => {
     e.preventDefault();
-    updateLoading("saving", true);
+    updateLoading('saving', true);
     postBankingRequest({
       user_subid: user[0].attributes.sub,
       account_number: settings.accountNumber,
@@ -98,8 +101,8 @@ export const useSettings = () => {
       .then(() => {
         setSettings({
           ...settings,
-          accountNumber: "",
-          sortCode: "",
+          accountNumber: '',
+          sortCode: '',
         });
         setBankingInfo({
           account_number: settings.accountNumber,
@@ -110,7 +113,7 @@ export const useSettings = () => {
         toast(err.message, errorToast);
       })
       .finally(() => {
-        updateLoading("saving", false);
+        updateLoading('saving', false);
       });
   };
 
@@ -120,31 +123,36 @@ export const useSettings = () => {
 
   const changeUserEmail = async (e?: FormEvent<SubmitEvent>) => {
     e?.preventDefault();
-    updateLoading("account", true);
+    updateLoading('account', true);
     const user = await getUser();
     await Auth.updateUserAttributes(user, {
       email: settings.newEmail,
     })
       .then(() => {
-        updateSettings("verifyStep", 2);
+        updateSettings('verifyStep', 2);
       })
       .catch((err) => {
         errorHandle(true, err.message);
       })
       .finally(() => {
-        updateLoading("account", false);
+        updateLoading('account', false);
       });
   };
 
   const confirmCode = async () => {
     const user = await getUser();
-    updateLoading("account", true);
-    await Auth.verifyUserAttributeSubmit(user, "email", settings.verifyCode)
+    updateLoading('account', true);
+    await Auth.verifyUserAttributeSubmit(user, 'email', settings.verifyCode)
       .then(async () => {
-        setSettings({ ...settings, verifyStep: 3, newEmail: "", currentEmail: "" });
+        setSettings({
+          ...settings,
+          verifyStep: 3,
+          newEmail: '',
+          currentEmail: '',
+        });
         await mutateUser({
           sub_id: user.attributes.sub,
-          field: "email",
+          field: 'email',
           value: settings.newEmail,
         });
       })
@@ -152,7 +160,7 @@ export const useSettings = () => {
         errorHandle(true, err.message);
       })
       .finally(() => {
-        updateLoading("account", false);
+        updateLoading('account', false);
       });
   };
 
@@ -160,7 +168,7 @@ export const useSettings = () => {
     let stepTime: NodeJS.Timeout;
     if (settings.verifyStep === 3) {
       stepTime = setTimeout(() => {
-        updateSettings("verifyStep", 1);
+        updateSettings('verifyStep', 1);
       }, 3000);
     }
     return () => {
@@ -190,7 +198,7 @@ export const useFetchBankingInfo = (
 ) => {
   const { getBankingInfo } = useSettings();
   const { data, isLoading } = useQuery<BankingInfo>(
-    "bankingInfo",
+    'bankingInfo',
     () => getBankingInfo(),
     {
       refetchOnWindowFocus: false,

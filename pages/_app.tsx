@@ -1,17 +1,17 @@
-import "../styles/stylesheet.css";
-import type { AppProps } from "next/app";
-import awsconfig from "../src/aws-exports";
-import Amplify, { Auth } from "aws-amplify";
-import React from "react";
-import { UserContext } from "../src/UserContext";
-import Loading from "../src/components/global/loading";
-import { useCheckUser } from "../src/hooks/useCheckUser";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import ModalManager from "../src/components/modals/ModalManager";
-import { ModalContext } from "../src/ModalContext";
-import { useModal } from "../src/ModalContext";
+import '../styles/stylesheet.css';
+import type { AppProps } from 'next/app';
+import awsconfig from '../src/aws-exports';
+import Amplify, { Auth } from 'aws-amplify';
+import React from 'react';
+import { UserContext } from '../src/UserContext';
+import Loading from '../src/components/global/loading';
+import { useCheckUser } from '../src/hooks/useCheckUser';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import ModalManager from '../src/components/modals/ModalManager';
+import { ModalContext } from '../src/ModalContext';
+import { useModal } from '../src/ModalContext';
 
 Amplify.configure(awsconfig);
 Auth.configure(awsconfig);
@@ -35,8 +35,8 @@ function MyApp({ Component, pageProps }: props) {
           <ToastContainer />
           <ModalManager />
           {isLoading ? (
-            <div className={"absoluteCenter"}>
-              <Loading style={"PulseLoader"} color={"white"} />
+            <div className={'absoluteCenter'}>
+              <Loading style={'PulseLoader'} color={'white'} />
             </div>
           ) : (
             <DashboardLayout>
