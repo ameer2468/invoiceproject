@@ -12,7 +12,6 @@ export const useNotifications = () => {
   const { user } = useUser();
 
   const markAllAsRead = () => {
-    setLoading(true);
     markAllAsReadRequest(user[0].attributes.sub)
       .then(() => {
         if (notifications) {
@@ -28,9 +27,6 @@ export const useNotifications = () => {
       })
       .catch(() => {
         toast.error("An error has occurred", errorToast);
-      })
-      .finally(() => {
-        setLoading(false);
       });
   };
 
