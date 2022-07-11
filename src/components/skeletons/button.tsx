@@ -11,7 +11,7 @@ const ButtonSkeleton = () => {
       backgroundColor="#383838FF"
       foregroundColor="#565656"
     >
-      <rect rx="10" ry="10" x="0" y="0" width="300" height="40" />
+      <rect x="0" y="0" width="300" height="40" />
     </ContentLoader>
   );
 };

@@ -5,7 +5,7 @@ interface props {
   width: number | string;
   height: number | string;
 }
-
+//@ts-ignore
 const SquareSkeleton = ({ width, height }: props) => {
   return (
     <ContentLoader
@@ -16,7 +16,7 @@ const SquareSkeleton = ({ width, height }: props) => {
       backgroundColor="#383838FF"
       foregroundColor="#565656"
     >
-      <rect rx="10" ry="10" x="0" y="0" width={width} height={height} />
+      <rect x="0" y="0" width={width} height={height} />
     </ContentLoader>
   );
 };

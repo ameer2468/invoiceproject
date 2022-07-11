@@ -37,7 +37,9 @@ const Overview = () => {
       }
     };
     return (
-      <>{loading ? <SquareSkeleton width={1050} height={580} /> : <Tabs />}</>
+      <div className="skeletonContainer">
+        {loading ? <SquareSkeleton width={1105} height={580} /> : <Tabs />}
+      </div>
     );
   };
 

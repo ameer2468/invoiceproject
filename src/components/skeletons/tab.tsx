@@ -11,7 +11,7 @@ const TabSkeleton = () => {
       backgroundColor="#383838FF"
       foregroundColor="#565656"
     >
-      <rect rx="10" ry="10" x="0" y="0" width="350" height="270" />
+      <rect x="0" y="0" width="350" height="270" />
     </ContentLoader>
   );
 };
