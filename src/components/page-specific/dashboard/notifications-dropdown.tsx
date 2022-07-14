@@ -8,6 +8,7 @@ import ButtonSkeleton from '../../skeletons/button';
 import { faNewspaper } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import NotificationSkeleton from '../../skeletons/notification';
+import Loading from '../../global/loading';
 
 interface props {
   isOpen: boolean;
@@ -15,12 +16,14 @@ interface props {
   parentRef?: React.RefObject<HTMLDivElement>;
   data: INotification[] | null;
   loading: boolean;
+  readLoading: boolean;
   markAllAsRead: () => void;
 }
 
 const NotificationsDropdown = ({
   isOpen,
   setIsOpen,
+  readLoading,
   parentRef,
   data,
   markAllAsRead,
@@ -86,12 +89,16 @@ const NotificationsDropdown = ({
           ) : (
             <button
               onClick={markAllAsRead}
-              disabled={loading || notificationRead}
+              disabled={readLoading || notificationRead}
               className={`read ${
-                loading || notificationRead ? 'disabledButton' : ''
+                readLoading || notificationRead ? 'disabledButton' : ''
               }`}
             >
-              Mark all as read
+              {readLoading ? (
+                <Loading style="PulseLoader" />
+              ) : (
+                'Mark all as read'
+              )}
             </button>
           )}
         </motion.div>

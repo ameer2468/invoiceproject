@@ -12,6 +12,7 @@ const Header = () => {
     isOpen,
     setIsOpen,
     toggleNotification,
+    readLoading,
   } = useNotifications();
   const buttonRef = useRef(null);
 
@@ -42,6 +43,7 @@ const Header = () => {
           isOpen={isOpen}
           markAllAsRead={markAllAsRead}
           loading={loading}
+          readLoading={readLoading}
           data={notifications}
           parentRef={buttonRef}
           setIsOpen={(active: boolean) => {

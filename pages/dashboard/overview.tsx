@@ -4,11 +4,9 @@ import OverviewTabs from '../../src/components/page-specific/dashboard/Overview/
 import InvoicesPaid from '../../src/components/page-specific/dashboard/Overview/InvoicesPaid';
 import Dropdown from '../../src/components/global/dropdown';
 import { useUser } from '../../src/UserContext';
-import Loading from '../../src/components/global/loading';
 import InvoicesUnpaid from '../../src/components/page-specific/dashboard/Overview/InvoicesUnpaid';
 import Page from '../../src/components/global/Page';
 import { useFetchOverviewInvoices } from '../../src/hooks/useInvoice';
-import TabSkeleton from '../../src/components/skeletons/tab';
 import SquareSkeleton from '../../src/components/skeletons/square';
 
 const Overview = () => {
@@ -37,9 +35,7 @@ const Overview = () => {
       }
     };
     return (
-      <div className="skeletonContainer">
-        {loading ? <SquareSkeleton width={1105} height={580} /> : <Tabs />}
-      </div>
+      <>{loading ? <SquareSkeleton width={1105} height={580} /> : <Tabs />}</>
     );
   };
 

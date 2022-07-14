@@ -10,6 +10,7 @@ export const useNotifications = () => {
     null
   );
   const [loading, setLoading] = useState(false);
+  const [readLoading, setReadLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const { user } = useUser();
 
@@ -17,6 +18,7 @@ export const useNotifications = () => {
   read - based on a true or null value*/
 
   const markAllAsRead = () => {
+    setReadLoading(true);
     markAllAsReadRequest(user[0].attributes.sub)
       .then(() => {
         if (notifications) {
@@ -32,6 +34,9 @@ export const useNotifications = () => {
       })
       .catch(() => {
         toast.error('An error has occurred', errorToast);
+      })
+      .finally(() => {
+        setReadLoading(false);
       });
   };
 
@@ -71,6 +76,7 @@ export const useNotifications = () => {
     notificationRequest,
     loading,
     markAllAsRead,
+    readLoading,
     isOpen,
     toggleNotification,
     setIsOpen,
