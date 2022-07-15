@@ -1,6 +1,5 @@
 import {
   Invoice,
-  InvoiceData,
   MutateInvoice,
   MutateLoading,
   updateKeys,
@@ -71,7 +70,7 @@ export const useInvoice = () => {
   /*Date handler*/
 
   const handleDateChange = (date: Date | null) => {
-    setInvoiceForm({ ...invoiceForm, dueDate: date });
+    setInvoiceForm({ ...invoiceForm, duedate: date });
   };
 
   /* Create invoice handler */
@@ -204,7 +203,7 @@ export const useInvoice = () => {
 };
 
 export const useInvoiceData = (
-  invoiceData: InvoiceData,
+  invoiceData: Invoice,
   invoiceForm: Invoice,
   setInvoiceForm: (invoiceForm: Invoice) => void
 ) => {
@@ -216,7 +215,7 @@ export const useInvoiceData = (
     description: false,
     status: false,
   });
-  const [invoice, setInvoice] = useState<InvoiceData | null>(null);
+  const [invoice, setInvoice] = useState<Invoice | null>(null);
   const { editInvoiceMode, setEditInvoiceMode } = useInvoice();
   const router = useRouter();
   const { user } = useUser();
@@ -246,9 +245,19 @@ export const useInvoiceData = (
       });
   };
 
+  /* Update multiple invoice values*/
+
+  const updateMultiValues = (valuesToUpdate: updateKeys[]) => {
+    setInvoice(
+      valuesToUpdate.reduce((acc, curr) => {
+        return { ...acc, [curr.key]: curr.value };
+      }, invoiceData)
+    );
+  };
+
   /* When editing an individual invoice - this is a mutate handler */
 
-  const editInvoiceHandler = (invoiceData: InvoiceData) => {
+  const editInvoiceHandler = (invoiceData: Invoice) => {
     setEditInvoiceMode(!editInvoiceMode);
     setInvoiceForm({
       ...invoiceForm,
@@ -281,9 +290,9 @@ export const useInvoiceData = (
       value: mutateValue(type),
       user_subid: user[0].attributes.sub,
     })
-      .then(async () => {
+      .then(() => {
         setInvoice({
-          ...(invoice as InvoiceData),
+          ...(invoice as Invoice),
           [type]: mutateValue(type),
         });
         toast('Invoice updated successfully', successToast);
@@ -292,6 +301,7 @@ export const useInvoiceData = (
       .catch(() => {})
       .finally(() => {
         mutateLoadHandler(type, false);
+        setEditInvoiceMode(false);
       });
   };
 
@@ -308,6 +318,7 @@ export const useInvoiceData = (
     setEditInvoiceMode,
     deleteInvoiceRequest,
     editInvoiceMode,
+    updateMultiValues,
     setMutateLoading,
   };
 };

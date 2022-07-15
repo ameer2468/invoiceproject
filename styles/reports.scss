@@ -1,0 +1,18 @@
+.reports {
+  .pageContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+    h1 {
+      width: 100%;
+    }
+    .contentBox {
+      border: 2px solid $border;
+      background: $darkgrey;
+      border-radius: 1rem;
+      padding: 2rem;
+      width: 48%;
+    }
+  }
+}

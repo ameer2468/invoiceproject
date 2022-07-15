@@ -3,14 +3,12 @@ import DashboardLayout from '../../../layouts/DashboardLayout';
 import Invoice from '../../../src/components/page-specific/dashboard/Invoices/invoice';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import Loading from '../../../src/components/global/loading';
 import { staggerParent } from '../../../src/framer';
 import { Invoice as InvoiceType } from '../../../types/invoice';
 import Page from '../../../src/components/global/Page';
 import { useFetchInvoices } from '../../../src/hooks/useInvoice';
 import NoContent from '../../../src/components/global/NoContent';
 import noinvoices from '../../../src/images/noinvoices.svg';
-import { toast } from 'react-toastify';
 import InvoiceSkeleton from '../../../src/components/skeletons/invoice';
 
 const Index = () => {

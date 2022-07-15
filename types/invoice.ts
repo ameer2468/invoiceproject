@@ -2,7 +2,7 @@ export interface Invoice {
   id: string;
   description: string;
   date: string;
-  dueDate: Date | null | string | any;
+  duedate: Date | null | string | any;
   to: string;
   status: string;
   from: string;
@@ -51,17 +51,6 @@ export interface MutateInvoice {
   date: string;
   status: string;
   description: string;
-}
-
-export interface InvoiceData {
-  amount: string;
-  date: string;
-  description: string;
-  from: string;
-  id: string;
-  invoiceItems: item[];
-  status: string;
-  to: string;
 }
 
 export interface item {

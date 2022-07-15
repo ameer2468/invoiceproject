@@ -52,9 +52,7 @@ const PdfPage = ({ invoiceInfo }: props) => {
               }}
             >
               <Text style={styles.invoiceTitle}>Due date:</Text>
-              <Text style={styles.text}>
-                {invoiceInfo.dueDate?.toISOString().split('T')[0]}
-              </Text>
+              <Text style={styles.text}>{invoiceInfo.duedate}</Text>
             </View>
             <View
               style={{
@@ -106,9 +104,7 @@ const PdfPage = ({ invoiceInfo }: props) => {
                 </Text>
               </View>
               <View style={styles.textWrap}>
-                <Text style={styles.whiteText}>
-                  {invoiceInfo.dueDate?.toISOString().split('T')[0]}
-                </Text>
+                <Text style={styles.whiteText}>{invoiceInfo.duedate}</Text>
               </View>
               <View style={styles.textWrap}>
                 <Text style={styles.whiteText}>

@@ -5,7 +5,7 @@ export const invoiceFormState = {
   status: 'unpaid',
   description: '',
   date: new Date().toISOString().split('T')[0],
-  dueDate: null,
+  duedate: null,
   to: '',
   from: '',
   account_number: '',

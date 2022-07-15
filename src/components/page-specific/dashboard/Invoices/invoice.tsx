@@ -22,7 +22,7 @@ const Invoice = ({ data }: props) => {
       <h2>{data.to}</h2>
       <p className="desc">
         {data.description.length > 120
-          ? data.description.substring(0, 120) + '...'
+          ? data.description.substring(0, 100) + '...'
           : data.description}
       </p>
       <div

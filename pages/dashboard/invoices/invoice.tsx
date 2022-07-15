@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import DashboardLayout from '../../../layouts/DashboardLayout';
 import Page from '../../../src/components/global/Page';
 import { getInvoice } from '../../../src/services/invoices/services';
-import { InvoiceData, item } from '../../../types/invoice';
+import { item, Invoice } from '../../../types/invoice';
 import moment from 'moment';
 import { numberFormat } from '../../../src/helpers';
 import Loading from '../../../src/components/global/loading';
@@ -17,9 +17,10 @@ import InvoiceItem from '../../../src/components/page-specific/dashboard/Invoice
 import { useRouter } from 'next/router';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import PdfPage from '../../../src/components/page-specific/dashboard/Invoices/newInvoice/PdfPage';
+import { useFetchBankingInfo } from '../../../src/hooks/useSettings';
 
 interface props {
-  invoiceData: InvoiceData[];
+  invoiceData: Invoice;
   invoiceItems: item[];
 }
 
@@ -36,16 +37,18 @@ const Invoice = ({ invoiceData, invoiceItems }: props) => {
     invoiceMutate,
     editInvoiceMode,
     editInvoiceHandler,
+    updateMultiValues,
     mutateLoading,
     deleteInvoiceRequest,
   } = useInvoiceData(
     {
-      ...invoiceData[0],
+      ...invoiceData,
       invoiceItems: invoiceItems,
     },
     invoiceForm,
     setInvoiceForm
   );
+  const { data } = useFetchBankingInfo();
 
   useEffect(() => {
     if (invoice) {
@@ -55,6 +58,12 @@ const Invoice = ({ invoiceData, invoiceItems }: props) => {
         return;
       }
     }
+    if (data) {
+      updateMultiValues([
+        { key: 'account_number', value: data.account_number },
+        { key: 'sort_code', value: data.sort_code },
+      ]);
+    }
   }, [params?.q]);
 
   const checkDescriptionValue =
@@ -62,7 +71,7 @@ const Invoice = ({ invoiceData, invoiceItems }: props) => {
 
   return (
     <Page pageName={'invoiceId'}>
-      {!invoice?.id ? (
+      {invoice && !invoice?.id ? (
         <div className="absoluteCenter">
           <h1>This invoice no longer exists</h1>
         </div>
@@ -73,7 +82,7 @@ const Invoice = ({ invoiceData, invoiceItems }: props) => {
             <button
               className="purpleButton"
               onClick={() => {
-                editInvoiceHandler(invoice as InvoiceData);
+                editInvoiceHandler(invoice as Invoice);
               }}
             >
               Edit
@@ -118,7 +127,7 @@ const Invoice = ({ invoiceData, invoiceItems }: props) => {
                   {mutateLoading.description ? (
                     <Loading style="PulseLoader" />
                   ) : (
-                    'Save'
+                    'Save description'
                   )}
                 </button>
               </>
@@ -217,17 +226,19 @@ const Invoice = ({ invoiceData, invoiceItems }: props) => {
                 <p>No Items</p>
               </div>
             ) : (
-              invoice?.invoiceItems.map((item, index) => (
+              invoice?.invoiceItems.map((item: any, index: number) => (
                 <InvoiceItem item={item} key={index.toString()} />
               ))
             )}
           </motion.ul>
-          <PDFDownloadLink
-            document={<PdfPage invoiceInfo={invoiceForm} />}
-            fileName={`invoice-${invoiceForm.id}.pdf`}
-          >
-            <button className="button">Download Invoice</button>
-          </PDFDownloadLink>
+          {invoice && (
+            <PDFDownloadLink
+              document={<PdfPage invoiceInfo={invoice} />}
+              fileName={`invoice-${invoice?.id}.pdf`}
+            >
+              <button className="button">Download Invoice</button>
+            </PDFDownloadLink>
+          )}
         </>
       )}
     </Page>
