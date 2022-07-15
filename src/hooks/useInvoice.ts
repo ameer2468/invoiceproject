@@ -175,6 +175,12 @@ export const useInvoice = () => {
     });
   };
 
+  useEffect(() => {
+    if (invoiceForm.id.length > 10) {
+      updateInvoiceForm('id', invoiceForm.id.substring(0, 10));
+    }
+  }, [invoiceForm.id]);
+
   return {
     invoiceForm,
     setInvoiceForm,

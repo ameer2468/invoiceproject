@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useMemo, useState } from 'react';
+import React, { ChangeEvent, useEffect, useMemo } from 'react';
 import DashboardLayout from '../../../layouts/DashboardLayout';
 import Input from '../../../src/components/global/Input';
 import { useInvoice } from '../../../src/hooks/useInvoice';
@@ -16,7 +16,6 @@ import Loading from '../../../src/components/global/loading';
 import { useFetchBankingInfo } from '../../../src/hooks/useSettings';
 
 const New = () => {
-  const [activePdf, setActivePdf] = useState(false);
   const {
     handleInputChange,
     handleItemChange,
@@ -54,124 +53,134 @@ const New = () => {
     }
   }, [data]);
 
+  const formCheck = () => {
+    const fields = Object.entries(invoiceForm).filter(([key, _]) => {
+      return (
+        key !== 'notes' &&
+        key !== 'tos' &&
+        key !== 'tax' &&
+        key !== 'description'
+      );
+    });
+    const checkInvoiceItems =
+      Number(invoiceForm.invoiceItems[0].amount) > 0 &&
+      invoiceForm.invoiceItems[0].description.length > 0;
+    return fields.every(([_, value]) => {
+      return value !== null && value !== '' && checkInvoiceItems;
+    });
+  };
+
   return (
     <>
-      {activePdf ? (
-        <>
-          <PdfPage invoiceInfo={invoiceForm} />
-          <button
-            onClick={() => setActivePdf(!activePdf)}
-            style={{ position: 'relative', zIndex: 20 }}
-            className="downloadPdf"
-          >
-            Download Invoice
-          </button>
-        </>
-      ) : (
-        <div className="newInvoice">
-          <div className="newInvoiceContainer">
-            <h1>Invoice Details</h1>
-            <div className="newInvoiceContent">
-              <div className="col">
-                <h2>Info</h2>
-                <Input
-                  name={'to'}
-                  onChange={handleInputChange}
-                  value={invoiceForm.to}
-                  placeholder="Bill to"
-                />
-                <Input
-                  name={'id'}
-                  onChange={handleInputChange}
-                  value={invoiceForm.id}
-                  placeholder="Invoice Number"
-                />
-                <TextArea
-                  name={'description'}
-                  onChange={handleInputChange}
-                  value={invoiceForm.description}
-                  limitValue={300}
-                  placeholder="Invoice Description"
-                />
+      <div className="newInvoice">
+        <div className="newInvoiceContainer">
+          <h1>Invoice Details</h1>
+          <div className="newInvoiceContent">
+            <div className="col">
+              <h2>Info</h2>
+              <Input
+                name={'to'}
+                onChange={handleInputChange}
+                value={invoiceForm.to}
+                placeholder="Bill to"
+              />
+              <Input
+                name={'id'}
+                onChange={handleInputChange}
+                value={invoiceForm.id}
+                placeholder="Invoice Number"
+              />
+              <TextArea
+                name={'description'}
+                onChange={handleInputChange}
+                value={invoiceForm.description}
+                limitValue={300}
+                placeholder="Invoice Description"
+              />
+            </div>
+            <div className="col">
+              <h2>Date</h2>
+              <input
+                type="date"
+                name="date"
+                disabled={true}
+                style={{ opacity: 0.5 }}
+                value={new Date().toISOString().split('T')[0]}
+                onChange={handleInputChange}
+              />
+              <h2>Due date</h2>
+              <DatePicker
+                selected={invoiceForm.dueDate as Date}
+                onChange={(date) => handleDateChange(date)}
+                onCalendarClose={() => toggleCalendar(false)}
+                onCalendarOpen={() => toggleCalendar(true)}
+                calendarClassName="datePicker"
+              />
+            </div>
+            <div className="col">
+              <h2>Item</h2>
+              <div className="itemInfo">
+                {invoiceForm.invoiceItems.map((value: item, index: number) => {
+                  return (
+                    <InvoiceItem
+                      onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                        handleItemChange(e, index);
+                      }}
+                      index={index}
+                      key={index.toString()}
+                      handleCurrencyChange={(value, name, index) => {
+                        if (value && name) {
+                          handleCurrencyChange(value, name, index);
+                        }
+                      }}
+                      removeItem={() => removeInvoiceItem(index)}
+                      item={invoiceForm.invoiceItems[index]}
+                    />
+                  );
+                })}
+                <button onClick={addItem} className="addItem">
+                  + Add item
+                </button>
               </div>
+            </div>
+            <div className="terms">
               <div className="col">
-                <h2>Date</h2>
-                <input
-                  type="date"
-                  name="date"
-                  disabled={true}
-                  style={{ opacity: 0.5 }}
-                  value={new Date().toISOString().split('T')[0]}
-                  onChange={handleInputChange}
-                />
-                <h2>Due date</h2>
-                <DatePicker
-                  selected={invoiceForm.dueDate as Date}
-                  onChange={(date) => handleDateChange(date)}
-                  onCalendarClose={() => toggleCalendar(false)}
-                  onCalendarOpen={() => toggleCalendar(true)}
-                  calendarClassName="datePicker"
-                />
-              </div>
-              <div className="col">
-                <h2>Item</h2>
-                <div className="itemInfo">
-                  {invoiceForm.invoiceItems.map(
-                    (value: item, index: number) => {
-                      return (
-                        <InvoiceItem
-                          onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                            handleItemChange(e, index);
-                          }}
-                          index={index}
-                          key={index.toString()}
-                          handleCurrencyChange={(value, name, index) => {
-                            if (value && name) {
-                              handleCurrencyChange(value, name, index);
-                            }
-                          }}
-                          removeItem={() => removeInvoiceItem(index)}
-                          item={invoiceForm.invoiceItems[index]}
-                        />
-                      );
-                    }
-                  )}
-                  <button onClick={addItem} className="addItem">
-                    + Add item
-                  </button>
-                </div>
-              </div>
-              <div className="terms">
-                <div className="col">
-                  <h2>Payment & Terms</h2>
-                  <div className="miscInfo">
-                    <div className="col">
-                      <TextArea
-                        placeholder={'Notes'}
-                        value={invoiceForm.notes}
-                        name={'notes'}
-                        onChange={handleInputChange}
-                      />
-                      <TextArea
-                        placeholder={'Terms and conditions'}
-                        value={invoiceForm.tos}
-                        name={'tos'}
-                        onChange={handleInputChange}
-                      />
-                    </div>
-                    <div className="col">
-                      <h2 className="totalAmount" style={{ marginBottom: '0' }}>
-                        Amount to be paid
-                      </h2>
-                      <p className="amount">${numberFormat(totalCost, 2)}</p>
-                    </div>
+                <h2>Payment & Terms</h2>
+                <div className="miscInfo">
+                  <div className="col">
+                    <TextArea
+                      placeholder={'Notes'}
+                      value={invoiceForm.notes}
+                      name={'notes'}
+                      onChange={handleInputChange}
+                    />
+                    <TextArea
+                      placeholder={'Terms and conditions'}
+                      value={invoiceForm.tos}
+                      name={'tos'}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div className="col">
+                    <h2 className="totalAmount" style={{ marginBottom: '0' }}>
+                      Amount to be paid
+                    </h2>
+                    <p className="amount">${numberFormat(totalCost, 2)}</p>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
+          <PDFDownloadLink
+            document={<PdfPage invoiceInfo={invoiceForm} />}
+            fileName={`invoice-${invoiceForm.id}.pdf`}
+          >
             <button
-              className={`button ${createInvoiceLoading && 'disabledButton'}`}
-              disabled={createInvoiceLoading}
+              className={`button ${
+                (createInvoiceLoading && 'disabledButton') ||
+                (!formCheck() && 'disabledButton')
+              }`}
+              disabled={createInvoiceLoading || !formCheck()}
               style={{ marginTop: '3rem' }}
               onClick={() => {
                 handleCreateInvoice();
@@ -180,23 +189,12 @@ const New = () => {
               {createInvoiceLoading ? (
                 <Loading style="PulseLoader" />
               ) : (
-                'Create Invoice'
+                'Create & Download Invoice'
               )}
             </button>
-            <button
-              onClick={() => setActivePdf(!activePdf)}
-              className="downloadPdf"
-            >
-              Download Invoice
-            </button>
-            {/*<PDFDownloadLink document={<PdfPage />} fileName="invoice.pdf">*/}
-            {/*  <button onClick={() => setActivePdf(!activePdf)} className="downloadPdf">*/}
-            {/*    Download Invoice*/}
-            {/*  </button>*/}
-            {/*</PDFDownloadLink>*/}
-          </div>
+          </PDFDownloadLink>
         </div>
-      )}
+      </div>
     </>
   );
 };

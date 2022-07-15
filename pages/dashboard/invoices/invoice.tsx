@@ -15,9 +15,11 @@ import { motion } from 'framer-motion';
 import { staggerChildren, staggerParent } from '../../../src/framer';
 import InvoiceItem from '../../../src/components/page-specific/dashboard/Invoices/InvoiceItem';
 import { useRouter } from 'next/router';
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import PdfPage from '../../../src/components/page-specific/dashboard/Invoices/newInvoice/PdfPage';
 
 interface props {
-  invoiceData: InvoiceData;
+  invoiceData: InvoiceData[];
   invoiceItems: item[];
 }
 
@@ -38,7 +40,7 @@ const Invoice = ({ invoiceData, invoiceItems }: props) => {
     deleteInvoiceRequest,
   } = useInvoiceData(
     {
-      ...invoiceData,
+      ...invoiceData[0],
       invoiceItems: invoiceItems,
     },
     invoiceForm,
@@ -60,147 +62,174 @@ const Invoice = ({ invoiceData, invoiceItems }: props) => {
 
   return (
     <Page pageName={'invoiceId'}>
-      <div className="action-buttons">
-        <h1>{invoice?.to}</h1>
-        <button
-          className="purpleButton"
-          onClick={() => {
-            editInvoiceHandler(invoice as InvoiceData);
-          }}
-        >
-          Edit
-        </button>
-        <button
-          disabled={mutateLoading.delete}
-          onClick={() => {
-            deleteInvoiceRequest(invoice?.id as string);
-          }}
-          className={`pinkButton ${mutateLoading.delete && 'disabledButton'}`}
-        >
-          {mutateLoading.delete ? <Loading style="PulseLoader" /> : 'Delete'}
-        </button>
-      </div>
-      <div className="description">
-        {editInvoiceMode ? (
-          <>
-            <TextArea
-              placeholder={invoice?.description as string}
-              value={invoiceForm.description}
-              name="description"
-              limitValue={300}
-              onChange={handleInputChange}
-            />
+      {!invoice?.id ? (
+        <div className="absoluteCenter">
+          <h1>This invoice no longer exists</h1>
+        </div>
+      ) : (
+        <>
+          <div className="action-buttons">
+            <h1>{invoice?.to}</h1>
             <button
-              disabled={mutateLoading.description || checkDescriptionValue}
+              className="purpleButton"
               onClick={() => {
-                invoiceMutate('description');
+                editInvoiceHandler(invoice as InvoiceData);
               }}
-              className={`textAreaButton ${
-                mutateLoading.description || checkDescriptionValue
-                  ? 'disabledButton'
-                  : ''
+            >
+              Edit
+            </button>
+            <button
+              disabled={mutateLoading.delete}
+              onClick={() => {
+                deleteInvoiceRequest(invoice?.id as string);
+              }}
+              className={`pinkButton ${
+                mutateLoading.delete && 'disabledButton'
               }`}
             >
-              {mutateLoading.description ? (
+              {mutateLoading.delete ? (
                 <Loading style="PulseLoader" />
               ) : (
-                'Save'
+                'Delete'
               )}
             </button>
-          </>
-        ) : (
-          <p>{invoice?.description}</p>
-        )}
-      </div>
-      <motion.ul
-        variants={{ ...staggerParent.variants }}
-        initial="closed"
-        animate="open"
-        className="stats"
-      >
-        <motion.li {...staggerChildren} className="stat">
-          <p className="bold">Id:</p>
-          <p>{invoice?.id}</p>
-        </motion.li>
-        <motion.li {...staggerChildren} className="stat">
-          {editInvoiceMode ? (
-            <div className="flex">
-              <CurrencyInput
-                name="amount"
-                onValueChange={handleCurrencyValueChange}
-                value={invoiceForm?.amount}
-                prefix="$"
-                placeholder="New amount"
-                decimalScale={2}
-                decimalsLimit={2}
-              />
-              <button
-                disabled={invoice?.amount === invoiceForm.amount}
-                className={
-                  invoice?.amount === invoiceForm.amount ? 'disabledButton' : ''
-                }
-                onClick={() => {
-                  invoiceMutate('amount');
-                }}
-              >
-                Confirm
-              </button>
-            </div>
-          ) : (
-            <>
-              <p className="bold">Amount:</p>
-              {mutateLoading.amount ? (
-                <Loading style={'PulseLoader'} />
-              ) : (
-                <p>${numberFormat(Number(invoice?.amount), 2)}</p>
-              )}
-            </>
-          )}
-        </motion.li>
-        <motion.li {...staggerChildren} className="stat">
-          <p className="bold">Status:</p>
-          <p className={invoice?.status === 'paid' ? 'paid' : 'unpaid'}>
-            {editInvoiceMode ? '' : invoice?.status}
-          </p>
-          <div>
-            {mutateLoading.status ? (
-              <Loading style={'PulseLoader'} />
-            ) : (
-              editInvoiceMode && (
-                <Dropdown
-                  defaultValue={'Status'}
-                  options={invoice?.status === 'paid' ? ['unpaid'] : ['paid']}
-                  style={{ backgroundColor: '#252525' }}
-                  onSelect={() => {
-                    invoiceMutate('status');
-                  }}
+          </div>
+          <div className="description">
+            {editInvoiceMode ? (
+              <>
+                <TextArea
+                  placeholder={invoice?.description as string}
+                  value={invoiceForm.description}
+                  name="description"
+                  limitValue={300}
+                  onChange={handleInputChange}
                 />
-              )
+                <button
+                  disabled={mutateLoading.description || checkDescriptionValue}
+                  onClick={() => {
+                    invoiceMutate('description');
+                  }}
+                  className={`textAreaButton ${
+                    mutateLoading.description || checkDescriptionValue
+                      ? 'disabledButton'
+                      : ''
+                  }`}
+                >
+                  {mutateLoading.description ? (
+                    <Loading style="PulseLoader" />
+                  ) : (
+                    'Save'
+                  )}
+                </button>
+              </>
+            ) : (
+              <p>{invoice?.description}</p>
             )}
           </div>
-        </motion.li>
-        <motion.li {...staggerChildren} className="stat">
-          <p className="bold">Date:</p>
-          <p>{moment(invoice?.date).format('MMM Do YYYY')}</p>
-        </motion.li>
-      </motion.ul>
-      <h1>Invoice Items</h1>
-      <motion.ul
-        initial={'closed'}
-        animate={'open'}
-        variants={{ ...staggerParent.variants }}
-        className="items"
-      >
-        {invoice?.invoiceItems.length === 0 ? (
-          <div style={{ top: '120%', opacity: 0.5 }} className="absoluteCenter">
-            <p>No Items</p>
-          </div>
-        ) : (
-          invoice?.invoiceItems.map((item, index) => (
-            <InvoiceItem item={item} key={index.toString()} />
-          ))
-        )}
-      </motion.ul>
+          <motion.ul
+            variants={{ ...staggerParent.variants }}
+            initial="closed"
+            animate="open"
+            className="stats"
+          >
+            <motion.li {...staggerChildren} className="stat">
+              <p className="bold">Id:</p>
+              <p>{invoice?.id}</p>
+            </motion.li>
+            <motion.li {...staggerChildren} className="stat">
+              {editInvoiceMode ? (
+                <div className="flex">
+                  <CurrencyInput
+                    name="amount"
+                    onValueChange={handleCurrencyValueChange}
+                    value={invoiceForm?.amount}
+                    prefix="$"
+                    placeholder="New amount"
+                    decimalScale={2}
+                    decimalsLimit={2}
+                  />
+                  <button
+                    disabled={invoice?.amount === invoiceForm.amount}
+                    className={
+                      invoice?.amount === invoiceForm.amount
+                        ? 'disabledButton'
+                        : ''
+                    }
+                    onClick={() => {
+                      invoiceMutate('amount');
+                    }}
+                  >
+                    Confirm
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <p className="bold">Amount:</p>
+                  {mutateLoading.amount ? (
+                    <Loading style={'PulseLoader'} />
+                  ) : (
+                    <p>${numberFormat(Number(invoice?.amount), 2)}</p>
+                  )}
+                </>
+              )}
+            </motion.li>
+            <motion.li {...staggerChildren} className="stat">
+              <p className="bold">Status:</p>
+              <p className={invoice?.status === 'paid' ? 'paid' : 'unpaid'}>
+                {editInvoiceMode ? '' : invoice?.status}
+              </p>
+              <div>
+                {mutateLoading.status ? (
+                  <Loading style={'PulseLoader'} />
+                ) : (
+                  editInvoiceMode && (
+                    <Dropdown
+                      defaultValue={'Status'}
+                      options={
+                        invoice?.status === 'paid' ? ['unpaid'] : ['paid']
+                      }
+                      style={{ backgroundColor: '#252525' }}
+                      onSelect={() => {
+                        invoiceMutate('status');
+                      }}
+                    />
+                  )
+                )}
+              </div>
+            </motion.li>
+            <motion.li {...staggerChildren} className="stat">
+              <p className="bold">Date:</p>
+              <p>{moment(invoice?.date).format('MMM Do YYYY')}</p>
+            </motion.li>
+          </motion.ul>
+          <h1>Invoice Items</h1>
+          <motion.ul
+            initial={'closed'}
+            animate={'open'}
+            variants={{ ...staggerParent.variants }}
+            className="items"
+          >
+            {invoice?.invoiceItems.length === 0 ? (
+              <div
+                style={{ top: '120%', opacity: 0.5 }}
+                className="absoluteCenter"
+              >
+                <p>No Items</p>
+              </div>
+            ) : (
+              invoice?.invoiceItems.map((item, index) => (
+                <InvoiceItem item={item} key={index.toString()} />
+              ))
+            )}
+          </motion.ul>
+          <PDFDownloadLink
+            document={<PdfPage invoiceInfo={invoiceForm} />}
+            fileName={`invoice-${invoiceForm.id}.pdf`}
+          >
+            <button className="button">Download Invoice</button>
+          </PDFDownloadLink>
+        </>
+      )}
     </Page>
   );
 };
@@ -214,7 +243,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     props: {
       protected: true,
       invoiceItems: res.invoiceItems,
-      invoiceData: res.invoice[0],
+      invoiceData: res.invoice,
     },
   };
 };
