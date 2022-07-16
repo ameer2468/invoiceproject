@@ -11,6 +11,14 @@
   }
 }
 
+.textCenter {
+    text-align: center;
+}
+
+.marginTop {
+    margin-top: 2rem;
+}
+
 textarea {
   @include formInput;
   width: 100%;

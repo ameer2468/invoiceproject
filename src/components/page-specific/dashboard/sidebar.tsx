@@ -29,8 +29,6 @@ const Sidebar = ({ children }: props) => {
   const navLinks = [
     { name: 'Overview', href: '/dashboard/overview', icon: faHome },
     { name: 'Invoices', href: '/dashboard/invoices', icon: faFile },
-    { name: 'Reports', href: '/dashboard/reports', icon: faBook },
-    { name: 'Accounts', href: '/dashboard/accounts', icon: faUser },
     { name: 'Settings', href: '/dashboard/settings', icon: faCog },
   ];
 

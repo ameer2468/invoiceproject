@@ -3,6 +3,7 @@ import { styles } from '../../../../../../styles/pdfStyling';
 import React from 'react';
 import { numberFormat } from '../../../../../helpers';
 import { Invoice } from '../../../../../../types/invoice';
+import moment from 'moment';
 
 interface props {
   invoiceInfo: Invoice;
@@ -41,7 +42,7 @@ const PdfPage = ({ invoiceInfo }: props) => {
             >
               <Text style={styles.invoiceTitle}>Date:</Text>
               <Text style={styles.text}>
-                {new Date().toISOString().split('T')[0]}
+                {moment(new Date().toISOString().split('T')[0]).format('L')}
               </Text>
             </View>
             <View
@@ -52,7 +53,9 @@ const PdfPage = ({ invoiceInfo }: props) => {
               }}
             >
               <Text style={styles.invoiceTitle}>Due date:</Text>
-              <Text style={styles.text}>{invoiceInfo.duedate}</Text>
+              <Text style={styles.text}>
+                {moment(invoiceInfo.duedate).format('L')}
+              </Text>
             </View>
             <View
               style={{
@@ -104,7 +107,9 @@ const PdfPage = ({ invoiceInfo }: props) => {
                 </Text>
               </View>
               <View style={styles.textWrap}>
-                <Text style={styles.whiteText}>{invoiceInfo.duedate}</Text>
+                <Text style={styles.whiteText}>
+                  {moment(invoiceInfo.duedate).format('L')}
+                </Text>
               </View>
               <View style={styles.textWrap}>
                 <Text style={styles.whiteText}>

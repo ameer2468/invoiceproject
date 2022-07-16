@@ -1625,6 +1625,14 @@ body {
   font-weight: bold;
 }
 
+.textCenter {
+  text-align: center;
+}
+
+.marginTop {
+  margin-top: 2rem;
+}
+
 textarea {
   border: 2px solid #383838;
   padding: 1.5rem 2rem;
