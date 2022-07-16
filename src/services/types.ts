@@ -128,6 +128,6 @@ export const postRequest = async (
       return response.data;
     })
     .catch((err) => {
-      return err.response.data;
+      return err.response;
     });
 };

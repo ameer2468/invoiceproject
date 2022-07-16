@@ -19,7 +19,7 @@ import { useRouter } from 'next/router';
 import { useUser } from '../UserContext';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { successToast } from '../helpers';
+import { errorToast, successToast } from '../helpers';
 import { useNotifications } from './useNotifications';
 
 /*
@@ -70,7 +70,10 @@ export const useInvoice = () => {
   /*Date handler*/
 
   const handleDateChange = (date: Date | null) => {
-    setInvoiceForm({ ...invoiceForm, duedate: date });
+    setInvoiceForm({
+      ...invoiceForm,
+      duedate: date?.toISOString().split('T')[0],
+    });
   };
 
   /* Create invoice handler */
@@ -81,13 +84,15 @@ export const useInvoice = () => {
     createInvoice(invoiceForm)
       .then(() => {
         setInvoiceForm({ ...invoiceFormState });
+        toast('Invoice created successfully', successToast);
       })
-      .then(() => {})
+      .catch((err) => {
+        toast(err.message, errorToast);
+      })
       .finally(() => {
         route.replace(`invoice?q=${invoiceForm.id}`).then(() => {
           setCreateInvoiceLoading(false);
         });
-        toast('Invoice created successfully', successToast);
       });
   };
 

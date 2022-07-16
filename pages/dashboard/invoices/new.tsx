@@ -110,7 +110,9 @@ const New = () => {
               />
               <h2>Due date</h2>
               <DatePicker
-                selected={invoiceForm.duedate as Date}
+                dateFormat={'yyyy-MM-dd'}
+                value={invoiceForm.duedate}
+                selected={new Date()}
                 onChange={(date) => handleDateChange(date)}
                 onCalendarClose={() => toggleCalendar(false)}
                 onCalendarOpen={() => toggleCalendar(true)}
