@@ -19,7 +19,6 @@
     "aws-amplify": "^4.3.19",
     "axios": "^0.21.4",
     "chart.js": "^3.8.0",
-    "faker": "^6.6.6",
     "framer-motion": "^6.3.3",
     "moment": "^2.29.4",
     "next": "12.1.4",
