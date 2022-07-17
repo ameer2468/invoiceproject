@@ -328,6 +328,9 @@ export const useInvoiceData = (
   };
 };
 
+/*This hook is to fetch paid/unpaid invoices,
+with time period included */
+
 export const useFetchOverviewInvoices = () => {
   const { user } = useUser();
   const userInfo = user[0];
@@ -386,6 +389,8 @@ export const useFetchOverviewInvoices = () => {
     isFetching,
   };
 };
+
+/*This hook is to fetch all invoices - being used in invoices page*/
 
 export const useFetchInvoices = () => {
   const { setInvoicesData, invoicesData } = useInvoice();

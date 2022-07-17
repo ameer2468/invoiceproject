@@ -2,6 +2,9 @@ import { ChangeEvent, useState } from 'react';
 import { Auth } from 'aws-amplify';
 import { createUser } from '../services/user/user';
 
+/*This hook is used for the registeration page -
+ * contains confirmation code handler, input handlers, and sign up*/
+
 export const useRegister = () => {
   const [registerLoading, setRegisterLoading] = useState(false);
   const [step, setStep] = useState(1);

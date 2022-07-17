@@ -7,6 +7,8 @@ interface forgotForm {
   password: string;
 }
 
+/*Hook for password forgot*/
+
 export const useForgot = () => {
   const [forgotLoading, setForgotLoading] = useState<boolean>(false);
   const [formError, setFormError] = useState('');
