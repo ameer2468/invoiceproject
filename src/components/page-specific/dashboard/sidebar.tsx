@@ -1,18 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faBook,
-  faCog,
-  faUser,
-  faFile,
-  faSignOutAlt,
-  faHome,
-} from '@fortawesome/free-solid-svg-icons';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { useRouter } from 'next/router';
 import { useLogin } from '../../../hooks/useLogin';
 import Avatar from '../../global/Avatar';
 import { useUser } from '../../../UserContext';
+import { navLinks } from '../../../constants';
 
 interface props {
   children?: JSX.Element;
@@ -20,17 +14,11 @@ interface props {
 
 const Sidebar = ({ children }: props) => {
   const router = useRouter();
-  const { user } = useUser();
-  const userInfo = user[0];
-  const { signoutHandler } = useLogin();
   const pathCheck = (path: string) => {
     return router.pathname === path ? 'active' : '';
   };
-  const navLinks = [
-    { name: 'Overview', href: '/dashboard/overview', icon: faHome },
-    { name: 'Invoices', href: '/dashboard/invoices', icon: faFile },
-    { name: 'Settings', href: '/dashboard/settings', icon: faCog },
-  ];
+  const { user } = useUser();
+  const { signoutHandler } = useLogin();
 
   return (
     <div className="sidebar">
@@ -39,14 +27,14 @@ const Sidebar = ({ children }: props) => {
           <h3>Payee.</h3>
         </Link>
         <div className="profile">
-          {userInfo && (
+          {user && (
             <Avatar
-              name={userInfo.attributes['custom:firstname']}
+              name={user.user.attributes['custom:firstname']}
               color={'#121212'}
             />
           )}
           <div className="info">
-            <h4>{userInfo.attributes['custom:firstname']}</h4>
+            <h4>{user.user.attributes['custom:firstname']}</h4>
           </div>
           <div className="navlinks">
             {navLinks.map((link, index) => (

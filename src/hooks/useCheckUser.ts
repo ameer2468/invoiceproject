@@ -11,7 +11,7 @@ interface props {
  * redirect to relevant page*/
 
 export const useCheckUser = ({ pageProps }: props) => {
-  const [user, setUser] = useState<any>({ type: null });
+  const [user, setUser] = useState<any>({ type: 'unauthenticated' });
   const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const pageProtected = pageProps.protected;
@@ -53,7 +53,7 @@ export const useCheckUser = ({ pageProps }: props) => {
 
   useEffect(() => {
     checkUser();
-  }, [user.type, isLoading, checkUser]);
+  }, [user?.type, isLoading, checkUser]);
 
   return { user, isLoading, setUser };
 };

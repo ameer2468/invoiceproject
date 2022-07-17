@@ -12,14 +12,14 @@ export const useNotifications = () => {
   const [loading, setLoading] = useState(false);
   const [readLoading, setReadLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const { user } = useUser();
+  const { user } = useUser().user;
 
   /*This is to mark all notifications as
   read - based on a true or null value*/
 
   const markAllAsRead = () => {
     setReadLoading(true);
-    markAllAsReadRequest(user[0].attributes.sub)
+    markAllAsReadRequest(user.attributes.sub)
       .then(() => {
         if (notifications) {
           setNotifications(
@@ -48,7 +48,7 @@ export const useNotifications = () => {
 
   const notificationRequest = () => {
     setLoading(true);
-    getNotifications(user[0].attributes.sub)
+    getNotifications(user.attributes.sub)
       .then((res) => {
         const { data } = res;
         setNotifications(data);

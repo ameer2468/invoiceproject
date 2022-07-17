@@ -12,7 +12,7 @@ import SquareSkeleton from '../../src/components/skeletons/square';
 const Overview = () => {
   const [activeTab, setActiveTab] = useState(0);
   const { user } = useUser();
-  const userInfo = user[0];
+  const userInfo = user;
   const {
     unpaidInvoices,
     paidInvoices,
@@ -42,7 +42,7 @@ const Overview = () => {
   return (
     <Page pageName={'overview'}>
       <div className="main-header">
-        {userInfo.type === 'unauthenticated' ? '' : <h1>Overview</h1>}
+        {userInfo.user.type === 'unauthenticated' ? '' : <h1>Overview</h1>}
         <Dropdown
           onSelect={(option: string) => {
             setPeriod(option);

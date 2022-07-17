@@ -14,7 +14,7 @@ const Header = () => {
     <div className="header">
       <h1>Payee.</h1>
       <div className="buttons">
-        {user[0].type === 'unauthenticated' ? (
+        {user.user.type === 'unauthenticated' ? (
           <Link passHref={true} href="/login">
             <button className="loginButton">
               <FontAwesomeIcon

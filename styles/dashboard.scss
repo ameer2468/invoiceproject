@@ -94,6 +94,39 @@
   }
 }
 
+.hidden-navlinks {
+  margin-top: 6rem;
+  background: rgb(28, 28, 28);
+  backdrop-filter: blur(10px) !important;
+  position: fixed;
+  top: 1rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  .active {
+    color: #5f62ff;
+  }
+  p {
+    color: white;
+    font-size: 2rem;
+  }
+  .link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s;
+    &:hover {
+      transition: all 0.3s;
+      cursor: pointer;
+      opacity: 0.5;
+    }
+  }
+}
+
 .MoneyMade {
   height: 60rem;
   flex: 0 0 70%;
@@ -286,21 +319,52 @@
     height: auto;
     position: absolute;
     top: 3vh;
-    justify-content: space-between;
+    justify-content: flex-end;
     display: flex;
+    .hidden-menu {
+      width: 5rem;
+      height: 5rem;
+      justify-content: center;
+      display: none;
+      background: $purple;
+      position: relative;
+      align-items: center;
+      margin-right: 2rem;
+      border-radius: 50%;
+      transition: all 0.3s;
+      .alert {
+        width: 0.9rem;
+        height: 0.9rem;
+        right: 1.5rem;
+        top: 1.6rem;
+        border-radius: 3rem;
+        background: $pink;
+        position: absolute;
+      }
+      .icon {
+        color: white;
+        font-size: 1.8rem;
+      }
+      &:hover {
+        background: darken($purple, 5%);
+        transition: all 0.3s;
+        cursor: pointer;
+      }
+    }
     .notification {
       width: 5rem;
       height: 5rem;
       display: flex;
       justify-content: center;
       background: $purple;
+      position: relative;
       align-items: center;
       border-radius: 50%;
       transition: all 0.3s;
       .alert {
         width: 0.9rem;
         height: 0.9rem;
-        right: 1.4rem;
+        right: 1.5rem;
         top: 1.6rem;
         border-radius: 3rem;
         background: $pink;

@@ -3,6 +3,7 @@ import { faSearch, faBell } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import NotificationsDropdown from './notifications-dropdown';
 import { useNotifications } from '../../../hooks/useNotifications';
+import HiddenMenu from './HiddenMenu';
 
 const Header = () => {
   const {
@@ -19,14 +20,7 @@ const Header = () => {
   return (
     <div className="dashboardHeader">
       <div className="container">
-        <div className="searchBox">
-          <input type="text" placeholder="Search..." />
-          <FontAwesomeIcon
-            className="icon"
-            style={{ fontSize: '1.5rem' }}
-            icon={faSearch}
-          />
-        </div>
+        <HiddenMenu />
         <div
           ref={buttonRef}
           onClick={() => toggleNotification(true)}

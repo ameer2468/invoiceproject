@@ -37,13 +37,13 @@ import { useNotifications } from './useNotifications';
 export const useInvoice = () => {
   const [invoicesData, setInvoicesData] = useState<Invoice[]>([]);
   const [editInvoiceMode, setEditInvoiceMode] = useState<boolean>(false);
-  const { user } = useUser();
+  const { user } = useUser().user;
   const [calendarOpen, setCalendarOpen] = useState<boolean>(false);
   const [createInvoiceLoading, setCreateInvoiceLoading] =
     useState<boolean>(false);
   const [invoiceForm, setInvoiceForm] = useState<Invoice>({
     ...invoiceFormState,
-    from: user[0].attributes['custom:firstname'],
+    from: user.attributes['custom:firstname'],
   });
   const route = useRouter();
 
@@ -223,7 +223,7 @@ export const useInvoiceData = (
   const [invoice, setInvoice] = useState<Invoice | null>(null);
   const { editInvoiceMode, setEditInvoiceMode } = useInvoice();
   const router = useRouter();
-  const { user } = useUser();
+  const { user } = useUser().user;
 
   /* When editing an individual invoice - this is a loading handler
   depending on the field that is being edited */
@@ -293,7 +293,7 @@ export const useInvoiceData = (
       id: invoice?.id || '',
       field: type,
       value: mutateValue(type),
-      user_subid: user[0].attributes.sub,
+      user_subid: user.attributes.sub,
     })
       .then(() => {
         setInvoice({
@@ -333,7 +333,7 @@ with time period included */
 
 export const useFetchOverviewInvoices = () => {
   const { user } = useUser();
-  const userInfo = user[0];
+  const userInfo = user.user;
   const [period, setPeriod] = useState('All');
   const {
     data: paidInvoices,
@@ -395,7 +395,7 @@ export const useFetchOverviewInvoices = () => {
 export const useFetchInvoices = () => {
   const { setInvoicesData, invoicesData } = useInvoice();
   const { user } = useUser();
-  const userInfo = user[0];
+  const userInfo = user.user;
   const { isLoading, isFetching, data } = useQuery(
     'invoices',
     () => getAllInvoices(userInfo.attributes['custom:firstname']),

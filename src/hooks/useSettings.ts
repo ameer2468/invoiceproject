@@ -14,7 +14,7 @@ import { errorToast } from '../helpers';
 
 export const useSettings = () => {
   const [bankingInfo, setBankingInfo] = useState<BankingInfo | null>(null);
-  const { user } = useUser();
+  const { user } = useUser().user;
   const getUser = async () => {
     return await Auth.currentAuthenticatedUser();
   };
@@ -85,7 +85,7 @@ export const useSettings = () => {
 
   const deleteBankingInfo = () => {
     updateLoading('banking', true);
-    deleteBankingRequest(user[0].attributes.sub)
+    deleteBankingRequest(user.attributes.sub)
       .then(() => {
         setBankingInfo(null);
       })
@@ -101,7 +101,7 @@ export const useSettings = () => {
     e.preventDefault();
     updateLoading('saving', true);
     postBankingRequest({
-      user_subid: user[0].attributes.sub,
+      user_subid: user.attributes.sub,
       account_number: settings.accountNumber,
       sort_code: settings.sortCode,
     })
@@ -125,7 +125,7 @@ export const useSettings = () => {
   };
 
   const getBankingInfo = () => {
-    return getBankingRequest(user[0].attributes.sub);
+    return getBankingRequest(user.attributes.sub);
   };
 
   const changeUserEmail = async (e?: FormEvent<SubmitEvent>) => {

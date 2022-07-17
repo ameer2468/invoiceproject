@@ -3,8 +3,6 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGauge, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
 import { useUser } from '../../../UserContext';
-import Image from 'next/image';
-import product from '../../../images/prod-pic.png';
 import { motion } from 'framer-motion';
 import { fadeAnim } from '../../../framer';
 
@@ -18,7 +16,7 @@ const Hero = () => {
         Worry less about invoices and{' '}
         <span className="pink">get paid faster</span>.
       </motion.h1>
-      {user[0].type !== 'unauthenticated' ? (
+      {user.user.type !== 'unauthenticated' ? (
         <Link passHref={true} href={'/dashboard/overview'}>
           <motion.button {...fadeAnim} className="dbButton">
             <FontAwesomeIcon style={{ marginRight: '0.8rem' }} icon={faGauge} />

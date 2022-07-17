@@ -12,8 +12,15 @@
     left: 0 !important;
     padding: 2rem !important;
   }
+  .hidden-menu {
+    display: flex !important;
+  }
   .dashboardHeader {
     width: 100%;
+    position: fixed;
+    height: 12rem;
+    background: rgba(28, 28, 28, 0.65);
+    backdrop-filter: blur(10px);
     .container {
       margin: 0 auto;
       max-width: 100%;
@@ -105,6 +112,35 @@
 }
 
 @media all and (max-width: 768px) {
+  .invoiceId .pageContainer {
+    .action-buttons {
+      flex-wrap: wrap;
+      h1 {
+        width: 100%;
+      }
+    }
+    .description {
+      p {
+        margin-top: 2rem;
+      }
+    }
+    .items {
+      grid-template-columns: 1fr;
+    }
+    .items .i-item {
+      flex: 0 0 100%;
+    }
+  }
+  .invoiceId .pageContainer .stats {
+    grid-template-columns: 1fr;
+  }
+  .newInvoice .newInvoiceContainer {
+    left: 0;
+    padding: 2rem;
+    .newInvoiceContent .col {
+      flex: 0 0 100%;
+    }
+  }
   .loginForm,
   .registerForm {
     .col:nth-child(1) {

@@ -12,7 +12,7 @@ interface loginForm {
 export const useLogin = () => {
   const [loginLoading, setLoginLoading] = useState<boolean>(false);
   const [formError, setFormError] = useState<string>('');
-  const [user, setUser] = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const router = useRouter();
   const { modalContext } = useModal();
   const { setModalId } = modalContext;

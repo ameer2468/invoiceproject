@@ -295,7 +295,7 @@ body {
   border: 2px solid #383838;
   padding: 1.5rem 2rem;
   border-radius: 1rem;
-  background: #252525;
+  background: rgba(37, 37, 37, 0.54);
   width: 80%;
   color: white;
   margin: 1rem auto 0 auto;
@@ -489,7 +489,7 @@ body {
 }
 .invoices .invoiceCard .statusBox {
   position: absolute;
-  background: #252525;
+  background: rgba(37, 37, 37, 0.54);
   border: 2px solid #383838;
   width: 100%;
   max-width: 11rem;
@@ -524,7 +524,7 @@ body {
 .invoices .invoiceCard .details p {
   flex: 1 0 45%;
   border: 2px solid #383838;
-  background: #252525;
+  background: rgba(37, 37, 37, 0.54);
   color: white;
   font-weight: normal;
   border-radius: 0.5rem;
@@ -586,7 +586,7 @@ body {
   border: 2px solid #383838;
   padding: 1.5rem 2rem;
   border-radius: 1rem;
-  background: #252525;
+  background: rgba(37, 37, 37, 0.54);
   width: 80%;
   color: white;
   margin: 1rem auto 0 auto;
@@ -668,7 +668,7 @@ body {
 }
 .invoiceId .pageContainer .items .i-item .info p {
   border: 2px solid #383838;
-  background: #252525;
+  background: rgba(37, 37, 37, 0.54);
   padding: 1rem 2rem;
   border-radius: 1rem;
 }
@@ -767,7 +767,7 @@ body {
   border: 2px solid #383838;
   padding: 1.5rem 2rem;
   border-radius: 1rem;
-  background: #252525;
+  background: rgba(37, 37, 37, 0.54);
   width: 80%;
   color: white;
   margin: 1rem auto 0 auto;
@@ -803,7 +803,7 @@ body {
   margin: 0;
 }
 .settings .pageContainer .account-details p {
-  background: #252525;
+  background: rgba(37, 37, 37, 0.54);
   color: white;
   font-size: 1.4rem;
   padding: 2rem;
@@ -941,6 +941,39 @@ body {
   cursor: pointer;
 }
 
+.hidden-navlinks {
+  margin-top: 6rem;
+  background: #1c1c1c;
+  backdrop-filter: blur(10px) !important;
+  position: fixed;
+  top: 1rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+.hidden-navlinks .active {
+  color: #5f62ff;
+}
+.hidden-navlinks p {
+  color: white;
+  font-size: 2rem;
+}
+.hidden-navlinks .link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s;
+}
+.hidden-navlinks .link:hover {
+  transition: all 0.3s;
+  cursor: pointer;
+  opacity: 0.5;
+}
+
 .MoneyMade {
   height: 60rem;
   flex: 0 0 70%;
@@ -999,7 +1032,7 @@ body {
   max-width: 100%;
   transition: all 0.3s;
   color: white;
-  background: #252525;
+  background: rgba(37, 37, 37, 0.54);
   position: relative;
   padding: 2rem 0;
   margin: 2rem auto 2rem auto;
@@ -1141,8 +1174,38 @@ body {
   height: auto;
   position: absolute;
   top: 3vh;
-  justify-content: space-between;
+  justify-content: flex-end;
   display: flex;
+}
+.dashboardHeader .container .hidden-menu {
+  width: 5rem;
+  height: 5rem;
+  justify-content: center;
+  display: none;
+  background: #5f62ff;
+  position: relative;
+  align-items: center;
+  margin-right: 2rem;
+  border-radius: 50%;
+  transition: all 0.3s;
+}
+.dashboardHeader .container .hidden-menu .alert {
+  width: 0.9rem;
+  height: 0.9rem;
+  right: 1.5rem;
+  top: 1.6rem;
+  border-radius: 3rem;
+  background: #ff7193;
+  position: absolute;
+}
+.dashboardHeader .container .hidden-menu .icon {
+  color: white;
+  font-size: 1.8rem;
+}
+.dashboardHeader .container .hidden-menu:hover {
+  background: #4649ff;
+  transition: all 0.3s;
+  cursor: pointer;
 }
 .dashboardHeader .container .notification {
   width: 5rem;
@@ -1150,6 +1213,7 @@ body {
   display: flex;
   justify-content: center;
   background: #5f62ff;
+  position: relative;
   align-items: center;
   border-radius: 50%;
   transition: all 0.3s;
@@ -1157,7 +1221,7 @@ body {
 .dashboardHeader .container .notification .alert {
   width: 0.9rem;
   height: 0.9rem;
-  right: 1.4rem;
+  right: 1.5rem;
   top: 1.6rem;
   border-radius: 3rem;
   background: #ff7193;
@@ -1223,7 +1287,7 @@ body {
   color: white;
 }
 .dashboardHeader .container .notification-item {
-  background: #222222;
+  background: rgba(34, 34, 34, 0.54);
   padding: 2rem;
   width: 100%;
   margin: 1rem 0;
@@ -1373,7 +1437,7 @@ body {
   border: 2px solid #383838;
   padding: 1.5rem 2rem;
   border-radius: 1rem;
-  background: #252525;
+  background: rgba(37, 37, 37, 0.54);
   width: 80%;
   color: white;
   margin: 1rem auto 0 auto;
@@ -1468,7 +1532,7 @@ body {
   border: 2px solid #383838;
   padding: 1.5rem 2rem;
   border-radius: 1rem;
-  background: #252525;
+  background: rgba(37, 37, 37, 0.54);
   width: 80%;
   color: white;
   margin: 1rem auto 0 auto;
@@ -1510,8 +1574,16 @@ body {
     padding: 2rem !important;
   }
 
+  .hidden-menu {
+    display: flex !important;
+  }
+
   .dashboardHeader {
     width: 100%;
+    position: fixed;
+    height: 12rem;
+    background: rgba(28, 28, 28, 0.65);
+    backdrop-filter: blur(10px);
   }
   .dashboardHeader .container {
     margin: 0 auto;
@@ -1598,6 +1670,34 @@ body {
   }
 }
 @media all and (max-width: 768px) {
+  .invoiceId .pageContainer .action-buttons {
+    flex-wrap: wrap;
+  }
+  .invoiceId .pageContainer .action-buttons h1 {
+    width: 100%;
+  }
+  .invoiceId .pageContainer .description p {
+    margin-top: 2rem;
+  }
+  .invoiceId .pageContainer .items {
+    grid-template-columns: 1fr;
+  }
+  .invoiceId .pageContainer .items .i-item {
+    flex: 0 0 100%;
+  }
+
+  .invoiceId .pageContainer .stats {
+    grid-template-columns: 1fr;
+  }
+
+  .newInvoice .newInvoiceContainer {
+    left: 0;
+    padding: 2rem;
+  }
+  .newInvoice .newInvoiceContainer .newInvoiceContent .col {
+    flex: 0 0 100%;
+  }
+
   .loginForm .col:nth-child(1),
 .registerForm .col:nth-child(1) {
     display: none;
@@ -1637,7 +1737,7 @@ textarea {
   border: 2px solid #383838;
   padding: 1.5rem 2rem;
   border-radius: 1rem;
-  background: #252525;
+  background: rgba(37, 37, 37, 0.54);
   width: 80%;
   color: white;
   margin: 1rem auto 0 auto;
@@ -1932,7 +2032,7 @@ li {
   align-items: center;
   border: 2px solid #383838;
   border-radius: 0.8rem;
-  background: #252525;
+  background: rgba(37, 37, 37, 0.54);
   padding: 1rem;
 }
 .searchBox .icon {

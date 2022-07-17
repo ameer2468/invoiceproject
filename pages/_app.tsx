@@ -31,7 +31,7 @@ function MyApp({ Component, pageProps }: props) {
   return (
     <QueryClientProvider client={queryClient}>
       <ModalContext.Provider value={{ modalId, setModalId }}>
-        <UserContext.Provider value={[user, setUser]}>
+        <UserContext.Provider value={{ user, setUser }}>
           <ToastContainer />
           <ModalManager />
           {isLoading ? (
