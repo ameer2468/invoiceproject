@@ -295,7 +295,7 @@ body {
   border: 2px solid #383838;
   padding: 1.5rem 2rem;
   border-radius: 1rem;
-  background: rgba(37, 37, 37, 0.54);
+  background: #252525;
   width: 80%;
   color: white;
   margin: 1rem auto 0 auto;
@@ -489,7 +489,7 @@ body {
 }
 .invoices .invoiceCard .statusBox {
   position: absolute;
-  background: rgba(37, 37, 37, 0.54);
+  background: #252525;
   border: 2px solid #383838;
   width: 100%;
   max-width: 11rem;
@@ -524,7 +524,7 @@ body {
 .invoices .invoiceCard .details p {
   flex: 1 0 45%;
   border: 2px solid #383838;
-  background: rgba(37, 37, 37, 0.54);
+  background: #252525;
   color: white;
   font-weight: normal;
   border-radius: 0.5rem;
@@ -586,7 +586,7 @@ body {
   border: 2px solid #383838;
   padding: 1.5rem 2rem;
   border-radius: 1rem;
-  background: rgba(37, 37, 37, 0.54);
+  background: #252525;
   width: 80%;
   color: white;
   margin: 1rem auto 0 auto;
@@ -668,7 +668,7 @@ body {
 }
 .invoiceId .pageContainer .items .i-item .info p {
   border: 2px solid #383838;
-  background: rgba(37, 37, 37, 0.54);
+  background: #252525;
   padding: 1rem 2rem;
   border-radius: 1rem;
 }
@@ -767,7 +767,7 @@ body {
   border: 2px solid #383838;
   padding: 1.5rem 2rem;
   border-radius: 1rem;
-  background: rgba(37, 37, 37, 0.54);
+  background: #252525;
   width: 80%;
   color: white;
   margin: 1rem auto 0 auto;
@@ -803,7 +803,7 @@ body {
   margin: 0;
 }
 .settings .pageContainer .account-details p {
-  background: rgba(37, 37, 37, 0.54);
+  background: #252525;
   color: white;
   font-size: 1.4rem;
   padding: 2rem;
@@ -1032,7 +1032,7 @@ body {
   max-width: 100%;
   transition: all 0.3s;
   color: white;
-  background: rgba(37, 37, 37, 0.54);
+  background: #252525;
   position: relative;
   padding: 2rem 0;
   margin: 2rem auto 2rem auto;
@@ -1287,7 +1287,7 @@ body {
   color: white;
 }
 .dashboardHeader .container .notification-item {
-  background: rgba(34, 34, 34, 0.54);
+  background: #222222;
   padding: 2rem;
   width: 100%;
   margin: 1rem 0;
@@ -1437,7 +1437,7 @@ body {
   border: 2px solid #383838;
   padding: 1.5rem 2rem;
   border-radius: 1rem;
-  background: rgba(37, 37, 37, 0.54);
+  background: #252525;
   width: 80%;
   color: white;
   margin: 1rem auto 0 auto;
@@ -1532,7 +1532,7 @@ body {
   border: 2px solid #383838;
   padding: 1.5rem 2rem;
   border-radius: 1rem;
-  background: rgba(37, 37, 37, 0.54);
+  background: #252525;
   width: 80%;
   color: white;
   margin: 1rem auto 0 auto;
@@ -1737,7 +1737,7 @@ textarea {
   border: 2px solid #383838;
   padding: 1.5rem 2rem;
   border-radius: 1rem;
-  background: rgba(37, 37, 37, 0.54);
+  background: #252525;
   width: 80%;
   color: white;
   margin: 1rem auto 0 auto;
@@ -2032,7 +2032,7 @@ li {
   align-items: center;
   border: 2px solid #383838;
   border-radius: 0.8rem;
-  background: rgba(37, 37, 37, 0.54);
+  background: #252525;
   padding: 1rem;
 }
 .searchBox .icon {
