@@ -1,4 +1,4 @@
-export interface Invoice {
+export interface IInvoice {
   id: string;
   description: string;
   date: string;
@@ -16,7 +16,7 @@ export interface Invoice {
 }
 
 export interface updateKeys {
-  key: keyof Invoice;
+  key: keyof IInvoice;
   value: string | number | boolean;
 }
 
@@ -42,7 +42,7 @@ export interface InvoiceRecord {
   amount: number | string;
   id: string;
   date: string;
-  status: 'paid' | 'unpaid';
+  status: string;
 }
 
 export interface MutateInvoice {

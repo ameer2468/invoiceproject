@@ -5,7 +5,7 @@ import {
   postRequest,
   putRequest,
 } from '../types';
-import { Invoice } from '../../../types/invoice';
+import { IInvoice } from '../../../types/invoice';
 
 /*Get an individual invoicer*/
 
@@ -15,7 +15,7 @@ export const getInvoice = (id: string) => {
 
 /*Create an invoice*/
 
-export const createInvoice = (invoice: Invoice) => {
+export const createInvoice = (invoice: IInvoice) => {
   return postRequest('invoice', invoice);
 };
 

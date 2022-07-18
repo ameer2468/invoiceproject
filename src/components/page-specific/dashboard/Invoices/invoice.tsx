@@ -6,14 +6,14 @@ import {
   faClock,
   faCircleCheck,
 } from '@fortawesome/free-solid-svg-icons';
-import { Invoice } from '../../../../../types/invoice';
+import { IInvoice } from '../../../../../types/invoice';
 import moment from 'moment';
 import { numberFormat } from '../../../../helpers';
 import { motion } from 'framer-motion';
 import { staggerChildren } from '../../../../framer';
 import Link from 'next/link';
 interface props {
-  data: Invoice;
+  data: IInvoice;
 }
 
 const Invoice = ({ data }: props) => {

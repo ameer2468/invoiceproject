@@ -5,7 +5,7 @@ const Custom404 = () => {
   return (
     <div className="absoluteCenter textCenter">
       <h1>Page not found :(</h1>
-      <Link href="/dashboard/overview">
+      <Link passHref={true} href="/dashboard/overview">
         <button className="purpleButton marginTop">Back to Dashboard</button>
       </Link>
     </div>

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import DashboardLayout from '../../../layouts/DashboardLayout';
 import Page from '../../../src/components/global/Page';
 import { getInvoice } from '../../../src/services/invoices/services';
-import { item, Invoice } from '../../../types/invoice';
+import { item, IInvoice } from '../../../types/invoice';
 import moment from 'moment';
 import { numberFormat } from '../../../src/helpers';
 import Loading from '../../../src/components/global/loading';
@@ -20,7 +20,7 @@ import PdfPage from '../../../src/components/page-specific/dashboard/Invoices/ne
 import { useFetchBankingInfo } from '../../../src/hooks/useSettings';
 
 interface props {
-  invoiceData: Invoice;
+  invoiceData: IInvoice;
   invoiceItems: item[];
 }
 
@@ -82,7 +82,7 @@ const Invoice = ({ invoiceData, invoiceItems }: props) => {
             <button
               className="purpleButton"
               onClick={() => {
-                editInvoiceHandler(invoice as Invoice);
+                editInvoiceHandler(invoice as IInvoice);
               }}
             >
               Edit

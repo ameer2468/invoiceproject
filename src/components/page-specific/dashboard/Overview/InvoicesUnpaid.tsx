@@ -4,11 +4,11 @@ import { Scrollbars } from 'react-custom-scrollbars-2';
 import SearchBox from '../../../global/SearchBox';
 import { motion } from 'framer-motion';
 import { anim } from '../../../../framer';
-import { Invoice } from '../../../../../types/invoice';
+import { IInvoice } from '../../../../../types/invoice';
 import { numberFormat } from '../../../../helpers';
 
 interface props {
-  data: Invoice[] | undefined;
+  data: IInvoice[] | undefined;
 }
 
 const InvoicesPaid = ({ data }: props) => {

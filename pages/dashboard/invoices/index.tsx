@@ -4,7 +4,7 @@ import Invoice from '../../../src/components/page-specific/dashboard/Invoices/in
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { staggerParent } from '../../../src/framer';
-import { Invoice as InvoiceType } from '../../../types/invoice';
+import { IInvoice } from '../../../types/invoice';
 import Page from '../../../src/components/global/Page';
 import { useFetchInvoices } from '../../../src/hooks/useInvoice';
 import NoContent from '../../../src/components/global/NoContent';
@@ -52,7 +52,7 @@ const Index = () => {
         )}
         {isLoading || isFetching
           ? skeletonArr()
-          : invoicesData.map((item: InvoiceType, index: number) => (
+          : invoicesData.map((item: IInvoice, index: number) => (
               <Invoice key={index.toString()} data={item} />
             ))}
       </motion.ul>

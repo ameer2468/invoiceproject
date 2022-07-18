@@ -3,10 +3,10 @@ import ClientCard from '../MoneyMade/ClientCard';
 import { Scrollbars } from 'react-custom-scrollbars-2';
 import { motion } from 'framer-motion';
 import { anim } from '../../../../framer';
-import { Invoice } from '../../../../../types/invoice';
+import { IInvoice } from '../../../../../types/invoice';
 
 interface props {
-  data: Invoice[];
+  data: IInvoice[];
 }
 
 const MoneyMade = ({ data }: props) => {

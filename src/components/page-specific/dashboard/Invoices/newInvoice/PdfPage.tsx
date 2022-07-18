@@ -2,11 +2,11 @@ import { Document, Page, Text, View } from '@react-pdf/renderer';
 import { styles } from '../../../../../../styles/pdfStyling';
 import React from 'react';
 import { numberFormat } from '../../../../../helpers';
-import { Invoice } from '../../../../../../types/invoice';
+import { IInvoice } from '../../../../../../types/invoice';
 import moment from 'moment';
 
 interface props {
-  invoiceInfo: Invoice;
+  invoiceInfo: IInvoice;
 }
 
 const PdfPage = ({ invoiceInfo }: props) => {

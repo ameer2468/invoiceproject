@@ -1,5 +1,5 @@
 import {
-  Invoice,
+  IInvoice,
   MutateInvoice,
   MutateLoading,
   updateKeys,
@@ -35,13 +35,13 @@ import { useNotifications } from './useNotifications';
  */
 
 export const useInvoice = () => {
-  const [invoicesData, setInvoicesData] = useState<Invoice[]>([]);
+  const [invoicesData, setInvoicesData] = useState<IInvoice[]>([]);
   const [editInvoiceMode, setEditInvoiceMode] = useState<boolean>(false);
   const { user } = useUser().user;
   const [calendarOpen, setCalendarOpen] = useState<boolean>(false);
   const [createInvoiceLoading, setCreateInvoiceLoading] =
     useState<boolean>(false);
-  const [invoiceForm, setInvoiceForm] = useState<Invoice>({
+  const [invoiceForm, setInvoiceForm] = useState<IInvoice>({
     ...invoiceFormState,
     from: user.attributes['custom:firstname'],
   });
@@ -144,7 +144,7 @@ export const useInvoice = () => {
   /* Update an individual key in the invoice form */
 
   const updateInvoiceForm = (
-    key: keyof Invoice,
+    key: keyof IInvoice,
     value: string | number | boolean
   ) => {
     setInvoiceForm({
@@ -208,9 +208,9 @@ export const useInvoice = () => {
 };
 
 export const useInvoiceData = (
-  invoiceData: Invoice,
-  invoiceForm: Invoice,
-  setInvoiceForm: (invoiceForm: Invoice) => void
+  invoiceData: IInvoice,
+  invoiceForm: IInvoice,
+  setInvoiceForm: (invoiceForm: IInvoice) => void
 ) => {
   const [mutateLoading, setMutateLoading] = useState<MutateLoading>({
     id: false,
@@ -220,7 +220,7 @@ export const useInvoiceData = (
     description: false,
     status: false,
   });
-  const [invoice, setInvoice] = useState<Invoice | null>(null);
+  const [invoice, setInvoice] = useState<IInvoice | null>(null);
   const { editInvoiceMode, setEditInvoiceMode } = useInvoice();
   const router = useRouter();
   const { user } = useUser().user;
@@ -262,7 +262,7 @@ export const useInvoiceData = (
 
   /* When editing an individual invoice - this is a mutate handler */
 
-  const editInvoiceHandler = (invoiceData: Invoice) => {
+  const editInvoiceHandler = (invoiceData: IInvoice) => {
     setEditInvoiceMode(!editInvoiceMode);
     setInvoiceForm({
       ...invoiceForm,
@@ -297,7 +297,7 @@ export const useInvoiceData = (
     })
       .then(() => {
         setInvoice({
-          ...(invoice as Invoice),
+          ...(invoice as IInvoice),
           [type]: mutateValue(type),
         });
         toast('Invoice updated successfully', successToast);

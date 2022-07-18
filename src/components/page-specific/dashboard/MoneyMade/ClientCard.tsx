@@ -1,10 +1,10 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSackDollar } from '@fortawesome/free-solid-svg-icons';
-import { Invoice } from '../../../../../types/invoice';
+import { IInvoice } from '../../../../../types/invoice';
 
 interface props {
-  data: Invoice;
+  data: IInvoice;
 }
 
 const ClientCard = ({ data }: props) => {
