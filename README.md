@@ -1,4 +1,4 @@
-This is a personal work in progress project, built with:
+This is a personal project that I worked on. Tech stack:
 
 - Typescript
 - NextJS
